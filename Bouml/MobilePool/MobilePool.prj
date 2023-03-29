@@ -1,7 +1,7 @@
 format 224
 "MobilePool"
-  revision 1
-  modified_by 50 "btssn2"
+  revision 2
+  modified_by 42 "tv"
 
 
   
@@ -67,7 +67,7 @@ format 224
      end
     usecasediagram 128050 "Cas d'utilisation"
       usecasediagramsettings draw_all_relations no end
-      size A4
+      size A0
     end
 
     class 128050 "Joueur"
@@ -112,13 +112,19 @@ format 224
       simplerelation 128562
 	-_->
 	  stereotype "include"
-	  on usecase_ref 128818 // Suivre le deroule de la manche
+	  on usecase_ref 128818 // Suivre le deroulement de la manche
       end
 
       simplerelation 128818
 	-_->
 	  stereotype "include"
 	  on usecase_ref 128946 // Mettre fin a la manche
+      end
+
+      simplerelation 134570
+	-_->
+	  stereotype "include"
+	  on usecase_ref 128690 // Dialoguer avec la table
       end
     end
 
@@ -158,7 +164,7 @@ format 224
       simplerelation 129330
 	-_->
 	  stereotype "extend"
-	  on usecase_ref 129458 // Afficher les statistiques d'un joueur
+	  on usecase_ref 129458 // Afficher les statistiques
       end
     end
 
@@ -198,7 +204,7 @@ format 224
       simplerelation 129458
 	-_->
 	  stereotype "include"
-	  on usecase_ref 129586 // Dialoguer avec la TV
+	  on usecase_ref 129586 // Dialoguer avec le module Ecran-Pool
       end
     end
 
@@ -288,7 +294,7 @@ format 224
       
     end
 
-    usecase 128818 "Suivre le deroule de la manche"
+    usecase 128818 "Suivre le deroulement de la manche"
       
       usecasediagramsettings end
       
@@ -310,6 +316,12 @@ format 224
       activitydiagramsettings
        end
       simplerelation 128690
+	-_->
+	  stereotype "include"
+	  on usecase_ref 128690 // Dialoguer avec la table
+      end
+
+      simplerelation 134698
 	-_->
 	  stereotype "include"
 	  on usecase_ref 128690 // Dialoguer avec la table
@@ -413,7 +425,7 @@ format 224
        end
     end
 
-    usecase 129458 "Afficher les statistiques d'un joueur"
+    usecase 129458 "Afficher les statistiques"
       
       usecasediagramsettings end
       
@@ -436,7 +448,7 @@ format 224
        end
     end
 
-    usecase 129586 "Dialoguer avec la TV"
+    usecase 129586 "Dialoguer avec le module Ecran-Pool"
       
       usecasediagramsettings end
       

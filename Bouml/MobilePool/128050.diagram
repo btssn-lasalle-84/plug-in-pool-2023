@@ -2,7 +2,7 @@ format 224
 
 classcanvas 128050 class_ref 128050 // Joueur
   simpleclassdiagramsettings end
-  xyz 80 190 2000
+  xyz 36 268 2000
 end
 usecasecanvas 128434 usecase_ref 128178 // Consulter l'historique
   xyzwh 324 432 3005 64 32 label_xy 285 464
@@ -11,82 +11,82 @@ usecasecanvas 128946 usecase_ref 128306 // Configurer une manche
   xyzwh 323 258 3005 64 32 label_xy 277 290
 end
 usecasecanvas 129458 usecase_ref 128434 // Editer/Choisir un joueur
-  xyzwh 521 270 3005 64 32 label_xy 475 302
+  xyzwh 409 366 3005 64 32 label_xy 363 398
 end
 usecasecanvas 129842 usecase_ref 128562 // Choisir une table
-  xyzwh 519 208 3005 64 32 label_xy 495 240
+  xyzwh 608 251 3005 64 32 label_xy 584 283
 end
 usecasecanvas 130098 usecase_ref 128690 // Dialoguer avec la table
-  xyzwh 695 201 3005 64 32 label_xy 652 233
-end
-classcanvas 130354 class_ref 128178 // Table
-  simpleclassdiagramsettings end
-  xyz 230 159 2000
+  xyzwh 745 167 3005 64 32 label_xy 702 199
 end
 usecasecanvas 130482 usecase_ref 128050 // Lancer une manche
-  xyzwh 323 160 3011 64 32 label_xy 291 192
+  xyzwh 323 160 3011 64 32 label_xy 241 189
 end
-usecasecanvas 130994 usecase_ref 128818 // Suivre le deroule de la manche
-  xyzwh 507 149 3016 64 32 label_xy 438 181
+usecasecanvas 130994 usecase_ref 128818 // Suivre le deroulement de la manche
+  xyzwh 712 85 3016 64 32 label_xy 610 117
 end
 usecasecanvas 131378 usecase_ref 128946 // Mettre fin a la manche
   xyzwh 323 58 3005 64 32 label_xy 281 90
 end
 usecasecanvas 131890 usecase_ref 129074 // Enregistrer la manche
-  xyzwh 505 58 3005 64 32 label_xy 465 90
+  xyzwh 732 15 3005 64 32 label_xy 692 47
 end
 usecasecanvas 132146 usecase_ref 129202 // Purger l'historique
-  xyzwh 502 432 3005 64 32 label_xy 472 464
+  xyzwh 721 429 3005 64 32 label_xy 691 461
 end
 usecasecanvas 132402 usecase_ref 129330 // Afficher l'historique
-  xyzwh 467 530 3005 64 32 label_xy 433 562
+  xyzwh 647 575 3005 64 32 label_xy 613 607
 end
-usecasecanvas 132658 usecase_ref 129458 // Afficher les statistiques d'un joueur
-  xyzwh 268 533 3005 64 32 label_xy 182 565
+usecasecanvas 132658 usecase_ref 129458 // Afficher les statistiques
+  xyzwh 259 608 3005 64 32 label_xy 250 640
 end
-usecasecanvas 132914 usecase_ref 129586 // Dialoguer avec la TV
-  xyzwh 519 343 3005 64 32 label_xy 484 375
+usecasecanvas 132914 usecase_ref 129586 // Dialoguer avec le module Ecran-Pool
+  xyzwh 970 420 3005 64 32 label_xy 830 452
+end
+simplerelationcanvas 128042 simplerelation_ref 134570
+  from ref 130482 z 3012 stereotype "<<include>>" xyz 485 178 3000 to ref 130098
+end
+simplerelationcanvas 128170 simplerelation_ref 134698
+  from ref 130994 z 3017 stereotype "<<include>>" xyz 679 141 3000 to ref 130098
 end
 line 128690 ----
   from ref 128050 z 3006 to ref 128434
 simplerelationcanvas 129586 simplerelation_ref 128178
-  from ref 128946 z 3006 stereotype "<<include>>" xyz 412.5 278 3000 to ref 129458
+  from ref 128946 z 3006 stereotype "<<include>>" xyz 355 327 3000 to ref 129458
 end
 line 129714 ----
   from ref 128050 z 3006 to ref 128946
 simplerelationcanvas 129970 simplerelation_ref 128306
-  from ref 128946 z 3006 stereotype "<<include>>" xyz 412 246.5 3000 to ref 129842
+  from ref 128946 z 3006 stereotype "<<include>>" xyz 456.5 268.5 3000 to ref 129842
 end
 simplerelationcanvas 130226 simplerelation_ref 128434
-  from ref 129842 z 3006 stereotype "<<include>>" xyz 598 218.5 3000 to ref 130098
+  from ref 129842 z 3006 stereotype "<<include>>" xyz 664.5 223.5 3000 to ref 130098
 end
 simplerelationcanvas 130610 simplerelation_ref 128050
   decenter_end 484
-  from ref 130482 z 3012 stereotype "<<include>>" xyz 313.5 223.5 3012 to ref 128946
+  from ref 130482 z 3012 stereotype "<<include>>" xyz 313 223 3012 to ref 128946
 end
 simplerelationcanvas 131122 simplerelation_ref 128562
-  from ref 130482 z 3017 stereotype "<<include>>" xyz 405.5 168 3000 to ref 130994
+  from ref 130482 z 3017 stereotype "<<include>>" xyz 507.5 135.5 3000 to ref 130994
 end
 simplerelationcanvas 131506 simplerelation_ref 128818
-  from ref 130482 z 3012 stereotype "<<include>>" xyz 313.5 124 3000 to ref 131378
+  from ref 130482 z 3012 stereotype "<<include>>" xyz 313 124 3000 to ref 131378
 end
 line 131634 ----
   from ref 128050 z 3006 to ref 131378
-line 131762 ----
-  from ref 130354 z 3012 to ref 130482
 simplerelationcanvas 132018 simplerelation_ref 128946
-  from ref 131378 z 3006 stereotype "<<extend>>" xyz 405 73 3000 to ref 131890
+  from ref 131378 z 3006 stereotype "<<extend>>" xyz 518.5 50 3000 to ref 131890
 end
 simplerelationcanvas 132274 simplerelation_ref 129074
-  from ref 128434 z 3006 stereotype "<<extend>>" xyz 403.5 446.5 3000 to ref 132146
+  from ref 128434 z 3006 stereotype "<<extend>>" xyz 512.5 444 3000 to ref 132146
 end
 simplerelationcanvas 132530 simplerelation_ref 129202
-  from ref 128434 z 3006 stereotype "<<extend>>" xyz 387 496 3000 to ref 132402
+  from ref 128434 z 3006 stereotype "<<extend>>" xyz 476.5 517.5 3000 to ref 132402
 end
 simplerelationcanvas 132786 simplerelation_ref 129330
-  from ref 128434 z 3006 stereotype "<<extend>>" xyz 284 497 3000 to ref 132658
+  from ref 128434 z 3006 stereotype "<<extend>>" xyz 280.5 534.5 3000 to ref 132658
 end
 simplerelationcanvas 133042 simplerelation_ref 129458
-  from ref 128946 z 3006 stereotype "<<include>>" xyz 412 313 3000 to ref 132914
+  from ref 128946 z 3006 stereotype "<<include>>" xyz 637.5 352.5 3000 to ref 132914
 end
 end
