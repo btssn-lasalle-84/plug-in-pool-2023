@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".EcranPrincipal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" Plug-in-Pool "
+            android:textSize="60sp"
+            android:gravity="center_horizontal"
+            android:textColor="#112233"/>
+
+        <Button
+            android:id="@+id/boutonStatistiques"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="statistiques" />
+
+        <Button
+            android:id="@+id/boutonJouer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jouer" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

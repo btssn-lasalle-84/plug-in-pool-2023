@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 /**
  * @class JustFeed
@@ -29,6 +31,9 @@ public class EcranPrincipal extends AppCompatActivity
     /**
      * Ressources GUI
      */
+    private Button
+                   boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
+    private Button boutonJouer;        //!< Le bouton permettant de jouer une partie
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -39,6 +44,8 @@ public class EcranPrincipal extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate()");
+
+        initialiserRessources();
     }
 
     /**
@@ -92,5 +99,27 @@ public class EcranPrincipal extends AppCompatActivity
     {
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
+    }
+
+    /**
+     * @brief Initialise les ressources graphiques de l'activité
+     */
+    private void initialiserRessources()
+    {
+        boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
+        boutonJouer        = (Button)findViewById(R.id.boutonJouer);
+
+        boutonStatistiques.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonStatistiques");
+            }
+        });
+        boutonJouer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonJouer");
+            }
+        });
     }
 }
