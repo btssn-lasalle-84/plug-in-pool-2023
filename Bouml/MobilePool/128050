@@ -1,6 +1,6 @@
 format 224
 "pluginpool" // pluginpool
-  revision 1
+  revision 2
   modified_by 50 "btssn2"
   // class settings
   
@@ -30,7 +30,7 @@ format 224
   activitydiagramsettings
    end
   
-  java_dir "../../PlugInPool/app/src/main/java/com/example/pluginpool/"
+  java_dir "PlugInPool/app/src/main/java/com/example/pluginpool/"
   java_package "com.example.pluginpool"
   classview 128050 "pluginpool"
     
@@ -241,6 +241,31 @@ et détruite par le système Android)
       classdiagramsettings member_max_width 0 end
       size A0
     end
+
+    class 141362 "GestionManche"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 134834 "couleursDefinies"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
   end
 
   deploymentview 128050 "pluginpool"
@@ -265,6 +290,17 @@ ${definition}"
 @brief Déclaration de l'activité principale
 @author Clément TRICHET
 "
+    end
+
+    artifact 134578 "GestionManche"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 141362 // GestionManche
+      end
     end
   end
 end

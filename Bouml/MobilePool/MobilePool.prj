@@ -1,7 +1,8 @@
 format 224
 "MobilePool"
-  revision 4
+  revision 5
   modified_by 50 "btssn2"
+  java_root_dir "../../"
 
 
   
@@ -121,7 +122,6 @@ format 224
 	  stereotype "include"
 	  on usecase_ref 128946 // Mettre fin a la manche
       end
-
     end
 
     usecase 128178 "Consulter l'historique"
