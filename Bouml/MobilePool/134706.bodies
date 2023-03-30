@@ -1,0 +1,38 @@
+class EcranPrincipal
+!!!128050.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG, "onCreate()");
+
+        initialiserRessources();
+!!!128178.java!!!	onStart() : void
+        super.onStart();
+        Log.d(TAG, "onStart()");
+!!!128306.java!!!	onResume() : void
+        super.onResume();
+        Log.d(TAG, "onResume()");
+!!!128434.java!!!	onPause() : void
+        super.onPause();
+        Log.d(TAG, "onPause()");
+!!!128562.java!!!	onStop() : void
+        super.onStop();
+        Log.d(TAG, "onStop()");
+!!!128690.java!!!	onDestroy() : void
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+!!!128818.java!!!	initialiserRessources() : void
+        boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
+        boutonJouer        = (Button)findViewById(R.id.boutonJouer);
+
+        boutonStatistiques.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonStatistiques");
+            }
+        });
+        boutonJouer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonJouer");
+            }
+        });
