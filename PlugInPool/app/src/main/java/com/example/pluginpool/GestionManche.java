@@ -6,6 +6,7 @@
 package com.example.mobilepool;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 final int NOIRE = 0;                // !< @def Bille noire 0
@@ -36,8 +37,9 @@ public class GestionManche {
         joueurs = new String[2];
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
-        couleursJoueurs= new Map<String, Integer>();
-        billes = new Map<Integer, Integer>();
+        couleursJoueurs= new HashMap<>();
+
+        billes = new HashMap<>();
         billes.put(ROUGE, NB_BILLES_COULEUR);
         billes.put(JAUNE, NB_BILLES_COULEUR);
         poches = new ArrayList[6];
@@ -50,7 +52,7 @@ public class GestionManche {
         couleursDefinies = false;
         mancheDemarree = false;
         compteur = new Compteur();
-        // !< @todo affichage activitée
+        //!< @todo affichage activitée
     }
 
     public void interpreterTrame(int trame)
@@ -61,11 +63,11 @@ public class GestionManche {
             {
                 if (couleursDefinies && billes[couleursJoueurs[joueurs[joueurActif]]] == 0)
                 {
-                    // !< @todo JoueurActif a gagné
+                    //!< @todo JoueurActif a gagné
                 }
                 else
                 {
-                    // !< @todo joueurActif a perdu
+                    //!< @todo joueurActif a perdu
                 }
             }
             else
@@ -74,8 +76,8 @@ public class GestionManche {
                 if(!couleursDefinies && trame % 3 != 0);
                 {
                     couleursDefinies = true;
-                    couleursJoueurs[joueurs[joueurActif]] = trame % 4;
-                    couleursJoueurs[joueurs[(joueurActif + 1) % 2]] = (trame % 4) * 2 % 3;
+                    couleursJoueurs.put(joueurs[joueurActif], trame % 4);
+                    couleursJoueurs.put(joueurs[(joueurActif + 1) % 2], (trame % 4) * 2 % 3);
                 }
             }
         }
