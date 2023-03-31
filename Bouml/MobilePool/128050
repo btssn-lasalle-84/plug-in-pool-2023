@@ -1,6 +1,6 @@
 format 224
 "pluginpool" // pluginpool
-  revision 2
+  revision 3
   modified_by 50 "btssn2"
   // class settings
   
@@ -235,14 +235,45 @@ et détruite par le système Android)
 	comment "@brief Initialise les ressources graphiques de l'activité
 "
       end
+
+      classrelation 134834 // <aggregation>
+	relation 134706 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134834 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134962 // <aggregation>
+      end
+
+      classrelation 135346 // <dependency>
+	relation 134962 -_->
+	  a public
+	    classrelation_ref 135346 // <dependency>
+	  b parent class_ref 148274 // BaseDonnees
+      end
+
+      classrelation 135474 // <aggregation>
+	relation 135090 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135474 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135602 // <aggregation>
+      end
     end
 
     classdiagram 134578 "diagramme classes 0.1"
-      classdiagramsettings member_max_width 0 end
+      classdiagramsettings draw_all_relations no member_max_width 0 end
       size A0
     end
 
-    class 141362 "GestionManche"
+    class 147890 "GestionManche"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -254,8 +285,12 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      attribute 134834 "couleursDefinies"
-	private explicit_type "boolean"
+      comment "@class GestionManche
+@brief GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées par les trames issues de la table
+"
+      attribute 141362 "NOIRE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -264,6 +299,314 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
+	comment " !< @def Bille noire 0"
+      end
+
+      attribute 141490 "ROUGE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< @def Bille rouge 1"
+      end
+
+      attribute 141618 "JAUNE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< @def Bille jaune 2"
+      end
+
+      attribute 141746 "BLANCHE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< @def Bille blanche 3"
+      end
+
+      attribute 141874 "NB_BILLES_COULEUR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7"
+      end
+
+      attribute 142002 "NB_POCHES"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 6"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< @def Nombre de poches de la table 6"
+      end
+
+      attribute 142130 "joueurs"
+	private explicit_type "String"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142258 "couleursJoueurs"
+	private explicit_type "String, Integer"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142386 "billes"
+	private explicit_type "Integer, Integer"
+	stereotype "Map"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142514 "poches"
+	private explicit_type "Integer"
+	multiplicity "[]"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}>${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142642 "manche"
+	private explicit_type "ArrayList<Integer>"
+	stereotype "ArrayList"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142770 "joueurActif"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142898 "couleursDefinies"
+	private explicit_type "Boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143026 "mancheDemarree"
+	private explicit_type "Boolean"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143154 "compteur"
+	private explicit_type "Compteur"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 135346 "GestionManche"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "joueur1" explicit_type "String"
+	  param in name "joueur2" explicit_type "String"
+	  param in name "premierJoueur" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135474 "interpreterTrame"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "trame" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 134578 // <aggregation>
+	relation 134578 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134578 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134706 // <aggregation>
+      end
+
+      classrelation 135090 // <aggregation>
+	relation 134834 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135090 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135218 // <aggregation>
+      end
+
+      classrelation 135730 // <aggregation>
+	relation 135218 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135730 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135858 // <aggregation>
+      end
+    end
+
+    class 148018 "Compteur"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 134706 // <aggregation>
+	relation_ref 134578 // <aggregation>
+      end
+    end
+
+    class 148146 "Reception"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 134962 // <aggregation>
+	relation_ref 134706 // <aggregation>
+      end
+
+      classrelation 135218 // <aggregation>
+	relation_ref 134834 // <aggregation>
+      end
+    end
+
+    class 148274 "BaseDonnees"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 135602 // <aggregation>
+	relation_ref 135090 // <aggregation>
+      end
+
+      classrelation 135858 // <aggregation>
+	relation_ref 135218 // <aggregation>
       end
     end
   end
@@ -299,7 +642,6 @@ ${package}
 ${imports}
 ${definition}"
       associated_elems
-	class_ref 141362 // GestionManche
       end
     end
   end

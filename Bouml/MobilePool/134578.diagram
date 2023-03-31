@@ -2,15 +2,50 @@ format 224
 
 classcanvas 128050 class_ref 134706 // EcranPrincipal
   classdiagramsettings member_max_width 0 end
-  xyz 313 133 2000
+  xyz 52 343 2000
 end
 classcanvas 128178 class_ref 134834 // AppCompatActivity
   classdiagramsettings member_max_width 0 end
-  xyz 417 38 2006
+  xyz 159 251 2006
+end
+classcanvas 128562 class_ref 147890 // GestionManche
+  classdiagramsettings member_max_width 0 end
+  xyz 486 280 2000
+end
+classcanvas 128690 class_ref 148018 // Compteur
+  classdiagramsettings member_max_width 0 end
+  xyz 620 680 2000
+end
+classcanvas 128946 class_ref 148146 // Reception
+  classdiagramsettings member_max_width 0 end
+  xyz 308 623 2000
+end
+classcanvas 129330 class_ref 148274 // BaseDonnees
+  classdiagramsettings member_max_width 0 end
+  xyz 99 617 2000
 end
 relationcanvas 128306 relation_ref 128050 // <generalisation>
+  decenter_begin 498
   from ref 128050 z 2007 to ref 128178
   no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
+relationcanvas 128818 relation_ref 134578 // <aggregation>
+  decenter_end 626
+  from ref 128562 z 2001 to ref 128690
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129074 relation_ref 134706 // <aggregation>
+  from ref 128050 z 2001 to ref 128946
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129586 relation_ref 135090 // <aggregation>
+  from ref 128050 z 2001 to ref 129330
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+line 129842 -_-_
+  from ref 128050 z 2001 to ref 128562
 end

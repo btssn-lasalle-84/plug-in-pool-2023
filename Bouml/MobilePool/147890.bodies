@@ -1,39 +1,5 @@
-/**
- * @author Clément Trichet
- * @file GestionManche.java
- * @brief TODO
- */
-package com.example.mobilepool;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * @class GestionManche
- * @brief GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées par les trames issues de la table
- */
-public class GestionManche {
-
-    public static final int NOIRE = 0;                // !< @def Bille noire 0
-    public static final int ROUGE = 1;                // !< @def Bille rouge 1
-    public static final int JAUNE = 2;                // !< @def Bille jaune 2
-    public static final int BLANCHE = 3;              // !< @def Bille blanche 3
-    public static final int NB_BILLES_COULEUR = 7;    // !< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7
-    public static final int NB_POCHES = 6;            // !< @def Nombre de poches de la table 6
-
-    private String [] joueurs;
-    private Map<String, Integer> couleursJoueurs;
-    private Map<Integer, Integer> billes;
-    private ArrayList<Integer>[] poches;
-    private ArrayList<ArrayList<Integer>> manche;
-    private int joueurActif;
-    private Boolean couleursDefinies;
-    private Boolean mancheDemarree;
-    private Compteur compteur;
-
-    public GestionManche(String joueur1, String joueur2, int premierJoueur)
-    {
+class GestionManche
+!!!135346.java!!!	GestionManche(in joueur1 : String, in joueur2 : String, in premierJoueur : int)
         joueurs = new String[2];
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
@@ -53,10 +19,7 @@ public class GestionManche {
         mancheDemarree = false;
         compteur = new Compteur();
         //!< @todo affichage activitée
-    }
-
-    public void interpreterTrame(int trame)
-    {
+!!!135474.java!!!	interpreterTrame(in trame : int) : void
         if(trame / 128 == 0)
         {
             if(trame % 4 == 0)
@@ -92,5 +55,3 @@ public class GestionManche {
             joueurActif = (joueurActif + 1) % 2;
             compteur.restart();
         }
-    }
-}
