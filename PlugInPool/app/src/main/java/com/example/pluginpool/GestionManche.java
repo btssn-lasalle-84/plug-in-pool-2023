@@ -3,7 +3,8 @@
  * @file GestionManche.java
  * @brief TODO
  */
-package com.example.mobilepool;
+
+package com.example.pluginpool;
 
 import android.util.Log;
 
@@ -20,19 +21,25 @@ import java.util.Map;
  * par les trames issues de la table
  */
 
-public class GestionManche {
+public class GestionManche
+{
+    /**
+     * Constantes
+     */
+    private static final String TAG     = "_GestionManche"; //!< TAG pour les logs
+    public static final int     NOIRE   = 0;                //!< @def Bille noire 0
+    public static final int     ROUGE   = 1;                //!< @def Bille rouge 1
+    public static final int     JAUNE   = 2;                //!< @def Bille jaune 2
+    public static final int     BLANCHE = 3;                //!< @def Bille blanche 3
+    public static final int     NB_BILLES_COULEUR =
+      7; //!< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7
+    public static final int NB_POCHES = 6; //!< @def Nombre de poches de la table 6
 
-    public static final int NOIRE = 0;                // !< @def Bille noire 0
-    public static final int ROUGE = 1;                // !< @def Bille rouge 1
-    public static final int JAUNE = 2;                // !< @def Bille jaune 2
-    public static final int BLANCHE = 3;              // !< @def Bille blanche 3
-    public static final int NB_BILLES_COULEUR = 7;    // !< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7
-    public static final int NB_POCHES = 6;            // !< @def Nombre de poches de la table 6
-
-    private static final String TAG = "_GestionManche"; //!< TAG pour les logs
-    private String[] joueurs;
-    private Map<String, Integer>  couleursJoueurs;
-
+    /**
+     * Attributs
+     */
+    private String[] joueurs;                      //!< les joueurs
+    private Map<String, Integer>  couleursJoueurs; //!< ...
     private Map<Integer, Integer> billes;
     private ArrayList<Integer>[] poches;
     private ArrayList<ArrayList<Integer>> manche;
@@ -55,7 +62,7 @@ public class GestionManche {
         for(int poche = 0; poche < BlackBall.NB_POCHES; poche++)
         {
             //!< @fixme tableau à deux dimensions ?
-            //this.poches.add(new ArrayList());
+            // this.poches.add(new ArrayList());
         }
 
         manche = new ArrayList<ArrayList<Integer>>();

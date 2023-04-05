@@ -8,6 +8,7 @@ package com.example.pluginpool;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +43,7 @@ public class EcranPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ecran_principal);
         Log.d(TAG, "onCreate()");
 
         initialiserRessources();
@@ -119,6 +120,8 @@ public class EcranPrincipal extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonJouer");
+                Intent activiteConfigurationManche = new Intent(EcranPrincipal.this, ConfigurationManche.class);
+                startActivity(activiteConfigurationManche);
             }
         });
     }

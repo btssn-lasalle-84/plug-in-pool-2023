@@ -9,12 +9,12 @@ public class Compteur extends Timer
 
     private int tempsRestant;
     private GestionManche gestionManche;
-
     private TimerTask actualiser;
-    public void Compteur(manche)
+
+    public void Compteur(GestionManche manche)
     {
         tempsRestant = DUREE_TIR;
-        gestionManche = manche();
+        gestionManche = manche;
 
         actualiser = new TimerTask()
         {
@@ -23,7 +23,7 @@ public class Compteur extends Timer
                 if (tempsRestant > 0)
                 {
                     tempsRestant -= 1;
-                    manche.activity_manche_affichage.actualiserCompteur(tempsRestant);
+                    //manche.activity_manche_affichage.actualiserCompteur(tempsRestant);
                 }
                 else
                 {

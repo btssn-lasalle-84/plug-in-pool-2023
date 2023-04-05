@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfigurationMancheActivity"
+    tools:context=".ConfigurationManche"
     tools:visibility="visible">
 
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/tableBillard" />
+        android:src="@drawable/table_billard" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -144,10 +144,10 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:background="#11111"
+                android:background="#111111"
                 android:contentDescription="@string/bouton_actualiser"
                 android:scaleType="fitCenter"
-                android:src="@drawable/boutonActualiser" />
+                android:src="@drawable/bouton_actualiser" />
 
         </LinearLayout>
 
