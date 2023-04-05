@@ -19,11 +19,20 @@ import java.util.Map;
  * @brief GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées
  * par les trames issues de la table
  */
-public class GestionManche
-{
+
+public class GestionManche {
+
+    public static final int NOIRE = 0;                // !< @def Bille noire 0
+    public static final int ROUGE = 1;                // !< @def Bille rouge 1
+    public static final int JAUNE = 2;                // !< @def Bille jaune 2
+    public static final int BLANCHE = 3;              // !< @def Bille blanche 3
+    public static final int NB_BILLES_COULEUR = 7;    // !< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7
+    public static final int NB_POCHES = 6;            // !< @def Nombre de poches de la table 6
+
     private static final String TAG = "_GestionManche"; //!< TAG pour les logs
     private String[] joueurs;
     private Map<String, Integer>  couleursJoueurs;
+
     private Map<Integer, Integer> billes;
     private ArrayList<Integer>[] poches;
     private ArrayList<ArrayList<Integer>> manche;
