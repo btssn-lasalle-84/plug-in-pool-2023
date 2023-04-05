@@ -1,21 +1,55 @@
 #ifndef ECRANPOOL_H
 #define ECRANPOOL_H
 
-#include <QWidget>
+/**
+ * @file ecranpool.h
+ *
+ * @brief Déclaration de la classe EcranPool
+ * @author Benjamin GAUME
+ * @version 0.1
+ */
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class EcranPool; }
-QT_END_NAMESPACE
+#include <QtWidgets>
 
+namespace Ui
+{
+class EcranPool;
+}
+
+/**
+ * @class EcranPool
+ * @brief L'IHM de l'application
+ */
 class EcranPool : public QWidget
 {
     Q_OBJECT
 
-public:
-    EcranPool(QWidget *parent = nullptr);
+  public:
+    /**
+     * @enum Ecran
+     * @brief Les différents écrans
+     */
+    enum Ecran
+    {
+        Accueil,
+        Partie,
+        FinPartie,
+        NbEcrans
+    };
+
+  public:
+    EcranPool(QWidget* parent = nullptr);
     ~EcranPool();
 
-private:
-    Ui::EcranPool *ui;
+  private:
+    Ui::EcranPool* ui; //<! la fenêtre
+
+    void initialiserEcran();
+
+  public slots:
+    void afficherEcran(EcranPool::Ecran ecran);
+    void afficherEcranAcceuil();
+    void afficherEcranPartie();
+    void afficherEcranFinPartie();
 };
 #endif // ECRANPOOL_H
