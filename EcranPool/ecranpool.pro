@@ -15,3 +15,8 @@ FORMS += \
     ecranpool.ui
 
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
+
+DISTFILES += \
+    images/background.jpg \
+    images/logo.png \
+    images/pool_table.png

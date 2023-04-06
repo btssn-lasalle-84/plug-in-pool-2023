@@ -60,13 +60,10 @@ void EcranPool::afficherEcranFinPartie()
 void EcranPool::initialiserEcran()
 {
     ui->setupUi(this);
-
 #ifdef PLEIN_ECRAN
     showFullScreen();
 #else
-    setFixedSize(qApp->desktop()->availableGeometry(this).width(),
-                 qApp->desktop()->availableGeometry(this).height());
-    // showMaximized();
+    showMaximized();
 #endif
     afficherEcranAcceuil();
 }

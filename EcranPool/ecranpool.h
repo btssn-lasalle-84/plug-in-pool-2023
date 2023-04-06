@@ -11,6 +11,8 @@
 
 #include <QtWidgets>
 
+//#define PLEIN_ECRAN
+
 namespace Ui
 {
 class EcranPool;
@@ -43,8 +45,9 @@ class EcranPool : public QWidget
 
   private:
     Ui::EcranPool* ui; //<! la fenêtre
-
-    void initialiserEcran();
+    QLabel*        logo;
+    void           initialiserEcran();
+    QBoxLayout*    mainLayout;
 
   public slots:
     void afficherEcran(EcranPool::Ecran ecran);
