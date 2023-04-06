@@ -144,7 +144,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:background="#111111"
+                android:background="#112233"
                 android:contentDescription="@string/bouton_actualiser"
                 android:scaleType="fitCenter"
                 android:src="@drawable/bouton_actualiser" />
@@ -197,7 +197,8 @@
             android:text="Suivant"
             android:textSize="16sp"
             android:layout_margin="8dp"
-            android:background="#112233"/>
+            android:background="#112233"
+            android:layout_alignParentBottom="true"/>
 
     </LinearLayout>
 
