@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
+    <width>2761</width>
     <height>1080</height>
    </rect>
   </property>
@@ -55,11 +55,11 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">background-image:url(:/background.jpg);</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
@@ -112,7 +112,7 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="labelTitre">
+              <widget class="QLabel" name="labelTitreAccueil">
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
@@ -127,7 +127,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="labelLogo">
+              <widget class="QLabel" name="labelLogoAccueil">
                <property name="enabled">
                 <bool>true</bool>
                </property>
@@ -140,7 +140,7 @@ background-color: transparent;</string>
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>images/logo.png</pixmap>
+                <pixmap resource="ressources.qrc">:/logo.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -152,14 +152,14 @@ background-color: transparent;</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayoutAccueilPied">
              <item>
-              <widget class="QLabel" name="labelTexte">
+              <widget class="QLabel" name="labelMessageAccueil">
                <property name="font">
                 <font>
                  <pointsize>48</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion ...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -173,6 +173,9 @@ background-color: transparent;</string>
         </layout>
        </widget>
        <widget class="QWidget" name="Partie">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <layout class="QVBoxLayout" name="verticalLayoutPartie">
@@ -206,6 +209,8 @@ background-color: transparent;</string>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>

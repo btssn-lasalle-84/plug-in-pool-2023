@@ -14,9 +14,7 @@ HEADERS += \
 FORMS += \
     ecranpool.ui
 
-CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
+RESOURCES += \
+    ressources.qrc
 
-DISTFILES += \
-    images/background.jpg \
-    images/logo.png \
-    images/pool_table.png
+CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
