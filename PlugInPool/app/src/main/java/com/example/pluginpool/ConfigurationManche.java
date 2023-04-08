@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -124,6 +125,7 @@ public class ConfigurationManche extends AppCompatActivity
         joueur1Edit = (EditText)findViewById(R.id.joueur1Edit);
         joueur2Edit = (EditText)findViewById(R.id.joueur2Edit);
         boutonActualiser = (ImageButton)findViewById(R.id.boutonActualiser);
+        RadioGroup groupeBoutonsRadios = findViewById(R.id.groupeBoutonsRadio);
         boutonTable1 = (RadioButton)findViewById(R.id.boutonTable1);
         boutonTable2 = (RadioButton)findViewById(R.id.boutonTable2);
         boutonTable3 = (RadioButton)findViewById(R.id.boutonTable3);
@@ -172,14 +174,45 @@ public class ConfigurationManche extends AppCompatActivity
             }
         });
 
+
         joueur1Edit.setHint("Saisir le nom du premier joueur");
+        joueur2Edit.setHint("Saisir le nom du second joueur");
+
         joueur1Edit.setFilters(filtresNom);
-        joueur1Edit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        joueur2Edit.setFilters(filtresNom);
+
+        boutonActualiser.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonActualiser");
+                //!< @todo rafraichir tables en attente de connexion
+            }
+        });
+
+        groupeBoutonsRadios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus && joueur1Spinner.isShown()) {
-                    joueur1Spinner.performClick();
-                    joueur2Spinner.performClick();
+            public void onCheckedChanged(RadioGroup groupe, int checkedId)
+            {
+                //!< @todo seConnecter(checkedId);
+            }
+        });
+
+        boutonSuivant.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonSuivant");
+                if(groupeBoutonsRadios.getCheckedRadioButtonId() != -1 && joueur1Edit.getText().toString() != "" && joueur2Edit.getText().toString() != "" && joueur1Edit.getText() != joueur2Edit.getText())
+                {
+                    //!< @todo enregistrer les noms, instancier GestionManche?
+                    Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
+                    startActivity(activiteManche);
+                }
+                else
+                {
+                    //!< @todo afficher un message d'erreur ?
                 }
             }
         });
