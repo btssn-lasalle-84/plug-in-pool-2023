@@ -204,7 +204,7 @@ public class ConfigurationManche extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonSuivant");
-                if(groupeBoutonsRadios.getCheckedRadioButtonId() != -1 && joueur1Edit.getText().toString() != "" && joueur2Edit.getText().toString() != "" && joueur1Edit.getText() != joueur2Edit.getText())
+                if(groupeBoutonsRadios.getCheckedRadioButtonId() != -1 && joueur1Edit.getText().toString() != "" && joueur2Edit.getText().toString() != "" && joueur1Edit.getText().toString() != joueur2Edit.getText().toString())
                 {
                     //!< @todo enregistrer les noms, instancier GestionManche?
                     Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);

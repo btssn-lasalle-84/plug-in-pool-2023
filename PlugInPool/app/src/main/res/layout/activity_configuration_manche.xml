@@ -73,8 +73,7 @@
             android:layout_marginEnd="16dp"
             android:hint="Saisir le nom du premier joueur"
             android:inputType="text"
-            android:padding="8dp"
-            android:focusable="false"/>
+            android:padding="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -119,8 +118,7 @@
             android:layout_marginEnd="16dp"
             android:hint="Saisir le nom du second joueur"
             android:inputType="text"
-            android:padding="8dp"
-            android:focusable="false"/>
+            android:padding="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
