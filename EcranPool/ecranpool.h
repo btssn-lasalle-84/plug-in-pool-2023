@@ -1,6 +1,3 @@
-#ifndef ECRANPOOL_H
-#define ECRANPOOL_H
-
 /**
  * @file ecranpool.h
  *
@@ -9,7 +6,16 @@
  * @version 0.1
  */
 
+#ifndef ECRANPOOL_H
+#define ECRANPOOL_H
+
 #include <QtWidgets>
+
+/**
+ * @def PLEIN_ECRAN
+ * @brief Pour activer le mode plein écran sur la Raspberry Pi
+ */
+//#define PLEIN_ECRAN
 
 namespace Ui
 {
@@ -43,8 +49,7 @@ class EcranPool : public QWidget
 
   private:
     Ui::EcranPool* ui; //<! la fenêtre
-
-    void initialiserEcran();
+    void           initialiserEcran();
 
   public slots:
     void afficherEcran(EcranPool::Ecran ecran);
@@ -52,4 +57,5 @@ class EcranPool : public QWidget
     void afficherEcranPartie();
     void afficherEcranFinPartie();
 };
+
 #endif // ECRANPOOL_H

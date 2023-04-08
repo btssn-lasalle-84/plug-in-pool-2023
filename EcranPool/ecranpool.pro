@@ -14,4 +14,7 @@ HEADERS += \
 FORMS += \
     ecranpool.ui
 
+RESOURCES += \
+    ressources.qrc
+
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT

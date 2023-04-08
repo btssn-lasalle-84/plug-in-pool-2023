@@ -34,7 +34,7 @@ EcranPool::~EcranPool()
 }
 
 /**
- * @fn EcranPool::afficherEcran(Basketgame::Ecran ecran)
+ * @fn EcranPool::afficherEcran(EcranPool::Ecran ecran)
  * @brief Selectionne la fenêtre et l'affiche
  */
 void EcranPool::afficherEcran(EcranPool::Ecran ecran)
@@ -42,31 +42,46 @@ void EcranPool::afficherEcran(EcranPool::Ecran ecran)
     ui->ecrans->setCurrentIndex(ecran);
 }
 
+/**
+ * @fn EcranPool::afficherAccueil(EcranPool::Ecran ecran)
+ * @brief Selectionne la fenêtre d'accueil
+ */
 void EcranPool::afficherEcranAcceuil()
 {
     afficherEcran(EcranPool::Ecran::Accueil);
 }
 
+/**
+ * @fn EcranPool::afficherEcranPartie(EcranPool::Ecran ecran)
+ * @brief Selectionne la fenêtre de la partie
+ */
 void EcranPool::afficherEcranPartie()
 {
     afficherEcran(EcranPool::Ecran::Partie);
 }
 
+/**
+ * @fn EcranPool::afficherEcranFinPartie(EcranPool::Ecran ecran)
+ * @brief Selectionne la fenêtre de fin de partie
+ */
 void EcranPool::afficherEcranFinPartie()
 {
     afficherEcran(EcranPool::Ecran::FinPartie);
 }
 
+// Méthodes privées
+
+/**
+ * @fn EcranPool::initialiserEcran
+ * @brief Initialise l'écran et affiche la fenêtre d'accueil
+ */
 void EcranPool::initialiserEcran()
 {
     ui->setupUi(this);
-
 #ifdef PLEIN_ECRAN
     showFullScreen();
 #else
-    setFixedSize(qApp->desktop()->availableGeometry(this).width(),
-                 qApp->desktop()->availableGeometry(this).height());
-    // showMaximized();
+    showMaximized();
 #endif
     afficherEcranAcceuil();
 }
