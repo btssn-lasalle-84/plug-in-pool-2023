@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Manche">
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/table_billard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="80dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/background_image"
+        app:layout_constraintStart_toStartOf="@+id/background_image"
+        app:srcCompat="@drawable/eclair" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:background="@drawable/rond"
+            android:backgroundTint="#B11C28"
+            android:layout_gravity="center"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"
+            android:indeterminateTint="#112233"
+            android:minWidth="150dp"
+            android:minHeight="150dp"
+            android:progressTint="#112233" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="42"
+            android:textColor="#112233"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp">
+
+        <FrameLayout
+            android:id="@+id/poche0BilleJauneLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/poche0BilleRougeLayout"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/poche0BilleJauneView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_jaune" />
+
+            <TextView
+                android:id="@+id/poche0BilleJauneNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche0BilleRougeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/poche0BilleJauneLayout">
+
+            <ImageView
+                android:id="@+id/poche0BilleRougeView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_rouge" />
+
+            <TextView
+                android:id="@+id/poche0BilleRougeNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche4BilleJauneLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/poche4BilleRougeLayout">
+
+            <ImageView
+                android:id="@+id/poche4BilleJauneView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_jaune" />
+
+            <TextView
+                android:id="@+id/poche4BilleJauneNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche4BilleRougeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/poche4BilleJauneLayout">
+
+            <ImageView
+                android:id="@+id/poche4BilleRougeView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_rouge" />
+
+            <TextView
+                android:id="@+id/poche4BilleRougeNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche1BilleJauneLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/poche1BilleRougeLayout">
+
+            <ImageView
+                android:id="@+id/poche1BilleJauneView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_jaune" />
+
+            <TextView
+                android:id="@+id/poche1BilleJauneNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche1BilleRougeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/poche1BilleJauneLayout"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:id="@+id/poche1BilleRougeView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_rouge" />
+
+            <TextView
+                android:id="@+id/poche1BilleRougeNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche3BilleJauneLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@id/poche3BilleRougeLayout">
+
+            <ImageView
+                android:id="@+id/poche3BilleJauneView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_jaune" />
+
+            <TextView
+                android:id="@+id/poche3BilleJauneNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/poche3BilleRougeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/poche3BilleJauneLayout"
+            android:layout_alignParentEnd="true">
+
+            <ImageView
+                android:id="@+id/poche3BilleRougeView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_rouge" />
+
+            <TextView
+                android:id="@+id/poche3BilleRougeNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/poche2BilleJauneLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/poche2BilleJauneView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <TextView
+                    android:id="@+id/poche2BilleJauneNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    android:textColor="#112233"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/poche2BilleRougeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/poche2BilleRougeView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/bille_rouge" />
+
+                <TextView
+                    android:id="@+id/poche2BilleRougeNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    android:textColor="#112233"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/poche5BilleRougeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/poche5BilleRougeView"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                app:srcCompat="@drawable/bille_rouge" />
+
+
+            <TextView
+                android:id="@+id/poche5BilleRougeNombre"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textColor="#112233"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/poche5BilleJauneLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:id="@+id/poche5BilleJauneView"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <TextView
+                    android:id="@+id/poche5BilleJauneNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:text="0"
+                    android:textColor="#112233"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/poche0BilleJauneLayout"
+            android:layout_below="@id/poche0BilleRougeLayout"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/Joueur1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:text="Robert"
+                android:textColor="#B11C28"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/poche3BilleRougeLayout"
+            android:layout_above="@id/poche3BilleJauneLayout"
+            android:layout_margin="8dp">
+
+            <TextView
+                android:id="@+id/Joueur2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:text="Lulu"
+                android:textColor="#FF9800"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quitter"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:background="#112233"/>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

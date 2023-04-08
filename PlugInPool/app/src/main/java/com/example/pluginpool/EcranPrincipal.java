@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * @class JustFeed
+ * @class EcranPrincipal
  * @brief L'activité principale
  */
 public class EcranPrincipal extends AppCompatActivity
@@ -32,8 +32,7 @@ public class EcranPrincipal extends AppCompatActivity
     /**
      * Ressources GUI
      */
-    private Button
-                   boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
+    private Button boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
     private Button boutonJouer;        //!< Le bouton permettant de jouer une partie
 
     /**
@@ -110,13 +109,15 @@ public class EcranPrincipal extends AppCompatActivity
         boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
         boutonJouer        = (Button)findViewById(R.id.boutonJouer);
 
-        boutonStatistiques.setOnClickListener(new View.OnClickListener() {
+        boutonStatistiques.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
             }
         });
-        boutonJouer.setOnClickListener(new View.OnClickListener() {
+        boutonJouer.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonJouer");
