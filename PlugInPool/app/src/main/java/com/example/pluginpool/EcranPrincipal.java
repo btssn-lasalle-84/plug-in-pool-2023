@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 /**
  * @class EcranPrincipal
@@ -114,6 +115,7 @@ public class EcranPrincipal extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
+                //!< @todo
             }
         });
         boutonJouer.setOnClickListener(new View.OnClickListener()
