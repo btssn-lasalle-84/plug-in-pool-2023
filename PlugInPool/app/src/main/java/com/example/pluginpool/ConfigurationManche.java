@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Spinner;
 
 /**
  * @class ConfigurationManche
@@ -29,6 +30,7 @@ public class ConfigurationManche extends AppCompatActivity
     /**
      * Ressources GUI
      */
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

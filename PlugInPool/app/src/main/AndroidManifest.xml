@@ -13,7 +13,7 @@
         android:theme="@style/Theme.PlugInPool"
         tools:targetApi="31">
         <activity
-            android:name=".manche"
+            android:name=".Manche"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
