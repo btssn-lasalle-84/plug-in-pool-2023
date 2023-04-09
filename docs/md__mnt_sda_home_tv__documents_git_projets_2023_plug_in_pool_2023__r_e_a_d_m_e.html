@@ -88,11 +88,112 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <div class="title">README </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><img src="https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&amp;logoColor=fff&amp;style=plastic" alt="C++ Badge" class="inline"/> <img src="https://badgen.net/badge/Qt/5.12.8/green" alt="" class="inline"/> <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?logo=raspberrypi&amp;logoColor=fff&amp;style=plastic" alt="Raspberry Pi Badge" class="inline"/> <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&amp;logo=java&amp;logoColor=white&amp;style=plastic" alt="Java Badge" class="inline"/> <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&amp;logoColor=fff&amp;style=plastic" alt="Android Badge" class="inline"/></p>
-<p><a href="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop" alt="pages-build-deployment" style="pointer-events: none;" class="inline"/></a></p>
-<h1>Le projet plug-in-pool-2023</h1>
+<div class="textblock"><p><img src="https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&amp;logoColor=fff&amp;style=plastic" alt="C++ Badge" class="inline"/> <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&amp;logoColor=fff&amp;style=plastic" alt="Android Badge" class="inline"/></p>
+<p><img src="https://badgen.net/badge/Qt/5.12.8/green" alt="" class="inline"/> <a href="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/make-qt.yml"><img src="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/make-qt.yml/badge.svg" alt="qt-build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/android-build.yml"><img src="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/android-build.yml/badge.svg" alt="android-build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/btssn-lasalle-84/plug-in-pool-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop" alt="pages-build-deployment" style="pointer-events: none;" class="inline"/></a></p>
+<h1>Projet plug-in-pool 2023</h1>
+<ul>
+<li><a href="#projet-plug-in-pool-2023">Projet plug-in-pool 2023</a><ul>
+<li><a href="#documentation-du-code">Documentation du code</a></li>
+<li><a href="#recette">Recette</a></li>
+<li><a href="#versions">Versions</a><ul>
+<li><a href="#01">0.1</a></li>
+</ul>
+</li>
+<li><a href="#annexes">Annexes</a><ul>
+<li><a href="#blackball">Blackball</a><ul>
+<li><a href="#casse">Casse</a></li>
+<li><a href="#fautes">Fautes</a></li>
+<li><a href="#fin-de-jeu">Fin de jeu</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#auteurs">Auteurs</a></li>
+</ul>
+</li>
+</ul>
 <hr  />
- <h2>Documentation du code : <a href="https://btssn-lasalle-84.github.io/plug-in-pool-2023/">https://btssn-lasalle-84.github.io/plug-in-pool-2023/</a> </h2>
+<p>Le système Plug in Pool est un système numérique permettant de jouer une partie de <a href="#blackball">Blackball</a> (parfois appelé billard anglais, billard pool ou 8 pool).</p>
+<p>Le système Plug-in-Pool est décomposé en trois modules :</p>
+<ul>
+<li>Module de détection des billes (Détection-POOL EC)​ : le billard est équipé de capteurs permettant de détecter l’empochage et la couleur d’une bille</li>
+<li>Module de gestion de partie (Mobile-POOL IR)​ : les joueurs paramètrent et lancent la partie à partir d’une application sur un terminal mobile (sous Android)</li>
+<li>Module de visualisation de partie (Écran-POOL IR)​ : le déroulement de la partie est affiché sur un écran de télévision.</li>
+</ul>
+<h2>Documentation du code</h2>
+<p><a href="https://btssn-lasalle-84.github.io/plug-in-pool-2023/">https://btssn-lasalle-84.github.io/plug-in-pool-2023/</a></p>
+<h2>Recette</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Fonctionnalité   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">Non    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Configurer une manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Jouer une manche et afficher son déroulement   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Enregistrer les données de jeu   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Afficher les statistiques des manches effectuées   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Communiquer entre les modules   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X   </td></tr>
+</table>
+<h2>Versions</h2>
+<h3>0.1</h3>
+<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
+<ul>
+<li>Android :</li>
+</ul>
+<p><img src="screenshot-android-accueil.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-configuration.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-manche.png" alt="" class="inline"/></p>
+<ul>
+<li>Qt :</li>
+</ul>
+<p><img src="screenshot-qt-accueil-v0.1.png" alt="" class="inline"/></p>
+<hr  />
+<h2>Annexes</h2>
+<h3>Blackball</h3>
+<p>Le Blackball ou 8 pool, est un jeu de billard à deux joueurs, qui se déroule sur une table rectangulaire à poches avec 14 billes de couleur (7 rouges et 7 jaunes), une bille noire et une bille d'impact blanche. Les joueurs jouent uniquement les billes de leur groupe&#160;: les jaunes ou les rouges. Si un joueur empoche une de ses billes, il est autorisé à rejouer. La partie est gagnée par le joueur qui, après avoir empoché les 7 billes de sa couleur, empoche la bille noire.</p>
+<h4>Casse</h4>
+<p>Les billes sont rassemblées en triangle et disposées de manière prédéfinie (motif "en J"). La noire doit se trouver placée (sur la mouche) à l’intersection des 2 diagonales entre les poches du bas et celles du milieu (côté opposé à celui du rectangle de départ).</p>
+<p>La casse est considérée valide si une bille de couleur est empochée, ou si deux billes ou plus traversent la ligne corde centrale (ligne virtuelle reliant les deux poches centrales). Le cas échéant, ou si la blanche est empochée, le triangle est reformée, et la casse est effectuée par le second joueur. Si la bille noire est empochée, le triangle est reformé sans faute et le joueur casse une nouvelle fois.</p>
+<p>La couleur des billes est déterminée par la première bille empochée, si deux billes sont empochées en même temps, de couleurs différentes, le joueur rejoue sans que la couleur des billes de son groupe soit déterminée.</p>
+<h4>Fautes</h4>
+<p>Lorsque le joueur commet une des fautes suivantes, le joueur adverse dispose de deux coups :</p>
+<ul>
+<li>La bille blanche est empochée (y compris à la casse) ;</li>
+<li>Toucher, à l’aide de la bille blanche, une bille du groupe adverse avant de toucher une des billes de son groupe de couleur ;</li>
+<li>Jouer la blanche qui ne touche aucune bille ;</li>
+<li>Faire sauter la bille blanche par-dessus une bille ou la partie d’une bille avant que la bille blanche n’ait touché une bille ;</li>
+<li>Toucher la bille noire numéro 8 avec la blanche lors du premier contact alors que le joueur n’a pas encore empoché toutes les billes de son groupe ;</li>
+<li>Empocher une bille du groupe adverse sans avoir empoché une bille de son groupe de couleur ;</li>
+<li>Faire sortir une bille de la surface de jeu ;</li>
+<li>Toucher une bille avec un vêtement ou une partie du corps ;</li>
+<li>Ne pas avoir, pour le joueur, au minimum un pied en contact avec le sol ;</li>
+<li>Jouer ou toucher avec la queue une autre bille que la blanche ;</li>
+<li>Jouer quand ce n’est pas son tour ;</li>
+<li>Jouer avant que toutes les billes ne soient arrêtées ;</li>
+<li>Jouer avant qu’une ou plusieurs billes n’aient été repositionnées ;</li>
+<li>Jouer la bille blanche avec une partie de la queue autre que son procédé ;</li>
+<li>Frapper la bille blanche plus d’une fois avec la queue de billard ;</li>
+<li>Faire Poussette (contact prolongé du procédé avec la bille blanche lors du tir) ;</li>
+<li>Faire bouger une bille collée à la blanche ;</li>
+<li>Aucune bille ne touche la bande (ou n'est empochée) durant le coup, sauf en cas de snook (aucune ligne direct entre la blanche et une bille du groupe de couleur ;</li>
+<li>Si une bille adverse est touchée en premier ;</li>
+<li>Si le coup est porté dans le vide ;</li>
+<li>Une bille de l'adversaire est empochée sans qu'une bille du joueur (ou la noire s'il ne reste qu'elle) soit empochée ;</li>
+<li>Il repositionne la bille blanche (bille en main) avec sa queue ;</li>
+<li>Il fait sauter la bille blanche par-dessus une autre bille ;</li>
+<li>S'il met plus de 45 secondes pour jouer (à partir de l'immobilisation de la dernière bille).</li>
+</ul>
+<h4>Fin de jeu</h4>
+<p>Le joueur gagne dans le cas où après avoir empoché l'ensemble des billes de son groupe de couleur, il empoche la noire ou si son adversaire après avoir empoché la noire sans avoir empoché la totalité des billes de son groupe de couleur.</p>
+<hr  />
+<h2>Auteurs</h2>
+<ul>
+<li>Clement Trichet &lt;<a href="#" onclick="location.href='mai'+'lto:'+'cle'+'me'+'nt.'+'tr'+'ich'+'et'+'.pr'+'o@'+'gma'+'il'+'.co'+'m'; return false;">clement.trichet.pro@gmail.com</a>&gt;</li>
+<li>Gaume Benjamin &lt;[<a href="#" onclick="location.href='mai'+'lto:'+'ben'+'ja'+'min'+'.g'+'aum'+'e@'+'gma'+'il'+'.co'+'m'; return false;">benja<span style="display: none;">.nosp@m.</span>min.<span style="display: none;">.nosp@m.</span>gaume<span style="display: none;">.nosp@m.</span>@gma<span style="display: none;">.nosp@m.</span>il.co<span style="display: none;">.nosp@m.</span>m</a>&gt;</li>
+</ul>
 <hr  />
 <p> ©️ LaSalle Avignon </p>
 </div></div><!-- contents -->
@@ -102,7 +203,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 4 Mars 2023 05:22:13 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 23:01:06 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

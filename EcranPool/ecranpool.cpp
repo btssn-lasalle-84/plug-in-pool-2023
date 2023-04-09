@@ -43,7 +43,7 @@ void EcranPool::afficherEcran(EcranPool::Ecran ecran)
 }
 
 /**
- * @fn EcranPool::afficherAccueil(EcranPool::Ecran ecran)
+ * @fn EcranPool::afficherEcranAcceuil(EcranPool::Ecran ecran)
  * @brief Selectionne la fenêtre d'accueil
  */
 void EcranPool::afficherEcranAcceuil()

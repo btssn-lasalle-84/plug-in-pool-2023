@@ -27,7 +27,7 @@ public class Manche extends AppCompatActivity
     /**
      * Attributs
      */
-    private String[] joueurs;           //!< les joueurs
+    private String[] joueurs;                   //!< les joueurs
     private GestionManche gestionManche = null; //!< pour gérer la manche
 
     /**
@@ -52,6 +52,7 @@ public class Manche extends AppCompatActivity
     private void initialiserAttributs()
     {
         Intent activiteManche = getIntent();
+        joueurs               = new String[2];
         joueurs[0]            = activiteManche.getStringExtra("joueur1");
         joueurs[1]            = activiteManche.getStringExtra("joueur2");
         Log.d(TAG, "onCreate() " + joueurs[0] + " vs " + joueurs[1]);
