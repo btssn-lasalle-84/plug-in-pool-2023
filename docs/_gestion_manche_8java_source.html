@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet plug-in-pool:  Fichier source de GestionManche.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet plug-in-pool
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_gestion_manche_8java_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">GestionManche.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_gestion_manche_8java.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">package </span>com.example.pluginpool;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> android.util.Log;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> com.example.pluginpool.BlackBall;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">import</span> com.example.pluginpool.Protocole;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> java.util.ArrayList;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> java.util.HashMap;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> java.util.Map;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html">   23</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html">GestionManche</a></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a181fabb7b69e056a5baef03109d774a0">   28</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a181fabb7b69e056a5baef03109d774a0">TAG</a>     = <span class="stringliteral">&quot;_GestionManche&quot;</span>; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4877c63f3ff35f1577b20ba78d03c049">   29</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span>     <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4877c63f3ff35f1577b20ba78d03c049">NOIRE</a>   = 0;                </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a233dc790865713086cf618806e3dae9c">   30</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span>     <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a233dc790865713086cf618806e3dae9c">ROUGE</a>   = 1;                </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad57776daac7ed8d66613b766d54327d6">   31</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span>     <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad57776daac7ed8d66613b766d54327d6">JAUNE</a>   = 2;                </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a5c57e640d3fa02ade82eb4c9e5295be0">   32</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span>     <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a5c57e640d3fa02ade82eb4c9e5295be0">BLANCHE</a> = 3;                </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a049a761025f9201ab16e89e372eabd35">   33</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span>     <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a049a761025f9201ab16e89e372eabd35">NB_BILLES_COULEUR</a> =</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;      7; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a682cf42213ff3aed1e5f27279a8e07f9">   35</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a682cf42213ff3aed1e5f27279a8e07f9">NB_POCHES</a> = 6; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">   40</a></span>&#160;    <span class="keyword">private</span> String[] <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>;                      </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">   41</a></span>&#160;    <span class="keyword">private</span> Map&lt;String, Integer&gt;  <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">couleursJoueurs</a>; </div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">   42</a></span>&#160;    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">billes</a>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#abb6a59e65e11e38514397e7a0e71e3a3">   43</a></span>&#160;    <span class="keyword">private</span> ArrayList&lt;Integer&gt;[] <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#abb6a59e65e11e38514397e7a0e71e3a3">poches</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">   44</a></span>&#160;    <span class="keyword">private</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt; <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">   45</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>                           <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">   46</a></span>&#160;    <span class="keyword">private</span> Boolean                       <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">couleursDefinies</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">   47</a></span>&#160;    <span class="keyword">private</span> Boolean                       <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">mancheDemarree</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a46e011181a10d21c51c53de57debf68a">   49</a></span>&#160;    <span class="keyword">public</span> <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a46e011181a10d21c51c53de57debf68a">GestionManche</a>(String joueur1, String joueur2, <span class="keywordtype">int</span> premierJoueur)</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        Log.d(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a181fabb7b69e056a5baef03109d774a0">TAG</a>, <span class="stringliteral">&quot;GestionManche(&quot;</span> + joueur1 + <span class="stringliteral">&quot;, &quot;</span> + joueur2 + <span class="stringliteral">&quot;, &quot;</span> + premierJoueur + <span class="stringliteral">&quot;)&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>         = <span class="keyword">new</span> String[2];</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>[0]      = joueur1;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>[1]      = joueur2;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">couleursJoueurs</a> = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">billes</a> = <span class="keyword">new</span> HashMap&lt;&gt;();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">billes</a>.put(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a8b6776b3aa899b674fe7317b212685b5">ROUGE</a>, <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5e7071e85bf21cf8c050c277e3ebe2ec">NB_BILLES_COULEUR</a>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">billes</a>.put(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a6a8249bc3bf1453bd4584e9b692b1db4">JAUNE</a>, <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5e7071e85bf21cf8c050c277e3ebe2ec">NB_BILLES_COULEUR</a>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#abb6a59e65e11e38514397e7a0e71e3a3">poches</a> = <span class="keyword">new</span> ArrayList[<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#ab1b00c879de30b817094e2b29d5ba5be">NB_POCHES</a>];</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> poche = 0; poche &lt; <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">BlackBall</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#ab1b00c879de30b817094e2b29d5ba5be">NB_POCHES</a>; poche++)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <span class="comment">// this.poches.add(new ArrayList());</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a> = <span class="keyword">new</span> ArrayList&lt;ArrayList&lt;Integer&gt;&gt;();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a>.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a>      = premierJoueur;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">couleursDefinies</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">mancheDemarree</a>   = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// Test</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment">        couleursJoueurs.put(joueurs[0], BlackBall.ROUGE);</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">        couleursJoueurs.put(joueurs[1], BlackBall.JAUNE);</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="comment">        couleursDefinies = true;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="comment">        mancheDemarree   = true;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">        */</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad99b2b6c6c9ae9e923c961ff6782919b">   84</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad99b2b6c6c9ae9e923c961ff6782919b">traiterTrame</a>(<span class="keywordtype">int</span> trame)</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        Log.d(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a181fabb7b69e056a5baef03109d774a0">TAG</a>, <span class="stringliteral">&quot;traiterTrame() trame = &quot;</span> + trame);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">if</span>(trame / <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_protocole.html">Protocole</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_protocole.html#ad7951e68ee7ca03af125f1d746d360c7">CHAMP_TYPE</a> == <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_protocole.html">Protocole</a>.<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_protocole.html#a06823f9ab3200eecb463782f63dac8d6">EMPOCHAGE</a>)</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">if</span>(trame % 4 == 0)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                <span class="keywordflow">if</span>(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">couleursDefinies</a> &amp;&amp; <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">billes</a>.get(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">couleursJoueurs</a>.get(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>[<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a>])) == 0)</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a>.get(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a>.size() - 1).add(trame % 4);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                <span class="keywordflow">if</span>(!<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">couleursDefinies</a> &amp;&amp; trame % 3 != 0)</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    ;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                    <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">couleursDefinies</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                    <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">couleursJoueurs</a>.put(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>[<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a>], trame % 4);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                    <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">couleursJoueurs</a>.put(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">joueurs</a>[(<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a> + 1) % 2], (trame % 4) * 2 % 3);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(!<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">mancheDemarree</a>)</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        {</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;            <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">mancheDemarree</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">manche</a>.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a> = (<a class="code" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">joueurActif</a> + 1) % 2;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_black_ball_html"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html">com.example.pluginpool.BlackBall</a></div><div class="ttdoc">Définit des caractéristiques du billard Blackball.</div><div class="ttdef"><b>Definition:</b> <a href="_black_ball_8java_source.html#l00007">BlackBall.java:8</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_black_ball_html_a5e7071e85bf21cf8c050c277e3ebe2ec"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5e7071e85bf21cf8c050c277e3ebe2ec">com.example.pluginpool.BlackBall.NB_BILLES_COULEUR</a></div><div class="ttdeci">static final int NB_BILLES_COULEUR</div><div class="ttdef"><b>Definition:</b> <a href="_black_ball_8java_source.html#l00013">BlackBall.java:13</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_black_ball_html_a6a8249bc3bf1453bd4584e9b692b1db4"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a6a8249bc3bf1453bd4584e9b692b1db4">com.example.pluginpool.BlackBall.JAUNE</a></div><div class="ttdeci">static final int JAUNE</div><div class="ttdef"><b>Definition:</b> <a href="_black_ball_8java_source.html#l00011">BlackBall.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_black_ball_html_a8b6776b3aa899b674fe7317b212685b5"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a8b6776b3aa899b674fe7317b212685b5">com.example.pluginpool.BlackBall.ROUGE</a></div><div class="ttdeci">static final int ROUGE</div><div class="ttdef"><b>Definition:</b> <a href="_black_ball_8java_source.html#l00010">BlackBall.java:10</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_black_ball_html_ab1b00c879de30b817094e2b29d5ba5be"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#ab1b00c879de30b817094e2b29d5ba5be">com.example.pluginpool.BlackBall.NB_POCHES</a></div><div class="ttdeci">static final int NB_POCHES</div><div class="ttdef"><b>Definition:</b> <a href="_black_ball_8java_source.html#l00015">BlackBall.java:15</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html">com.example.pluginpool.GestionManche</a></div><div class="ttdoc">GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées par les tra...</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00023">GestionManche.java:24</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a049a761025f9201ab16e89e372eabd35"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a049a761025f9201ab16e89e372eabd35">com.example.pluginpool.GestionManche.NB_BILLES_COULEUR</a></div><div class="ttdeci">static final int NB_BILLES_COULEUR</div><div class="ttdoc">Nombre de billes d'une même couleur (rouges ou jaunes) 7.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00033">GestionManche.java:33</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a181fabb7b69e056a5baef03109d774a0"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a181fabb7b69e056a5baef03109d774a0">com.example.pluginpool.GestionManche.TAG</a></div><div class="ttdeci">static final String TAG</div><div class="ttdoc">TAG pour les logs.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00028">GestionManche.java:28</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a233dc790865713086cf618806e3dae9c"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a233dc790865713086cf618806e3dae9c">com.example.pluginpool.GestionManche.ROUGE</a></div><div class="ttdeci">static final int ROUGE</div><div class="ttdoc">Bille rouge 1.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00030">GestionManche.java:30</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a46e011181a10d21c51c53de57debf68a"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a46e011181a10d21c51c53de57debf68a">com.example.pluginpool.GestionManche.GestionManche</a></div><div class="ttdeci">GestionManche(String joueur1, String joueur2, int premierJoueur)</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00049">GestionManche.java:49</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a4877c63f3ff35f1577b20ba78d03c049"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4877c63f3ff35f1577b20ba78d03c049">com.example.pluginpool.GestionManche.NOIRE</a></div><div class="ttdeci">static final int NOIRE</div><div class="ttdoc">Bille noire 0.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00029">GestionManche.java:29</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a4eda1d433086f0c127f863029d650184"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184">com.example.pluginpool.GestionManche.couleursJoueurs</a></div><div class="ttdeci">Map&lt; String, Integer &gt; couleursJoueurs</div><div class="ttdoc">...</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00041">GestionManche.java:41</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a5c57e640d3fa02ade82eb4c9e5295be0"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a5c57e640d3fa02ade82eb4c9e5295be0">com.example.pluginpool.GestionManche.BLANCHE</a></div><div class="ttdeci">static final int BLANCHE</div><div class="ttdoc">Bille blanche 3.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00032">GestionManche.java:32</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a682cf42213ff3aed1e5f27279a8e07f9"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a682cf42213ff3aed1e5f27279a8e07f9">com.example.pluginpool.GestionManche.NB_POCHES</a></div><div class="ttdeci">static final int NB_POCHES</div><div class="ttdoc">Nombre de poches de la table 6.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00035">GestionManche.java:35</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a695f69f1dab53cd4518c6f9ef5544b8c"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a695f69f1dab53cd4518c6f9ef5544b8c">com.example.pluginpool.GestionManche.joueurs</a></div><div class="ttdeci">String[] joueurs</div><div class="ttdoc">les joueurs</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00040">GestionManche.java:40</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a7049c6dfef596abd882db076fe70db9b"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7049c6dfef596abd882db076fe70db9b">com.example.pluginpool.GestionManche.manche</a></div><div class="ttdeci">ArrayList&lt; ArrayList&lt; Integer &gt; &gt; manche</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00044">GestionManche.java:44</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a7b4968d041b411ec8da743d4c08a35a2"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7b4968d041b411ec8da743d4c08a35a2">com.example.pluginpool.GestionManche.joueurActif</a></div><div class="ttdeci">int joueurActif</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00045">GestionManche.java:45</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_a7f16bf40f2157a18c8e74f0c88ebaab7"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7">com.example.pluginpool.GestionManche.couleursDefinies</a></div><div class="ttdeci">Boolean couleursDefinies</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00046">GestionManche.java:46</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_aaf8bd5fe55042dccdf15a6e7699920e5"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#aaf8bd5fe55042dccdf15a6e7699920e5">com.example.pluginpool.GestionManche.mancheDemarree</a></div><div class="ttdeci">Boolean mancheDemarree</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00047">GestionManche.java:47</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_abb6a59e65e11e38514397e7a0e71e3a3"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#abb6a59e65e11e38514397e7a0e71e3a3">com.example.pluginpool.GestionManche.poches</a></div><div class="ttdeci">ArrayList&lt; Integer &gt;[] poches</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00043">GestionManche.java:43</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_ac4ae2894dee50c7140ff01a9db208952"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ac4ae2894dee50c7140ff01a9db208952">com.example.pluginpool.GestionManche.billes</a></div><div class="ttdeci">Map&lt; Integer, Integer &gt; billes</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00042">GestionManche.java:42</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_ad57776daac7ed8d66613b766d54327d6"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad57776daac7ed8d66613b766d54327d6">com.example.pluginpool.GestionManche.JAUNE</a></div><div class="ttdeci">static final int JAUNE</div><div class="ttdoc">Bille jaune 2.</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00031">GestionManche.java:31</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_gestion_manche_html_ad99b2b6c6c9ae9e923c961ff6782919b"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad99b2b6c6c9ae9e923c961ff6782919b">com.example.pluginpool.GestionManche.traiterTrame</a></div><div class="ttdeci">void traiterTrame(int trame)</div><div class="ttdef"><b>Definition:</b> <a href="_gestion_manche_8java_source.html#l00084">GestionManche.java:84</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_protocole_html"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_protocole.html">com.example.pluginpool.Protocole</a></div><div class="ttdoc">Définit le protocole PlugInPool.</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_8java_source.html#l00007">Protocole.java:8</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_protocole_html_a06823f9ab3200eecb463782f63dac8d6"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_protocole.html#a06823f9ab3200eecb463782f63dac8d6">com.example.pluginpool.Protocole.EMPOCHAGE</a></div><div class="ttdeci">static final int EMPOCHAGE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_8java_source.html#l00011">Protocole.java:11</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_protocole_html_ad7951e68ee7ca03af125f1d746d360c7"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_protocole.html#ad7951e68ee7ca03af125f1d746d360c7">com.example.pluginpool.Protocole.CHAMP_TYPE</a></div><div class="ttdeci">static final int CHAMP_TYPE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_8java_source.html#l00010">Protocole.java:10</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_2513b1ef193f295f0393046e8f05dd2c.html">PlugInPool</a></li><li class="navelem"><a class="el" href="dir_71eaeaf4b1f6df7fe843586f692a9c08.html">app</a></li><li class="navelem"><a class="el" href="dir_a2f5a94aec2f9053f793abd834c5b554.html">src</a></li><li class="navelem"><a class="el" href="dir_bf60d68db589fa3b852dff0da76cca8e.html">main</a></li><li class="navelem"><a class="el" href="dir_5ed30c77f825c21cfe74e8f274802aa8.html">java</a></li><li class="navelem"><a class="el" href="dir_c9c981e01833c63a991d7fccfdee9d29.html">com</a></li><li class="navelem"><a class="el" href="dir_cfbb41a31915b36aebc5e2fd2fcda11f.html">example</a></li><li class="navelem"><a class="el" href="dir_975068f0d6756d1819ee7fa54f9d21d3.html">pluginpool</a></li><li class="navelem"><a class="el" href="_gestion_manche_8java.html">GestionManche.java</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 23:01:06 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

@@ -15,7 +15,7 @@
  * @def PLEIN_ECRAN
  * @brief Pour activer le mode plein écran sur la Raspberry Pi
  */
-//#define PLEIN_ECRAN
+#define PLEIN_ECRAN
 
 namespace Ui
 {
