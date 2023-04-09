@@ -42,7 +42,7 @@ public class EcranPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_principal);
+        setContentView(R.layout.ecran_principal);
         Log.d(TAG, "onCreate()");
 
         initialiserRessources();
@@ -114,6 +114,7 @@ public class EcranPrincipal extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
+                //!< @todo
             }
         });
         boutonJouer.setOnClickListener(new View.OnClickListener()

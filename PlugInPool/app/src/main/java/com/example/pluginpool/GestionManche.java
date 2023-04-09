@@ -20,7 +20,6 @@ import java.util.Map;
  * @brief GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées
  * par les trames issues de la table
  */
-
 public class GestionManche
 {
     /**
@@ -49,6 +48,7 @@ public class GestionManche
 
     public GestionManche(String joueur1, String joueur2, int premierJoueur)
     {
+        Log.d(TAG, "GestionManche(" + joueur1 + ", " + joueur2 + ", " + premierJoueur + ")");
         joueurs         = new String[2];
         joueurs[0]      = joueur1;
         joueurs[1]      = joueur2;

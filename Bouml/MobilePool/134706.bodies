@@ -1,7 +1,7 @@
 class EcranPrincipal
 !!!128050.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.ecran_principal);
         Log.d(TAG, "onCreate()");
 
         initialiserRessources();
@@ -24,15 +24,20 @@ class EcranPrincipal
         boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
         boutonJouer        = (Button)findViewById(R.id.boutonJouer);
 
-        boutonStatistiques.setOnClickListener(new View.OnClickListener() {
+        boutonStatistiques.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
+                //!< @todo
             }
         });
-        boutonJouer.setOnClickListener(new View.OnClickListener() {
+        boutonJouer.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonJouer");
+                Intent activiteConfigurationManche = new Intent(EcranPrincipal.this, ConfigurationManche.class);
+                startActivity(activiteConfigurationManche);
             }
         });

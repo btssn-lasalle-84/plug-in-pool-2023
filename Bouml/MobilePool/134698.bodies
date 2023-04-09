@@ -1,82 +1,11 @@
-/**
- * @file ConfigurationManche.java
- * @brief Déclaration de l'activité de configuration d'une manche
- * @author Clément TRICHET
- */
-
-package com.example.pluginpool;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.InputFilter;
-import android.text.Spanned;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-
-import java.util.ArrayList;
-
-/**
- * @class ConfigurationManche
- * @brief L'activité de configuration d'une manche
- */
-public class ConfigurationManche extends AppCompatActivity
-{
-    /**
-     * Constantes
-     */
-    private static final String TAG = "_ConfigurationManche"; //!< TAG pour les logs
-
-    /**
-     * Attributs
-     */
-    private ArrayList<String> nomsJoueurs;
-    private ArrayAdapter<String> adaptateurNomsJoueurs;
-    private InputFilter[] filtresNom;
-    private String choixNomTable = "Aucune";
-    private Boolean connexionTable = false;
-
-    /**
-     * Ressources GUI
-     */
-    private Spinner choixNomsJoueur1;         //!< Spinner permettant de choisir le premier joueur parmi la liste des joueurs enregistrés
-    private Spinner choixNomsJoueur2;         //!< Spinner permettant de choisir le second joueur parmi la liste des joueurs enregistrés
-    private EditText editionNomJoueur1;           //!< Zone permettant de saisir le nom du premier joueur
-    private EditText editionNomJoueur2;           //!< Zone permettant de saisir le nom du premier joueur
-    private RadioButton boutonTable1;       //!< Bouton permettant de sélectionner la table 1 pour s'y connecter
-    private RadioButton boutonTable2;       //!< Bouton permettant de sélectionner la table 2 pour s'y connecter
-    private RadioButton boutonTable3;       //!< Bouton permettant de sélectionner la table 3 pour s'y connecter
-    private RadioButton boutonTable4;       //!< Bouton permettant de sélectionner la table 4 pour s'y connecter
-    private ImageButton boutonActualiser;   //!< Bouton permettant de rechercher les tables disponibles
-    private Button boutonSuivant;           //!< Bouton permettant de passer à l'activité de suivi de partie "Manche"
-
-    /**
-     * @brief Méthode appelée à la création de l'activité
-     */
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+class ConfigurationManche
+!!!134570.java!!!	onCreate(inout savedInstanceState : Bundle) : void
         super.onCreate(savedInstanceState);
         setContentView(R.layout.configuration_manche);
         Log.d(TAG, "onCreate()");
         initialiserAttributs();
         initialiserRessources();
-    }
-
-    /**
-     * @brief Initialise les attributs de l'activité
-     */
-    private void initialiserAttributs()
-    {
+!!!134698.java!!!	initialiserAttributs() : void
         nomsJoueurs = new ArrayList<>();
         //!< @todo initialiser nomsJoueur à partir de la base de donnees
         nomsJoueurs.add("Robert");  // Provisoire
@@ -119,13 +48,7 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         };
-    }
-
-    /**
-     * @brief Initialise les ressources graphiques de l'activité
-     */
-    private void initialiserRessources()
-    {
+!!!134826.java!!!	initialiserRessources() : void
         choixNomsJoueur1 = (Spinner)findViewById(R.id.joueur1Spinner);
         choixNomsJoueur2 = (Spinner)findViewById(R.id.joueur2Spinner);
         editionNomJoueur1 = (EditText)findViewById(R.id.joueur1Edit);
@@ -226,10 +149,7 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         });
-    }
-
-    private Boolean estConfiguree()
-    {
+!!!134954.java!!!	estConfiguree() : Boolean
         Log.d(TAG, "estConfiguree() connexionTable = " + connexionTable);
         if(!connexionTable)
             return false;
@@ -240,5 +160,3 @@ public class ConfigurationManche extends AppCompatActivity
         if(editionNomJoueur1.getText().toString().equals(editionNomJoueur2.getText().toString()))
             return false;
         return true;
-    }
-}

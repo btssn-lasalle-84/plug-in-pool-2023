@@ -37,7 +37,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/premierJoueurView"
+                android:id="@+id/joueur1View"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -50,7 +50,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/premierJoueurSpinner"
+                android:id="@+id/joueur1Spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -59,12 +59,13 @@
                 android:gravity="left"
                 android:hint="Joueur 1"
                 android:padding="8dp"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:focusable="false"/>
 
         </LinearLayout>
 
         <EditText
-            android:id="@+id/premierJoueurEdit"
+            android:id="@+id/joueur1Edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -81,7 +82,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/secondJoueurView"
+                android:id="@+id/joueur2View"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,7 +95,7 @@
                 android:textStyle="bold" />
 
             <Spinner
-                android:id="@+id/secondJoueurSpinner"
+                android:id="@+id/joueur2Spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginStart="16dp"
@@ -103,12 +104,13 @@
                 android:gravity="left"
                 android:hint="Joueur 2"
                 android:padding="8dp"
-                android:spinnerMode="dropdown" />
+                android:spinnerMode="dropdown"
+                android:focusable="false"/>
 
         </LinearLayout>
 
         <EditText
-            android:id="@+id/secondJoueurEdit"
+            android:id="@+id/joueur2Edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -157,6 +159,7 @@
             android:orientation="horizontal">
 
             <RadioGroup
+                android:id="@+id/groupeBoutonsTables"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
