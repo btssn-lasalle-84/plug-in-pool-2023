@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 /**
  * @class EcranPrincipal
@@ -43,7 +42,7 @@ public class EcranPrincipal extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ecran_principal);
+        setContentView(R.layout.ecran_principal);
         Log.d(TAG, "onCreate()");
 
         initialiserRessources();

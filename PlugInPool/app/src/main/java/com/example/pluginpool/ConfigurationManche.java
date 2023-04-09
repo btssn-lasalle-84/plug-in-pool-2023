@@ -22,7 +22,6 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -40,22 +39,24 @@ public class ConfigurationManche extends AppCompatActivity
     /**
      * Attributs
      */
-    ArrayList<String> nomsJoueurs;
-    ArrayAdapter<String> adaptateur;
-    InputFilter[] filtresNom;
+    private ArrayList<String> nomsJoueurs;
+    private ArrayAdapter<String> adaptateurNomsJoueurs;
+    private InputFilter[] filtresNom;
+    private String choixNomTable = "Aucune";
+    private Boolean connexionTable = false;
 
     /**
      * Ressources GUI
      */
-    private Spinner joueur1Spinner;         //!< Spinner permettant de choisir le premier joueur parmi la liste des joueurs enregistrés
-    private Spinner joueur2Spinner;         //!< Spinner permettant de choisir le second joueur parmi la liste des joueurs enregistrés
-    private EditText joueur1Edit;           //!< Zone permettant de saisir le nom du premier joueur
-    private EditText joueur2Edit;           //!< Zone permettant de saisir le nom du premier joueur
-    private ImageButton boutonActualiser;   //!< Bouton permettant de rechercher les tables disponibles
+    private Spinner choixNomsJoueur1;         //!< Spinner permettant de choisir le premier joueur parmi la liste des joueurs enregistrés
+    private Spinner choixNomsJoueur2;         //!< Spinner permettant de choisir le second joueur parmi la liste des joueurs enregistrés
+    private EditText editionNomJoueur1;           //!< Zone permettant de saisir le nom du premier joueur
+    private EditText editionNomJoueur2;           //!< Zone permettant de saisir le nom du premier joueur
     private RadioButton boutonTable1;       //!< Bouton permettant de sélectionner la table 1 pour s'y connecter
     private RadioButton boutonTable2;       //!< Bouton permettant de sélectionner la table 2 pour s'y connecter
     private RadioButton boutonTable3;       //!< Bouton permettant de sélectionner la table 3 pour s'y connecter
     private RadioButton boutonTable4;       //!< Bouton permettant de sélectionner la table 4 pour s'y connecter
+    private ImageButton boutonActualiser;   //!< Bouton permettant de rechercher les tables disponibles
     private Button boutonSuivant;           //!< Bouton permettant de passer à l'activité de suivi de partie "Manche"
 
     /**
@@ -65,7 +66,7 @@ public class ConfigurationManche extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_configuration_manche);
+        setContentView(R.layout.configuration_manche);
         Log.d(TAG, "onCreate()");
         initialiserAttributs();
         initialiserRessources();
@@ -80,7 +81,8 @@ public class ConfigurationManche extends AppCompatActivity
         //!< @todo initialiser nomsJoueur à partir de la base de donnees
         nomsJoueurs.add("Robert");  // Provisoire
         nomsJoueurs.add("Lulu");    // Provisoire
-        adaptateur = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
+        nomsJoueurs.add("Roger");    // Provisoire
+        adaptateurNomsJoueurs = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
         filtresNom = new InputFilter[]
         {
             new InputFilter()
@@ -88,6 +90,8 @@ public class ConfigurationManche extends AppCompatActivity
                 public CharSequence filter(CharSequence source, int start, int end,
                                            Spanned dest, int dstart, int dend)
                 {
+                    if(source.length() < 1)
+                        return null;
                     for (int i = start; i < end; i++)
                     {
                         char lettre = source.charAt(i);
@@ -104,6 +108,8 @@ public class ConfigurationManche extends AppCompatActivity
                 public CharSequence filter(CharSequence source, int start, int end,
                                            Spanned dest, int dstart, int dend)
                 {
+                    if(source.length() < 1)
+                        return null;
                     char premiereLettre = source.charAt(0);
                     if (premiereLettre == ' ')
                     {
@@ -120,32 +126,31 @@ public class ConfigurationManche extends AppCompatActivity
      */
     private void initialiserRessources()
     {
-        joueur1Spinner = (Spinner)findViewById(R.id.joueur1Spinner);
-        joueur2Spinner = (Spinner)findViewById(R.id.joueur2Spinner);
-        joueur1Edit = (EditText)findViewById(R.id.joueur1Edit);
-        joueur2Edit = (EditText)findViewById(R.id.joueur2Edit);
-        boutonActualiser = (ImageButton)findViewById(R.id.boutonActualiser);
-        RadioGroup groupeBoutonsRadios = findViewById(R.id.groupeBoutonsRadio);
+        choixNomsJoueur1 = (Spinner)findViewById(R.id.joueur1Spinner);
+        choixNomsJoueur2 = (Spinner)findViewById(R.id.joueur2Spinner);
+        editionNomJoueur1 = (EditText)findViewById(R.id.joueur1Edit);
+        editionNomJoueur2 = (EditText)findViewById(R.id.joueur2Edit);
+        RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
         boutonTable1 = (RadioButton)findViewById(R.id.boutonTable1);
         boutonTable2 = (RadioButton)findViewById(R.id.boutonTable2);
         boutonTable3 = (RadioButton)findViewById(R.id.boutonTable3);
         boutonTable4 = (RadioButton)findViewById(R.id.boutonTable4);
+        boutonActualiser = (ImageButton)findViewById(R.id.boutonActualiser);
         boutonSuivant = (Button)findViewById(R.id.boutonSuivant);
 
-        joueur1Spinner.setAdapter(adaptateur);
-        joueur2Spinner.setAdapter(adaptateur);
-        joueur1Spinner.setSelection(-1);
-        joueur2Spinner.setSelection(-1);
+        choixNomsJoueur1.setAdapter(adaptateurNomsJoueurs);
+        choixNomsJoueur2.setAdapter(adaptateurNomsJoueurs);
+        choixNomsJoueur1.setSelection(0);
+        choixNomsJoueur2.setSelection(1);
 
-        joueur1Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        choixNomsJoueur1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 String nomSelectionne = parent.getItemAtPosition(position).toString();
-                joueur1Edit.setText(nomSelectionne);
-                joueur1Spinner.performClick();
+                Log.d(TAG, "clic choixNomJoueur1 : position = " + position + " -> " + nomSelectionne);
+                editionNomJoueur1.setText(nomSelectionne);
             }
 
             @Override
@@ -155,16 +160,14 @@ public class ConfigurationManche extends AppCompatActivity
             }
         });
 
-
-        joueur2Spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        choixNomsJoueur2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 String nomSelectionne = parent.getItemAtPosition(position).toString();
-                joueur2Edit.setText(nomSelectionne);
-                joueur2Spinner.performClick();
+                Log.d(TAG, "clic choixNomJoueur2 : position = " + position + " -> " + nomSelectionne);
+                editionNomJoueur2.setText(nomSelectionne);
             }
 
             @Override
@@ -174,12 +177,11 @@ public class ConfigurationManche extends AppCompatActivity
             }
         });
 
+        editionNomJoueur1.setHint("Saisir le nom du premier joueur");
+        editionNomJoueur2.setHint("Saisir le nom du second joueur");
 
-        joueur1Edit.setHint("Saisir le nom du premier joueur");
-        joueur2Edit.setHint("Saisir le nom du second joueur");
-
-        joueur1Edit.setFilters(filtresNom);
-        joueur2Edit.setFilters(filtresNom);
+        editionNomJoueur1.setFilters(filtresNom);
+        editionNomJoueur2.setFilters(filtresNom);
 
         boutonActualiser.setOnClickListener(new View.OnClickListener()
         {
@@ -190,12 +192,16 @@ public class ConfigurationManche extends AppCompatActivity
             }
         });
 
-        groupeBoutonsRadios.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        choixTable.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             @Override
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
-                //!< @todo seConnecter(checkedId);
+                RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
+                choixNomTable = boutonTable.getText().toString();
+                Log.d(TAG, "clic choixTable : " + choixNomTable);
+                //!< @todo seConnecter()
+                connexionTable = true; // Provisoire
             }
         });
 
@@ -204,10 +210,14 @@ public class ConfigurationManche extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonSuivant");
-                if(groupeBoutonsRadios.getCheckedRadioButtonId() != -1 && joueur1Edit.getText().toString() != "" && joueur2Edit.getText().toString() != "" && joueur1Edit.getText().toString() != joueur2Edit.getText().toString())
+                if(estConfiguree())
                 {
+                    Log.d(TAG, "Manche : " + editionNomJoueur1.getText().toString() + " vs " + editionNomJoueur2.getText().toString());
+                    Log.d(TAG, "Table : " + choixNomTable);
                     //!< @todo enregistrer les noms, instancier GestionManche?
                     Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
+                    activiteManche.putExtra("joueur1", editionNomJoueur1.getText().toString());
+                    activiteManche.putExtra("joueur2", editionNomJoueur2.getText().toString());
                     startActivity(activiteManche);
                 }
                 else
@@ -216,5 +226,19 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         });
+    }
+
+    private Boolean estConfiguree()
+    {
+        Log.d(TAG, "estConfiguree() connexionTable = " + connexionTable);
+        if(!connexionTable)
+            return false;
+        Log.d(TAG, "estConfiguree() joueur1 = " + !editionNomJoueur1.getText().toString().isEmpty() + " - joueur2 = " + !editionNomJoueur2.getText().toString().isEmpty());
+        if(editionNomJoueur1.getText().toString().isEmpty() || editionNomJoueur2.getText().toString().isEmpty())
+            return false;
+        Log.d(TAG, "estConfiguree() joueur1 != joueur2 = " + !editionNomJoueur1.getText().toString().equals(editionNomJoueur2.getText().toString()));
+        if(editionNomJoueur1.getText().toString().equals(editionNomJoueur2.getText().toString()))
+            return false;
+        return true;
     }
 }
