@@ -1,0 +1,20 @@
+class Manche
+!!!135082.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.manche);
+
+        initialiserAttributs();
+        initialiserRessources();
+!!!135210.java!!!	initialiserAttributs() : void
+        Intent activiteManche = getIntent();
+        joueurs[0]            = activiteManche.getStringExtra("joueur1");
+        joueurs[1]            = activiteManche.getStringExtra("joueur2");
+        Log.d(TAG, "onCreate() " + joueurs[0] + " vs " + joueurs[1]);
+
+        gestionManche = new GestionManche(joueurs[0], joueurs[1], 0);
+!!!135338.java!!!	initialiserRessources() : void
+        nomJoueur1 = (TextView)findViewById(R.id.Joueur1);
+        nomJoueur2 = (TextView)findViewById(R.id.Joueur2);
+
+        nomJoueur1.setText(joueurs[0]);
+        nomJoueur2.setText(joueurs[1]);

@@ -1,0 +1,18 @@
+format 224
+
+classcanvas 128002 class_ref 128002 // Joueur
+  simpleclassdiagramsettings end
+  xyz 93 184 2000
+end
+usecasecanvas 128130 usecase_ref 128002 // Visualiser les données du match
+  xyzwh 284 201 3005 64 32 label_xy 211 233
+end
+usecasecanvas 128898 usecase_ref 128130 // Dialoguer avec MobilePool
+  xyzwh 602 200 3005 64 32 label_xy 547 232
+end
+line 129026 --->
+  from ref 128002 z 2001 to ref 128130
+simplerelationcanvas 129410 simplerelation_ref 128002
+  from ref 128130 z 3006 stereotype "<<include>>" xyz 434 215 3000 to ref 128898
+end
+end
