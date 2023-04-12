@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -40,7 +41,7 @@ public class Manche extends AppCompatActivity
     private Map<String, Integer>    couleursJoueurs;    //!< Table ayant pour clef le nom d'un joueur et pour valeur la couleur des billes de son groupe
     private Integer[]               billes;             //!< Table ayant pour clef la couleur d'un groupe de billes et pour valeur, le nombre de billes de ce groupe encore en jeu
     private Integer[][]             poches;             //!< Liste des poches, sous la forme de deux-listes dont les valeurs correspondent au nombre de billes empochées ayant pour couleur l'indice de ces valeurs
-    private Vector<Vector<Integer>> manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
+    private Vector<Vector<int[]>> manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
     private int                     joueurActif;        //!< Booléen indiquant le joueur dont le tour est en cours
     private Boolean                 couleursDefinies;   //!< Booléen indiquant si la couleur du groupe des billes attribué aux joueurs est définie ou non
     private Boolean                 mancheDemarree;     //!< Booléen indiquant si la manche a ou non démarré
@@ -53,6 +54,10 @@ public class Manche extends AppCompatActivity
     private TextView nomJoueur2;                  //!< Affichage du nom du second joueur
     private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
     private ImageView[][] fondBillesEmpochees;    //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
+    private  View fondCompteur;
+    //!< @fixme int[][] etatsCompteur; = new int[][] {
+    // new int[] { R.attr.etatCouleur},
+            //new int[] { -android.R.attr.state_enabled }};
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -80,14 +85,14 @@ public class Manche extends AppCompatActivity
         billes[BlackBall.JAUNE] = BlackBall.NB_BILLES_COULEUR;
 
         poches = new Integer[BlackBall.NB_POCHES][BlackBall.NB_JOUEURS];
-        for(int poche = 0; poche < BlackBall.NB_POCHES; poche++)
+        for(int numero = 0; numero < BlackBall.NB_POCHES; numero++)
         {
-            //!< @fixme tableau à deux dimensions ?
-            // this.poches.add(new Vector<>());
+            poches[numero] = new Integer[2];
         }
+        Arrays.fill(poches, 0);
 
-        manche = new Vector<Vector<Integer>>();
-        manche.add(new Vector<Integer>());
+        manche = new Vector<Vector<int[]>>();
+        manche.add(new Vector<int[]>());
 
         joueurActif      = PREMIER_JOUEUR;
         couleursDefinies = false;
@@ -105,39 +110,46 @@ public class Manche extends AppCompatActivity
 
         // @fixme il faut allouer les conteneurs
         /*
-        nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = ((TextView) findViewById(R.id.poche0BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = ((TextView) findViewById(R.id.poche0BilleRougeNombre));
-        nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = ((TextView) findViewById(R.id.poche1BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]      = ((TextView) findViewById(R.id.poche1BilleRougeNombre));
-        nbBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]    = ((TextView) findViewById(R.id.poche2BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]    = ((TextView) findViewById(R.id.poche2BilleRougeNombre));
-        nbBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]       = ((TextView) findViewById(R.id.poche3BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]       = ((TextView) findViewById(R.id.poche3BilleRougeNombre));
-        nbBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]      = ((TextView) findViewById(R.id.poche4BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = ((TextView) findViewById(R.id.poche4BilleRougeNombre));
-        nbBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = ((TextView) findViewById(R.id.poche5BilleJauneNombre));
-        nbBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = ((TextView) findViewById(R.id.poche5BilleRougeNombre));
+        nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = (TextView) findViewById(R.id.poche0BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = (TextView) findViewById(R.id.poche0BilleRougeNombre);
+        nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = (TextView) findViewById(R.id.poche1BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]      = (TextView) findViewById(R.id.poche1BilleRougeNombre);
+        nbBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]    = (TextView) findViewById(R.id.poche2BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]    = (TextView) findViewById(R.id.poche2BilleRougeNombre);
+        nbBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]       = (TextView) findViewById(R.id.poche3BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]       = (TextView) findViewById(R.id.poche3BilleRougeNombre);
+        nbBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]      = (TextView) findViewById(R.id.poche4BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = (TextView) findViewById(R.id.poche4BilleRougeNombre);
+        nbBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = (TextView) findViewById(R.id.poche5BilleJauneNombre);
+        nbBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = (TextView) findViewById(R.id.poche5BilleRougeNombre);
 
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]   = ((ImageView) findViewById(R.id.poche0BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]   = ((ImageView) findViewById(R.id.poche0BilleRougeView));
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = ((ImageView) findViewById(R.id.poche1BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]      = ((ImageView) findViewById(R.id.poche1BilleRougeView));
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]    = ((ImageView) findViewById(R.id.poche2BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]    = ((ImageView) findViewById(R.id.poche2BilleRougeView));
-        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]       = ((ImageView) findViewById(R.id.poche3BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]       = ((ImageView) findViewById(R.id.poche3BilleRougeView));
-        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]      = ((ImageView) findViewById(R.id.poche4BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = ((ImageView) findViewById(R.id.poche4BilleRougeView));
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = ((ImageView) findViewById(R.id.poche5BilleJauneView));
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = ((ImageView) findViewById(R.id.poche5BilleRougeView));
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]   = (ImageView) findViewById(R.id.poche0BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]   = (ImageView) findViewById(R.id.poche0BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = (ImageView) findViewById(R.id.poche1BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]      = (ImageView) findViewById(R.id.poche1BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]    = (ImageView) findViewById(R.id.poche2BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]    = (ImageView) findViewById(R.id.poche2BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]       = (ImageView) findViewById(R.id.poche3BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]       = (ImageView) findViewById(R.id.poche3BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]      = (ImageView) findViewById(R.id.poche4BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = (ImageView) findViewById(R.id.poche4BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = (ImageView) findViewById(R.id.poche5BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = (ImageView) findViewById(R.id.poche5BilleRougeView);
         */
+        fondCompteur = (View) findViewById(R.id.fondCompteur);
     }
 
     /**
-     * @brief TODO
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par l'empochage d'une bille de couleur
      */
-    private void empocherBille(int numero, int couleur)
+    private void empocherBilleDeCouleur(int numero, int couleur)
     {
+        if(! couleursDefinies)
+        {
+            couleursDefinies = true;
+            couleursJoueurs.put(joueurs[joueurActif], couleur);
+            couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (couleur + 1) % BlackBall.NB_GROUPES_BILLES);
+        }
         poches[numero][couleur]++;
         nbBillesEmpochees[numero][couleur].setText(poches[numero][couleur]);
         if(poches[numero][couleur] == 1)
@@ -147,57 +159,12 @@ public class Manche extends AppCompatActivity
         }
         billes[couleur]--;
         //!< @todo rendre invisible
-        manche.get(manche.size() - 1).add(couleur);
+        int[] informations = {numero, couleur};
+        manche.get(manche.size() - 1).add(informations);
     }
 
-    /**
-     * @brief Méthode gérant les actions à effectuer suite à la réception d'une trame d'empochage
-     */
-    public void traiterTrame(int trame)
+    private void changerDeTour()
     {
-        Log.d(TAG, "traiterTrame() trame = " + trame);
-        /**
-         * @fixme Il faut remanier ce code de plus il contient des erreurs
-         */
-        if(trame / Protocole.CHAMP_TYPE == Protocole.EMPOCHAGE)
-        {
-            if(trame % 4 == 0)
-            {
-                //!< @fixme joueurs est un tableau de String et la Map
-                if(couleursDefinies && billes[couleursJoueurs.get(joueurs[joueurActif])] == 0)
-                {
-                    //!< @todo JoueurActif a gagné
-                }
-                else
-                {
-                    //!< @todo joueurActif a perdu
-                }
-            }
-            else
-            {
-                //!< @todo reformuler correctement
-                manche.get(manche.size() - 1).add(trame % 4);
-                if(!couleursDefinies && trame % 3 != 0)
-                    ;
-                {
-                    couleursDefinies = true;
-                    //!< @todo reformuler correctement
-                    couleursJoueurs.put(joueurs[joueurActif], trame % 4);
-                    couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (trame % 4) * 2 % 3);
-                }
-            }
-        }
-        else if(!mancheDemarree)
-        {
-            mancheDemarree = true;
-            //!< @todo redémarrer compteur
-        }
-        else
-        {
-            manche.add(new Vector<Integer>());
-            // changement de joueur
-            joueurActif = (joueurActif + 1) % 2;
-            //!< @todo redémarrer compteur
-        }
+        //!< @todo fondCompteur.setBackgroundTintList();
     }
 }

@@ -38,7 +38,7 @@
 
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/fondCompteur"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@drawable/rond"
@@ -424,6 +424,11 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -443,6 +448,11 @@
                 android:textColor="#FF9800"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
 
         </LinearLayout>

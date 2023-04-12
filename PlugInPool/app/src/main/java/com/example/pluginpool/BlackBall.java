@@ -6,11 +6,11 @@ package com.example.pluginpool;
  */
 public class BlackBall
 {
-
     public static final int ROUGE   = 0; //!< Bille rouge
     public static final int JAUNE   = 1; //!< Bille jaune
     public static final int BLANCHE = 2; //!< Bille blanche
     public static final int NOIRE   = 3; //!< Bille noire
+    public static final int NB_GROUPES_BILLES = 2; //!< Nombre de groupes de billes de couleur
     public static final int NB_BILLES_COULEUR =
       7; // !< Nombre de billes d'une même couleur (rouges ou jaunes) 7
     public static final int NB_POCHES = 6; //!< Nombre de poches de la table 6
