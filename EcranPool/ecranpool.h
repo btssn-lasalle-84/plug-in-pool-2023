@@ -56,6 +56,7 @@ class EcranPool : public QWidget
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void afficherEcranFinPartie();
+    void updateTime();
 };
 
 #endif // ECRANPOOL_H

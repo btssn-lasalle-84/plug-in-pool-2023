@@ -55,7 +55,7 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="styleSheet">
@@ -112,11 +112,26 @@
               <number>0</number>
              </property>
              <item>
+              <widget class="QLabel" name="labelHeure">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>00:00</string>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="labelTitreAccueil">
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>Plug-in-pool</string>
@@ -134,7 +149,8 @@
                <property name="styleSheet">
                 <string notr="true">color: rgb(255, 255, 255);
 font: 48pt &quot;Sans Serif&quot;;
-background-color: transparent;</string>
+background-color: transparent;
+/*background-color: rgba(0, 0, 0, 0);*/</string>
                </property>
                <property name="text">
                 <string/>
@@ -157,6 +173,9 @@ background-color: transparent;</string>
                 <font>
                  <pointsize>48</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion ...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
