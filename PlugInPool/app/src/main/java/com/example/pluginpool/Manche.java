@@ -30,8 +30,8 @@ public class Manche extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_Manche"; //!< TAG pour les logs (cf. Logcat)
-    public static final int PREMIER_JOUEUR  = 0; //!< @def Numéro ou indice associé au premier joueur
-    public static final int SECOND_JOUEUR   = 1; //!< @def Numéro ou indice associé au premier joueur
+    public static final int PREMIER_JOUEUR  = 0; //!< Numéro ou indice associé au premier joueur
+    public static final int SECOND_JOUEUR   = 1; //!< Numéro ou indice associé au premier joueur
 
     /**
      * Attributs
@@ -75,7 +75,7 @@ public class Manche extends AppCompatActivity
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
         Log.d(TAG, "onCreate() " + joueurs[PREMIER_JOUEUR] + " vs " + joueurs[SECOND_JOUEUR]);
         couleursJoueurs = new HashMap<>();
-        billes = new Integer[2];
+        billes = new Integer[BlackBall.NB_JOUEURS];
         billes[BlackBall.ROUGE] = BlackBall.NB_BILLES_COULEUR;
         billes[BlackBall.JAUNE] = BlackBall.NB_BILLES_COULEUR;
 
@@ -103,6 +103,8 @@ public class Manche extends AppCompatActivity
         nomJoueur1.setText(joueurs[PREMIER_JOUEUR]);
         nomJoueur2.setText(joueurs[SECOND_JOUEUR]);
 
+        // @fixme il faut allouer les conteneurs
+        /*
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = ((TextView) findViewById(R.id.poche0BilleJauneNombre));
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = ((TextView) findViewById(R.id.poche0BilleRougeNombre));
         nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = ((TextView) findViewById(R.id.poche1BilleJauneNombre));
@@ -128,6 +130,7 @@ public class Manche extends AppCompatActivity
         fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = ((ImageView) findViewById(R.id.poche4BilleRougeView));
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = ((ImageView) findViewById(R.id.poche5BilleJauneView));
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = ((ImageView) findViewById(R.id.poche5BilleRougeView));
+        */
     }
 
     /**
@@ -172,11 +175,13 @@ public class Manche extends AppCompatActivity
             }
             else
             {
+                //!< @todo reformuler correctement
                 manche.get(manche.size() - 1).add(trame % 4);
                 if(!couleursDefinies && trame % 3 != 0)
                     ;
                 {
                     couleursDefinies = true;
+                    //!< @todo reformuler correctement
                     couleursJoueurs.put(joueurs[joueurActif], trame % 4);
                     couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (trame % 4) * 2 % 3);
                 }
@@ -190,6 +195,7 @@ public class Manche extends AppCompatActivity
         else
         {
             manche.add(new Vector<Integer>());
+            // changement de joueur
             joueurActif = (joueurActif + 1) % 2;
             //!< @todo redémarrer compteur
         }
