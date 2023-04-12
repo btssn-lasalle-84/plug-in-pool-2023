@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.util.Vector;
+
 /**
  * @class Manche
  * @brief L'activité de suivi de manche
@@ -35,6 +37,7 @@ public class Manche extends AppCompatActivity
      */
     private TextView nomJoueur1;
     private TextView nomJoueur2;
+    private Vector<TextView> nbBillesEmpochees;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -67,5 +70,18 @@ public class Manche extends AppCompatActivity
 
         nomJoueur1.setText(joueurs[0]);
         nomJoueur2.setText(joueurs[1]);
+
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche0BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche0BilleRougeNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche1BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche1BilleRougeNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche2BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche2BilleRougeNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche3BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche3BilleRougeNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche4BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche4BilleRougeNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche5BilleJauneNombre));
+        nbBillesEmpochees.add((TextView) findViewById(R.id.poche5BilleRougeNombre));
     }
 }
