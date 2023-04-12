@@ -144,6 +144,7 @@ public class Manche extends AppCompatActivity
         }
         billes[couleur]--;
         //!< @todo rendre invisible
+        manche.get(manche.size() - 1).add(couleur);
     }
 
     /**
