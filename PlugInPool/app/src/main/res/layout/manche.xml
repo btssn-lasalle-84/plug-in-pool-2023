@@ -42,7 +42,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@drawable/rond"
-            android:backgroundTint="#B11C28"
+            android:backgroundTint="@color/cyan"
             android:layout_gravity="center"/>
 
         <ProgressBar
@@ -51,10 +51,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="0dp"
-            android:indeterminateTint="#112233"
+            android:indeterminateTint="@color/bleu"
             android:minWidth="150dp"
-            android:minHeight="150dp"
-            android:progressTint="#112233" />
+            android:minHeight="150dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="42"
-            android:textColor="#112233"
+            android:textColor="@color/bleu"
             android:textSize="60sp"
             android:textStyle="bold" />
 
@@ -94,7 +93,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 />
@@ -121,7 +120,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -148,7 +147,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -174,7 +173,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -200,7 +199,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -227,7 +226,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -254,7 +253,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -281,7 +280,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -313,7 +312,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -338,7 +337,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -373,7 +372,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -398,7 +397,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -420,7 +419,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:text="Robert"
-                android:textColor="#B11C28"
+                android:textColor="@color/cyan"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -445,7 +444,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:text="Lulu"
-                android:textColor="#FF9800"
+                android:textColor="@color/cyan"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 

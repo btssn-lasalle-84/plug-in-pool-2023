@@ -9,6 +9,7 @@ package com.example.pluginpool;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,9 +56,6 @@ public class Manche extends AppCompatActivity
     private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
     private ImageView[][] fondBillesEmpochees;    //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
     private  View fondCompteur;
-    //!< @fixme int[][] etatsCompteur; = new int[][] {
-    // new int[] { R.attr.etatCouleur},
-            //new int[] { -android.R.attr.state_enabled }};
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -108,8 +106,9 @@ public class Manche extends AppCompatActivity
         nomJoueur1.setText(joueurs[PREMIER_JOUEUR]);
         nomJoueur2.setText(joueurs[SECOND_JOUEUR]);
 
-        // @fixme il faut allouer les conteneurs
-        /*
+        nbBillesEmpochees = new TextView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
+        fondBillesEmpochees = new ImageView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
+
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = (TextView) findViewById(R.id.poche0BilleJauneNombre);
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = (TextView) findViewById(R.id.poche0BilleRougeNombre);
         nbBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = (TextView) findViewById(R.id.poche1BilleJauneNombre);
@@ -135,8 +134,9 @@ public class Manche extends AppCompatActivity
         fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = (ImageView) findViewById(R.id.poche4BilleRougeView);
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = (ImageView) findViewById(R.id.poche5BilleJauneView);
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = (ImageView) findViewById(R.id.poche5BilleRougeView);
-        */
+
         fondCompteur = (View) findViewById(R.id.fondCompteur);
+        fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
     }
 
     /**
@@ -149,6 +149,14 @@ public class Manche extends AppCompatActivity
             couleursDefinies = true;
             couleursJoueurs.put(joueurs[joueurActif], couleur);
             couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (couleur + 1) % BlackBall.NB_GROUPES_BILLES);
+            if(couleur == BlackBall.ROUGE)
+            {
+                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.rouge)));
+            }
+            else
+            {
+                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.jaune)));
+            }
         }
         poches[numero][couleur]++;
         nbBillesEmpochees[numero][couleur].setText(poches[numero][couleur]);

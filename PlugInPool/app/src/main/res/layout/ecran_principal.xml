@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".EcranPrincipal">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/table_billard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,7 +28,7 @@
             android:text=" Plug-in-Pool "
             android:textSize="60sp"
             android:gravity="center_horizontal"
-            android:textColor="#112233"/>
+            android:textColor="@color/bleu"/>
 
         <Button
             android:id="@+id/boutonStatistiques"
