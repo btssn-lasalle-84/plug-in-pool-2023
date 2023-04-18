@@ -38,11 +38,11 @@
 
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/fondCompteur"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:background="@drawable/rond"
-            android:backgroundTint="#B11C28"
+            android:backgroundTint="@color/cyan"
             android:layout_gravity="center"/>
 
         <ProgressBar
@@ -51,10 +51,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="0dp"
-            android:indeterminateTint="#112233"
+            android:indeterminateTint="@color/bleu"
             android:minWidth="150dp"
-            android:minHeight="150dp"
-            android:progressTint="#112233" />
+            android:minHeight="150dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="42"
-            android:textColor="#112233"
+            android:textColor="@color/bleu"
             android:textSize="60sp"
             android:textStyle="bold" />
 
@@ -85,7 +84,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune" />
+                app:srcCompat="@drawable/bille_jaune"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche0BilleJauneNombre"
@@ -93,10 +93,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
         </FrameLayout>
 
@@ -111,7 +111,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge" />
+                app:srcCompat="@drawable/bille_rouge"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche0BilleRougeNombre"
@@ -119,8 +120,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -138,7 +138,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune" />
+                app:srcCompat="@drawable/bille_jaune"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche4BilleJauneNombre"
@@ -146,8 +147,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -164,7 +164,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge" />
+                app:srcCompat="@drawable/bille_rouge"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche4BilleRougeNombre"
@@ -172,8 +173,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -190,7 +190,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune" />
+                app:srcCompat="@drawable/bille_jaune"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche1BilleJauneNombre"
@@ -198,8 +199,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -217,7 +217,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge" />
+                app:srcCompat="@drawable/bille_rouge"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche1BilleRougeNombre"
@@ -225,8 +226,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -244,7 +244,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune" />
+                app:srcCompat="@drawable/bille_jaune"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche3BilleJauneNombre"
@@ -252,8 +253,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -271,7 +271,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge" />
+                app:srcCompat="@drawable/bille_rouge"
+                android:visibility="invisible"/>
 
             <TextView
                 android:id="@+id/poche3BilleRougeNombre"
@@ -279,8 +280,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -304,15 +304,15 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_jaune" />
+                    app:srcCompat="@drawable/bille_jaune"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/poche2BilleJauneNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -329,15 +329,15 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_rouge" />
+                    app:srcCompat="@drawable/bille_rouge"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/poche2BilleRougeNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -363,7 +363,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge" />
+                app:srcCompat="@drawable/bille_rouge"
+                android:visibility="invisible"/>
 
 
             <TextView
@@ -371,8 +372,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="0"
-                android:textColor="#112233"
+                android:textColor="@color/bleu"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -389,15 +389,15 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_jaune" />
+                    app:srcCompat="@drawable/bille_jaune"
+                    android:visibility="invisible"/>
 
                 <TextView
                     android:id="@+id/poche5BilleJauneNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:text="0"
-                    android:textColor="#112233"
+                    android:textColor="@color/bleu"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -419,9 +419,14 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:text="Robert"
-                android:textColor="#B11C28"
+                android:textColor="@color/cyan"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
         </LinearLayout>
 
@@ -439,9 +444,14 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:text="Lulu"
-                android:textColor="#FF9800"
+                android:textColor="@color/cyan"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
 
         </LinearLayout>

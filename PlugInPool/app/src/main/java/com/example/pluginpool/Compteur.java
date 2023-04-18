@@ -8,13 +8,13 @@ public class Compteur extends Timer
     public static final int DUREE_TIR = 45;
 
     private int tempsRestant;
-    private GestionManche gestionManche;
+    private Manche manche;
     private TimerTask actualiser;
 
-    public void Compteur(GestionManche manche)
+    public void Compteur(Manche manche)
     {
         tempsRestant = DUREE_TIR;
-        gestionManche = manche;
+        manche = manche;
 
         actualiser = new TimerTask()
         {
