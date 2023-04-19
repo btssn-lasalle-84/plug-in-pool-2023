@@ -87,7 +87,7 @@ public class Manche extends AppCompatActivity
         {
             poches[numero] = new Integer[2];
         }
-        Arrays.fill(poches, 0);
+        //Arrays.fill(poches, 0);
 
         manche = new Vector<Vector<int[]>>();
         manche.add(new Vector<int[]>());
