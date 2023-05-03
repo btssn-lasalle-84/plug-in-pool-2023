@@ -103,6 +103,8 @@ public class Communication
     {
         if(communication == null)
             communication = new Communication(handler);
+        else
+            communication.setHandler(handler);
         return communication;
     }
 

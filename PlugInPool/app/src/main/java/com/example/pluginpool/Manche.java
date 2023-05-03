@@ -42,7 +42,7 @@ public class Manche extends AppCompatActivity
     private Map<String, Integer>    couleursJoueurs;    //!< Table ayant pour clef le nom d'un joueur et pour valeur la couleur des billes de son groupe
     private Integer[]               billes;             //!< Table ayant pour clef la couleur d'un groupe de billes et pour valeur, le nombre de billes de ce groupe encore en jeu
     private Integer[][]             poches;             //!< Liste des poches, sous la forme de deux-listes dont les valeurs correspondent au nombre de billes empochées ayant pour couleur l'indice de ces valeurs
-    private Vector<Vector<int[]>> manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
+    private Vector<Vector<int[]>>   manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
     private int                     joueurActif;        //!< Booléen indiquant le joueur dont le tour est en cours
     private Boolean                 couleursDefinies;   //!< Booléen indiquant si la couleur du groupe des billes attribué aux joueurs est définie ou non
     private Boolean                 mancheDemarree;     //!< Booléen indiquant si la manche a ou non démarré
@@ -65,6 +65,8 @@ public class Manche extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manche);
+
+        communication = Communication.getInstance(handler);
 
         initialiserAttributs();
         initialiserRessources();
@@ -174,5 +176,10 @@ public class Manche extends AppCompatActivity
     private void changerDeTour()
     {
         //!< @todo fondCompteur.setBackgroundTintList();
+    }
+
+    public void enregistrerManche()
+    {
+
     }
 }
