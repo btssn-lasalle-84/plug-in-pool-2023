@@ -19,6 +19,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final int VERSION_POOL_DONNEES = 1;  //!< Version
     private static final boolean VICTOIRE = 1;          //!< Victoire
     private static final boolean DEFAITE = 0;           //!< Defaite
+    private static BaseDeDonnees baseDonnees = null; //!< L'instance unique de BaseDeDonnees (singleton)
 
     /**
      * @brief Constructeur de la classe BaseDeDonnees
@@ -32,17 +33,17 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     /**
      * @brief Crée les différentes tables de la base de données
      */
-    public void onCreate(SQLiteDatabase baseDonnees)
+    private void onCreate(SQLiteDatabase baseDonnees)
     {
         baseDonnees.execSQL("CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY, nom TEXT, parties INTEGER, victoires INTEGER)");
-        baseDonnees.execSQL("CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY, gagnantId INTEGER, perdantId INTEGER, table INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id), FOREIGN KEY (perdantId) REFERENCES joueurs(id))");
+        baseDonnees.execSQL("CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id), FOREIGN KEY (perdantId) REFERENCES joueurs(id))");
         baseDonnees.execSQL("CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id), FOREIGN KEY (mancheId) REFERENCES manches(id))");
         baseDonnees.execSQL("CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id))");
     }
 
     @Override
     /**
-     * @brief Supprime les tables existantes pour en recréer des vierges
+     * @brief Supprimer les tables existantes pour en recréer des vierges
      */
     public void onUpgrade(SQLiteDatabase baseDonnee, int oldVersion, int newVersion) {
         baseDonnees.execSQL("DROP TABLE IF EXISTS joueurs");
@@ -50,6 +51,19 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         baseDonnees.execSQL("DROP TABLE IF EXISTS tours");
         baseDonnees.execSQL("DROP TABLE IF EXISTS empoches");
         onCreate(baseDonnees);
+    }
+
+    /**
+     * @fn getInstance
+     * @brief Retourne l'instance BaseDeDonnees
+     */
+    public synchronized static BaseDeDonnees getInstance()
+    {
+        if(baseDonnees == null)
+        {
+            baseDonnees = new BaseDeDonnees();
+        }
+        return baseDonnees;
     }
 
     /**
@@ -71,7 +85,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     /**
      * @brief Pour ajouter une nouvelle manche à la base de données et incrémenter le nombre de parties effectuées et de victoires des joueurs concernés
      */
-    public void ajouterManche(String gagnant, String perdant, boolean premierJoueurGagnant, Vector<Vector<int[]>>   manche)
+    public void ajouterManche(String gagnant, String perdant, boolean premierJoueurGagnant, Vector<Vector<int[]>>   manche, int numeroTable)
     {
         int[2] participantsId = {perdant, gagnant};
         actualiserTableJoueurs(gagnant, VICTOIRE);
@@ -103,6 +117,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         ContentValues valeursManche = new ContentValues();
         valeursManche.put("gagnantId", participantsId[VICTOIRE]);
         valeursManche.put("perdantId", participantsId[DEFAITE]);
+        valeursManche.put("numeroTable", numeroTable);
         baseDonnees.insert("manche", null, valeursJoueur);
 
         String selectQuery = "SELECT id FROM manches ORDER BY id DESC LIMIT 1";
@@ -155,5 +170,20 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             throw new Error("Joueur Inconnu");
         }
         curseur.close();
+    }
+
+    public ArrayList<String> getNomsJoueurs()
+    {
+        ArrayList<String> nomsJoueurs = new ArrayList<String>();
+        Cursor cursor = baseDonnees.rawQuery("SELECT nom FROM joueurs", null);
+        if (cursor.moveToFirst())
+        {
+            do {
+                String nomJoueur = cursor.getString(0);
+                nomsJoueurs.add(nomJoueur);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return nomsJoueurs;
     }
 }

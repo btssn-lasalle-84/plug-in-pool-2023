@@ -42,6 +42,7 @@ public class ConfigurationManche extends AppCompatActivity
     /**
      * Attributs
      */
+    private BaseDeDonnees        baseDonnees;           //!< Classe d'échange avec la base de donnees
     private ArrayList<String>    nomsJoueurs;           //!< Tableau contenant le nom des joueurs déjà enregistrés
     private ArrayAdapter<String> adaptateurNomsJoueurs; //!< Adaptateur pour l'affichage du nom des joueurs déjà enregistrés
     private InputFilter[] filtresNom;                   //!< Filtre les caractères non admis dans le nom d'un joueur
@@ -91,12 +92,9 @@ public class ConfigurationManche extends AppCompatActivity
      */
     private void initialiserAttributs()
     {
-        nomsJoueurs   = new ArrayList<>();
+        baseDonnees = BaseDeDonnees.getInstance();
+        nomsJoueurs   = getNomsJoueurs;
         communication = Communication.getInstance(handler);
-        //!< @todo initialiser nomsJoueur à partir de la base de donnees
-        nomsJoueurs.add("Robert"); // Provisoire
-        nomsJoueurs.add("Lulu");   // Provisoire
-        nomsJoueurs.add("Roger");  // Provisoire
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
         filtresNom = new InputFilter[] { new InputFilter() {
@@ -226,10 +224,13 @@ public class ConfigurationManche extends AppCompatActivity
                           "Manche : " + editionNomJoueur1.getText().toString() + " vs " +
                             editionNomJoueur2.getText().toString());
                     Log.d(TAG, "Table : " + choixNomTable);
-                    //!< @todo enregistrer les noms, instancier GestionManche?
+                    String nomJoueur1 = editionNomJoueur1.getText().toString();
+                    String nomJoueur2 = editionNomJoueur2.getText().toString();
+                    baseDonnees.ajouterNom(nomJoueur1);
+                    baseDonnees.ajouterNom(nomJoueur2);
                     Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
-                    activiteManche.putExtra("joueur1", editionNomJoueur1.getText().toString());
-                    activiteManche.putExtra("joueur2", editionNomJoueur2.getText().toString());
+                    activiteManche.putExtra("joueur1", nomJoueur1);
+                    activiteManche.putExtra("joueur2", nomJoueur2);
                     startActivity(activiteManche);
                 }
                 else
