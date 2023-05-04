@@ -51,6 +51,7 @@ class EcranPool : public QWidget
   private:
     Ui::EcranPool* ui; //<! la fenêtre
     void           initialiserEcran();
+    void           initialiserHeure();
 
   public slots:
     void afficherEcran(EcranPool::Ecran ecran);

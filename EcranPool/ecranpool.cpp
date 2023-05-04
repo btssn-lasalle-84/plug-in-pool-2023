@@ -21,9 +21,7 @@ EcranPool::EcranPool(QWidget* parent) : QWidget(parent), ui(new Ui::EcranPool)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserEcran();
-    QTimer* horloge = new QTimer(this);
-    connect(horloge, &QTimer::timeout, this, &EcranPool::actualiserHeure);
-    horloge->start(INTERVALLE_SECONDE);
+    initialiserHeure();
 }
 
 /**
@@ -100,4 +98,16 @@ void EcranPool::initialiserEcran()
     showMaximized();
 #endif
     afficherEcranAcceuil();
+}
+
+/**
+ * @fn EcranPool::initialiserHeure
+ * @brief Initialise l'affichage de l'heure
+ */
+void EcranPool::initialiserHeure()
+{
+    QTimer* horloge = new QTimer(this);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::actualiserHeure);
+    horloge->start(INTERVALLE_SECONDE);
+    actualiserHeure();
 }
