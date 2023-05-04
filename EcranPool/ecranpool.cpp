@@ -80,7 +80,7 @@ void EcranPool::actualiserHeure()
 {
     QDateTime heureActuelle = QDateTime::currentDateTime();
     QString   timeString    = heureActuelle.toString("hh:mm");
-    ui->labelHeure->setText(timeString);
+    ui->labelHeureAccueil->setText(timeString);
 }
 
 // Méthodes privées

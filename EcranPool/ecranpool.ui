@@ -112,14 +112,20 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="labelHeure">
+              <widget class="QLabel" name="labelHeureAccueil">
                <property name="font">
                 <font>
                  <pointsize>32</pointsize>
                 </font>
                </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;</string>
+               </property>
                <property name="text">
                 <string>00:00</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
                </property>
               </widget>
              </item>
@@ -131,7 +137,8 @@
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: transparent;</string>
+                <string notr="true">border: none;
+background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>Plug-in-pool</string>
@@ -147,10 +154,14 @@
                 <bool>true</bool>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);
+                <string notr="true">border: none;
+color: rgb(255, 255, 255);
 font: 48pt &quot;Sans Serif&quot;;
 background-color: transparent;
 /*background-color: rgba(0, 0, 0, 0);*/</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
                </property>
                <property name="text">
                 <string/>
@@ -169,13 +180,17 @@ background-color: transparent;
             <layout class="QHBoxLayout" name="horizontalLayoutAccueilPied">
              <item>
               <widget class="QLabel" name="labelMessageAccueil">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>48</pointsize>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: transparent;</string>
+                <string notr="true">border: none;
+background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion ...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -210,6 +225,85 @@ background-color: transparent;
            <property name="bottomMargin">
             <number>50</number>
            </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayoutPartieEntete" stretch="0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="labelHeurePartie">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string>00:00</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelTitrePartie">
+               <property name="font">
+                <font>
+                 <pointsize>52</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string>Plug-in-pool</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieu">
+             <item>
+              <widget class="QLabel" name="labelTablePartie">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="font">
+                <font>
+                 <weight>50</weight>
+                 <bold>false</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>images/pool_table.png</pixmap>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutPartiePied" stretch="">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+            </layout>
+           </item>
           </layout>
          </item>
         </layout>
