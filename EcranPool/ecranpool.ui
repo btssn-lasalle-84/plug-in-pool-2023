@@ -55,7 +55,7 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="styleSheet">
@@ -193,7 +193,7 @@ background-color: transparent;
        </widget>
        <widget class="QWidget" name="Partie">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">background-image:url(:/background.jpg);</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
