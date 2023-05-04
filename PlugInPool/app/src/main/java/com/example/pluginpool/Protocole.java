@@ -6,16 +6,19 @@ package com.example.pluginpool;
  */
 public class Protocole
 {
+    // Trame MobilePool -> Table
+    public static final int TRAME_START = 0x9c;
+    public static final int TRAME_STOP  = 0x80;
     // Trame Table -> MobilePool
-    public static final int EMPOCHAGE   = 0; // !< Une trame empochage Table -> MobilePool
+    public static final int EMPOCHAGE = 0; // !< Une trame empochage Table -> MobilePool
     /*
         Format : {Type}{Table}{Poche}{Couleur}
         | 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
         | 0  | X  | X  | X  | X  | X  | X  | X  |
         |Type|N°Table  |N°Poche       |Couleur  |
     */
-    public static final int CHAMP_TYPE   = 128; // !< Bit n°7 dans la trame Table -> MobilePool
-    public static final int CHAMP_TABLE  = 5; // !< Bit n°5
-    public static final int CHAMP_POCHE  = 2; // !< Bit n°2
-    public static final int CHAMP_COULEUR = 0; // !< Bit n°0
+    public static final char MASQUE_TYPE   = 0b10000000;; // !< Masque du bit représentant le type de message
+    public static final char MASQUE_POCHE   = 0b00001100;   // !< Masque des bits représentants le numéro de la poche
+    public static final char MASQUE_COULEUR = 0b00000011;   // !< Masque des bits représentants la couleur
+    public static final int CHAMP_POCHE   = 2;              // !< Bit n°2
 }

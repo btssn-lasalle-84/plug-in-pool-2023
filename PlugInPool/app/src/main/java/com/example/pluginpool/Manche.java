@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import android.os.Handler;
 
 /**
  * @class Manche
@@ -42,11 +43,13 @@ public class Manche extends AppCompatActivity
     private Map<String, Integer>    couleursJoueurs;    //!< Table ayant pour clef le nom d'un joueur et pour valeur la couleur des billes de son groupe
     private Integer[]               billes;             //!< Table ayant pour clef la couleur d'un groupe de billes et pour valeur, le nombre de billes de ce groupe encore en jeu
     private Integer[][]             poches;             //!< Liste des poches, sous la forme de deux-listes dont les valeurs correspondent au nombre de billes empochées ayant pour couleur l'indice de ces valeurs
-    private Vector<Vector<int[]>> manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
+    private Vector<Vector<int[]>>   manche;             //!< Liste des tours de la manche, chaque tour étant représenté par une liste de billes empochées au cours de ce dernier
     private int                     joueurActif;        //!< Booléen indiquant le joueur dont le tour est en cours
     private Boolean                 couleursDefinies;   //!< Booléen indiquant si la couleur du groupe des billes attribué aux joueurs est définie ou non
     private Boolean                 mancheDemarree;     //!< Booléen indiquant si la manche a ou non démarré
     private Compteur                compteur;           //!< Compteur indiquant le temps restant du coup en cours
+    Communication   communication  = null;              //!< Classe de communication Bluetooth
+    private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
     /**
      * Ressources GUI
@@ -66,12 +69,14 @@ public class Manche extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manche);
 
+        initialiserHandler();
         initialiserAttributs();
         initialiserRessources();
     }
 
     private void initialiserAttributs()
     {
+        communication = Communication.getInstance(handler);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
@@ -87,7 +92,7 @@ public class Manche extends AppCompatActivity
         {
             poches[numero] = new Integer[2];
         }
-        Arrays.fill(poches, 0);
+        //Arrays.fill(poches, 0);
 
         manche = new Vector<Vector<int[]>>();
         manche.add(new Vector<int[]>());
@@ -167,12 +172,92 @@ public class Manche extends AppCompatActivity
         }
         billes[couleur]--;
         //!< @todo rendre invisible
-        int[] informations = {numero, couleur};
-        manche.get(manche.size() - 1).add(informations);
     }
 
+    /**
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par l'empochage d'une bille blanche
+     */
+    private void empocherBilleBlanche()
+    {
+        //!< @todo
+    }
+
+    /**
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par l'empochage d'une bille noire
+     */
+    private void empocherBilleNoire()
+    {
+        //!< @todo
+    }
+
+    /**
+     * @brief Méthode regroupant l'ensembles des actions entrainées par un changement de tour (joueur)
+     */
     private void changerDeTour()
     {
         //!< @todo fondCompteur.setBackgroundTintList();
+    }
+
+    /**
+     * @brief Méthode permettant d'enregistrer la manche terminée dans la base de données
+     */
+    public void enregistrerManche()
+    {
+        //!< @todo
+    }
+
+    /**
+     * @brief Initialise la gestion des messages en provenance des threads
+     */
+    private void initialiserHandler()
+    {
+        this.handler = new Handler(this.getMainLooper())
+        {
+            @Override
+            public void handleMessage(@NonNull Message message)
+            {
+                // Log.d(TAG, "[Handler] id message = " + message.what);
+                // Log.d(TAG, "[Handler] message = " + message.obj.toString());
+
+                switch(message.what)
+                {
+                    case Communication.CONNEXION_BLUETOOTH:
+                        Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
+                        connexionTable = true;
+                        break;
+                    case Communication.RECEPTION_BLUETOOTH:
+                        Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
+                        Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
+                        char message = (char)message.obj;
+                        if(message & Protocole.MASQUE_TYPE)
+                        {
+                            gererTramesSpeciales(message);
+                        }
+                        else
+                        {
+                            int couleur = (int)(message & Protocole.MASQUE_COULEUR);
+                            int poche = (int)((message & Protocole.MASQUE_POCHE) >> CHAMP_POCHE);
+                            manche[manche.size() - 1][manche[manche.size() -1].size() - 1].add
+                            if(couleur == BlackBall.NOIRE)
+                            {
+                                empocherBilleNoire();
+                            }
+                            else if(couleur == BlackBall.BLANCHE)
+                            {
+                                empocherBilleBlanche();
+                            }
+                            else
+                            {
+                                empocherBilleCouleur(poche, couleur);
+                            }
+                        }
+                        break;
+                    case Communication.DECONNEXION_BLUETOOTH:
+                        Log.d(TAG, "[Handler] DECONNEXION_BLUETOOTH");
+                        connexionTable = false;
+                        break;
+                }
+            }
+        };
     }
 }

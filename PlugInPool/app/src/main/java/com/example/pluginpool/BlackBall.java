@@ -15,10 +15,10 @@ public class BlackBall
       7; // !< Nombre de billes d'une même couleur (rouges ou jaunes) 7
     public static final int NB_POCHES = 6; //!< Nombre de poches de la table 6
     public static final int NB_JOUEURS = 2; //!< Nombre de joueurs au blackball
-    public static final int POCHE_HAUT_GAUCHE = 0;
-    public static final int POCHE_HAUT_DROIT = 1;
-    public static final int POCHE_MILIEU_DROIT = 2;
-    public static final int POCHE_BAS_DROIT = 3;
-    public static final int POCHE_BAS_GAUCHE = 4;
-    public static final int POCHE_MILIEU_GAUCHE = 5; //
+    public static final int POCHE_HAUT_GAUCHE = 0; //!< Numero Poche en haut a gauche
+    public static final int POCHE_HAUT_DROIT = 1;   //!< Numero Poche en haut a droite
+    public static final int POCHE_MILIEU_DROIT = 2; //!< Numero Poche au milieu a droite
+    public static final int POCHE_BAS_DROIT = 3;    //!< Numero Poche en bas a droite
+    public static final int POCHE_BAS_GAUCHE = 4;   //!< Numero Poche en bas a gauche
+    public static final int POCHE_MILIEU_GAUCHE = 5; //!< Numero Poche au milieu a gauche
 }
