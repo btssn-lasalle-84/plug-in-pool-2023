@@ -42,13 +42,13 @@ public class ConfigurationManche extends AppCompatActivity
     /**
      * Attributs
      */
-    private ArrayList<String>    nomsJoueurs;
-    private ArrayAdapter<String> adaptateurNomsJoueurs;
-    private InputFilter[] filtresNom;
+    private ArrayList<String>    nomsJoueurs;           //!< Tableau contenant le nom des joueurs déjà enregistrés
+    private ArrayAdapter<String> adaptateurNomsJoueurs; //!< Adaptateur pour l'affichage du nom des joueurs déjà enregistrés
+    private InputFilter[] filtresNom;                   //!< Filtre les caractères non admis dans le nom d'un joueur
     private String  choixNomTable  = "Aucune";
-    Communication   communication  = null;
+    Communication   communication  = null;              //!< Classe de communication Bluetooth
     private Boolean connexionTable = false;
-    private Handler handler        = null;
+    private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
     /**
      * Ressources GUI

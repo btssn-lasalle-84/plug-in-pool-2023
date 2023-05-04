@@ -1,6 +1,6 @@
 /**
  * @author Clément Trichet
- * @file Manche.java
+ * @file BaseDeDonnees.java
  * @brief TODO
  */
 
@@ -12,6 +12,9 @@ package com.example.pluginpool;
  */
 public class BaseDeDonnees extends SQLiteOpenHelper
 {
+    /**
+     * Constantes
+     */
     private static final String POOL_DONNEES = "PoolDonnees.db";
     private static final int VERSION_POOL_DONNEES = 1;  //!< Version
     private static final boolean VICTOIRE = 1;          //!< Victoire
