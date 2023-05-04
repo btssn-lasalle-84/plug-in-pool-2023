@@ -21,9 +21,9 @@ EcranPool::EcranPool(QWidget* parent) : QWidget(parent), ui(new Ui::EcranPool)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserEcran();
-    QTimer* timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &EcranPool::updateTime);
-    timer->start(1000);
+    QTimer* horloge = new QTimer(this);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::actualiserHeure);
+    horloge->start(INTERVALLE_SECONDE);
 }
 
 /**
@@ -75,13 +75,13 @@ void EcranPool::afficherEcranFinPartie()
 }
 
 /**
- * @fn EcranPool::updateTime
+ * @fn EcranPool::actualisationHeure
  * @brief Récupère et convertit l'heure en chaîne de caractères
  */
-void EcranPool::updateTime()
+void EcranPool::actualiserHeure()
 {
-    QDateTime currentTime = QDateTime::currentDateTime();
-    QString   timeString  = currentTime.toString("hh:mm");
+    QDateTime heureActuelle = QDateTime::currentDateTime();
+    QString   timeString    = heureActuelle.toString("hh:mm");
     ui->labelHeure->setText(timeString);
 }
 

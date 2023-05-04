@@ -31,6 +31,7 @@ class EcranPool : public QWidget
     Q_OBJECT
 
   public:
+    static const int INTERVALLE_SECONDE = 1000;
     /**
      * @enum Ecran
      * @brief Les différents écrans
@@ -56,7 +57,7 @@ class EcranPool : public QWidget
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void afficherEcranFinPartie();
-    void updateTime();
+    void actualiserHeure();
 };
 
 #endif // ECRANPOOL_H
