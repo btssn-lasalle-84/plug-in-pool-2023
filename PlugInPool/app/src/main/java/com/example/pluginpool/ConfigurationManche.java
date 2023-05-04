@@ -92,7 +92,7 @@ public class ConfigurationManche extends AppCompatActivity
      */
     private void initialiserAttributs()
     {
-        baseDonnees = BaseDeDonnees.getInstance();
+        baseDonnees = BaseDeDonnees.getInstance(this);
         nomsJoueurs   = baseDonnees.getNomsJoueurs();
         communication = Communication.getInstance(handler);
         adaptateurNomsJoueurs =

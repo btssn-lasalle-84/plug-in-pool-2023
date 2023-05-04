@@ -81,7 +81,7 @@ public class Manche extends AppCompatActivity
 
     private void initialiserAttributs()
     {
-        baseDonnees = BaseDeDonnees.getInstance();
+        baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = -1;
         communication = Communication.getInstance(handler);
         Intent activiteManche = getIntent();
