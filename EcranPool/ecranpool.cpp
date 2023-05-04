@@ -8,6 +8,8 @@
 
 #include "ecranpool.h"
 #include "ui_ecranpool.h"
+#include <QDateTime>
+#include <QTimer>
 
 /**
  * @brief Constructeur de la classe EcranPool
@@ -19,6 +21,7 @@ EcranPool::EcranPool(QWidget* parent) : QWidget(parent), ui(new Ui::EcranPool)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserEcran();
+    initialiserHeure();
 }
 
 /**
@@ -69,6 +72,17 @@ void EcranPool::afficherEcranFinPartie()
     afficherEcran(EcranPool::Ecran::FinPartie);
 }
 
+/**
+ * @fn EcranPool::actualisationHeure
+ * @brief Récupère et convertit l'heure en chaîne de caractères
+ */
+void EcranPool::actualiserHeure()
+{
+    QDateTime heureActuelle = QDateTime::currentDateTime();
+    QString   timeString    = heureActuelle.toString("hh:mm");
+    ui->labelHeure->setText(timeString);
+}
+
 // Méthodes privées
 
 /**
@@ -84,4 +98,16 @@ void EcranPool::initialiserEcran()
     showMaximized();
 #endif
     afficherEcranAcceuil();
+}
+
+/**
+ * @fn EcranPool::initialiserHeure
+ * @brief Initialise l'affichage de l'heure
+ */
+void EcranPool::initialiserHeure()
+{
+    QTimer* horloge = new QTimer(this);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::actualiserHeure);
+    horloge->start(INTERVALLE_SECONDE);
+    actualiserHeure();
 }
