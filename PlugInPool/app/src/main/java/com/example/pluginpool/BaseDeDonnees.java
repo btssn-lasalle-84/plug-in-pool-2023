@@ -108,10 +108,6 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             accesSQLite.insert("joueurs", null, valeursJoueur);
         }
         curseur.close();
-
-        curseur =
-                accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { nom });
-        Log.d(TAG, "count = " + curseur.getCount());
     }
 
     /**
