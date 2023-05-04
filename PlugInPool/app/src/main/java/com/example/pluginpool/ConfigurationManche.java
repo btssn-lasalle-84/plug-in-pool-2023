@@ -218,6 +218,7 @@ public class ConfigurationManche extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonSuivant");
+                baseDonnees.ajouterNom(editionNomJoueur1.getText().toString());
                 if(estConfiguree())
                 {
                     Log.d(TAG,

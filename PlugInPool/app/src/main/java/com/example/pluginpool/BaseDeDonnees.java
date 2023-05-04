@@ -11,6 +11,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -24,6 +25,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     /**
      * Constantes
      */
+    private static final String  TAG = "_BaseDeDonnees"; //!< TAG pour les logs (cf. Logcat)
     private static final String  POOL_DONNEES         = "PoolDonnees.db";
     private static final int     VERSION_POOL_DONNEES = 1;     //!< Version
     private static final boolean VICTOIRE             = true;  //!< Victoire
@@ -35,9 +37,10 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     /**
      * @brief Constructeur de la classe BaseDeDonnees
      */
-    public BaseDeDonnees(Context context)
+    private BaseDeDonnees(Context context)
     {
         super(context, POOL_DONNEES, null, VERSION_POOL_DONNEES);
+        Log.d(TAG, "BaseDeDonnees()");
         if(accesSQLite == null)
             accesSQLite = this.getWritableDatabase();
     }
@@ -48,26 +51,32 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase bdd)
     {
-        accesSQLite.execSQL(
+        Log.d(TAG, "onCreate()");
+        bdd.execSQL(
           "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0)");
-        accesSQLite.execSQL(
+        bdd.execSQL(
           "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
-        accesSQLite.execSQL(
+        bdd.execSQL(
           "CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY AUTOINCREMENT, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (mancheId) REFERENCES manches(id) ON DELETE CASCADE)");
-        accesSQLite.execSQL(
+        bdd.execSQL(
           "CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id) ON DELETE CASCADE)");
+
+        // Pour les tests
+        bdd.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('TRICHET Clément', 0, 0);");
+        bdd.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 0, 0);");
     }
 
     /**
      * @brief Supprimer les tables existantes pour en recréer des vierges
+     * @warning le plus simple est de supprimer l'application puis de la réinstaller !
      */
     @Override
     public void onUpgrade(SQLiteDatabase bdd, int oldVersion, int newVersion)
     {
-        accesSQLite.execSQL("DROP TABLE IF EXISTS empoches");
-        accesSQLite.execSQL("DROP TABLE IF EXISTS tours");
-        accesSQLite.execSQL("DROP TABLE IF EXISTS manches");
-        accesSQLite.execSQL("DROP TABLE IF EXISTS joueurs");
+        bdd.execSQL("DROP TABLE IF EXISTS empoches");
+        bdd.execSQL("DROP TABLE IF EXISTS tours");
+        bdd.execSQL("DROP TABLE IF EXISTS manches");
+        bdd.execSQL("DROP TABLE IF EXISTS joueurs");
         onCreate(bdd);
     }
 
@@ -89,6 +98,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void ajouterNom(String nom)
     {
+        Log.d(TAG, "ajouterNom(" + nom + ")");
         Cursor curseur =
           accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { nom });
         if(curseur.getCount() == 0)
@@ -98,6 +108,10 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             accesSQLite.insert("joueurs", null, valeursJoueur);
         }
         curseur.close();
+
+        curseur =
+                accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { nom });
+        Log.d(TAG, "count = " + curseur.getCount());
     }
 
     /**
