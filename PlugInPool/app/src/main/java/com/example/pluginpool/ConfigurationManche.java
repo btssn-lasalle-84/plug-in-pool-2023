@@ -48,7 +48,7 @@ public class ConfigurationManche extends AppCompatActivity
     private InputFilter[] filtresNom;                   //!< Filtre les caractères non admis dans le nom d'un joueur
     private String  choixNomTable  = "Aucune";
     Communication   communication  = null;              //!< Classe de communication Bluetooth
-    private Boolean connexionTable = false;
+    private boolean connexionTable = false;
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
     /**
@@ -93,7 +93,7 @@ public class ConfigurationManche extends AppCompatActivity
     private void initialiserAttributs()
     {
         baseDonnees = BaseDeDonnees.getInstance();
-        nomsJoueurs   = getNomsJoueurs;
+        nomsJoueurs   = baseDonnees.getNomsJoueurs();
         communication = Communication.getInstance(handler);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
@@ -231,6 +231,7 @@ public class ConfigurationManche extends AppCompatActivity
                     Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
                     activiteManche.putExtra("joueur1", nomJoueur1);
                     activiteManche.putExtra("joueur2", nomJoueur2);
+                    activiteManche.putExtra("connexionTable", connexionTable);
                     startActivity(activiteManche);
                 }
                 else

@@ -6,11 +6,13 @@
 
 package com.example.pluginpool;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +41,7 @@ public class Manche extends AppCompatActivity
     /**
      * Attributs
      */
+    private boolean                 connexionTable;
     private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
     private int                     numeroTable;        //!< Numero de la table
     private String[]                joueurs;            //!< Attribut contenant le nom des joueurs
@@ -79,12 +82,13 @@ public class Manche extends AppCompatActivity
     private void initialiserAttributs()
     {
         baseDonnees = BaseDeDonnees.getInstance();
-        numeroTable = null;
+        numeroTable = -1;
         communication = Communication.getInstance(handler);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
+        connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
         Log.d(TAG, "onCreate() " + joueurs[PREMIER_JOUEUR] + " vs " + joueurs[SECOND_JOUEUR]);
         couleursJoueurs = new HashMap<>();
         billes = new Integer[BlackBall.NB_JOUEURS];
@@ -151,7 +155,7 @@ public class Manche extends AppCompatActivity
     /**
      * @brief Méthode regroupant l'ensembles des actions déclenchées par l'empochage d'une bille de couleur
      */
-    private void empocherBilleDeCouleur(int numero, int couleur)
+    private void empocherBilleCouleur(int numero, int couleur)
     {
         if(! couleursDefinies)
         {
@@ -191,15 +195,23 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleNoire()
     {
-        if((manche.size() % BlackBall.NB_JOUEURS && billes[couleursJoueurs[PREMIER_JOUEUR]] == 0) || (!(manche.size() % BlackBall.NB_JOUEURS) && !(billes[couleursJoueurs[PREMIER_JOUEUR]] == 0)))
+        if((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0)))
         {
-            ajouterManche(joueurs[PREMIER_JOUEUR], perdant = joueurs[SECOND_JOUEUR], true, manche, numeroTable)
+            baseDonnees.ajouterManche(joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR], true, manche, numeroTable);
         }
         else
         {
-            ajouterManche(joueurs[SECOND_JOUEUR], perdant = joueurs[PREMIER_JOUEUR], false, manche, numeroTable)
+            baseDonnees.ajouterManche(joueurs[SECOND_JOUEUR], joueurs[PREMIER_JOUEUR], false, manche, numeroTable);
         }
         //!<@todo popup.....
+    }
+
+    /**
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par un message spécial
+     */
+    private void gererMessageSpecial(char message)
+    {
+        //!< @todo
     }
 
     /**
@@ -233,16 +245,17 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        char message = (char)message.obj;
-                        if(message & Protocole.MASQUE_TYPE)
+                        char messageChar = (char)message.obj;
+                        if((messageChar & Protocole.MASQUE_TYPE) != 0)
                         {
-                            gererTramesSpeciales(message);
+                            gererMessageSpecial(messageChar);
                         }
                         else
                         {
-                            int couleur = (int)(message & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((message & Protocole.MASQUE_POCHE) >> CHAMP_POCHE);
-                            manche[manche.size() - 1][manche[manche.size() -1].size() - 1].add
+                            int couleur = (int)(messageChar & Protocole.MASQUE_COULEUR);
+                            int poche = (int)((messageChar & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int[] empoche = {poche, couleur};
+                            manche.get(manche.size() - 1).add(empoche);
                             if(couleur == BlackBall.NOIRE)
                             {
                                 empocherBilleNoire();

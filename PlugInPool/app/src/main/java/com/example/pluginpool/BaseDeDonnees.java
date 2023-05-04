@@ -6,6 +6,15 @@
 
 package com.example.pluginpool;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.Vector;
+
 /**
  * @class BaseDeDonnees
  * @brief La classe s'occupant de la gestion de la base de données
@@ -17,8 +26,8 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     private static final String POOL_DONNEES = "PoolDonnees.db";
     private static final int VERSION_POOL_DONNEES = 1;  //!< Version
-    private static final boolean VICTOIRE = 1;          //!< Victoire
-    private static final boolean DEFAITE = 0;           //!< Defaite
+    private static final boolean VICTOIRE = true;          //!< Victoire
+    private static final boolean DEFAITE = false;           //!< Defaite
     private static BaseDeDonnees baseDonnees = null; //!< L'instance unique de BaseDeDonnees (singleton)
 
     /**
@@ -87,7 +96,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void ajouterManche(String gagnant, String perdant, boolean premierJoueurGagnant, Vector<Vector<int[]>>   manche, int numeroTable)
     {
-        int[2] participantsId = {perdant, gagnant};
+        int[] participantsId = {perdant, gagnant};
         actualiserTableJoueurs(gagnant, VICTOIRE);
         actualiserTableJoueurs(perdant, DEFAITE);
 
@@ -115,14 +124,14 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         curseur.close();
 
         ContentValues valeursManche = new ContentValues();
-        valeursManche.put("gagnantId", participantsId[VICTOIRE]);
+        valeursManche.put("gagnantId", participantsId[(int)VICTOIRE]);
         valeursManche.put("perdantId", participantsId[DEFAITE]);
         valeursManche.put("numeroTable", numeroTable);
         baseDonnees.insert("manche", null, valeursJoueur);
 
         String selectQuery = "SELECT id FROM manches ORDER BY id DESC LIMIT 1";
         Cursor curseur = baseDonnees.rawQuery(selectQuery, null);
-        mancheId = curseur.getInt(cursor.getColumnIndex("id"));
+        mancheId = curseur.getInt(curseur.getColumnIndex("id"));
         curseur.close();
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
@@ -140,7 +149,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                 ContentValues valeursEmpoche = new ContentValues();
                 valeursEmpoche.put("tourId", tourId);
                 valeursEmpoche.put("poche", manche[indexTour][indexEmpoche][0]);
-                valeursEmpoche.put("couleur", manche[indexTour][indexEmpoche][1])
+                valeursEmpoche.put("couleur", manche[indexTour][indexEmpoche][1]);
             }
         }
     }
