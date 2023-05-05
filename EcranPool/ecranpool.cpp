@@ -61,6 +61,11 @@ void EcranPool::afficherEcranAcceuil()
 void EcranPool::afficherEcranPartie()
 {
     afficherEcran(EcranPool::Ecran::Partie);
+
+    QPixmap pixmap(":/images/pool_table.png");
+    QSize   size(500, 500);
+    QPixmap scaledPixmap = pixmap.scaled(size, Qt::KeepAspectRatio);
+    ui->labelTablePartie->setPixmap(scaledPixmap);
 }
 
 /**
