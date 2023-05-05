@@ -30,8 +30,13 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final int     VERSION_POOL_DONNEES = 1;     //!< Version
     private static final boolean VICTOIRE             = true;  //!< Victoire
     private static final boolean DEFAITE              = false; //!< Defaite
+    private static final int     INDEX_TABLE_VIDE = - 1; //!< Index d'une table ne contenant aucun element
+
+    /**
+     * Attributs
+     */
     private static BaseDeDonnees baseDonnees =
-      null;                                    //!< L'instance unique de BaseDeDonnees (singleton)
+            null;                                    //!< L'instance unique de BaseDeDonnees (singleton)
     private SQLiteDatabase accesSQLite = null; //<! L'accès à la base de données
 
     /**
@@ -128,7 +133,11 @@ public class BaseDeDonnees extends SQLiteOpenHelper
           accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { gagnant });
         if(curseur.moveToFirst())
         {
-            participantsId[(VICTOIRE) ? 1 : 0] = curseur.getInt(curseur.getColumnIndex("id"));
+            int index = curseur.getColumnIndex("id");
+            if(index != INDEX_TABLE_VIDE)
+            {
+                participantsId[(VICTOIRE) ? 1 : 0] = curseur.getInt(index);
+            }
         }
         else
         {
@@ -140,7 +149,11 @@ public class BaseDeDonnees extends SQLiteOpenHelper
           accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { perdant });
         if(curseur.moveToFirst())
         {
-            participantsId[(DEFAITE) ? 1 : 0] = curseur.getInt(curseur.getColumnIndex("id"));
+            int index = curseur.getColumnIndex("id");
+            if(index != INDEX_TABLE_VIDE)
+            {
+                participantsId[(DEFAITE) ? 1 : 0] = curseur.getInt(index);
+            }
         }
         else
         {
@@ -195,13 +208,24 @@ public class BaseDeDonnees extends SQLiteOpenHelper
           accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { joueur });
         if(curseur.moveToFirst())
         {
-            int           joueurId      = curseur.getInt(curseur.getColumnIndex("id"));
-            int           parties       = curseur.getInt(curseur.getColumnIndex("parties"));
             ContentValues valeursJoueur = new ContentValues();
-            valeursJoueur.put("parties", parties + 1);
+            int index = curseur.getColumnIndex("id");
+            int joueurId = 0;
+            if(index != INDEX_TABLE_VIDE) {
+                joueurId = curseur.getInt(index);
+            }
+            index = curseur.getColumnIndex("parties");
+            if(index != INDEX_TABLE_VIDE) {
+                int parties = curseur.getInt(index);
+                valeursJoueur.put("parties", parties + 1);
+            }
             if(aGagne)
             {
-                int victoires = curseur.getInt(curseur.getColumnIndex("victoires"));
+                index = curseur.getColumnIndex("victoires");
+                int victoires = 0;
+                if(index != INDEX_TABLE_VIDE) {
+                    victoires = curseur.getInt(index);
+                }
                 valeursJoueur.put("victoires", victoires + 1);
             }
             accesSQLite.update("joueurs",
