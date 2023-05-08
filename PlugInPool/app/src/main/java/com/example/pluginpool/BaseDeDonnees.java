@@ -161,19 +161,21 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         }
         curseur.close();
 
-        /**
-         * @fixme trop d'erreurs !
-         */
-        /*
+
         ContentValues valeursManche = new ContentValues();
         valeursManche.put("gagnantId", participantsId[(VICTOIRE) ? 1 : 0]);
         valeursManche.put("perdantId", participantsId[(DEFAITE) ? 1 : 0]);
         valeursManche.put("numeroTable", numeroTable);
-        accesSQLite.insert("manche", null, valeursJoueur);
+        accesSQLite.insert("manche", null, valeursManche);
 
         String selectQuery = "SELECT id FROM manches ORDER BY id DESC LIMIT 1";
         curseur            = accesSQLite.rawQuery(selectQuery, null);
-        mancheId           = curseur.getInt(curseur.getColumnIndex("id"));
+        int mancheId = INDEX_TABLE_VIDE;
+        int index = curseur.getColumnIndex("id");
+        if(index != INDEX_TABLE_VIDE)
+        {
+            mancheId = curseur.getInt(index);
+        }
         curseur.close();
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
@@ -181,22 +183,28 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             valeursTour.put("mancheId", mancheId);
             valeursTour.put(
               "joueurId",
-              participants[(indexTour + premierJoueurGagnant) % Blackball.NB_JOUEURS]);
+              participantsId[(indexTour + (premierJoueurGagnant ? 1 : 0)) % BlackBall.NB_JOUEURS]);
             accesSQLite.insert("tours", null, valeursTour);
 
             selectQuery = "SELECT id FROM tours ORDER BY id DESC LIMIT 1";
-            curseur     = baseDonnees.rawQuery(selectQuery, null);
-            tourId      = curseur.getInt(cursor.getColumnIndex("id"));
+            curseur     = accesSQLite.rawQuery(selectQuery, null);
+
+            int tourId = INDEX_TABLE_VIDE;
+            index = INDEX_TABLE_VIDE;
+            index = curseur.getColumnIndex("id");
+            if(index != INDEX_TABLE_VIDE)
+            {
+                tourId = curseur.getInt(index);
+            }
             curseur.close();
-            for(int indexEmpoche = 0; indexEmpoche < manche[indexTour].size(); indexEmpoche++)
+            for(int indexEmpoche = 0; indexEmpoche < manche.get(indexTour).size(); indexEmpoche++)
             {
                 ContentValues valeursEmpoche = new ContentValues();
                 valeursEmpoche.put("tourId", tourId);
-                valeursEmpoche.put("poche", manche[indexTour][indexEmpoche][0]);
-                valeursEmpoche.put("couleur", manche[indexTour][indexEmpoche][1]);
+                valeursEmpoche.put("poche", manche.get(indexTour).get(indexEmpoche)[0]);
+                valeursEmpoche.put("couleur", manche.get(indexTour).get(indexEmpoche)[1]);
             }
         }
-        */
     }
 
     /**
