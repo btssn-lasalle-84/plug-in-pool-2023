@@ -12,6 +12,12 @@
 #include <QtWidgets>
 
 /**
+ * @def TEST_EcranPool
+ * @brief Pour le mode avec les raccourcis clavier
+ */
+#define TEST_EcranPool
+
+/**
  * @def PLEIN_ECRAN
  * @brief Pour activer le mode plein écran sur la Raspberry Pi
  */
@@ -49,9 +55,13 @@ class EcranPool : public QWidget
     ~EcranPool();
 
   private:
-    Ui::EcranPool* ui; //<! la fenêtre
-    void           initialiserEcran();
-    void           initialiserHeure();
+    Ui::EcranPool*   ui;          //<! la fenêtre
+    QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l''heure
+    void             initialiserEcran();
+    void             initialiserHeure();
+#ifdef TEST_EcranPool
+    void initialiserRaccourcisClavier();
+#endif
 
   public slots:
     void afficherEcran(EcranPool::Ecran ecran);
@@ -59,6 +69,10 @@ class EcranPool : public QWidget
     void afficherEcranPartie();
     void afficherEcranFinPartie();
     void actualiserHeure();
+#ifdef TEST_EcranPool
+    void afficherEcranSuivant();
+    void afficherEcranPrecedent();
+#endif
 };
 
 #endif // ECRANPOOL_H
