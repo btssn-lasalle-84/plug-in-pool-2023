@@ -6,11 +6,13 @@
 
 package com.example.pluginpool;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -39,6 +41,9 @@ public class Manche extends AppCompatActivity
     /**
      * Attributs
      */
+    private boolean                 connexionTable;
+    private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
+    private int                     numeroTable;        //!< Numero de la table
     private String[]                joueurs;            //!< Attribut contenant le nom des joueurs
     private Map<String, Integer>    couleursJoueurs;    //!< Table ayant pour clef le nom d'un joueur et pour valeur la couleur des billes de son groupe
     private Integer[]               billes;             //!< Table ayant pour clef la couleur d'un groupe de billes et pour valeur, le nombre de billes de ce groupe encore en jeu
@@ -76,11 +81,14 @@ public class Manche extends AppCompatActivity
 
     private void initialiserAttributs()
     {
+        baseDonnees = BaseDeDonnees.getInstance(this);
+        numeroTable = -1;
         communication = Communication.getInstance(handler);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
+        connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
         Log.d(TAG, "onCreate() " + joueurs[PREMIER_JOUEUR] + " vs " + joueurs[SECOND_JOUEUR]);
         couleursJoueurs = new HashMap<>();
         billes = new Integer[BlackBall.NB_JOUEURS];
@@ -129,16 +137,16 @@ public class Manche extends AppCompatActivity
 
         fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]   = (ImageView) findViewById(R.id.poche0BilleJauneView);
         fondBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]   = (ImageView) findViewById(R.id.poche0BilleRougeView);
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]      = (ImageView) findViewById(R.id.poche1BilleJauneView);
-        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]      = (ImageView) findViewById(R.id.poche1BilleRougeView);
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]    = (ImageView) findViewById(R.id.poche2BilleJauneView);
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]    = (ImageView) findViewById(R.id.poche2BilleRougeView);
-        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]       = (ImageView) findViewById(R.id.poche3BilleJauneView);
-        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]       = (ImageView) findViewById(R.id.poche3BilleRougeView);
-        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]      = (ImageView) findViewById(R.id.poche4BilleJauneView);
-        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]      = (ImageView) findViewById(R.id.poche4BilleRougeView);
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE]   = (ImageView) findViewById(R.id.poche5BilleJauneView);
-        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE]   = (ImageView) findViewById(R.id.poche5BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.JAUNE]    = (ImageView) findViewById(R.id.poche1BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_HAUT_DROIT][BlackBall.ROUGE]    = (ImageView) findViewById(R.id.poche1BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.JAUNE]  = (ImageView) findViewById(R.id.poche2BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_DROIT][BlackBall.ROUGE]  = (ImageView) findViewById(R.id.poche2BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.JAUNE]     = (ImageView) findViewById(R.id.poche3BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_DROIT][BlackBall.ROUGE]     = (ImageView) findViewById(R.id.poche3BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.JAUNE]    = (ImageView) findViewById(R.id.poche4BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_BAS_GAUCHE][BlackBall.ROUGE]    = (ImageView) findViewById(R.id.poche4BilleRougeView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE] = (ImageView) findViewById(R.id.poche5BilleJauneView);
+        fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE] = (ImageView) findViewById(R.id.poche5BilleRougeView);
 
         fondCompteur = (View) findViewById(R.id.fondCompteur);
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
@@ -147,7 +155,7 @@ public class Manche extends AppCompatActivity
     /**
      * @brief Méthode regroupant l'ensembles des actions déclenchées par l'empochage d'une bille de couleur
      */
-    private void empocherBilleDeCouleur(int numero, int couleur)
+    private void empocherBilleCouleur(int numero, int couleur)
     {
         if(! couleursDefinies)
         {
@@ -187,6 +195,22 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleNoire()
     {
+        if((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0)))
+        {
+            baseDonnees.ajouterManche(joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR], true, manche, numeroTable);
+        }
+        else
+        {
+            baseDonnees.ajouterManche(joueurs[SECOND_JOUEUR], joueurs[PREMIER_JOUEUR], false, manche, numeroTable);
+        }
+        //!<@todo popup.....
+    }
+
+    /**
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par un message spécial
+     */
+    private void gererMessageSpecial(char message)
+    {
         //!< @todo
     }
 
@@ -198,13 +222,6 @@ public class Manche extends AppCompatActivity
         //!< @todo fondCompteur.setBackgroundTintList();
     }
 
-    /**
-     * @brief Méthode permettant d'enregistrer la manche terminée dans la base de données
-     */
-    public void enregistrerManche()
-    {
-        //!< @todo
-    }
 
     /**
      * @brief Initialise la gestion des messages en provenance des threads
@@ -228,16 +245,17 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        char message = (char)message.obj;
-                        if(message & Protocole.MASQUE_TYPE)
+                        char messageChar = (char)message.obj;
+                        if((messageChar & Protocole.MASQUE_TYPE) != 0)
                         {
-                            gererTramesSpeciales(message);
+                            gererMessageSpecial(messageChar);
                         }
                         else
                         {
-                            int couleur = (int)(message & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((message & Protocole.MASQUE_POCHE) >> CHAMP_POCHE);
-                            manche[manche.size() - 1][manche[manche.size() -1].size() - 1].add
+                            int couleur = (int)(messageChar & Protocole.MASQUE_COULEUR);
+                            int poche = (int)((messageChar & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int[] empoche = {poche, couleur};
+                            manche.get(manche.size() - 1).add(empoche);
                             if(couleur == BlackBall.NOIRE)
                             {
                                 empocherBilleNoire();
