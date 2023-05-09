@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>2761</width>
-    <height>1080</height>
+    <height>1148</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -264,7 +264,7 @@ background-color: transparent;</string>
                 <string>Plug-in-pool</string>
                </property>
                <property name="alignment">
-                <set>Qt::AlignCenter</set>
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
                </property>
               </widget>
              </item>
@@ -273,35 +273,57 @@ background-color: transparent;</string>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieu">
              <item>
-              <widget class="QLabel" name="labelTablePartie">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
-               <property name="font">
-                <font>
-                 <weight>50</weight>
-                 <bold>false</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border: none;
-background-color: transparent;</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap>images/pool_table.png</pixmap>
-               </property>
-              </widget>
+              <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieuGauche">
+               <item>
+                <widget class="QWidget" name="widgetTablePartie" native="true">
+                 <widget class="QLabel" name="labelTitreTable">
+                  <property name="geometry">
+                   <rect>
+                    <x>540</x>
+                    <y>40</y>
+                    <width>241</width>
+                    <height>31</height>
+                   </rect>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>28</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Table numéro </string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                 <widget class="QLabel" name="labelTablePartie">
+                  <property name="geometry">
+                   <rect>
+                    <x>410</x>
+                    <y>100</y>
+                    <width>571</width>
+                    <height>311</height>
+                   </rect>
+                  </property>
+                  <property name="text">
+                   <string/>
+                  </property>
+                  <property name="pixmap">
+                   <pixmap>images/pool_table-60.png</pixmap>
+                  </property>
+                 </widget>
+                </widget>
+               </item>
+              </layout>
              </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayoutPartiePied" stretch="">
-             <property name="spacing">
-              <number>0</number>
-             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieuDroite">
+               <item>
+                <widget class="QWidget" name="widgetPartieDroite" native="true"/>
+               </item>
+              </layout>
+             </item>
             </layout>
            </item>
           </layout>
