@@ -22,7 +22,7 @@ import com.example.pluginpool.EcranPrincipal;
  */
 public class FinDeManche extends AlertDialog {
     private Button boutonMenu, boutonRejouer;
-    private TextView textView;
+    private TextView resultats;
     private Manche activiteManche;
 
     /**
@@ -42,7 +42,7 @@ public class FinDeManche extends AlertDialog {
         View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
         boutonMenu = fenetre.findViewById(R.id.boutonMenu);
         boutonRejouer = fenetre.findViewById(R.id.boutonRejouer);
-        TextView resultats = fenetre.findViewById(R.id.resultats);
+        resultats = fenetre.findViewById(R.id.resultats);
         setView(fenetre);
 
         boutonMenu.setOnClickListener(new View.OnClickListener() {
