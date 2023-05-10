@@ -41,6 +41,7 @@ public class Manche extends AppCompatActivity
     /**
      * Attributs
      */
+    private FinDeManche             fenetreFinDeManche;
     private boolean                 connexionTable;
     private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
     private int                     numeroTable;        //!< Numero de la table
@@ -84,6 +85,7 @@ public class Manche extends AppCompatActivity
      */
     private void initialiserAttributs()
     {
+        fenetreFinDeManche = new FinDeManche(this);
         baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = -1;
         communication = Communication.getInstance(handler);
