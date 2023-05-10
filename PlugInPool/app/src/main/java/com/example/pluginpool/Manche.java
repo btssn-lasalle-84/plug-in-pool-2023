@@ -7,6 +7,7 @@
 package com.example.pluginpool;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -60,6 +61,7 @@ public class Manche extends AppCompatActivity
     /**
      * Ressources GUI
      */
+
     private TextView nomJoueur1;                  //!< Affichage du nom du premier joueur
     private TextView nomJoueur2;                  //!< Affichage du nom du second joueur
     private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
@@ -108,7 +110,6 @@ public class Manche extends AppCompatActivity
         }
 
         manche = new Vector<Vector<int[]>>();
-        manche.add(new Vector<int[]>());
 
         joueurActif      = PREMIER_JOUEUR;
         couleursDefinies = false;
@@ -198,7 +199,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleBlanche()
     {
-        //!< @todo
+        //!< @todo Ask client! changerTourOrNot? That's the question
     }
 
     /**
@@ -214,7 +215,10 @@ public class Manche extends AppCompatActivity
         {
             baseDonnees.ajouterManche(joueurs[SECOND_JOUEUR], joueurs[PREMIER_JOUEUR], false, manche, numeroTable);
         }
-        //!<@todo popup.....
+
+        fenetreFinDeManche.setTitle("Partie terminée");
+        fenetreFinDeManche.setMessage("Bravo"); //@todo Mes plus froides félicitations
+        fenetreFinDeManche.show();
     }
 
     /**
@@ -222,9 +226,23 @@ public class Manche extends AppCompatActivity
      */
     private void gererMessageSpecial(char message)
     {
-        //!< @todo
+        if(mancheDemarree)
+        {
+            manche.add(new Vector<int[]>());
+            if(couleursDefinies)
+            {
+                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(/*@todo*/)));
+                //@todo
+            }
+            else
+            {
+                //@todo
+            }
+        }
+        //@todo Demarrer Compteur
     }
 
+    // Méthode bien nécessaire?
     /**
      * @brief Méthode regroupant l'ensembles des actions entrainées par un changement de tour (joueur)
      */
@@ -345,3 +363,4 @@ public class Manche extends AppCompatActivity
         nomJoueur2.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
     }
 }
+
