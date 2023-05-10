@@ -10,6 +10,8 @@
 #define ECRANPOOL_H
 
 #include <QtWidgets>
+#include <vector>
+#include <string>
 
 /**
  * @def PLEIN_ECRAN

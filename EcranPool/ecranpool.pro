@@ -6,10 +6,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ecranpool.cpp \
+    joueurs.cpp \
     main.cpp
 
 HEADERS += \
-    ecranpool.h
+    ecranpool.h \
+    joueurs.h
 
 FORMS += \
     ecranpool.ui
