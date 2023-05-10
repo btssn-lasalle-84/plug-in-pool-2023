@@ -28,8 +28,6 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final String  TAG = "_BaseDeDonnees"; //!< TAG pour les logs (cf. Logcat)
     private static final String  POOL_DONNEES         = "PoolDonnees.db";
     private static final int     VERSION_POOL_DONNEES = 1;     //!< Version
-    private static final boolean VICTOIRE             = true;  //!< Victoire
-    private static final boolean DEFAITE              = false; //!< Defaite
     private static final int     INDEX_TABLE_VIDE = - 1; //!< Index d'une table ne contenant aucun element
 
     /**
@@ -37,7 +35,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     private static BaseDeDonnees baseDonnees =
             null;                                    //!< L'instance unique de BaseDeDonnees (singleton)
-    private SQLiteDatabase accesSQLite = null; //<! L'accès à la base de données
+    private SQLiteDatabase baseDonnee = null; //<! L'accès à la base de données
 
     /**
      * @brief Constructeur de la classe BaseDeDonnees
@@ -46,43 +44,43 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         super(context, POOL_DONNEES, null, VERSION_POOL_DONNEES);
         Log.d(TAG, "BaseDeDonnees()");
-        if(accesSQLite == null)
-            accesSQLite = this.getWritableDatabase();
+        if(baseDonnee == null)
+            baseDonnee = this.getWritableDatabase();
     }
 
     /**
      * @brief Crée les différentes tables de la base de données
      */
     @Override
-    public void onCreate(SQLiteDatabase bdd)
-    {
+    public void onCreate(SQLiteDatabase baseDonnee) {
         Log.d(TAG, "onCreate()");
-        bdd.execSQL(
-          "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0)");
-        bdd.execSQL(
-          "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
-        bdd.execSQL(
-          "CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY AUTOINCREMENT, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (mancheId) REFERENCES manches(id) ON DELETE CASCADE)");
-        bdd.execSQL(
-          "CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id) ON DELETE CASCADE)");
+        baseDonnee.execSQL(
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0)");
+        baseDonnee.execSQL(
+                "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
+        baseDonnee.execSQL(
+                "CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY AUTOINCREMENT, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (mancheId) REFERENCES manches(id) ON DELETE CASCADE)");
+        baseDonnee.execSQL(
+                "CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id) ON DELETE CASCADE)");
 
         // Pour les tests
-        bdd.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('TRICHET Clément', 0, 0);");
-        bdd.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 0, 0);");
+        baseDonnee.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('TRICHET Clément', 0, 0);");
+        baseDonnee.execSQL("INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 0, 0);");
     }
+
 
     /**
      * @brief Supprimer les tables existantes pour en recréer des vierges
      * @warning le plus simple est de supprimer l'application puis de la réinstaller !
      */
     @Override
-    public void onUpgrade(SQLiteDatabase bdd, int oldVersion, int newVersion)
+    public void onUpgrade(SQLiteDatabase baseDonnee,int oldVersion, int newVersion)
     {
-        bdd.execSQL("DROP TABLE IF EXISTS empoches");
-        bdd.execSQL("DROP TABLE IF EXISTS tours");
-        bdd.execSQL("DROP TABLE IF EXISTS manches");
-        bdd.execSQL("DROP TABLE IF EXISTS joueurs");
-        onCreate(bdd);
+        baseDonnee.execSQL("DROP TABLE IF EXISTS empoches");
+        baseDonnee.execSQL("DROP TABLE IF EXISTS tours");
+        baseDonnee.execSQL("DROP TABLE IF EXISTS manches");
+        baseDonnee.execSQL("DROP TABLE IF EXISTS joueurs");
+        onCreate(baseDonnee);
     }
 
     /**
@@ -104,15 +102,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     public void ajouterNom(String nom)
     {
         Log.d(TAG, "ajouterNom(" + nom + ")");
-        Cursor curseur =
-          accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { nom });
-        if(curseur.getCount() == 0)
-        {
-            ContentValues valeursJoueur = new ContentValues();
-            valeursJoueur.put("nom", nom);
-            accesSQLite.insert("joueurs", null, valeursJoueur);
-        }
-        curseur.close();
+        baseDonnee.execSQL("INSERT INTO joueurs (nom) VALUES (nom)");
     }
 
     /**
@@ -125,133 +115,39 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                               Vector<Vector<int[]>> manche,
                               int                   numeroTable)
     {
-        int[] participantsId = { Integer.parseInt(perdant), Integer.parseInt(gagnant) };
-        actualiserTableJoueurs(gagnant, VICTOIRE);
-        actualiserTableJoueurs(perdant, DEFAITE);
-
-        Cursor curseur =
-          accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { gagnant });
-        if(curseur.moveToFirst())
-        {
-            int index = curseur.getColumnIndex("id");
-            if(index != INDEX_TABLE_VIDE)
-            {
-                participantsId[(VICTOIRE) ? 1 : 0] = curseur.getInt(index);
-            }
-        }
-        else
-        {
-            throw new Error("Joueur Inconnu");
-        }
-        curseur.close();
-
-        curseur =
-          accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { perdant });
-        if(curseur.moveToFirst())
-        {
-            int index = curseur.getColumnIndex("id");
-            if(index != INDEX_TABLE_VIDE)
-            {
-                participantsId[(DEFAITE) ? 1 : 0] = curseur.getInt(index);
-            }
-        }
-        else
-        {
-            throw new Error("Joueur Inconnu");
-        }
-        curseur.close();
-
+        baseDonnee.execSQL("UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = gagnant");
+        baseDonnee.execSQL("UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = perdant");
 
         ContentValues valeursManche = new ContentValues();
-        valeursManche.put("gagnantId", participantsId[(VICTOIRE) ? 1 : 0]);
-        valeursManche.put("perdantId", participantsId[(DEFAITE) ? 1 : 0]);
+        valeursManche.put("gagnantId", baseDonnee.rawQuery("SELECT id FROM joueurs WHERE nom = gagnant", null).getInt(0));
+        valeursManche.put("perdantId", baseDonnee.rawQuery("SELECT id FROM joueurs WHERE nom = perdant", null).getInt(0));
         valeursManche.put("numeroTable", numeroTable);
-        accesSQLite.insert("manche", null, valeursManche);
+        baseDonnee.insert("manche", null, valeursManche);
 
-        String selectQuery = "SELECT id FROM manches ORDER BY id DESC LIMIT 1";
-        curseur            = accesSQLite.rawQuery(selectQuery, null);
-        int mancheId = INDEX_TABLE_VIDE;
-        int index = curseur.getColumnIndex("id");
-        if(index != INDEX_TABLE_VIDE)
-        {
-            mancheId = curseur.getInt(index);
-        }
-        curseur.close();
+        int[] participantsId = { Integer.parseInt(perdant), Integer.parseInt(gagnant) };
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
             ContentValues valeursTour = new ContentValues();
-            valeursTour.put("mancheId", mancheId);
+            valeursTour.put("mancheId", baseDonnee.rawQuery("SELECT max(id) FROM manches", null).getInt(0));
             valeursTour.put(
               "joueurId",
               participantsId[(indexTour + (premierJoueurGagnant ? 1 : 0)) % BlackBall.NB_JOUEURS]);
-            accesSQLite.insert("tours", null, valeursTour);
+            baseDonnee.insert("tours", null, valeursTour);
 
-            selectQuery = "SELECT id FROM tours ORDER BY id DESC LIMIT 1";
-            curseur     = accesSQLite.rawQuery(selectQuery, null);
-
-            int tourId = INDEX_TABLE_VIDE;
-            index = INDEX_TABLE_VIDE;
-            index = curseur.getColumnIndex("id");
-            if(index != INDEX_TABLE_VIDE)
-            {
-                tourId = curseur.getInt(index);
-            }
-            curseur.close();
             for(int indexEmpoche = 0; indexEmpoche < manche.get(indexTour).size(); indexEmpoche++)
             {
                 ContentValues valeursEmpoche = new ContentValues();
-                valeursEmpoche.put("tourId", tourId);
+                valeursEmpoche.put("tourId", baseDonnee.rawQuery("SELECT max(id) FROM tours", null).getInt(0));
                 valeursEmpoche.put("poche", manche.get(indexTour).get(indexEmpoche)[0]);
                 valeursEmpoche.put("couleur", manche.get(indexTour).get(indexEmpoche)[1]);
             }
         }
     }
 
-    /**
-     * @brief Pour incrémenter le nombre de parties effectuées et de victoires du joueur concerné
-     */
-    public void actualiserTableJoueurs(String joueur, boolean aGagne)
-    {
-        Cursor curseur =
-          accesSQLite.rawQuery("SELECT * FROM joueurs WHERE nom=?", new String[] { joueur });
-        if(curseur.moveToFirst())
-        {
-            ContentValues valeursJoueur = new ContentValues();
-            int index = curseur.getColumnIndex("id");
-            int joueurId = 0;
-            if(index != INDEX_TABLE_VIDE) {
-                joueurId = curseur.getInt(index);
-            }
-            index = curseur.getColumnIndex("parties");
-            if(index != INDEX_TABLE_VIDE) {
-                int parties = curseur.getInt(index);
-                valeursJoueur.put("parties", parties + 1);
-            }
-            if(aGagne)
-            {
-                index = curseur.getColumnIndex("victoires");
-                int victoires = 0;
-                if(index != INDEX_TABLE_VIDE) {
-                    victoires = curseur.getInt(index);
-                }
-                valeursJoueur.put("victoires", victoires + 1);
-            }
-            accesSQLite.update("joueurs",
-                               valeursJoueur,
-                               "id=?",
-                               new String[] { String.valueOf(joueurId) });
-        }
-        else
-        {
-            throw new Error("Joueur Inconnu");
-        }
-        curseur.close();
-    }
-
     public ArrayList<String> getNomsJoueurs()
     {
         ArrayList<String> nomsJoueurs = new ArrayList<String>();
-        Cursor            cursor      = accesSQLite.rawQuery("SELECT nom FROM joueurs", null);
+        Cursor            cursor      = baseDonnee.rawQuery("SELECT nom FROM joueurs", null);
         if(cursor.moveToFirst())
         {
             do
