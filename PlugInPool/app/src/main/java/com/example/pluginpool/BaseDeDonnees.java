@@ -107,7 +107,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      * @brief Pour ajouter une manche terminée à la base de données et incrémenter le nombre de
      * parties effectuées et de victoires des joueurs concernés
      */
-    public void ajouterManche(String                gagnant,
+    /*public void ajouterManche(String                gagnant,
                               String                perdant,
                               boolean               premierJoueurGagnant,
                               Vector<Vector<int[]>> manche,
@@ -128,6 +128,40 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         {
             int mancheId = sqlite.rawQuery("SELECT max(id) FROM manches", null).getInt(0);
             int joueurId = participantsId[(indexTour + (premierJoueurGagnant ? 1 : 0)) % BlackBall.NB_JOUEURS];
+            sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES (joueurId, mancheId)");
+
+            for(int indexEmpoche = 0; indexEmpoche < manche.get(indexTour).size();
+                indexEmpoche++)
+            {
+                int poche = manche.get(indexTour).get(indexEmpoche)[0];
+                int couleur = manche.get(indexTour).get(indexEmpoche)[1];
+                sqlite.execSQL("INSERT INTO empoches (tourId, poche, couleur) VALUES ((SELECT max(id) FROM tours), poche, couleur)");
+            }
+        }
+    }*/
+
+    public void ajouterManche(String[] joueurs,
+                              int               indexJoueurGagnant,
+                              Vector<Vector<int[]>> manche,
+                              int                   numeroTable)
+    {
+        String gagnant = joueurs[indexJoueurGagnant];
+        String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
+        Log.d(TAG, "ajouterManche()");
+        sqlite.execSQL(
+                "UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = gagnant");
+        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1 WHERE joueurs.nom = perdant");
+
+        int gagnantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = gagnant", null).getInt(0);
+        int perdantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = perdant", null).getInt(0);
+
+        sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (NOW(), gagnantId,  perdantId, numeroTable)");
+
+        int[] participantsId = {perdantId, gagnantId};
+        for(int indexTour = 0; indexTour < manche.size(); indexTour++)
+        {
+            int mancheId = sqlite.rawQuery("SELECT max(id) FROM manches", null).getInt(0);
+            int joueurId = participantsId[(indexTour + indexJoueurGagnant) % BlackBall.NB_JOUEURS];
             sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES (joueurId, mancheId)");
 
             for(int indexEmpoche = 0; indexEmpoche < manche.get(indexTour).size();

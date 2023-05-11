@@ -12,11 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -66,7 +71,9 @@ public class Manche extends AppCompatActivity
     private TextView nomJoueur2;                  //!< Affichage du nom du second joueur
     private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
     private ImageView[][] fondBillesEmpochees;    //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
-    private  View fondCompteur;
+    private TextView decompte;                    //!< Nombre de seconde restantes
+    private  View fondCompteur;                   //!< Image de fond du compeur
+    private ProgressBar barreProgression;         //!< Barre de progression du compteur
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -114,7 +121,7 @@ public class Manche extends AppCompatActivity
         joueurActif      = PREMIER_JOUEUR;
         couleursDefinies = false;
         mancheDemarree   = false;
-        compteur         = new Compteur();
+        compteur         = new Compteur(this);
     }
 
     /**
@@ -160,6 +167,8 @@ public class Manche extends AppCompatActivity
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE] = (ImageView) findViewById(R.id.poche5BilleJauneView);
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE] = (ImageView) findViewById(R.id.poche5BilleRougeView);
 
+        barreProgression = (ProgressBar) findViewById(R.id.barreProgression);
+        decompte = (TextView) findViewById(R.id.decompte);
         fondCompteur = (View) findViewById(R.id.fondCompteur);
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
     }
@@ -180,7 +189,8 @@ public class Manche extends AppCompatActivity
             }
             else
             {
-                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.jaune)));
+                int couleurFond = couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
+                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
             }
         }
         poches[numero][couleur]++;
@@ -207,15 +217,8 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleNoire()
     {
-        if((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0)))
-        {
-            baseDonnees.ajouterManche(joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR], true, manche, numeroTable);
-        }
-        else
-        {
-            baseDonnees.ajouterManche(joueurs[SECOND_JOUEUR], joueurs[PREMIER_JOUEUR], false, manche, numeroTable);
-        }
-
+        int indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
         fenetreFinDeManche.setMessage("Bravo"); //@todo Mes plus froides félicitations
         fenetreFinDeManche.show();
@@ -228,29 +231,20 @@ public class Manche extends AppCompatActivity
     {
         if(mancheDemarree)
         {
+            joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
             manche.add(new Vector<int[]>());
             if(couleursDefinies)
             {
-                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(/*@todo*/)));
-                //@todo
-            }
-            else
-            {
-                //@todo
+                int couleurFond = (couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE) ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
+                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
             }
         }
-        //@todo Demarrer Compteur
+        else
+        {
+            mancheDemarree = true;
+        }
+        compteur.redemarrer();
     }
-
-    // Méthode bien nécessaire?
-    /**
-     * @brief Méthode regroupant l'ensembles des actions entrainées par un changement de tour (joueur)
-     */
-    private void changerDeTour()
-    {
-        //!< @todo fondCompteur.setBackgroundTintList();
-    }
-
 
     /**
      * @brief Initialise la gestion des messages en provenance des threads
@@ -361,6 +355,15 @@ public class Manche extends AppCompatActivity
         nomJoueur2.setText(joueurs[SECOND_JOUEUR]);
         nomJoueur1.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
         nomJoueur2.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+    }
+
+    public void actualiserCompteur(int tempsRestant)
+    {
+        Drawable fond = new ColorDrawable(getResources().getColor(R.color.bleu));
+        ClipDrawable clipDrawable = new ClipDrawable(fond, Gravity.LEFT, ClipDrawable.HORIZONTAL);
+        clipDrawable.setLevel(tempsRestant);
+        barreProgression.setProgressDrawable(clipDrawable);
+        decompte.setText(tempsRestant);
     }
 }
 
