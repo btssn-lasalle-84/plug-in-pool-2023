@@ -9,6 +9,7 @@ package com.example.pluginpool;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -99,8 +100,12 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void ajouterNom(String nomJoueur)
     {
-        Log.d(TAG, "ajouterNom(" + nomJoueur + ")");
-        sqlite.execSQL("INSERT INTO joueurs (nom) VALUES ('" + nomJoueur + "')");
+        try {
+            Log.d(TAG, "ajouterNom(" + nomJoueur + ")");
+            sqlite.execSQL("INSERT INTO joueurs (nom) VALUES ('" + nomJoueur + "')");
+        } catch (SQLiteConstraintException e) {
+        Log.d(TAG, "Nom déjà présent dans la base de donnée");
+        }
     }
 
     /**
