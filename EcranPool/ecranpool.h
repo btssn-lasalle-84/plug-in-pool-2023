@@ -55,10 +55,12 @@ class EcranPool : public QWidget
     ~EcranPool();
 
   private:
+    QElapsedTimer    dureePartie;
     Ui::EcranPool*   ui;          //<! la fenêtre
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l''heure
     void             initialiserEcran();
     void             initialiserHeure();
+    void             afficherDureePartie();
 #ifdef TEST_EcranPool
     void initialiserRaccourcisClavier();
 #endif

@@ -316,71 +316,129 @@ background-color: transparent;</string>
             </layout>
            </item>
            <item>
-            <spacer name="verticalSpacerTableHaut">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item>
             <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieu">
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieuGauche">
+              <layout class="QVBoxLayout" name="verticalLayoutPartieGauche">
                <item>
-                <widget class="QWidget" name="widgetTablePartie" native="true">
-                 <widget class="QLabel" name="labelTitreTable">
-                  <property name="geometry">
-                   <rect>
-                    <x>540</x>
-                    <y>40</y>
-                    <width>241</width>
-                    <height>31</height>
-                   </rect>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>28</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>Table numéro </string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                 <widget class="QLabel" name="labelTablePartie">
-                  <property name="geometry">
-                   <rect>
-                    <x>410</x>
-                    <y>100</y>
-                    <width>571</width>
-                    <height>311</height>
-                   </rect>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap>images/pool_table-60.png</pixmap>
-                  </property>
-                 </widget>
+                <widget class="QLabel" name="label">
+                 <property name="font">
+                  <font>
+                   <pointsize>24</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Table n° X</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelTablePartie">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="ressources.qrc">:/pool_table-60.png</pixmap>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelAnnonceCoup">
+                 <property name="font">
+                  <font>
+                   <pointsize>28</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Texte annonce coup</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
                </item>
               </layout>
              </item>
              <item>
-              <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieuDroite">
+              <layout class="QVBoxLayout" name="verticalLayoutPartieDroite">
                <item>
-                <widget class="QWidget" name="widgetPartieDroite" native="true"/>
+                <widget class="QLabel" name="labelDecompteManche">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>26</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutJoueurs">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayoutJoueurGauche">
+                   <item>
+                    <widget class="QLabel" name="labelNomJoueurGauche">
+                     <property name="text">
+                      <string>Joueur 1</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayoutJoueurDroite">
+                   <item>
+                    <widget class="QLabel" name="labelNomJoueurDroite">
+                     <property name="text">
+                      <string>Joueur 2</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
                </item>
               </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayoutPartiePied">
+             <item>
+              <widget class="QLabel" name="labelAnnonceTour">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>C'est à X de jouer !</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
