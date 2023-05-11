@@ -7,8 +7,8 @@ package com.example.pluginpool;
 public class Protocole
 {
     // Trame MobilePool -> Table
-    public static final int TRAME_START = 0x9c;
-    public static final int TRAME_STOP  = 0x80;
+    public static final int DEBUT = 0x9c;
+    public static final int ARRET  = 0x80;
     // Trame Table -> MobilePool
     public static final int EMPOCHAGE = 0; // !< Une trame empochage Table -> MobilePool
     /*
