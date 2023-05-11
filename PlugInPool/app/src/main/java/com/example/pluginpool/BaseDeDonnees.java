@@ -97,10 +97,10 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     /**
      * @brief Ajouter un nouveau joueur à la base de données
      */
-    public void ajouterNom(String nom)
+    public void ajouterNom(String nomJoueur)
     {
-        Log.d(TAG, "ajouterNom(" + nom + ")");
-        sqlite.execSQL("INSERT INTO joueurs (nom) VALUES (nom)");
+        Log.d(TAG, "ajouterNom(" + nomJoueur + ")");
+        sqlite.execSQL("INSERT INTO joueurs (nom) VALUES (nomJoueur)");
     }
 
     /**
