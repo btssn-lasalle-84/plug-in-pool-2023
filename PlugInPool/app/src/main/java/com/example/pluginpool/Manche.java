@@ -87,7 +87,7 @@ public class Manche extends AppCompatActivity
         initialiserHandler();
         initialiserAttributs();
         initialiserRessources();
-        //<@todo envoyer message début
+        communication.envoyer(Protocole.DEBUT);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Manche extends AppCompatActivity
         fenetreFinDeManche.setTitle("Partie terminée");
         fenetreFinDeManche.setMessage("Bravo"); //@todo Mes plus froides félicitations
         fenetreFinDeManche.show();
-        //<@todo envoyer message fin
+        communication.envoyer(Protocole.ARRET);
     }
 
     /**
