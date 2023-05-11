@@ -233,6 +233,7 @@ public class ConfigurationManche extends AppCompatActivity
                     activiteManche.putExtra("joueur2", nomJoueur2);
                     activiteManche.putExtra("connexionTable", connexionTable);
                     startActivity(activiteManche);
+                    Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }
                 else
                 {
@@ -278,8 +279,6 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
                         connexionTable = true;
-                        // Test
-                        // communication.envoyer(Protocole.TRAME_START);
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");

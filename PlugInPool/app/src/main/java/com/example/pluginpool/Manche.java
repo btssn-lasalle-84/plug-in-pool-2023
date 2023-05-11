@@ -43,7 +43,7 @@ public class Manche extends AppCompatActivity
     private static final String TAG = "_Manche"; //!< TAG pour les logs (cf. Logcat)
     public static final int PREMIER_JOUEUR  = 0; //!< Numéro ou indice associé au premier joueur
     public static final int SECOND_JOUEUR   = 1; //!< Numéro ou indice associé au second joueur
-
+    private static final int NUMERO_TABLE_DEFAUT = - 1; //!< Numéro par défaut de la table
     /**
      * Attributs
      */
@@ -81,6 +81,8 @@ public class Manche extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        Log.d(TAG, "onCreate()");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manche);
 
@@ -95,34 +97,20 @@ public class Manche extends AppCompatActivity
      */
     private void initialiserAttributs()
     {
+        Log.d(TAG, "initialiserAttributs() ");
+
         fenetreFinDeManche = new FinDeManche(this);
         baseDonnees = BaseDeDonnees.getInstance(this);
-        numeroTable = -1;
+        numeroTable = NUMERO_TABLE_DEFAUT;
         communication = Communication.getInstance(handler);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
-        Log.d(TAG, "onCreate() " + joueurs[PREMIER_JOUEUR] + " vs " + joueurs[SECOND_JOUEUR]);
-        couleursJoueurs = new HashMap<>();
-        billes = new Integer[BlackBall.NB_JOUEURS];
-        billes[BlackBall.ROUGE] = BlackBall.NB_BILLES_COULEUR;
-        billes[BlackBall.JAUNE] = BlackBall.NB_BILLES_COULEUR;
-
-        poches = new Integer[BlackBall.NB_POCHES][BlackBall.NB_JOUEURS];
-        for(int numero = 0; numero < BlackBall.NB_POCHES; numero++)
-        {
-            poches[numero] = new Integer[2];
-            Arrays.fill(poches, 0);
-        }
-
-        manche = new Vector<Vector<int[]>>();
-
-        joueurActif      = PREMIER_JOUEUR;
-        couleursDefinies = false;
-        mancheDemarree   = false;
         compteur         = new Compteur(this);
+
+        initialiserAttributsDeDebutDeManche();
     }
 
     /**
@@ -130,14 +118,9 @@ public class Manche extends AppCompatActivity
      */
     private void initialiserRessources()
     {
+        Log.d(TAG, "initialiserRessources() ");
         nomJoueur1 = (TextView)findViewById(R.id.Joueur1);
         nomJoueur2 = (TextView)findViewById(R.id.Joueur2);
-
-        nomJoueur1.setText(joueurs[PREMIER_JOUEUR]);
-        nomJoueur2.setText(joueurs[SECOND_JOUEUR]);
-
-        nomJoueur1.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
-        nomJoueur2.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
 
         nbBillesEmpochees = new TextView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
         fondBillesEmpochees = new ImageView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
@@ -171,7 +154,7 @@ public class Manche extends AppCompatActivity
         barreProgression = (ProgressBar) findViewById(R.id.barreProgression);
         decompte = (TextView) findViewById(R.id.decompte);
         fondCompteur = (View) findViewById(R.id.fondCompteur);
-        fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        initialiserRessourcesdeDebutdeManche();
     }
 
     /**
@@ -270,15 +253,15 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        char messageChar = (char)message.obj;
-                        if((messageChar & Protocole.MASQUE_TYPE) != 0)
+                        char donneesMessage = (char)message.obj;
+                        if((donneesMessage & Protocole.MASQUE_TYPE) != 0)
                         {
-                            gererMessageSpecial(messageChar);
+                            gererMessageSpecial(donneesMessage);
                         }
                         else
                         {
-                            int couleur = (int)(messageChar & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((messageChar & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int couleur = (int)(donneesMessage & Protocole.MASQUE_COULEUR);
+                            int poche = (int)((donneesMessage & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
                             int[] empoche = {poche, couleur};
                             manche.get(manche.size() - 1).add(empoche);
                             if(couleur == BlackBall.NOIRE)
@@ -310,18 +293,23 @@ public class Manche extends AppCompatActivity
     public void recommencer()
     {
         reinitialiserAttributs();
-        reinitialiserRessources();
+        initialiserRessourcesdeDebutdeManche();
+        //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
     }
 
     /**
      * @brief Reinitialise les attributs au début d'une nouvelle manche
      */
-    private void reinitialiserAttributs()
-    {
+    private void reinitialiserAttributs() {
         String premierJoueur = joueurs[SECOND_JOUEUR];
         joueurs[SECOND_JOUEUR] = joueurs[PREMIER_JOUEUR];
         joueurs[PREMIER_JOUEUR] = premierJoueur;
-        couleursJoueurs = new HashMap<>();
+        initialiserAttributsDeDebutDeManche();
+    }
+
+    private  void initialiserAttributsDeDebutDeManche()
+    {
+        Log.d(TAG, "initialiserAttributsDeDebutDeManche()");
         billes = new Integer[BlackBall.NB_JOUEURS];
         billes[BlackBall.ROUGE] = BlackBall.NB_BILLES_COULEUR;
         billes[BlackBall.JAUNE] = BlackBall.NB_BILLES_COULEUR;
@@ -330,11 +318,13 @@ public class Manche extends AppCompatActivity
         for(int numero = 0; numero < BlackBall.NB_POCHES; numero++)
         {
             poches[numero] = new Integer[2];
-            Arrays.fill(poches, 0);
+            Arrays.fill(poches[numero], 0);
         }
 
         manche = new Vector<Vector<int[]>>();
         manche.add(new Vector<int[]>());
+
+        couleursJoueurs = new HashMap<>();
         joueurActif = PREMIER_JOUEUR;
         couleursDefinies = false;
         mancheDemarree = false;
@@ -343,13 +333,14 @@ public class Manche extends AppCompatActivity
     /**
      * @brief Reinitialise les ressources au début d'une nouvelle manche
      */
-    private void reinitialiserRessources()
+    private void initialiserRessourcesdeDebutdeManche()
     {
         for (int numero = 0; numero < nbBillesEmpochees.length; numero++) {
             for (int couleur = 0; couleur < nbBillesEmpochees[numero].length; couleur++) {
                 fondBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
                 nbBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
-                nbBillesEmpochees[numero][couleur].setText(0);
+                Log.d(TAG, "initialiserRessourcesdeDebutdeManche(), numero " + numero + ", couleur " + couleur);
+                nbBillesEmpochees[numero][couleur].setText(0);                                                          //!<@fixme
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
