@@ -18,23 +18,12 @@
  * @param parent nullptr définit la fenêtre principale de l'application
  */
 EcranPool::EcranPool(QWidget* parent) :
-    QWidget(parent), ui(new Ui::EcranPool), dureePartie()
+    QWidget(parent), ui(new Ui::EcranPool), dureePartie(0)
 {
     qDebug() << Q_FUNC_INFO;
-
-    ui->setupUi(this);
-
-    // Initialisation de la variable dureePartie
-    dureePartie.start();
-
-    // Connexion du signal "timeout" du QTimer à la fonction
-    // "afficherDureePartie"
-    QTimer* compteur = new QTimer(this);
-    connect(compteur, SIGNAL(timeout()), this, SLOT(afficherDureePartie()));
-    compteur->start(INTERVALLE_SECONDE);
-
     initialiserEcran();
     initialiserHeure();
+    initialiserDecompteManche();
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -69,7 +58,7 @@ void EcranPool::afficherEcran(EcranPool::Ecran ecran)
 void EcranPool::afficherEcranAcceuil()
 {
     afficherEcran(EcranPool::Ecran::Accueil);
-    actualiserHeure();
+    afficherHeure();
 }
 
 /**
@@ -79,7 +68,7 @@ void EcranPool::afficherEcranAcceuil()
 void EcranPool::afficherEcranPartie()
 {
     afficherEcran(EcranPool::Ecran::Partie);
-    actualiserHeure();
+    afficherHeure();
 }
 
 /**
@@ -89,20 +78,42 @@ void EcranPool::afficherEcranPartie()
 void EcranPool::afficherEcranFinPartie()
 {
     afficherEcran(EcranPool::Ecran::FinPartie);
-    actualiserHeure();
+    afficherHeure();
 }
 
 /**
  * @fn EcranPool::actualisationHeure
  * @brief Récupère et convertit l'heure en chaîne de caractères
  */
-void EcranPool::actualiserHeure()
+void EcranPool::afficherHeure()
 {
     QString heureActuelle = QDateTime::currentDateTime().toString("hh:mm");
     // tous les écrans affichent l'heure
     labelsHeure[EcranPool::Ecran(ui->ecrans->currentIndex())]->setText(
       heureActuelle);
-    afficherDureePartie();
+}
+
+/**
+ * @fn EcranPool::afficherDureePartie
+ * @brief Affiche la durée de le partie
+ */
+void EcranPool::afficherDureePartie()
+{
+    ++dureePartie;
+    QString dureeFormatee =
+      QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
+    ui->labelDureePartie->setText(dureeFormatee);
+}
+
+/**
+ * @fn EcranPool::afficherDecompteManche
+ * @brief Affiche le décompte pour jouer
+ */
+void EcranPool::afficherDecompteManche()
+{
+    /**
+     * @todo Afficher le décompte
+     */
 }
 
 // Méthodes privées
@@ -133,25 +144,22 @@ void EcranPool::initialiserEcran()
 void EcranPool::initialiserHeure()
 {
     QTimer* horloge = new QTimer(this);
-    connect(horloge, &QTimer::timeout, this, &EcranPool::actualiserHeure);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::afficherHeure);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::afficherDureePartie);
     horloge->start(INTERVALLE_SECONDE);
-    actualiserHeure();
+    afficherHeure();
+    afficherDureePartie();
 }
 
 /**
- * @fn EcranPool::afficherDureePartie
- * @brief Affiche la durée de le partie
+ * @fn EcranPool::initialiserDecompteManche
+ * @brief Initialise le décompte d'une manche
  */
-void EcranPool::afficherDureePartie()
+void EcranPool::initialiserDecompteManche()
 {
-    dureePartie.start();
-    QTimer* compteur = new QTimer(this);
-    connect(compteur, SIGNAL(timeout()), this, SLOT(afficherDureePartie()));
-    qDebug() << "afficherDureePartie() appelée";
-    qint64  duree = dureePartie.elapsed() / 1000;
-    QString dureeFormatee =
-      QDateTime::fromTime_t(duree).toUTC().toString("hh:mm:ss");
-    ui->labelDureePartie->setText(dureeFormatee);
+    QTimer* minuteur = new QTimer(this);
+    minuteur->start(INTERVALLE_SECONDE);
+    connect(minuteur, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
 }
 
 #ifdef TEST_EcranPool

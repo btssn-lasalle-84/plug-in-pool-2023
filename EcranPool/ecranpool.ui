@@ -83,16 +83,16 @@
             <number>6</number>
            </property>
            <property name="leftMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="topMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="rightMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="bottomMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayoutAccueilEntete">
@@ -214,16 +214,16 @@ background-color: transparent;</string>
          <item>
           <layout class="QVBoxLayout" name="verticalLayoutPartie">
            <property name="leftMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="topMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="rightMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="bottomMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayoutPartieEntete" stretch="0,0">
@@ -231,7 +231,7 @@ background-color: transparent;</string>
               <number>0</number>
              </property>
              <property name="topMargin">
-              <number>50</number>
+              <number>0</number>
              </property>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayoutHeure">
@@ -340,7 +340,7 @@ background-color: transparent;</string>
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="ressources.qrc">:/pool_table-60.png</pixmap>
+                  <pixmap resource="ressources.qrc">:/pool_table.png</pixmap>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -380,7 +380,7 @@ background-color: transparent;</string>
                   </font>
                  </property>
                  <property name="text">
-                  <string>00</string>
+                  <string>00:00:0</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -393,6 +393,11 @@ background-color: transparent;</string>
                   <layout class="QHBoxLayout" name="horizontalLayoutJoueurGauche">
                    <item>
                     <widget class="QLabel" name="labelNomJoueurGauche">
+                     <property name="font">
+                      <font>
+                       <pointsize>24</pointsize>
+                      </font>
+                     </property>
                      <property name="text">
                       <string>Joueur 1</string>
                      </property>
@@ -407,6 +412,11 @@ background-color: transparent;</string>
                   <layout class="QVBoxLayout" name="verticalLayoutJoueurDroite">
                    <item>
                     <widget class="QLabel" name="labelNomJoueurDroite">
+                     <property name="font">
+                      <font>
+                       <pointsize>24</pointsize>
+                      </font>
+                     </property>
                      <property name="text">
                       <string>Joueur 2</string>
                      </property>
@@ -472,16 +482,16 @@ background-color: transparent;</string>
             <number>6</number>
            </property>
            <property name="leftMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="topMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="rightMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="bottomMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayoutFinPartieEntete">
