@@ -7,7 +7,6 @@
 package com.example.pluginpool;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -212,7 +210,7 @@ public class Manche extends AppCompatActivity
     /**
      * @brief Méthode regroupant l'ensembles des actions déclenchées par un message spécial
      */
-    private void gererMessageSpecial(char message)
+    private void traiterTrameService(byte trame)
     {
         if(mancheDemarree)
         {
@@ -253,15 +251,15 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        char donneesMessage = (char)message.obj;
-                        if((donneesMessage & Protocole.MASQUE_TYPE) != 0)
+                        byte trame = (byte)message.obj;
+                        if((trame & Protocole.MASQUE_TYPE) != 0)
                         {
-                            gererMessageSpecial(donneesMessage);
+                            traiterTrameService(trame);
                         }
                         else
                         {
-                            int couleur = (int)(donneesMessage & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((donneesMessage & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int couleur = (int)(trame & Protocole.MASQUE_COULEUR);
+                            int poche = (int)((trame & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
                             int[] empoche = {poche, couleur};
                             manche.get(manche.size() - 1).add(empoche);
                             if(couleur == BlackBall.NOIRE)

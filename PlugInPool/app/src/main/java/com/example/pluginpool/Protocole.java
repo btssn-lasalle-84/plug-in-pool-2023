@@ -17,8 +17,8 @@ public class Protocole
         | 0  | X  | X  | X  | X  | X  | X  | X  |
         |Type|N°Table  |N°Poche       |Couleur  |
     */
-    public static final char MASQUE_TYPE   = 0b10000000;; // !< Masque du bit représentant le type de message
-    public static final char MASQUE_POCHE   = 0b00001100;   // !< Masque des bits représentants le numéro de la poche
-    public static final char MASQUE_COULEUR = 0b00000011;   // !< Masque des bits représentants la couleur
+    public static final byte MASQUE_TYPE   = (byte)0b10000000;; // !< Masque du bit représentant le type de message
+    public static final byte MASQUE_POCHE   = (byte)0b00001100;   // !< Masque des bits représentants le numéro de la poche
+    public static final byte MASQUE_COULEUR = (byte)0b00000011;   // !< Masque des bits représentants la couleur
     public static final int CHAMP_POCHE   = 2;              // !< Bit n°2
 }
