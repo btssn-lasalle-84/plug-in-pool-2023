@@ -251,7 +251,8 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        byte trame = (byte)message.obj;
+                        byte trame = ((Integer)message.obj).byteValue();
+                        Log.d(TAG, "trame = " + trame);
                         if((trame & Protocole.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);
@@ -338,7 +339,7 @@ public class Manche extends AppCompatActivity
                 fondBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
                 nbBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
                 Log.d(TAG, "initialiserRessourcesdeDebutdeManche(), numero " + numero + ", couleur " + couleur);
-                nbBillesEmpochees[numero][couleur].setText(0);                                                          //!<@fixme
+                nbBillesEmpochees[numero][couleur].setText("0");                                                          //!<@fixme
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
