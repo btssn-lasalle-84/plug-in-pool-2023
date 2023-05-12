@@ -16,28 +16,25 @@ public class Compteur extends Timer
         tempsRestant = DUREE_TIR;
         this.manche = manche;
 
-        actualiser = new TimerTask()
-        {
-            public void run()
-            {
-                if (tempsRestant > 0)
-                {
-                    tempsRestant -= 1;
-                    manche.actualiserCompteur(tempsRestant);
-                }
-                else
-                {
-                    this.cancel();
-                }
-            }
-        };
     }
 
     public void redemarrer()
     {
-        this.cancel();
         this.purge();
         this.tempsRestant = DUREE_TIR;
-        this.scheduleAtFixedRate(actualiser, 0, 1000);
+        if (actualiser != null) {
+            actualiser.cancel();
+            actualiser = new TimerTask() {
+                public void run() {
+                    if (tempsRestant > 0) {
+                        tempsRestant -= 1;
+                        manche.actualiserCompteur(tempsRestant);
+                    } else {
+                        this.cancel();
+                    }
+                }
+            };
+            this.scheduleAtFixedRate(actualiser, 0, 1000);
+        }
     }
 }

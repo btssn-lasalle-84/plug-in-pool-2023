@@ -21,4 +21,12 @@ public class Protocole
     public static final byte MASQUE_POCHE   = (byte)0b00001100;   // !< Masque des bits représentants le numéro de la poche
     public static final byte MASQUE_COULEUR = (byte)0b00000011;   // !< Masque des bits représentants la couleur
     public static final int CHAMP_POCHE   = 2;              // !< Bit n°2
+
+    public static String byteToBinaryString(byte trame) {
+        StringBuilder bitString = new StringBuilder();
+        for (int indexBit = 7; indexBit >= 0; indexBit--) {
+            bitString.append((trame & (1 << indexBit)) == 0 ? '0' : '1');
+        }
+        return bitString.toString();
+    }
 }

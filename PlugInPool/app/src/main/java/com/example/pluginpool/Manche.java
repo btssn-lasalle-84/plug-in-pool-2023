@@ -160,6 +160,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleCouleur(int numero, int couleur)
     {
+        Log.d(TAG, "empocherBilleCouleur( numero" + numero + " couleur = " + couleur + " )");
         if(! couleursDefinies)
         {
             couleursDefinies = true;
@@ -176,7 +177,7 @@ public class Manche extends AppCompatActivity
             }
         }
         poches[numero][couleur]++;
-        nbBillesEmpochees[numero][couleur].setText(poches[numero][couleur]);
+        nbBillesEmpochees[numero][couleur].setText("" + poches[numero][couleur]);
         if(poches[numero][couleur] == 1)
         {
             fondBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
@@ -191,6 +192,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleBlanche()
     {
+        Log.d(TAG, "empocherBilleBlanche()");
         //!< @todo Ask client! changerTourOrNot? That's the question
     }
 
@@ -199,6 +201,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleNoire()
     {
+        Log.d(TAG, "empocherBilleNoire()");
         int indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
@@ -212,6 +215,7 @@ public class Manche extends AppCompatActivity
      */
     private void traiterTrameService(byte trame)
     {
+        Log.d(TAG, "traiterTrameService( 0b" + Protocole.byteToBinaryString(trame) + ")");
         if(mancheDemarree)
         {
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
@@ -226,7 +230,6 @@ public class Manche extends AppCompatActivity
         {
             mancheDemarree = true;
         }
-        compteur.redemarrer();
     }
 
     /**
@@ -251,6 +254,7 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
+                        compteur.redemarrer();
                         byte trame = ((Integer)message.obj).byteValue();
                         Log.d(TAG, "trame = " + trame);
                         if((trame & Protocole.MASQUE_TYPE) != 0)
@@ -343,8 +347,8 @@ public class Manche extends AppCompatActivity
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
-        nomJoueur1.setText(joueurs[PREMIER_JOUEUR]);
-        nomJoueur2.setText(joueurs[SECOND_JOUEUR]);
+        nomJoueur1.setText("" + joueurs[PREMIER_JOUEUR]);
+        nomJoueur2.setText("" + joueurs[SECOND_JOUEUR]);
         nomJoueur1.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
         nomJoueur2.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
     }
@@ -355,7 +359,7 @@ public class Manche extends AppCompatActivity
         ClipDrawable clipDrawable = new ClipDrawable(fond, Gravity.LEFT, ClipDrawable.HORIZONTAL);
         clipDrawable.setLevel(tempsRestant);
         barreProgression.setProgressDrawable(clipDrawable);
-        decompte.setText(tempsRestant);
+        decompte.setText("" + tempsRestant);
     }
 }
 

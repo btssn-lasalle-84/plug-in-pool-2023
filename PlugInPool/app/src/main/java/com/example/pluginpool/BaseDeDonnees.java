@@ -119,7 +119,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
-        Log.d(TAG, "ajouterManche()");
+        Log.d(TAG, "ajouterManche() gagnant = " + gagnant + "perdant" + perdant);
         sqlite.execSQL(
                 "UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = '" + gagnant + "'");
         sqlite.execSQL("UPDATE joueurs SET parties = parties + 1 WHERE joueurs.nom = '" + perdant + "'");
