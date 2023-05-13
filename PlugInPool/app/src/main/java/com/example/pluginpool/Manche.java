@@ -65,13 +65,13 @@ public class Manche extends AppCompatActivity
      * Ressources GUI
      */
 
-    private TextView nomJoueur1;                  //!< Affichage du nom du premier joueur
-    private TextView nomJoueur2;                  //!< Affichage du nom du second joueur
+    private TextView[] nomJoueurs;                  //!< Affichage du nom des joueurs
     private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
     private ImageView[][] fondBillesEmpochees;    //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
     private TextView decompte;                    //!< Nombre de seconde restantes
     private  View fondCompteur;                   //!< Image de fond du compeur
     private ProgressBar barreProgression;         //!< Barre de progression du compteur
+    private ImageView[][] billesRestantes;           //!< Images des billes restantes de chaque joueur
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -117,8 +117,10 @@ public class Manche extends AppCompatActivity
     private void initialiserRessources()
     {
         Log.d(TAG, "initialiserRessources() ");
-        nomJoueur1 = (TextView)findViewById(R.id.Joueur1);
-        nomJoueur2 = (TextView)findViewById(R.id.Joueur2);
+
+        nomJoueurs = new TextView[BlackBall.NB_JOUEURS];
+        nomJoueurs[PREMIER_JOUEUR] = (TextView)findViewById(R.id.Joueur1);
+        nomJoueurs[SECOND_JOUEUR] = (TextView)findViewById(R.id.Joueur2);
 
         nbBillesEmpochees = new TextView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
         fondBillesEmpochees = new ImageView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
@@ -149,10 +151,28 @@ public class Manche extends AppCompatActivity
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.JAUNE] = (ImageView) findViewById(R.id.poche5BilleJauneView);
         fondBillesEmpochees[BlackBall.POCHE_MILIEU_GAUCHE][BlackBall.ROUGE] = (ImageView) findViewById(R.id.poche5BilleRougeView);
 
+        billesRestantes = new ImageView[BlackBall.NB_JOUEURS][BlackBall.NB_BILLES_COULEUR];
+
+        billesRestantes[PREMIER_JOUEUR][0] = (ImageView) findViewById(R.id.bille0Joueur1);
+        billesRestantes[PREMIER_JOUEUR][1] = (ImageView) findViewById(R.id.bille1Joueur1);
+        billesRestantes[PREMIER_JOUEUR][2] = (ImageView) findViewById(R.id.bille2Joueur1);
+        billesRestantes[PREMIER_JOUEUR][3] = (ImageView) findViewById(R.id.bille3Joueur1);
+        billesRestantes[PREMIER_JOUEUR][4] = (ImageView) findViewById(R.id.bille4Joueur1);
+        billesRestantes[PREMIER_JOUEUR][5] = (ImageView) findViewById(R.id.bille5Joueur1);
+        billesRestantes[PREMIER_JOUEUR][6] = (ImageView) findViewById(R.id.bille6Joueur1);
+
+        billesRestantes[SECOND_JOUEUR][0] = (ImageView) findViewById(R.id.bille0Joueur2);
+        billesRestantes[SECOND_JOUEUR][1] = (ImageView) findViewById(R.id.bille1Joueur2);
+        billesRestantes[SECOND_JOUEUR][2] = (ImageView) findViewById(R.id.bille2Joueur2);
+        billesRestantes[SECOND_JOUEUR][3] = (ImageView) findViewById(R.id.bille3Joueur2);
+        billesRestantes[SECOND_JOUEUR][4] = (ImageView) findViewById(R.id.bille4Joueur2);
+        billesRestantes[SECOND_JOUEUR][5] = (ImageView) findViewById(R.id.bille5Joueur2);
+        billesRestantes[SECOND_JOUEUR][6] = (ImageView) findViewById(R.id.bille6Joueur2);
+
         barreProgression = (ProgressBar) findViewById(R.id.barreProgression);
         decompte = (TextView) findViewById(R.id.decompte);
         fondCompteur = (View) findViewById(R.id.fondCompteur);
-        initialiserRessourcesdeDebutdeManche();
+        initialiserRessourcesDeDebutdeManche();
     }
 
     /**
@@ -166,16 +186,16 @@ public class Manche extends AppCompatActivity
             couleursDefinies = true;
             couleursJoueurs.put(joueurs[joueurActif], couleur);
             couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (couleur + 1) % BlackBall.NB_GROUPES_BILLES);
-            if(couleur == BlackBall.ROUGE)
-            {
-                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.rouge)));
-            }
-            else
-            {
-                int couleurFond = couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
-                fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
-            }
+            int couleurFond = couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
+            fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
+            afficherBillesRestantes(couleur);
         }
+        billes[couleur]--;
+
+        //!< @todo rendre invisible
+        int joueurBille = (couleursJoueurs.get(joueurs[PREMIER_JOUEUR]) == couleur) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        billesRestantes[joueurBille][billes[couleur]].setVisibility(View.INVISIBLE);
+
         poches[numero][couleur]++;
         nbBillesEmpochees[numero][couleur].setText("" + poches[numero][couleur]);
         if(poches[numero][couleur] == 1)
@@ -183,8 +203,21 @@ public class Manche extends AppCompatActivity
             fondBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
             nbBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
         }
-        billes[couleur]--;
-        //!< @todo rendre invisible
+    }
+
+    private void afficherBillesRestantes(int couleurBille)
+    {
+        int couleur;
+        for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
+        {
+            couleur = (couleursJoueurs.get(joueurs[joueur]) == couleurBille) ? BlackBall.IMAGES_BILLES[joueur]: BlackBall.IMAGES_BILLES[(joueur + 1) % BlackBall.NB_JOUEURS];
+            nomJoueurs[joueur].setTextColor(couleur);  //!<@fixme doesn't work
+            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[joueur])]; bille++)
+            {
+                billesRestantes[joueur][bille].setImageResource(couleur);
+                billesRestantes[joueur][bille].setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     /**
@@ -202,10 +235,18 @@ public class Manche extends AppCompatActivity
     private void empocherBilleNoire()
     {
         Log.d(TAG, "empocherBilleNoire()");
-        int indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+
+        int indexJoueurGagnant;
+        if(couleursDefinies) {
+            indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        }
+        else {
+            indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
+        }
+
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
-        fenetreFinDeManche.setMessage("Bravo"); //@todo Mes plus froides félicitations
+        fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !"); //@todo Mes plus froides félicitations
         fenetreFinDeManche.show();
         communication.envoyer(Protocole.ARRET);
     }
@@ -296,7 +337,7 @@ public class Manche extends AppCompatActivity
     public void recommencer()
     {
         reinitialiserAttributs();
-        initialiserRessourcesdeDebutdeManche();
+        initialiserRessourcesDeDebutdeManche();
         //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
     }
 
@@ -336,21 +377,28 @@ public class Manche extends AppCompatActivity
     /**
      * @brief Reinitialise les ressources au début d'une nouvelle manche
      */
-    private void initialiserRessourcesdeDebutdeManche()
+    private void initialiserRessourcesDeDebutdeManche()
     {
         for (int numero = 0; numero < nbBillesEmpochees.length; numero++) {
             for (int couleur = 0; couleur < nbBillesEmpochees[numero].length; couleur++) {
                 fondBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
                 nbBillesEmpochees[numero][couleur].setVisibility(View.INVISIBLE);
                 Log.d(TAG, "initialiserRessourcesdeDebutdeManche(), numero " + numero + ", couleur " + couleur);
-                nbBillesEmpochees[numero][couleur].setText("0");                                                          //!<@fixme
+                nbBillesEmpochees[numero][couleur].setText("0");
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
-        nomJoueur1.setText("" + joueurs[PREMIER_JOUEUR]);
-        nomJoueur2.setText("" + joueurs[SECOND_JOUEUR]);
-        nomJoueur1.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
-        nomJoueur2.setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        nomJoueurs[PREMIER_JOUEUR].setText("" + joueurs[PREMIER_JOUEUR]);
+        nomJoueurs[SECOND_JOUEUR].setText("" + joueurs[SECOND_JOUEUR]);
+        nomJoueurs[PREMIER_JOUEUR].setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        nomJoueurs[SECOND_JOUEUR].setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
+        {
+            for(int bille = 0; bille < BlackBall.NB_BILLES_COULEUR; bille++)
+            {
+                billesRestantes[joueur][bille].setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
     public void actualiserCompteur(int tempsRestant)
