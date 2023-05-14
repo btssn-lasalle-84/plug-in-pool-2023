@@ -29,6 +29,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final String TAG          = "_BaseDeDonnees"; //!< TAG pour les logs (cf. Logcat)
     private static final String POOL_DONNEES = "PoolDonnees.db";
     private static final int    VERSION_POOL_DONNEES = 1; //!< Version
+    private static int ID_DEFAUT = -1; // !< Clef primaire d'une table par défaut (vide)
 
     /**
      * Attributs
@@ -119,29 +120,59 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
-        Log.d(TAG, "ajouterManche()");
+        Log.d(TAG, "ajouterManche() gagnant = " + gagnant + " perdant = " + perdant);
         sqlite.execSQL(
                 "UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = '" + gagnant + "'");
         sqlite.execSQL("UPDATE joueurs SET parties = parties + 1 WHERE joueurs.nom = '" + perdant + "'");
 
-        int gagnantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null).getInt(0);
-        int perdantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + perdant + "'", null).getInt(0);
+        int gagnantId = ID_DEFAUT;
+        int perdantId = ID_DEFAUT;
+         Cursor curseur = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null);
+        if (curseur.moveToFirst()) {
+            gagnantId = curseur.getInt(0);
+        }
+        curseur.close();
+        curseur = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + perdant + "'", null);
+        if (curseur.moveToFirst()) {
+            perdantId = curseur.getInt(0);
+        }
+        curseur.close();
 
-        sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (NOW(), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
-
+        //int gagnantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null).getInt(0);
+        //int perdantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + perdant + "'", null).getInt(0);
+        try {
+            sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (datetime('now'), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
+        } catch (Exception e){
+            Log.d(TAG, "INSERT INTO manches " + e );
+        }
         int[] participantsId = {perdantId, gagnantId};
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
-            int mancheId = sqlite.rawQuery("SELECT max(id) FROM manches", null).getInt(0);
+            int mancheId = ID_DEFAUT;
+            curseur = sqlite.rawQuery("SELECT max(id) FROM manches", null);
+            if(curseur.moveToFirst()) {
+                mancheId = curseur.getInt(0);
+            }
+            curseur.close();
+            //int mancheId = sqlite.rawQuery("SELECT max(id) FROM manches", null).getInt(0);
+
             int joueurId = participantsId[(indexTour + indexJoueurGagnant) % BlackBall.NB_JOUEURS];
-            sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES ('" + joueurId + "', '" + mancheId + "')");
+            try {
+                sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES ('" + joueurId + "', '" + mancheId + "')");
+            } catch (Exception e) {
+                Log.d(TAG, "INSERT INTO tours " + e );
+            }
 
             for(int indexEmpoche = 0; indexEmpoche < manche.get(indexTour).size();
                 indexEmpoche++)
             {
                 int poche = manche.get(indexTour).get(indexEmpoche)[0];
                 int couleur = manche.get(indexTour).get(indexEmpoche)[1];
-                sqlite.execSQL("INSERT INTO empoches (tourId, poche, couleur) VALUES ((SELECT max(id) FROM tours), '" + poche + "', '" + couleur + "')");
+                try {
+                    sqlite.execSQL("INSERT INTO empoches (tourId, poche, couleur) VALUES ((SELECT max(id) FROM tours), '" + poche + "', '" + couleur + "')");
+                } catch (Exception e) {
+                    Log.d(TAG, "INSERT INTO empoches " + e );
+                }
             }
         }
     }
