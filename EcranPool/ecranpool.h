@@ -10,8 +10,6 @@
 #define ECRANPOOL_H
 
 #include <QtWidgets>
-#include <QVector>
-#include <QString>
 
 /**
  * @def PLEIN_ECRAN
@@ -23,6 +21,8 @@ namespace Ui
 {
 class EcranPool;
 }
+
+class Joueurs;
 
 /**
  * @class EcranPool
@@ -51,9 +51,11 @@ class EcranPool : public QWidget
     ~EcranPool();
 
   private:
-    Ui::EcranPool* ui; //<! la fenêtre
+    Ui::EcranPool* ui;      //<! la fenêtre
+    Joueurs*       joueurs; //<! les joueurs
     void           initialiserEcran();
     void           initialiserHeure();
+    void           initialiserJoueurs();
 
   public slots:
     void afficherEcran(EcranPool::Ecran ecran);

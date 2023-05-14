@@ -7,12 +7,38 @@
  */
 
 #include "joueurs.h"
+#include <QDebug>
 
-Joueurs::Joueurs(std::vector<std::string> nomsJoueurs)
+/**
+ * @todo Mettre les commentaires Doxygen
+ */
+
+Joueurs::Joueurs()
 {
+    qDebug() << Q_FUNC_INFO;
+}
+
+Joueurs::Joueurs(QVector<QString> nomsJoueurs)
+{
+    qDebug() << Q_FUNC_INFO << "nomsJoueurs" << nomsJoueurs;
     this->nomsJoueurs = nomsJoueurs;
 }
 
 Joueurs::~Joueurs()
 {
+    qDebug() << Q_FUNC_INFO;
+}
+
+QVector<QString> Joueurs::getJoueurs()
+{
+    /**
+     * @todo Retourner les joueurs
+     */
+}
+
+void Joueurs::ajouterJoueur(QString nomsJoueur)
+{
+    /**
+     * @todo Ajouter le nomJoueur au nomsJoueurs
+     */
 }

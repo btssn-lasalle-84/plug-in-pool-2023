@@ -1,21 +1,25 @@
 #ifndef JOUEURS_H
 #define JOUEURS_H
 
-#include <vector>
-#include <string>
+#include <QVector>
+#include <QString>
 
 /**
- * @class s
+ * @class Joueurs
  * @brief Déclare les joueurs de la partie
  */
 class Joueurs
 {
   public:
-    Joueurs(std::vector<std::string> nomsJoueurs);
+    Joueurs();
+    Joueurs(QVector<QString> nomsJoueurs);
     ~Joueurs();
 
+    QVector<QString> getJoueurs();
+    void             ajouterJoueur(QString nomsJoueur);
+
   private:
-    std::vector<std::string> nomsJoueurs;
+    QVector<QString> nomsJoueurs;
 };
 
 #endif // JOUEURS_H
