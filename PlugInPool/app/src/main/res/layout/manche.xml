@@ -580,7 +580,7 @@
             android:textSize="20sp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:background="#112233"/>
+            android:backgroundTint="@color/bleu"/>
 
     </RelativeLayout>
 

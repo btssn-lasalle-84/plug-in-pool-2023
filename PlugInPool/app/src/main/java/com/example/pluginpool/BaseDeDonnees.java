@@ -6,7 +6,6 @@
 
 package com.example.pluginpool;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
@@ -18,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Vector;
 
 /**
+ *
+ *
  * @class BaseDeDonnees
  * @brief La classe assurant la gestion de la base de données SQLITE
  */
@@ -29,7 +30,13 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final String TAG          = "_BaseDeDonnees"; //!< TAG pour les logs (cf. Logcat)
     private static final String POOL_DONNEES = "PoolDonnees.db";
     private static final int    VERSION_POOL_DONNEES = 1; //!< Version
-    private static int ID_DEFAUT = -1; // !< Clef primaire d'une table par défaut (vide)
+    private static final int DEFAUT = -1; //!< Clef primaire d'une table par défaut (vide)
+    private static final int DONNEES_JOUEUR = 3; //!< Nombre de donnees associées à un joueur
+    private static final int PARTIES = 0; //!< @todo
+    private static final int VICTOIRES = 1; //!< @todo
+    private static final int SCORE_ELO = 2; //!< @todo
+    private static final int CONSTANTE_ELO1 = 100; //!< @todo
+    private static final int CONSTANTE_ELO2 = 400; //!< @todo
 
     /**
      * Attributs
@@ -57,9 +64,9 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0)");
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
+                "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME UNIQUE NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY AUTOINCREMENT, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (mancheId) REFERENCES manches(id) ON DELETE CASCADE)");
         sqlite.execSQL(
@@ -121,12 +128,13 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
         Log.d(TAG, "ajouterManche() gagnant = " + gagnant + " perdant = " + perdant);
-        sqlite.execSQL(
-                "UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1 WHERE joueurs.nom = '" + gagnant + "'");
-        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1 WHERE joueurs.nom = '" + perdant + "'");
 
-        int gagnantId = ID_DEFAUT;
-        int perdantId = ID_DEFAUT;
+        actualiserJoueurs(gagnant, perdant);
+
+
+
+        int gagnantId = DEFAUT;
+        int perdantId = DEFAUT;
          Cursor curseur = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null);
         if (curseur.moveToFirst()) {
             gagnantId = curseur.getInt(0);
@@ -148,7 +156,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         int[] participantsId = {perdantId, gagnantId};
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
-            int mancheId = ID_DEFAUT;
+            int mancheId = DEFAUT;
             curseur = sqlite.rawQuery("SELECT max(id) FROM manches", null);
             if(curseur.moveToFirst()) {
                 mancheId = curseur.getInt(0);
@@ -177,6 +185,37 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         }
     }
 
+    /**
+     * @brief Actualiser le nombre de parties, de victoires et le scoreELO de chaque joueur
+     */
+    private void actualiserJoueurs(String gagnant, String perdant)
+    {
+        int[] donneesGagnant = new int[DONNEES_JOUEUR];
+        int[] donneesPerdant = new int[DONNEES_JOUEUR];
+
+        Cursor curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = gagnant", null);
+        if (curseur.moveToFirst()) {
+            for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
+            {
+                donneesGagnant[donnee] = curseur.getInt(donnee);
+            }
+        }
+        curseur.close();
+        sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = perdant", null);
+        if (curseur.moveToFirst()) {
+            for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
+            {
+                donneesPerdant[donnee] = curseur.getInt(donnee);
+            }
+        }
+        curseur.close();
+
+        donneesGagnant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesGagnant[PARTIES] + 1 + donneesGagnant[SCORE_ELO] / (donneesGagnant[VICTOIRES] + 1)) * (1 -(1 /(1 + 10^((donneesPerdant[SCORE_ELO] - donneesGagnant[SCORE_ELO])/CONSTANTE_ELO2))));
+        donneesPerdant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesPerdant[PARTIES] + 1 + donneesPerdant[SCORE_ELO] / (donneesPerdant[VICTOIRES] + 1)) * (-1 /(1 + 10^((donneesGagnant[SCORE_ELO] - donneesPerdant[SCORE_ELO])/CONSTANTE_ELO2)));
+
+        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
+        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
+    }
     /**
      * @brief Récupérer la liste des joueurs présents dans la base de données
      */
@@ -209,4 +248,46 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         sqlite.execSQL(
                 "INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 3, 0);");
     }
+
+    /**
+     * @brief Renvoie un vecteur de string contenant le noms des joueurs enregistrés
+     */
+    public Vector<String> getNomsJoueursTries()
+    {
+        Log.d(TAG, "getNomsJoueursTries()");
+
+        Cursor cursor = sqlite.query("joueurs", new String[]{"nom"}, null, null,
+                null, null, "scoreELO DESC, id ASC");
+
+        Vector<String> listeJoueurs = new Vector<>();
+
+        while (cursor.moveToNext())
+        {
+            String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+            listeJoueurs.add(nom);
+        }
+        cursor.close();
+
+        return listeJoueurs;
+    }
+
+    public Vector<String> getManchesTriees()
+    {
+        Log.d(TAG, "getManchesTriees()");
+
+        Cursor cursor = sqlite.query("manches", new String[]{"horodatage"}, null, null,
+                null, null, "horodatage DESC");
+
+        Vector<String> listeManches = new Vector<>();
+
+        while (cursor.moveToNext())
+        {
+            String date = cursor.getString(cursor.getColumnIndexOrThrow("horodatage"));
+            listeManches.add(date);
+        }
+        cursor.close();
+
+        return listeManches;
+    }
 }
+
