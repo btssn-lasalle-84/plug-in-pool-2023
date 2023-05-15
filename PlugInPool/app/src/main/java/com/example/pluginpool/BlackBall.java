@@ -21,4 +21,5 @@ public class BlackBall
     public static final int POCHE_BAS_DROIT = 3;    //!< Numero Poche en bas a droite
     public static final int POCHE_BAS_GAUCHE = 4;   //!< Numero Poche en bas a gauche
     public static final int POCHE_MILIEU_GAUCHE = 5; //!< Numero Poche au milieu a gauche
+    public static final int[] IMAGES_BILLES = {R.drawable.bille_rouge, R.drawable.bille_jaune};
 }
