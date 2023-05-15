@@ -1,0 +1,96 @@
+class EcranPool
+!!!134570.cpp!!!	EcranPool(inout parent : QWidget = nullptr)
+    qDebug() << Q_FUNC_INFO;
+    initialiserEcran();
+    initialiserJoueurs();
+    initialiserHeure();
+    initialiserDecompteManche();
+
+#ifdef TEST_EcranPool
+    initialiserRaccourcisClavier();
+#endif
+!!!134698.cpp!!!	~EcranPool()
+    if(joueurs != nullptr)
+        delete joueurs;
+    delete ui;
+    qDebug() << Q_FUNC_INFO;
+!!!134826.cpp!!!	initialiserEcran() : void
+    ui->setupUi(this);
+    // tous les écrans affichent l'heure
+    labelsHeure.push_back(ui->labelHeureAccueil);   // dans l'écran Accueil
+    labelsHeure.push_back(ui->labelHeurePartie);    // dans l'écran Partie
+    labelsHeure.push_back(ui->labelHeureFinPartie); // dans l'écran FinPartie
+#ifdef PLEIN_ECRAN
+    showFullScreen();
+#else
+    showMaximized();
+#endif
+    afficherEcranAcceuil();
+!!!134954.cpp!!!	initialiserJoueurs() : void
+    joueurs = new Joueurs();
+!!!135082.cpp!!!	initialiserHeure() : void
+    QTimer* horloge = new QTimer(this);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::afficherHeure);
+    connect(horloge, &QTimer::timeout, this, &EcranPool::afficherDureePartie);
+    horloge->start(INTERVALLE_SECONDE);
+    afficherHeure();
+    afficherDureePartie();
+!!!135210.cpp!!!	initialiserDecompteManche() : void
+    QTimer* minuteur = new QTimer(this);
+    minuteur->start(INTERVALLE_SECONDE);
+    connect(minuteur, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
+!!!135338.cpp!!!	initialiserRaccourcisClavier() : void
+    // Flèche droite pour écran suivant
+    QAction* actionAllerDroite = new QAction(this);
+    actionAllerDroite->setShortcut(QKeySequence(Qt::Key_Right));
+    addAction(actionAllerDroite);
+    connect(actionAllerDroite,
+            SIGNAL(triggered()),
+            this,
+            SLOT(afficherEcranSuivant()));
+
+    // Flèche gauche pour écran précédent
+    QAction* actionAllerGauche = new QAction(this);
+    actionAllerGauche->setShortcut(QKeySequence(Qt::Key_Left));
+    addAction(actionAllerGauche);
+    connect(actionAllerGauche,
+            SIGNAL(triggered()),
+            this,
+            SLOT(afficherEcranPrecedent()));
+!!!135466.cpp!!!	afficherEcran(in ecran : EcranPool::Ecran) : void
+    ui->ecrans->setCurrentIndex(ecran);
+!!!135594.cpp!!!	afficherEcranAcceuil() : void
+    afficherEcran(EcranPool::Ecran::Accueil);
+    afficherHeure();
+!!!135722.cpp!!!	afficherEcranPartie() : void
+    afficherEcran(EcranPool::Ecran::Partie);
+    afficherHeure();
+!!!135850.cpp!!!	afficherEcranFinPartie() : void
+    afficherEcran(EcranPool::Ecran::FinPartie);
+    afficherHeure();
+!!!135978.cpp!!!	afficherHeure() : void
+    QString heureActuelle = QDateTime::currentDateTime().toString("hh:mm");
+    // tous les écrans affichent l'heure
+    labelsHeure[EcranPool::Ecran(ui->ecrans->currentIndex())]->setText(
+      heureActuelle);
+!!!136106.cpp!!!	afficherDureePartie() : void
+    ++dureePartie;
+    QString dureeFormatee =
+      QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
+    ui->labelDureePartie->setText(dureeFormatee);
+!!!136234.cpp!!!	afficherDecompteManche() : void
+    /**
+     * @todo Afficher le décompte
+     */
+!!!136362.cpp!!!	afficherEcranSuivant() : void
+    int ecran = EcranPool::Ecran(ui->ecrans->currentIndex());
+    ++ecran;
+    if(ecran >= int(EcranPool::NbEcrans))
+        ecran = int(EcranPool::Accueil);
+    afficherEcran(EcranPool::Ecran(ecran));
+!!!136490.cpp!!!	afficherEcranPrecedent() : void
+    int ecran = ui->ecrans->currentIndex();
+    --ecran;
+    if(ecran < int(EcranPool::Accueil))
+        ecran = int(EcranPool::FinPartie);
+    afficherEcran(EcranPool::Ecran(ecran));

@@ -1,0 +1,16 @@
+class Joueurs
+!!!136618.cpp!!!	Joueurs()
+    qDebug() << Q_FUNC_INFO;
+!!!136746.cpp!!!	Joueurs(in nomsJoueurs : QVector<QString>)
+    qDebug() << Q_FUNC_INFO << "nomsJoueurs" << nomsJoueurs;
+    this->nomsJoueurs = nomsJoueurs;
+!!!136874.cpp!!!	~Joueurs()
+    qDebug() << Q_FUNC_INFO;
+!!!137002.cpp!!!	getJoueurs() : QVector<QString>
+    /**
+     * @todo Retourner les joueurs
+     */
+!!!137130.cpp!!!	ajouterJoueur(in nomsJoueur : QString) : void
+    /**
+     * @todo Ajouter le nomJoueur au nomsJoueurs
+     */

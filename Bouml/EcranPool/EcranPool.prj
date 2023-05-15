@@ -1,7 +1,8 @@
 format 224
 "EcranPool"
-  revision 2
-  modified_by 2 "btssn2"
+  revision 4
+  modified_by 42 "tv"
+  cpp_root_dir "../../"
 
 
   
@@ -67,7 +68,7 @@ format 224
      end
     usecasediagram 128002 "EcranPool"
       usecasediagramsettings end
-      size A4
+      size A0
     end
 
     class 128002 "Joueur"
@@ -131,6 +132,35 @@ format 224
       
       activitydiagramsettings
        end
+    end
+  end
+
+  package_ref 134570 // EcranPool
+
+  usecaseview 134570 "DS"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 134698 "Démarrer"
+      sequencediagramsettings end
+      overlapping_bars size A0
     end
   end
 end

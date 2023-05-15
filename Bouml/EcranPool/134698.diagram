@@ -1,0 +1,65 @@
+format 224
+
+classinstance 128042 class_ref 134570 // EcranPool
+  name ""   xyz 250 4 2000 life_line_z 2000
+classinstance 128170 class_ref 134954 // Joueurs
+  name ""   xyz 721 4 2000 life_line_z 2000
+durationcanvas 128298 classinstance_ref 128042 // :EcranPool
+  xyzwh 321 108 2010 11 89
+  overlappingdurationcanvas 129322
+    xyzwh 327 161 2020 11 30
+  end
+end
+durationcanvas 128554 classinstance_ref 128042 // :EcranPool
+  xyzwh 321 259 2010 11 63
+end
+durationcanvas 128810 classinstance_ref 128042 // :EcranPool
+  xyzwh 321 413 2010 11 77
+  overlappingdurationcanvas 129834
+    xyzwh 327 459 2020 11 25
+  end
+end
+durationcanvas 129066 classinstance_ref 128042 // :EcranPool
+  xyzwh 321 546 2010 11 40
+end
+durationcanvas 129578 classinstance_ref 128170 // :Joueurs
+  xyzwh 777 311 2010 11 25
+end
+reflexivemsg 128426 synchronous
+  to durationcanvas_ref 128298
+  yz 108 2015 msg operation_ref 134826 // "initialiserEcran() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 332 78
+reflexivemsg 128682 synchronous
+  to durationcanvas_ref 128554
+  yz 259 2015 msg operation_ref 134954 // "initialiserJoueurs() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 331 232
+reflexivemsg 128938 synchronous
+  to durationcanvas_ref 128810
+  yz 413 2015 msg operation_ref 135082 // "initialiserHeure() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 327 382
+reflexivemsg 129194 synchronous
+  to durationcanvas_ref 129066
+  yz 546 2015 msg operation_ref 135210 // "initialiserDecompteManche() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 330 521
+reflexivemsg 129450 synchronous
+  to durationcanvas_ref 129322
+  yz 161 2025 msg operation_ref 135594 // "afficherEcranAcceuil() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 343 128
+msg 129706 synchronous
+  from durationcanvas_ref 128554
+  to durationcanvas_ref 129578
+  yz 311 2020 msg operation_ref 136618 // "Joueurs()"
+  stereotype "<<new>>" xyz 493 322 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 492 281
+reflexivemsg 129962 synchronous
+  to durationcanvas_ref 129834
+  yz 459 2025 msg operation_ref 135978 // "afficherHeure() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 340 432
+end

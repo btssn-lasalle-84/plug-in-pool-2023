@@ -226,12 +226,8 @@ public class ConfigurationManche extends AppCompatActivity
                     Log.d(TAG, "Table : " + choixNomTable);
                     String nomJoueur1 = editionNomJoueur1.getText().toString();
                     String nomJoueur2 = editionNomJoueur2.getText().toString();
-                    baseDonnees.ajouterNom(nomJoueur1);
-                    baseDonnees.ajouterNom(nomJoueur2);
-                    Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
-                    activiteManche.putExtra("joueur1", nomJoueur1);
-                    activiteManche.putExtra("joueur2", nomJoueur2);
-                    activiteManche.putExtra("connexionTable", connexionTable);
+                    ajouterNomsJoueurs(nomJoueur1, nomJoueur2);
+                    Intent activiteManche = parametrerActiviteManche();
                     startActivity(activiteManche);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }
@@ -241,6 +237,19 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         });
+    }
+
+    private void ajouterNomsJoueurs(String nomJoueur1, String nomJoueur2) {
+        baseDonnees.ajouterNom(nomJoueur1);
+        baseDonnees.ajouterNom(nomJoueur2);
+    }
+
+    private Intent parametrerActiviteManche() {
+        Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
+        activiteManche.putExtra("joueur1", nomJoueur1);
+        activiteManche.putExtra("joueur2", nomJoueur2);
+        activiteManche.putExtra("connexionTable", connexionTable);
+        return activiteManche;
     }
 
     private Boolean estConfiguree()
@@ -278,7 +287,7 @@ public class ConfigurationManche extends AppCompatActivity
                 {
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
-                        connexionTable = true;
+                        actualiserEtatConnexionTable(true);
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
@@ -286,10 +295,14 @@ public class ConfigurationManche extends AppCompatActivity
                         break;
                     case Communication.DECONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] DECONNEXION_BLUETOOTH");
-                        connexionTable = false;
+                        actualiserEtatConnexionTable(false);
                         break;
                 }
             }
         };
+    }
+
+    private void actualiserEtatConnexionTable(boolean etat) {
+        connexionTable = etat;
     }
 }
