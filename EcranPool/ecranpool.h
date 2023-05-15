@@ -28,6 +28,8 @@ namespace Ui
 class EcranPool;
 }
 
+class Joueurs;
+
 /**
  * @class EcranPool
  * @brief L'IHM de l'application
@@ -55,13 +57,15 @@ class EcranPool : public QWidget
     ~EcranPool();
 
   private:
-    Ui::EcranPool*   ui;          //<! la fenêtre
+    Ui::EcranPool* ui;      //<! la fenêtre
+    Joueurs*       joueurs; //<! les joueurs
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
-
-    void initialiserEcran();
-    void initialiserHeure();
-    void initialiserDecompteManche();
+    
+    void           initialiserEcran();
+    void           initialiserJoueurs();
+    void           initialiserHeure();
+    void           initialiserDecompteManche();
 #ifdef TEST_EcranPool
     void initialiserRaccourcisClavier();
 #endif

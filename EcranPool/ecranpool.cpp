@@ -8,6 +8,7 @@
 
 #include "ecranpool.h"
 #include "ui_ecranpool.h"
+#include "joueurs.h"
 #include <QDateTime>
 #include <QTimer>
 
@@ -18,10 +19,11 @@
  * @param parent nullptr définit la fenêtre principale de l'application
  */
 EcranPool::EcranPool(QWidget* parent) :
-    QWidget(parent), ui(new Ui::EcranPool), dureePartie(0)
+    QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr), dureePartie(0)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserEcran();
+    initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
 
@@ -38,6 +40,8 @@ EcranPool::EcranPool(QWidget* parent) :
  */
 EcranPool::~EcranPool()
 {
+    if(joueurs != nullptr)
+        delete joueurs;
     delete ui;
     qDebug() << Q_FUNC_INFO;
 }
@@ -138,6 +142,15 @@ void EcranPool::initialiserEcran()
 }
 
 /**
+ * @fn EcranPool::initialiserJoueurs
+ * @brief Initialise l'affichage de l'heure
+ */
+void EcranPool::initialiserJoueurs()
+{
+    joueurs = new Joueurs();
+}
+
+/**
  * @fn EcranPool::initialiserHeure
  * @brief Initialise l'affichage de l'heure
  */
@@ -212,3 +225,4 @@ void EcranPool::afficherEcranPrecedent()
     afficherEcran(EcranPool::Ecran(ecran));
 }
 #endif
+
