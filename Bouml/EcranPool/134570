@@ -1,6 +1,6 @@
 format 224
 "EcranPool" // EcranPool
-  revision 1
+  revision 2
   modified_by 42 "tv"
   // class settings
   
@@ -30,8 +30,8 @@ format 224
   activitydiagramsettings
    end
   
-  cpp_h_dir "/mnt/tv/Documents/git/projets-2023/plug-in-pool-2023/EcranPool/"
-  cpp_src_dir "/mnt/tv/Documents/git/projets-2023/plug-in-pool-2023/EcranPool/"
+  cpp_h_dir "EcranPool/"
+  cpp_src_dir "EcranPool/"
   classview 134570 "EcranPool"
     
     classdiagramsettings member_max_width 0 end
@@ -575,8 +575,8 @@ ${body}}
 	  param in name "nomsJoueurs" explicit_type "QVector<QString>"
 	cpp_decl "    ${comment}${inline}${name}${(}${t0} ${p0}${v0}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${t0} ${p0}${)}${throw}{
+${body}}
 "
 	
 	
@@ -589,8 +589,8 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)}${volatile}${throw} {
-  ${body}}
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
 "
 	
 	
@@ -604,7 +604,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -618,8 +618,8 @@ ${body}}
 	  param in name "nomsJoueur" explicit_type "QString"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
 "
 	
 	
@@ -670,7 +670,6 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_elems
-	class_ref 134698 // typedef1
 	class_ref 134570 // EcranPool
       end
     end
