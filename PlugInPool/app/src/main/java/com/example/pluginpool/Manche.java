@@ -207,6 +207,7 @@ public class Manche extends AppCompatActivity
 
     private void afficherBillesRestantes(int couleurBille)
     {
+        Log.d(TAG, "afficherBillesRestantes( couleurBille = " + couleurBille + " )");
         int couleur;
         for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
