@@ -193,7 +193,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         int[] donneesGagnant = new int[DONNEES_JOUEUR];
         int[] donneesPerdant = new int[DONNEES_JOUEUR];
 
-        Cursor curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = gagnant", null);
+        Cursor curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + gagnant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
@@ -201,7 +201,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             }
         }
         curseur.close();
-        sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = perdant", null);
+        curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + perdant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
