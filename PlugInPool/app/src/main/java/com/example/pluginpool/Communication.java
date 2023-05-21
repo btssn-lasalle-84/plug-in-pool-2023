@@ -206,6 +206,33 @@ public class Communication
     }
 
     /**
+     * @brief Pour se déconnecter du périphérique Bluetooth
+     */
+    @SuppressLint("MissingPermission")
+    public void seDeconnecter() {
+        try {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (outputStream != null) {
+                outputStream.close();
+            }
+            if (canalBluetooth != null) {
+                canalBluetooth.close();
+            }
+            connecte = false;
+            if (handler != null) {
+                Message messageHandler = new Message();
+                messageHandler.what = DECONNEXION_BLUETOOTH;
+                messageHandler.obj = peripherique.getName();
+                handler.sendMessage(messageHandler);
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Erreur lors de la fermeture des connexions.");
+        }
+    }
+
+    /**
      * @brief Pour créer un socket Bluetooth
      */
     @SuppressLint("MissingPermission")

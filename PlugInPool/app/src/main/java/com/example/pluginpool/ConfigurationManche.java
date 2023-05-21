@@ -97,40 +97,23 @@ public class ConfigurationManche extends AppCompatActivity
         communication = Communication.getInstance(handler);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
-        filtresNom = new InputFilter[] { new InputFilter() {
-          public CharSequence
-            filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend){
-                if(source.length() < 1) return null;
-                for(int i = start; i < end; i++)
+        filtresNom = new InputFilter[] {
+            new InputFilter() {
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
                 {
-                    char lettre = source.charAt(i);
-                    if(!(Character.isLetter(lettre) || lettre == ' '))
+                    if(source.length() < 1) return null;
+                    for(int i = start; i < end; i++)
                     {
-                        return "";
+                        char lettre = source.charAt(i);
+                        if(!(Character.isLetter(lettre) || (lettre == ' ' && i != 0)))
+                        {
+                            return "";
+                        }
                     }
+                    return null;
                 }
-                return null;
             }
-        }
-        , new InputFilter() {
-          public CharSequence filter(CharSequence source,
-                               int          start,
-                               int          end,
-                               Spanned      dest,
-                               int          dstart,
-                               int          dend)
-          {
-            if(source.length() < 1)
-                return null;
-            char premiereLettre = source.charAt(0);
-            if(premiereLettre == ' ')
-            {
-                return "";
-            }
-            return null;
-          }
-        }
-    };
+        };
     }
 
     /**
@@ -208,9 +191,7 @@ public class ConfigurationManche extends AppCompatActivity
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
                 choixNomTable           = boutonTable.getText().toString();
                 Log.d(TAG, "clic choixTable : " + choixNomTable);
-                //!< @todo seConnecter() à choixNomTable
-                communication.seConnecter("pool-1");
-                // connexionTable = true; // Provisoire pour les tests
+                communication.seConnecter(choixNomTable);
             }
         });
 

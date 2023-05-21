@@ -110,8 +110,8 @@ public class EcranPrincipal extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
-                //Intent activiteHistorique = new Intent(EcranPrincipal.this, Historique.class);
-                //startActivity(activiteHistorique);
+                Intent activiteHistorique = new Intent(EcranPrincipal.this, Historique.class);
+                startActivity(activiteHistorique);
             }
         });
         boutonJouer.setOnClickListener(new View.OnClickListener()

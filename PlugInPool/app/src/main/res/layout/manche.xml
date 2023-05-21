@@ -54,7 +54,8 @@
             android:indeterminateTint="@color/bleu"
             android:minWidth="150dp"
             android:minHeight="150dp"
-            android:max="45"/>
+            android:max="450"
+            android:min="0"/>
 
         <TextView
             android:id="@+id/decompte"
@@ -573,7 +574,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/boutonQuitter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quitter"

@@ -48,6 +48,7 @@ public class FinDeManche extends AlertDialog {
         boutonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                activiteManche.communication.seDeconnecter();
                 Intent intent = new Intent(getContext(), EcranPrincipal.class);
                 getContext().startActivity(intent);
             }

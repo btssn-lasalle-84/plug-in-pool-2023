@@ -11,14 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Message;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -38,15 +36,19 @@ public class Manche extends AppCompatActivity
     /**
      * Constantes
      */
-    private static final String TAG = "_Manche"; //!< TAG pour les logs (cf. Logcat)
-    public static final int PREMIER_JOUEUR  = 0; //!< Numéro ou indice associé au premier joueur
-    public static final int SECOND_JOUEUR   = 1; //!< Numéro ou indice associé au second joueur
+    private static final String TAG = "_Manche";        //!< TAG pour les logs (cf. Logcat)
+    public static final int PREMIER_JOUEUR  = 0;        //!< Numéro ou indice associé au premier joueur
+    public static final int SECOND_JOUEUR   = 1;        //!< Numéro ou indice associé au second joueur
     private static final int NUMERO_TABLE_DEFAUT = - 1; //!< Numéro par défaut de la table
+    private static final int PULSATION = 100;           //!< Pulsation d'actualisation du compte-a-rebours en millisecondes
+    private static final int DUREE_TIR = 45000;         //!< Duree en millisecondes d'un tir
+    private static final int MILLISEC_PAR_SEC = 1000;   //!< Nombre de millisecondes par seconde
+    private static final int NB_PALIERS = 450;          //!< Nombre de palliers de la barre de progression du timer
     /**
      * Attributs
      */
-    private FinDeManche             fenetreFinDeManche;
-    private boolean                 connexionTable;
+    private FinDeManche             fenetreFinDeManche; //!< @todo
+    private boolean                 connexionTable;     //!< @todo
     private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
     private int                     numeroTable;        //!< Numero de la table
     private String[]                joueurs;            //!< Attribut contenant le nom des joueurs
@@ -57,7 +59,7 @@ public class Manche extends AppCompatActivity
     private int                     joueurActif;        //!< Booléen indiquant le joueur dont le tour est en cours
     private Boolean                 couleursDefinies;   //!< Booléen indiquant si la couleur du groupe des billes attribué aux joueurs est définie ou non
     private Boolean                 mancheDemarree;     //!< Booléen indiquant si la manche a ou non démarré
-    private Compteur                compteur;           //!< Compteur indiquant le temps restant du coup en cours
+    private CountDownTimer compteARebours;              //!< Compteur indiquant le temps restant pour le tir en cours
     Communication   communication  = null;              //!< Classe de communication Bluetooth
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
@@ -65,13 +67,14 @@ public class Manche extends AppCompatActivity
      * Ressources GUI
      */
 
-    private TextView[] nomJoueurs;                  //!< Affichage du nom des joueurs
-    private TextView[][] nbBillesEmpochees;       //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
-    private ImageView[][] fondBillesEmpochees;    //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
-    private TextView decompte;                    //!< Nombre de seconde restantes
-    private  View fondCompteur;                   //!< Image de fond du compeur
-    private ProgressBar barreProgression;         //!< Barre de progression du compteur
-    private ImageView[][] billesRestantes;           //!< Images des billes restantes de chaque joueur
+    private TextView[] nomJoueurs;                      //!< Affichage du nom des joueurs
+    private TextView[][] nbBillesEmpochees;             //!< Affichage du nombre de billes de chaque couleur empochées dans chacune des poches
+    private ImageView[][] fondBillesEmpochees;          //!< Images de fond du nombre de billes de chaque couleur empochées dans chacune des poches
+    private TextView decompte;                          //!< Nombre de seconde restantes
+    private  View fondCompteur;                         //!< Image de fond du compeur
+    private ProgressBar barreProgression;               //!< Barre de progression du compteur
+    private ImageView[][] billesRestantes;              //!< Images des billes restantes de chaque joueur
+    private Button boutonQuitter;                       //!< Bouton arretant la partie en cours et renvoyant au menu
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -106,7 +109,6 @@ public class Manche extends AppCompatActivity
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
-        compteur         = new Compteur(this);
 
         initialiserAttributsDeDebutDeManche();
     }
@@ -124,6 +126,16 @@ public class Manche extends AppCompatActivity
 
         nbBillesEmpochees = new TextView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
         fondBillesEmpochees = new ImageView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
+
+        boutonQuitter = (Button) findViewById(R.id.boutonQuitter);
+        boutonQuitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communication.seDeconnecter();
+                Intent intent = new Intent(Manche.this, EcranPrincipal.class);
+                startActivity(intent);
+            }
+        });
 
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = (TextView) findViewById(R.id.poche0BilleJauneNombre);
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = (TextView) findViewById(R.id.poche0BilleRougeNombre);
@@ -170,6 +182,8 @@ public class Manche extends AppCompatActivity
         billesRestantes[SECOND_JOUEUR][6] = (ImageView) findViewById(R.id.bille6Joueur2);
 
         barreProgression = (ProgressBar) findViewById(R.id.barreProgression);
+        barreProgression.setMax(NB_PALIERS);
+        barreProgression.setProgress(NB_PALIERS);
         decompte = (TextView) findViewById(R.id.decompte);
         fondCompteur = (View) findViewById(R.id.fondCompteur);
         initialiserRessourcesDeDebutdeManche();
@@ -191,8 +205,6 @@ public class Manche extends AppCompatActivity
             afficherBillesRestantes(couleur);
         }
         billes[couleur]--;
-
-        //!< @todo rendre invisible
         int joueurBille = (couleursJoueurs.get(joueurs[PREMIER_JOUEUR]) == couleur) ? PREMIER_JOUEUR : SECOND_JOUEUR;
         billesRestantes[joueurBille][billes[couleur]].setVisibility(View.INVISIBLE);
 
@@ -203,6 +215,7 @@ public class Manche extends AppCompatActivity
             fondBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
             nbBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
         }
+        demarrerCompteARebours();
     }
 
     private void afficherBillesRestantes(int couleurBille)
@@ -211,12 +224,13 @@ public class Manche extends AppCompatActivity
         int couleur;
         for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
-            couleur = (couleursJoueurs.get(joueurs[joueur]) == couleurBille) ? BlackBall.IMAGES_BILLES[joueur]: BlackBall.IMAGES_BILLES[(joueur + 1) % BlackBall.NB_JOUEURS];
+            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? BlackBall.IMAGES_BILLES[(joueur + joueurActif) % BlackBall.NB_JOUEURS - joueur % BlackBall.NB_JOUEURS]: BlackBall.IMAGES_BILLES[(joueur + joueurActif + 1) % BlackBall.NB_JOUEURS + joueur % BlackBall.NB_JOUEURS];
+            Log.d(TAG, "afficherBillesRestantes() couleur = " + couleur);
             nomJoueurs[joueur].setTextColor(couleur);  //!<@fixme doesn't work
-            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[joueur])]; bille++)
+            for(int bille = 0; bille < billes[couleursJoueurs.get((joueur + joueurActif) % BlackBall.NB_JOUEURS)]; bille++)
             {
-                billesRestantes[joueur][bille].setImageResource(couleur);
-                billesRestantes[joueur][bille].setVisibility(View.VISIBLE);
+                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(couleur);
+                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
             }
         }
     }
@@ -227,7 +241,8 @@ public class Manche extends AppCompatActivity
     private void empocherBilleBlanche()
     {
         Log.d(TAG, "empocherBilleBlanche()");
-        //!< @todo Ask client! changerTourOrNot? That's the question
+        demarrerCompteARebours();
+        //!< @todo Ask client!
     }
 
     /**
@@ -237,6 +252,7 @@ public class Manche extends AppCompatActivity
     {
         Log.d(TAG, "empocherBilleNoire()");
 
+        arreterCompteARebours();
         int indexJoueurGagnant;
         if(couleursDefinies) {
             indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
@@ -296,9 +312,8 @@ public class Manche extends AppCompatActivity
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        compteur.redemarrer();
                         byte trame = ((Integer)message.obj).byteValue();
-                        Log.d(TAG, "trame = " + trame);
+                        Log.d(TAG, "trame = " + Protocole.byteToBinaryString(trame));
                         if((trame & Protocole.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);
@@ -402,13 +417,37 @@ public class Manche extends AppCompatActivity
         }
     }
 
-    public void actualiserCompteur(int tempsRestant)
+    /**
+     * @brief Pour démarrer le compte a rebours
+     */
+    private void demarrerCompteARebours()
     {
-        Drawable fond = new ColorDrawable(getResources().getColor(R.color.bleu));
-        ClipDrawable clipDrawable = new ClipDrawable(fond, Gravity.LEFT, ClipDrawable.HORIZONTAL);
-        clipDrawable.setLevel(tempsRestant);
-        barreProgression.setProgressDrawable(clipDrawable);
-        decompte.setText("" + tempsRestant);
+        if (compteARebours != null) {
+            compteARebours.cancel();
+        }
+        barreProgression.setProgress(450);
+        demarrerCompteARebours();
+        compteARebours = new CountDownTimer(DUREE_TIR, PULSATION) {
+            @Override
+            public void onTick(long milliSecondesRestantes) {
+                decompte.setText(String.valueOf(milliSecondesRestantes / MILLISEC_PAR_SEC));
+                barreProgression.setProgress((int) milliSecondesRestantes / PULSATION);
+            }
+
+            @Override
+            public void onFinish() {
+                // Do nothing ?
+            }
+        }.start();
+    }
+
+    /**
+     * @brief Pour arreter le compte a rebours
+     */
+    private void arreterCompteARebours() {
+        if (compteARebours != null) {
+            compteARebours.cancel();
+        }
     }
 }
 

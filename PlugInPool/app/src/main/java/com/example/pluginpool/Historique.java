@@ -14,6 +14,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,6 +71,7 @@ public class Historique extends AppCompatActivity {
      */
     private void initialiserAttributs()
     {
+        Log.d(TAG, "initialiserAttributs");
         baseDonnees = BaseDeDonnees.getInstance(this);
         noms = baseDonnees.getNomsJoueursTries();
         nomsRecherches = new Vector<>();
@@ -82,39 +84,22 @@ public class Historique extends AppCompatActivity {
         adaptateurCategoriesRecherche =
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, CATEGORIES);
 
-        filtresRecherche = new InputFilter[] { new InputFilter() {
-            public CharSequence
-            filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend){
-                if(source.length() < 1) return null;
-                for(int i = start; i < end; i++)
+        filtresRecherche = new InputFilter[] {
+            new InputFilter() {
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
                 {
-                    char lettre = source.charAt(i);
-                    if(!(Character.isLetter(lettre) || lettre == ' ' || lettre == '/'))
+                    if(source.length() < 1) return null;
+                    for(int i = start; i < end; i++)
                     {
-                        return "";
+                        char lettre = source.charAt(i);
+                        if(!(Character.isLetter(lettre) || (lettre == ' ' && i != 0) || lettre == '/'))
+                        {
+                            return "";
+                        }
                     }
-                }
-                return null;
-            }
-        }
-                , new InputFilter() {
-            public CharSequence filter(CharSequence source,
-                                       int          start,
-                                       int          end,
-                                       Spanned      dest,
-                                       int          dstart,
-                                       int          dend)
-            {
-                if(source.length() < 1)
                     return null;
-                char premiereLettre = source.charAt(0);
-                if(premiereLettre == ' ')
-                {
-                    return "";
                 }
-                return null;
             }
-        }
         };
     }
 
@@ -123,12 +108,38 @@ public class Historique extends AppCompatActivity {
      */
     private void initialiserRessources()
     {
+        Log.d(TAG, "initialiserRessources");
         listeDeroulante = (ListView) findViewById(R.id.listView);
         adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomsRecherches);
         listeDeroulante.setAdapter(adaptateurListeDeroulante);
 
         barreRecherche = (EditText) findViewById(R.id.barreRecherche);
+
         categoriesRecherche = (Spinner) findViewById(R.id.categorieRecherche);
+        categoriesRecherche.setAdapter(adaptateurCategoriesRecherche);
+        categoriesRecherche.setSelection(0);
+        categoriesRecherche.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+        {
+            String elementSelectionne = parent.getItemAtPosition(position).toString();
+            Log.d(TAG, "clic categoriesRecherche : position = " + position + " -> " + elementSelectionne);
+            if(elementSelectionne == "Joueurs")
+            {
+                rechercherJoueurs();
+            }
+            else
+            {
+                rechercherManches();
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent)
+        {
+            // Do nothing
+        }
+    });
 
         boutonMenu = (Button) findViewById(R.id.boutonMenu);
         boutonMenu.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +152,7 @@ public class Historique extends AppCompatActivity {
         });
 
         boutonRechercher = (ImageButton) findViewById(R.id.boutonRechercher);
-        boutonMenu.setOnClickListener(new View.OnClickListener() {
+        boutonRechercher.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonRechercher");
@@ -163,7 +174,6 @@ public class Historique extends AppCompatActivity {
     private void rechercherJoueurs()
     {
         nomsRecherches.addAll(noms);
-        int logueurInitiale = nomsRecherches.size();
         boolean nomSupprime;
         String[] mots = barreRecherche.getText().toString().split("\\s+");
 
@@ -187,7 +197,7 @@ public class Historique extends AppCompatActivity {
             }
             indiceJoueur += nomSupprime ? 1 : 0;
         }
-        if(logueurInitiale != nomsRecherches.size())
+        if(noms.size() != nomsRecherches.size() && nomsRecherches.size() != 0)
         {
             adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomsRecherches);
             listeDeroulante.setAdapter(adaptateurListeDeroulante);
