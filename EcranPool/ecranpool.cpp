@@ -27,6 +27,11 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserHeure();
     initialiserDecompteManche();
 
+    peripheriqueLocal = new QBluetoothLocalDevice(this); // Initialisation de QBluetoothLocalDevice
+
+    connect(peripheriqueLocal, SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)),
+                this, SLOT(onDeviceDiscovered(QBluetoothDeviceInfo))); // Connexion du signal deviceDiscovered()
+
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
 #endif

@@ -1,5 +1,7 @@
 QT       += core gui widgets
 
+QT += bluetooth
+
 CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
