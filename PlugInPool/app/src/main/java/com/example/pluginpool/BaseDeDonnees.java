@@ -30,7 +30,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final String TAG          = "_BaseDeDonnees"; //!< TAG pour les logs (cf. Logcat)
     private static final String POOL_DONNEES = "PoolDonnees.db";
     private static final int    VERSION_POOL_DONNEES = 1; //!< Version
-    private static final int DEFAUT = -1; //!< Clef primaire d'une table par défaut (vide)
+    public static final int DEFAUT = -1; //!< Clef primaire d'une table par défaut (vide)
     private static final int DONNEES_JOUEUR = 3; //!< Nombre de donnees associées à un joueur
     private static final int PARTIES = 0; //!< @todo
     private static final int VICTOIRES = 1; //!< @todo
@@ -101,6 +101,32 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             baseDeDonnees = new BaseDeDonnees(context);
         }
         return baseDeDonnees;
+    }
+
+    public int getNbEmpoches(int couleur, String joueur, int mancheId)
+    {
+        if(mancheId == -1)
+        {
+            Cursor curseur = sqlite.rawQuery("SELECT max(id) FROM manches", null);
+            if(curseur.moveToFirst()) {
+                mancheId = curseur.getInt(0);
+            }
+            curseur.close();
+        }
+        Cursor curseur = sqlite.rawQuery("SELECT COUNT(empoches.couleur) AS count FROM empoches " +
+                "INNER JOIN tours ON tours.id = empoches.tourId " +
+                "INNER JOIN joueurs ON joueurs.id = tours.joueurId " +
+                "WHERE joueurs.nom = '" + joueur + "' " +
+                "AND tours.mancheId = '" + mancheId + "' " +
+                "AND empoches.couleur = '" + couleur + "'", null);
+        if(curseur.moveToFirst())
+        {
+            int colonne = curseur.getColumnIndex("count");
+            if (colonne != DEFAUT) {
+                return curseur.getInt(colonne);
+            }
+        }
+        return DEFAUT;
     }
 
     /**

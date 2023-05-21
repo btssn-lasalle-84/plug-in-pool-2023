@@ -1,6 +1,6 @@
 /**
  * @file FinDeManche.java
- * @brief Déclaration de la classe définissant la fenêtre apparaissant à la fin d'une manche
+ * @brief Déclaration de la classe définissant la fenêtre apparaissant au terme d'une manche
  * @author Clément TRICHET
  */
 
@@ -9,6 +9,7 @@ package com.example.pluginpool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,29 +21,55 @@ import com.example.pluginpool.EcranPrincipal;
  * @class FinDeManche
  * @brief La fenêtre s'affichant au terme d'une manche
  */
-public class FinDeManche extends AlertDialog {
+public class FinDeManche extends AlertDialog
+{
+    /**
+     * Constantes
+     */
+    private static final String TAG = "_FinDeManche"; //!< TAG pour les logs
+
+    /**
+     * Ressources GUI
+     */
     private Button boutonMenu, boutonRejouer;
-    private TextView resultats;
+    private TextView[][] billesEmpochees;
+    private TextView[] joueurs;
     private Manche activiteManche;
 
     /**
      * @brief Constructeur de la classe FinDeManche
      */
-    protected FinDeManche(Manche manche) {
+    protected FinDeManche(Manche manche, String joueur1, String joueur2) {
         super(manche);
+        setContentView(R.layout.fenetre_fin_de_manche);
         activiteManche = manche;
-        initialiserRessources();
+        initialiserRessources(joueur1, joueur2);
     }
 
     /**
      * @brief Initialise les ressources graphiques de la classe FinDeManche
      */
-    private void initialiserRessources()
+    private void initialiserRessources(String joueur1, String joueur2)
     {
+        Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2);
+
         View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
         boutonMenu = fenetre.findViewById(R.id.boutonMenu);
         boutonRejouer = fenetre.findViewById(R.id.boutonRejouer);
-        resultats = fenetre.findViewById(R.id.resultats);
+        billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) findViewById(R.id.nbRougesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) findViewById(R.id.nbRougesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.JAUNE] = (TextView) findViewById(R.id.nbJaunesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.JAUNE] = (TextView) findViewById(R.id.nbJaunesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.BLANCHE] = (TextView) findViewById(R.id.nbBlanchesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.BLANCHE] = (TextView) findViewById(R.id.nbBlanchesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.NOIRE] = (TextView) findViewById(R.id.nbNoiresJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.NOIRE] = (TextView) findViewById(R.id.nbNoiresJoueur2);
+        joueurs = new TextView[BlackBall.NB_JOUEURS];
+        joueurs[Manche.PREMIER_JOUEUR] = (TextView) findViewById(R.id.joueur1);
+        joueurs[Manche.PREMIER_JOUEUR].setText(joueur1);
+        joueurs[Manche.SECOND_JOUEUR] = (TextView) findViewById(R.id.joueur2);
+        joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
         setView(fenetre);
 
         boutonMenu.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +87,17 @@ public class FinDeManche extends AlertDialog {
                 FinDeManche.this.dismiss();
             }
         });
+    }
+
+    public void setResultats()
+    {
+        for(int joueur = 0; joueur < BlackBall.NB_JOUEURS; joueur++)
+        {
+            for(int couleur = BlackBall.ROUGE; couleur < BlackBall.NB_COULEURS; couleur++)
+            {
+                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteManche.baseDonnees.getNbEmpoches(couleur, (String)joueurs[joueur].getText(), BaseDeDonnees.DEFAUT)));
+            }
+        }
     }
 }
 

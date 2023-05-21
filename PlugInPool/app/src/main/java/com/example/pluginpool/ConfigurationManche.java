@@ -213,6 +213,7 @@ public class ConfigurationManche extends AppCompatActivity
                     activiteManche.putExtra("joueur1", nomJoueur1);
                     activiteManche.putExtra("joueur2", nomJoueur2);
                     activiteManche.putExtra("connexionTable", connexionTable);
+                    activiteManche.putExtra("choixNomTable", choixNomTable);
                     startActivity(activiteManche);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }

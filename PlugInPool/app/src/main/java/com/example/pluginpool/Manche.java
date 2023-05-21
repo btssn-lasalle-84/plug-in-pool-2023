@@ -47,9 +47,10 @@ public class Manche extends AppCompatActivity
     /**
      * Attributs
      */
+    private String                  table;              //!< @todo
     private FinDeManche             fenetreFinDeManche; //!< @todo
     private boolean                 connexionTable;     //!< @todo
-    private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
+    public  BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
     private int                     numeroTable;        //!< Numero de la table
     private String[]                joueurs;            //!< Attribut contenant le nom des joueurs
     private Map<String, Integer>    couleursJoueurs;    //!< Table ayant pour clef le nom d'un joueur et pour valeur la couleur des billes de son groupe
@@ -100,7 +101,6 @@ public class Manche extends AppCompatActivity
     {
         Log.d(TAG, "initialiserAttributs() ");
 
-        fenetreFinDeManche = new FinDeManche(this);
         baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = NUMERO_TABLE_DEFAUT;
         communication = Communication.getInstance(handler);
@@ -108,6 +108,8 @@ public class Manche extends AppCompatActivity
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
+        table = activiteManche.getStringExtra("choixNomTable");
+        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
 
         initialiserAttributsDeDebutDeManche();
@@ -200,6 +202,7 @@ public class Manche extends AppCompatActivity
             couleursDefinies = true;
             couleursJoueurs.put(joueurs[joueurActif], couleur);
             couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (couleur + 1) % BlackBall.NB_GROUPES_BILLES);
+
             int couleurFond = couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
             fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
             afficherBillesRestantes(couleur);
@@ -224,10 +227,10 @@ public class Manche extends AppCompatActivity
         int couleur;
         for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
-            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? BlackBall.IMAGES_BILLES[(joueur + joueurActif) % BlackBall.NB_JOUEURS - joueur % BlackBall.NB_JOUEURS]: BlackBall.IMAGES_BILLES[(joueur + joueurActif + 1) % BlackBall.NB_JOUEURS + joueur % BlackBall.NB_JOUEURS];
+            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? BlackBall.IMAGES_BILLES[couleurBille]: BlackBall.IMAGES_BILLES[(couleurBille + 1) % BlackBall.NB_GROUPES_BILLES];
             Log.d(TAG, "afficherBillesRestantes() couleur = " + couleur);
             nomJoueurs[joueur].setTextColor(couleur);  //!<@fixme doesn't work
-            for(int bille = 0; bille < billes[couleursJoueurs.get((joueur + joueurActif) % BlackBall.NB_JOUEURS)]; bille++)
+            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
                 billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(couleur);
                 billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
@@ -254,8 +257,8 @@ public class Manche extends AppCompatActivity
 
         arreterCompteARebours();
         int indexJoueurGagnant;
-        if(couleursDefinies) {
-            indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        if(couleursDefinies && billes[joueurActif] == 0) {
+            indexJoueurGagnant = joueurActif;
         }
         else {
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
@@ -263,7 +266,8 @@ public class Manche extends AppCompatActivity
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
-        fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !"); //@todo Mes plus froides félicitations
+        fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !");
+        fenetreFinDeManche.setResultats();
         fenetreFinDeManche.show();
         communication.envoyer(Protocole.ARRET);
     }
@@ -288,6 +292,7 @@ public class Manche extends AppCompatActivity
         {
             mancheDemarree = true;
         }
+        demarrerCompteARebours();
     }
 
     /**
@@ -354,6 +359,7 @@ public class Manche extends AppCompatActivity
     {
         reinitialiserAttributs();
         initialiserRessourcesDeDebutdeManche();
+        communication.seConnecter(table);
         //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
     }
 
@@ -425,8 +431,7 @@ public class Manche extends AppCompatActivity
         if (compteARebours != null) {
             compteARebours.cancel();
         }
-        barreProgression.setProgress(450);
-        demarrerCompteARebours();
+        barreProgression.setProgress(NB_PALIERS);
         compteARebours = new CountDownTimer(DUREE_TIR, PULSATION) {
             @Override
             public void onTick(long milliSecondesRestantes) {
