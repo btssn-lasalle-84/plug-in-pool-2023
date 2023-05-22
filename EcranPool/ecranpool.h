@@ -10,9 +10,6 @@
 #define ECRANPOOL_H
 
 #include <QtWidgets>
-#include <QtBluetooth>
-#include <QBluetoothDeviceInfo>
-#include <QBluetoothLocalDevice>
 
 /**
  * @def TEST_EcranPool
@@ -32,6 +29,7 @@ class EcranPool;
 }
 
 class Joueurs;
+class CommunicationBluetooth;
 
 /**
  * @class EcranPool
@@ -60,18 +58,17 @@ class EcranPool : public QWidget
     ~EcranPool();
 
   private:
-    QBluetoothLocalDevice* peripheriqueLocal;
-    QBluetoothLocalDevice peripheriqueLocal;
-    QList<QBluetoothDeviceInfo> m_availableDevices;
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
+    CommunicationBluetooth*
+                     communicationBluetooth; //<! la communication Bluetooth
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
-    
-    void           initialiserEcran();
-    void           initialiserJoueurs();
-    void           initialiserHeure();
-    void           initialiserDecompteManche();
+
+    void initialiserEcran();
+    void initialiserJoueurs();
+    void initialiserHeure();
+    void initialiserDecompteManche();
 #ifdef TEST_EcranPool
     void initialiserRaccourcisClavier();
 #endif

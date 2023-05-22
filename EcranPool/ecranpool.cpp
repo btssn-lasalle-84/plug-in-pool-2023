@@ -9,6 +9,7 @@
 #include "ecranpool.h"
 #include "ui_ecranpool.h"
 #include "joueurs.h"
+#include "communicationbluetooth.h"
 #include <QDateTime>
 #include <QTimer>
 
@@ -19,18 +20,14 @@
  * @param parent nullptr définit la fenêtre principale de l'application
  */
 EcranPool::EcranPool(QWidget* parent) :
-    QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr), dureePartie(0)
+    QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr),
+    communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserEcran();
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
-
-    peripheriqueLocal = new QBluetoothLocalDevice(this); // Initialisation de QBluetoothLocalDevice
-
-    connect(peripheriqueLocal, SIGNAL(deviceDiscovered(QBluetoothDeviceInfo)),
-                this, SLOT(onDeviceDiscovered(QBluetoothDeviceInfo))); // Connexion du signal deviceDiscovered()
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -230,4 +227,3 @@ void EcranPool::afficherEcranPrecedent()
     afficherEcran(EcranPool::Ecran(ecran));
 }
 #endif
-
