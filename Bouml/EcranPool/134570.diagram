@@ -1,0 +1,16 @@
+format 224
+
+classcanvas 128042 class_ref 134570 // EcranPool
+  classdiagramsettings member_max_width 0 end
+  xyz 22 20 2000
+end
+classcanvas 128170 class_ref 134954 // Joueurs
+  classdiagramsettings member_max_width 0 end
+  xyz 953 244 2006
+end
+relationcanvas 128298 relation_ref 134698 // <unidirectional association>
+  from ref 128042 z 2007 to ref 128170
+  role_a_pos 836 321 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end
