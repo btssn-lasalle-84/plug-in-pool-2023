@@ -44,7 +44,7 @@ public class Historique extends AppCompatActivity {
     private Vector<String> manches;             //!< @todo
     private Vector<String> manchesRecherchees;  //!< @todo
     private InputFilter[] filtresRecherche;     //!< @todo
-    private BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
+    public BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
 
     /**
      * Ressources GUI
@@ -112,6 +112,19 @@ public class Historique extends AppCompatActivity {
         listeDeroulante = (ListView) findViewById(R.id.listView);
         adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomsRecherches);
         listeDeroulante.setAdapter(adaptateurListeDeroulante);
+        listeDeroulante.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if(categoriesRecherche.getSelectedItem().toString() == "Joueurs")
+                {
+                    //!<@todo
+                }
+                else
+                {
+                    //!<@todo
+                }
+            }
+        });
 
         barreRecherche = (EditText) findViewById(R.id.barreRecherche);
 
@@ -126,11 +139,13 @@ public class Historique extends AppCompatActivity {
             Log.d(TAG, "clic categoriesRecherche : position = " + position + " -> " + elementSelectionne);
             if(elementSelectionne == "Joueurs")
             {
-                rechercherJoueurs();
+                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
+                listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
             else
             {
-                rechercherManches();
+                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
+                listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
         }
 
@@ -185,7 +200,7 @@ public class Historique extends AppCompatActivity {
             nomSupprime = false;
             while((!nomSupprime) && indiceMot < mots.length)
             {
-                if(nomsRecherches.contains(mots[indiceMot]))
+                if(nomsRecherches.get(indiceJoueur).contains(mots[indiceMot]))
                 {
                     indiceMot++;
                 }
@@ -209,6 +224,25 @@ public class Historique extends AppCompatActivity {
      */
     private void rechercherManches()
     {
-        //!<@todo
+        manchesRecherchees.addAll(manches);
+        boolean nomSupprime;
+        int indiceManche = 0;
+        while(indiceManche < manchesRecherchees.size())
+        {
+            nomSupprime = false;
+            if(! manchesRecherchees.get(indiceManche).contains(barreRecherche.getText().toString()))
+            {
+                manchesRecherchees.remove(indiceManche);
+            }
+            else
+            {
+                indiceManche++;
+            }
+        }
+        if(manches.size() != manchesRecherchees.size() && manchesRecherchees.size() != 0)
+        {
+            adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, manchesRecherchees);
+            listeDeroulante.setAdapter(adaptateurListeDeroulante);
+        }
     }
 }

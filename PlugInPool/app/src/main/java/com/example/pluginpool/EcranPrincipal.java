@@ -102,7 +102,7 @@ public class EcranPrincipal extends AppCompatActivity
      */
     private void initialiserRessources()
     {
-        boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
+        boutonStatistiques = (Button)findViewById(R.id.boutonHistorique);
         boutonJouer        = (Button)findViewById(R.id.boutonJouer);
 
         boutonStatistiques.setOnClickListener(new View.OnClickListener()

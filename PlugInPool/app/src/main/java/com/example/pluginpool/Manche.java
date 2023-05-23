@@ -267,7 +267,6 @@ public class Manche extends AppCompatActivity
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
         fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !");
-        fenetreFinDeManche.setResultats();
         fenetreFinDeManche.show();
         communication.envoyer(Protocole.ARRET);
     }
@@ -359,7 +358,7 @@ public class Manche extends AppCompatActivity
     {
         reinitialiserAttributs();
         initialiserRessourcesDeDebutdeManche();
-        communication.seConnecter(table);
+        communication.envoyer(Protocole.DEBUT);
         //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
     }
 
@@ -410,6 +409,7 @@ public class Manche extends AppCompatActivity
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        decompte.setText(String.valueOf(DUREE_TIR / MILLISEC_PAR_SEC));
         nomJoueurs[PREMIER_JOUEUR].setText("" + joueurs[PREMIER_JOUEUR]);
         nomJoueurs[SECOND_JOUEUR].setText("" + joueurs[SECOND_JOUEUR]);
         nomJoueurs[PREMIER_JOUEUR].setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));

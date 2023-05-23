@@ -64,7 +64,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME UNIQUE NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
         sqlite.execSQL(
@@ -248,16 +248,16 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     public ArrayList<String> getNomsJoueurs()
     {
         ArrayList<String> nomsJoueurs = new ArrayList<String>();
-        Cursor            cursor      = sqlite.rawQuery("SELECT nom FROM joueurs", null);
-        if(cursor.moveToFirst())
+        Cursor            curseur      = sqlite.rawQuery("SELECT nom FROM joueurs", null);
+        if(curseur.moveToFirst())
         {
             do
             {
-                String nomJoueur = cursor.getString(0);
+                String nomJoueur = curseur.getString(0);
                 nomsJoueurs.add(nomJoueur);
-            } while(cursor.moveToNext());
+            } while(curseur.moveToNext());
         }
-        cursor.close();
+        curseur.close();
         Log.d(TAG, "getNomsJoueurs() " + nomsJoueurs);
         return nomsJoueurs;
     }
@@ -276,44 +276,126 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     }
 
     /**
-     * @brief Renvoie un vecteur de string contenant le noms des joueurs enregistrés
+     * @brief Renvoie un vecteur de string contenant le noms des joueurs enregistrés triés par scoreElo décroissant
      */
     public Vector<String> getNomsJoueursTries()
     {
         Log.d(TAG, "getNomsJoueursTries()");
 
-        Cursor cursor = sqlite.query("joueurs", new String[]{"nom"}, null, null,
-                null, null, "scoreELO DESC, id ASC");
+        Cursor curseur = sqlite.rawQuery("SELECT nom FROM joueurs ORDER BY scoreELO DESC, id ASC", null);
 
         Vector<String> listeJoueurs = new Vector<>();
 
-        while (cursor.moveToNext())
+        while (curseur.moveToNext())
         {
-            String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+            String nom = curseur.getString(curseur.getColumnIndexOrThrow("nom"));
             listeJoueurs.add(nom);
         }
-        cursor.close();
+        curseur.close();
 
         return listeJoueurs;
     }
 
+    /**
+     * @brief Renvoie un vecteur de string contenant le dates des manches enregistrées triées dans l'ordre décroissant
+     */
     public Vector<String> getManchesTriees()
     {
         Log.d(TAG, "getManchesTriees()");
 
-        Cursor cursor = sqlite.query("manches", new String[]{"horodatage"}, null, null,
-                null, null, "horodatage DESC");
+        Cursor curseur = sqlite.rawQuery("SELECT horodatage FROM manches ORDER BY horodatage DESC", null);
 
         Vector<String> listeManches = new Vector<>();
 
-        while (cursor.moveToNext())
+        while (curseur.moveToNext())
         {
-            String date = cursor.getString(cursor.getColumnIndexOrThrow("horodatage"));
+            String date = curseur.getString(curseur.getColumnIndexOrThrow("horodatage"));
             listeManches.add(date);
         }
-        cursor.close();
+        curseur.close();
 
         return listeManches;
+    }
+
+    /**
+     * @brief Renvoie le scoreELO d'un joueur dont on connaît le nom
+     */
+    public int getScoreElo(String nom)
+    {
+        Log.d(TAG, "getScoreElo( nom = " + nom + " )");
+
+        int scoreElo = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT scoreELO FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            scoreElo = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return scoreElo;
+    }
+
+    /**
+     * @brief Renvoie le nombre de manches d'un joueur dont on connaît le nom
+     */
+    public int getNbManches(String nom)
+    {
+        Log.d(TAG, "getNbManches( nom = " + nom + " )");
+
+        int nbManches = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT manches FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            nbManches = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return nbManches;
+    }
+
+    /**
+     * @brief Renvoie le nombre de victoires d'un joueur dont on connaît le nom
+     */
+    public int getNbVictoires(String nom)
+    {
+        Log.d(TAG, "getNbManches( nom = " + nom + " )");
+
+        int nbVictoires = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT victoires FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            nbVictoires = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return nbVictoires;
+    }
+
+    /**
+     * @brief Supprime un joueur, dont on connaît le nom, de la base de donnees
+     */
+    public void supprimerJoueur(String nom)
+    {
+        sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
+    }
+
+    /**
+     * @brief Supprime une manche, dont on connaît le date, de la base de donnees
+     */
+    public void supprimerManche(String date)
+    {
+        sqlite.execSQL("DELETE FROM manches WHERE horodatage = '" + date + "'", null);
+    }
+
+
+    public String getNomJoueur(String qualificatifJoueur, String date)
+    {
+        Cursor curseur  = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs INNERJOIN manches ON joueurs.id = '" + "manches." + qualificatifJoueur + "Id" + "' WHERE manches.horodatage = '" + date + "'", null);
+        if(curseur.moveToFirst())
+        {
+            return curseur.toString();
+        }
+        else
+        {
+            return "Inconnu";
+        }
     }
 }
 

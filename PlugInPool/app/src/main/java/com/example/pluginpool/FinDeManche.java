@@ -29,19 +29,24 @@ public class FinDeManche extends AlertDialog
     private static final String TAG = "_FinDeManche"; //!< TAG pour les logs
 
     /**
+     * Attributs
+     */
+    private Manche activiteManche;
+
+    /**
      * Ressources GUI
      */
-    private Button boutonMenu, boutonRejouer;
+    private Button boutonMenu;
+    private Button boutonRejouer;
     private TextView[][] billesEmpochees;
     private TextView[] joueurs;
-    private Manche activiteManche;
+    private View fenetre;
 
     /**
      * @brief Constructeur de la classe FinDeManche
      */
     protected FinDeManche(Manche manche, String joueur1, String joueur2) {
         super(manche);
-        setContentView(R.layout.fenetre_fin_de_manche);
         activiteManche = manche;
         initialiserRessources(joueur1, joueur2);
     }
@@ -51,25 +56,26 @@ public class FinDeManche extends AlertDialog
      */
     private void initialiserRessources(String joueur1, String joueur2)
     {
-        Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2);
+        Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2 + " )");
 
-        View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
-        boutonMenu = fenetre.findViewById(R.id.boutonMenu);
-        boutonRejouer = fenetre.findViewById(R.id.boutonRejouer);
+        fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
+        boutonMenu = (Button) fenetre.findViewById(R.id.boutonMenu);
+        boutonRejouer =  (Button) fenetre.findViewById(R.id.boutonRejouer);
         billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
-        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) findViewById(R.id.nbRougesJoueur1);
-        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) findViewById(R.id.nbRougesJoueur2);
-        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.JAUNE] = (TextView) findViewById(R.id.nbJaunesJoueur1);
-        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.JAUNE] = (TextView) findViewById(R.id.nbJaunesJoueur2);
-        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.BLANCHE] = (TextView) findViewById(R.id.nbBlanchesJoueur1);
-        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.BLANCHE] = (TextView) findViewById(R.id.nbBlanchesJoueur2);
-        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.NOIRE] = (TextView) findViewById(R.id.nbNoiresJoueur1);
-        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.NOIRE] = (TextView) findViewById(R.id.nbNoiresJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.JAUNE] = (TextView) fenetre.findViewById(R.id.nbJaunesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.JAUNE] = (TextView) fenetre.findViewById(R.id.nbJaunesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.BLANCHE] = (TextView) fenetre.findViewById(R.id.nbBlanchesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.BLANCHE] = (TextView) fenetre.findViewById(R.id.nbBlanchesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.NOIRE] = (TextView) fenetre.findViewById(R.id.nbNoiresJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.NOIRE] = (TextView) fenetre.findViewById(R.id.nbNoiresJoueur2);
         joueurs = new TextView[BlackBall.NB_JOUEURS];
-        joueurs[Manche.PREMIER_JOUEUR] = (TextView) findViewById(R.id.joueur1);
+        joueurs[Manche.PREMIER_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur1);
         joueurs[Manche.PREMIER_JOUEUR].setText(joueur1);
-        joueurs[Manche.SECOND_JOUEUR] = (TextView) findViewById(R.id.joueur2);
+        joueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
         joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
+        setResultats();
         setView(fenetre);
 
         boutonMenu.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +95,10 @@ public class FinDeManche extends AlertDialog
         });
     }
 
-    public void setResultats()
+    /**
+     * @brief Définit le contenu des Textview, affichant le nombre de billes de chaque couleur empochées par le joueur au cours de la manche
+     */
+    private void setResultats()
     {
         for(int joueur = 0; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
