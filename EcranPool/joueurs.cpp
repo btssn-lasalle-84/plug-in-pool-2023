@@ -10,9 +10,10 @@
 #include <QDebug>
 
 /**
- * @todo Mettre les commentaires Doxygen
+ * @brief Constructeur de la classe Joueurs
+ *
+ * @fn Joueurs::Joueurs
  */
-
 Joueurs::Joueurs()
 {
     qDebug() << Q_FUNC_INFO;
@@ -24,11 +25,21 @@ Joueurs::Joueurs(QVector<QString> nomsJoueurs)
     this->nomsJoueurs = nomsJoueurs;
 }
 
+/**
+ * @brief Destructeur de la classe Joueurs
+ *
+ * @fn Joueurs::~Joueurs
+ * @details Libère les ressources de l'application
+ */
 Joueurs::~Joueurs()
 {
     qDebug() << Q_FUNC_INFO;
 }
 
+/**
+ * @fn Joueurs::getJoueurs
+ * @brief Récupére les joueurs
+ */
 QVector<QString> Joueurs::getJoueurs()
 {
     /**
@@ -36,6 +47,10 @@ QVector<QString> Joueurs::getJoueurs()
      */
 }
 
+/**
+ * @fn Joueurs::ajouterJoueur
+ * @brief Ajoute un joueur
+ */
 void Joueurs::ajouterJoueur(QString nomsJoueur)
 {
     /**
