@@ -1,0 +1,25 @@
+class Compteur
+!!!149426.java!!!	Compteur(inout manche : Manche) : void
+        tempsRestant = DUREE_TIR;
+        manche = manche;
+
+        actualiser = new TimerTask()
+        {
+            public void run()
+            {
+                if (tempsRestant > 0)
+                {
+                    tempsRestant -= 1;
+                    //manche.activity_manche_affichage.actualiserCompteur(tempsRestant);
+                }
+                else
+                {
+                    this.cancel();
+                }
+            }
+        };
+!!!149554.java!!!	redemarrer() : void
+        this.cancel();
+        this.purge();
+        this.tempsRestant = DUREE_TIR;
+        this.scheduleAtFixedRate(actualiser, 0, 1000);

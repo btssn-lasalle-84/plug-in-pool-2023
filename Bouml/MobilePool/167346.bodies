@@ -1,0 +1,22 @@
+class TestCercle
+!!!194994.java!!!	testCercle() : void
+     Cercle cercle = new Cercle(2.);
+     assertTrue(cercle instanceof Figure);
+     assertEquals(2., cercle.getRayon());
+     assertEquals(0., cercle.getX());
+     assertEquals(0., cercle.getY());
+     assertEquals(0., cercle.getZ());
+!!!195122.java!!!	testCercleDescription() : void
+     Cercle cercle = new Cercle(2.);
+     assertEquals("Figure <|--- Cercle", cercle.getDescription());
+!!!195250.java!!!	testCercleToString() : void
+     Cercle cercle = new Cercle(2.);
+     assertEquals("0.0 0.0 0.0 2.0", cercle.toString());
+!!!195378.java!!!	testCerclePerimetre() : void
+       
+     Cercle cercle = new Cercle(2.);
+     assertEquals(12.566370614359172, cercle.perimetre());
+!!!195506.java!!!	testCercleAire() : void
+       
+     Cercle cercle = new Cercle(2.);
+     assertEquals(12.566370614359172, cercle.aire());

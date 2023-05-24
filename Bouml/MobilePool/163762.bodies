@@ -1,0 +1,25 @@
+class Figure
+!!!171186.java!!!	Figure()
+        this.x = 0.;
+        this.y = 0.;
+        this.z = 0.;
+!!!171314.java!!!	Figure(in x : double, in y : double, in z : double)
+        this.x = x;
+        this.y = y;
+        this.z = z;
+!!!171442.java!!!	getX() : double
+        return this.x;
+!!!171570.java!!!	getY() : double
+        return this.y;
+!!!171698.java!!!	getZ() : double
+        return this.z;
+!!!171826.java!!!	perimetre() : double
+        return 0.;
+!!!171954.java!!!	aire() : double
+        return 0.;
+!!!172082.java!!!	volume() : double
+        return 0.;
+!!!172210.java!!!	getDescription() : String
+        return "Figure";
+!!!172338.java!!!	toString() : String
+        return this.x + " " + this.y + " " + this.z;

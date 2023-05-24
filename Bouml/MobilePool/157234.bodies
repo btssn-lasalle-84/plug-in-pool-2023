@@ -1,0 +1,22 @@
+class CompteBancaire
+!!!143538.java!!!	CompteBancaire(in titulaire : String, in solde : double, in devise : String)
+        this.titulaire = titulaire;
+        this.solde = solde;
+        this.devise = devise;
+!!!143666.java!!!	main(inout args : String [[]]) : void
+
+!!!143794.java!!!	getTitulaire() : String
+        return titulaire;
+!!!143922.java!!!	getSolde() : double
+        return solde;
+!!!144050.java!!!	getDevise() : String
+        return devise;
+!!!144178.java!!!	afficheFizzBuzz(in i : int) : void
+        System.out.print(i);
+        if(i % 5 == 0 && i % 7 == 0)
+            System.out.print(" -> FizzBuzz");
+        else if(i % 5 == 0)
+            System.out.print(" -> Fizz");
+        else if(i % 7 == 0)
+            System.out.print(" -> Buzz");
+        System.out.println();

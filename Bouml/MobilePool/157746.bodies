@@ -1,0 +1,9 @@
+class ExampleInstrumentedTest
+!!!144818.java!!!	useAppContext() : void
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.pluginpool", appContext.getPackageName());
+!!!149298.java!!!	useAppContext() : void
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.pluginpool", appContext.getPackageName());

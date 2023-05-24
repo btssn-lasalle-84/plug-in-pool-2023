@@ -1,0 +1,21 @@
+class Triangle
+!!!164018.java!!!	Triangle(in base : double, in hauteur : double)
+        super();
+        this.base = base;
+        this.hauteur = hauteur;
+!!!164146.java!!!	Triangle(in base : double, in hauteur : double, in x : double, in y : double, in z : double)
+        super(x, y, z);
+        this.base = base;
+        this.hauteur = hauteur;
+!!!164274.java!!!	getBase() : double
+       return this.base;
+!!!164402.java!!!	getHauteur() : double
+        return this.hauteur;
+!!!164530.java!!!	perimetre() : double
+        return Math.sqrt(this.base * this.base + this.hauteur * this.hauteur) + this.base + this.hauteur;
+!!!164658.java!!!	aire() : double
+        return this.base * this.hauteur / 2;
+!!!164786.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Triangle";
+!!!164914.java!!!	toString() : String
+        return super.toString() + " " + this.base + " " + this.hauteur;

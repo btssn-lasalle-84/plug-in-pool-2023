@@ -1,0 +1,15 @@
+class Sphere
+!!!178226.java!!!	Sphere(in rayon : double)
+        super(rayon);
+!!!178354.java!!!	Sphere(in rayon : double, in x : double, in y : double, in z : double)
+        super(rayon, x, y, z);
+!!!178482.java!!!	volume() : double
+       return 4 * this.getRayon() * this.getRayon() * this.getRayon() * Math.PI / 3;
+!!!178610.java!!!	perimetre() : double
+        return 0.;
+!!!178738.java!!!	aire() : double
+        return this.getRayon() * this.getRayon() * Math.PI * 4;
+!!!178866.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Sphere";
+!!!178994.java!!!	toString() : String
+        return super.toString();

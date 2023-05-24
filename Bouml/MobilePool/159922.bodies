@@ -1,0 +1,3 @@
+class HelloWorld
+!!!153266.java!!!	main(inout args : String [[]]) : void
+        System.out.println("Hello world!");

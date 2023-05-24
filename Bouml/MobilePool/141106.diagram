@@ -1,0 +1,178 @@
+format 224
+
+classinstance 128178 class_ref 134706 // EcranPrincipal
+  name ""   xyz 53 7 2005 life_line_z 2000
+classinstance 128306 class_ref 134698 // ConfigurationManche
+  name ""   xyz 197 8 2005 life_line_z 2000
+classinstance 128434 class_ref 157874 // BaseDeDonnees
+  name "baseDonnees"   xyz 454 140 2005 life_line_z 2000
+classinstance 128562 class_ref 158130 // Communication
+  name "communication"   xyz 605 227 2005 life_line_z 2000
+classinstance 128690 class_ref 128050 // Joueur
+  name ""   xyz 4 17 2000 life_line_z 2000
+classinstance 134834 class_ref 134826 // Manche
+  name ""   xyz 788 469 2005 life_line_z 2000
+durationcanvas 129202 classinstance_ref 128178 // :EcranPrincipal
+  xyzwh 102 78 2010 11 72
+  overlappingdurationcanvas 129586
+    xyzwh 108 86 2020 11 47
+  end
+end
+durationcanvas 129842 classinstance_ref 128306 // :ConfigurationManche
+  xyzwh 271 121 2010 11 192
+  overlappingdurationcanvas 130098
+    xyzwh 277 128 2020 11 25
+  end
+  overlappingdurationcanvas 130354
+    xyzwh 277 156 2020 11 151
+  end
+end
+durationcanvas 130610 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
+  xyzwh 556 190 2010 11 49
+  overlappingdurationcanvas 130866
+    xyzwh 562 208 2020 11 25
+  end
+end
+durationcanvas 131378 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
+  xyzwh 556 246 2010 11 25
+end
+durationcanvas 131634 classinstance_ref 128562 // communication:Communication
+  xyzwh 711 277 2010 11 42
+  overlappingdurationcanvas 131890
+    xyzwh 717 288 2020 11 25
+  end
+end
+durationcanvas 132530 classinstance_ref 128306 // :ConfigurationManche
+  xyzwh 271 327 2010 11 30
+end
+durationcanvas 132914 classinstance_ref 128306 // :ConfigurationManche
+  xyzwh 271 365 2010 11 27
+end
+durationcanvas 133298 classinstance_ref 128306 // :ConfigurationManche
+  xyzwh 271 400 2010 11 31
+end
+durationcanvas 133682 classinstance_ref 128562 // communication:Communication
+  xyzwh 711 420 2010 11 25
+end
+durationcanvas 133938 classinstance_ref 128306 // :ConfigurationManche
+  xyzwh 271 454 2010 11 78
+  overlappingdurationcanvas 134578
+    xyzwh 277 501 2020 11 25
+  end
+end
+durationcanvas 134322 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
+  xyzwh 556 465 2010 11 26
+end
+durationcanvas 134962 classinstance_ref 134834 // :Manche
+  xyzwh 816 521 2010 11 25
+end
+lostfoundmsgsupport 129330 xyz 27 82 2015
+lostfoundmsgsupport 132658 xyz 26 329 2015
+lostfoundmsgsupport 133042 xyz 26 367 2015
+lostfoundmsgsupport 133426 xyz 25 402 2015
+lostfoundmsgsupport 134066 xyz 26 456 2015
+msg 129458 found_synchronous
+  from lostfoundmsgsupport_ref 129330
+  to durationcanvas_ref 129202
+  yz 80 2015 explicitmsg "clic boutonJouer"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 13 59
+reflexivemsg 129714 synchronous
+  to durationcanvas_ref 129586
+  yz 86 2025 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 140 79
+msg 129970 synchronous
+  from durationcanvas_ref 129586
+  to durationcanvas_ref 129842
+  yz 121 3005 explicitmsg "onCreate()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 159 104
+reflexivemsg 130226 synchronous
+  to durationcanvas_ref 130098
+  yz 128 3010 explicitmsg "initialiserHandler()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 313 123
+reflexivemsg 130482 synchronous
+  to durationcanvas_ref 130354
+  yz 156 2025 explicitmsg "initialiserAttributs()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 315 151
+msg 130738 synchronous
+  from durationcanvas_ref 130354
+  to durationcanvas_ref 130610
+  yz 191 3005 explicitmsg "getInstance()"
+  stereotype "<<multiton>>" xyz 338 200 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 338 174
+reflexivemsg 130994 synchronous
+  to durationcanvas_ref 130866
+  yz 208 2025 explicitmsg "BaseDeDonnees()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 597 202
+msg 131506 synchronous
+  from durationcanvas_ref 130354
+  to durationcanvas_ref 131378
+  yz 248 2025 explicitmsg "getNomsJoueurs()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 360 231
+msg 131762 synchronous
+  from durationcanvas_ref 130354
+  to durationcanvas_ref 131634
+  yz 277 2025 explicitmsg "getInstance()"
+  stereotype "<<singleton>>" xyz 451 294 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 460 260
+reflexivemsg 132018 synchronous
+  to durationcanvas_ref 131890
+  yz 288 2025 msg operation_ref 146738 // "Communication()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 751 282
+msg 132786 found_synchronous
+  from lostfoundmsgsupport_ref 132658
+  to durationcanvas_ref 132530
+  yz 327 2015 explicitmsg "sélection choixNomJoueur1"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 60 310
+msg 133170 found_synchronous
+  from lostfoundmsgsupport_ref 133042
+  to durationcanvas_ref 132914
+  yz 365 2015 explicitmsg "saisie editionNomJoueur2"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 66 348
+msg 133554 found_synchronous
+  from lostfoundmsgsupport_ref 133426
+  to durationcanvas_ref 133298
+  yz 400 2015 explicitmsg "clic choixTable"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 104 383
+msg 133810 synchronous
+  from durationcanvas_ref 133298
+  to durationcanvas_ref 133682
+  yz 420 2015 explicitmsg "seConnecter()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 449 403
+msg 134194 found_synchronous
+  from lostfoundmsgsupport_ref 134066
+  to durationcanvas_ref 133938
+  yz 454 2015 explicitmsg "clic boutonSuivant"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 91 437
+msg 134450 synchronous
+  from durationcanvas_ref 133938
+  to durationcanvas_ref 134322
+  yz 466 2020 explicitmsg "ajouterNom( joueur2 )"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 345 449
+reflexivemsg 134706 synchronous
+  to durationcanvas_ref 134578
+  yz 501 2025 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 309 497
+msg 135090 synchronous
+  from durationcanvas_ref 134578
+  to durationcanvas_ref 134962
+  yz 521 3005 explicitmsg "onCreate()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 516 504
+end

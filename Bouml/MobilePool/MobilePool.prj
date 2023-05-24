@@ -1,7 +1,7 @@
 format 224
 "MobilePool"
-  revision 7
-  modified_by 42 "tv"
+  revision 8
+  modified_by 50 "btssn2"
   java_root_dir "../../"
 
 
@@ -471,9 +471,39 @@ format 224
       activitydiagramsettings
        end
     end
+
+    sequencediagram 141106 "Configuration de manche"
+      sequencediagramsettings end
+      overlapping_bars size A0
+    end
+
+    class 169266 ":EcranPrincipal"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    sequencediagram 141234 "Sequence de jeu"
+      sequencediagramsettings end
+      overlapping_bars size A0
+    end
   end
 
   package_ref 128050 // pluginpool
 
   package_ref 128178 // unknown
+
+  package_ref 134706 // Android
+
+  package_ref 136242 // myapplication
+
+  package_ref 136370 // Documents
 end

@@ -1,0 +1,27 @@
+class TestCube
+!!!166578.java!!!	testCube() : void
+     Cube cube = new Cube(6.);
+     assertTrue(cube instanceof Figure);
+     assertTrue(cube instanceof Carre);
+     assertEquals(6., cube.getLargeur());
+     assertEquals(0., cube.getX());
+     assertEquals(0., cube.getY());
+     assertEquals(0., cube.getZ());
+!!!166706.java!!!	testCubeDescription() : void
+     Cube cube = new Cube(6.);
+     assertEquals("Figure <|--- Carre <|--- Cube", cube.getDescription());
+!!!166834.java!!!	testCubeToString() : void
+     Cube cube = new Cube(6.);
+     assertEquals("0.0 0.0 0.0 6.0", cube.toString());
+!!!166962.java!!!	testCubePerimetre() : void
+       
+     Cube cube = new Cube(6.);
+     assertEquals(0.0, cube.perimetre());
+!!!167090.java!!!	testCubeAire() : void
+       
+     Cube cube = new Cube(6.);
+     assertEquals(216.0, cube.aire());
+!!!167218.java!!!	testCubeVolume() : void
+       
+     Cube cube = new Cube(6.);
+     assertEquals(216.0, cube.volume());
