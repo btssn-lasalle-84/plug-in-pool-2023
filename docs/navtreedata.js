@@ -36,7 +36,7 @@ var NAVTREE =
       [ "Index des structures de données", "classes.html", null ],
       [ "Hiérarchie des classes", "hierarchy.html", "hierarchy" ],
       [ "Champs de donnée", "functions.html", [
-        [ "Tout", "functions.html", null ],
+        [ "Tout", "functions.html", "functions_dup" ],
         [ "Fonctions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Énumérations", "functions_enum.html", null ],
@@ -56,7 +56,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-""
+"_android_manifest_8xml.html",
+"classcom_1_1example_1_1pluginpool_1_1_manche.html#a29dfe445179c245b6da7f779777345a0"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

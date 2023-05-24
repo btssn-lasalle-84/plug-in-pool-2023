@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['oncreate_166',['onCreate',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acceaa606a70e8791a21090fe4cd59ae9',1,'com.example.pluginpool.ConfigurationManche.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a6f4f265f1b1765cea4bbc9f17f5de47b',1,'com.example.pluginpool.EcranPrincipal.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#aed8a1b6f129a58f985791debedff2a92',1,'com.example.pluginpool.Manche.onCreate()']]],
-  ['ondestroy_167',['onDestroy',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a4ba9082e2b8215849203526ac2e2b6c8',1,'com::example::pluginpool::EcranPrincipal']]],
-  ['onpause_168',['onPause',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a4ba9845d6b29521c528c4bacc935b00d',1,'com::example::pluginpool::EcranPrincipal']]],
-  ['onresume_169',['onResume',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a147d68a0cfff5ed85961ddf793c99a88',1,'com::example::pluginpool::EcranPrincipal']]],
-  ['onstart_170',['onStart',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a22a08b146f1061b2efc6e3a2a75a70cf',1,'com::example::pluginpool::EcranPrincipal']]],
-  ['onstop_171',['onStop',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#ac1f5d5bdc247627aa2938cce180a59c8',1,'com::example::pluginpool::EcranPrincipal']]]
+  ['getinstance_352',['getInstance',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a8fa64542286924786ce23792964bb893',1,'com.example.pluginpool.BaseDeDonnees.getInstance()'],['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a6af48ae6e95b8854a66e69a32955db30',1,'com.example.pluginpool.Communication.getInstance()'],['../classcom_1_1example_1_1pluginpool_1_1_communication.html#ad1d10f43364e0377dfb6bbce4bdddc7c',1,'com.example.pluginpool.Communication.getInstance(Handler handler)']]],
+  ['getjoueurs_353',['getJoueurs',['../class_joueurs.html#a865aaa42d6fed682c03a5f4c3f9db38e',1,'Joueurs']]],
+  ['getmanchestriees_354',['getManchesTriees',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a9b4e5c5cf39748c370f03557fe08b611',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnbempoches_355',['getNbEmpoches',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#acdd7af8d758228a429479021d60c0bba',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnbmanches_356',['getNbManches',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a91c4cab5c4f8b0cb888995537cf657d3',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnbvictoires_357',['getNbVictoires',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a788839942b2f1d98292831a98611c910',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnomjoueur_358',['getNomJoueur',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ad6d2af110949622aea44d0c877c5158b',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnomsjoueurs_359',['getNomsJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ada3e5bb23298a549ae705ce90e9743ff',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getnomsjoueurstries_360',['getNomsJoueursTries',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5240ace8301e4bd7e1e5cca3c364de15',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['getscoreelo_361',['getScoreElo',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5b5873ee860fe434671482126e2f64f3',1,'com::example::pluginpool::BaseDeDonnees']]]
 ];
