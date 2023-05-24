@@ -26,10 +26,6 @@ public class EcranPrincipal extends AppCompatActivity
     private static final String TAG = "_EcranPrincipal"; //!< TAG pour les logs (cf. Logcat)
 
     /**
-     * Attributs
-     */
-
-    /**
      * Ressources GUI
      */
     private Button boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
@@ -106,7 +102,7 @@ public class EcranPrincipal extends AppCompatActivity
      */
     private void initialiserRessources()
     {
-        boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
+        boutonStatistiques = (Button)findViewById(R.id.boutonHistorique);
         boutonJouer        = (Button)findViewById(R.id.boutonJouer);
 
         boutonStatistiques.setOnClickListener(new View.OnClickListener()
@@ -114,7 +110,8 @@ public class EcranPrincipal extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
-                //!< @todo
+                Intent activiteHistorique = new Intent(EcranPrincipal.this, Historique.class);
+                startActivity(activiteHistorique);
             }
         });
         boutonJouer.setOnClickListener(new View.OnClickListener()

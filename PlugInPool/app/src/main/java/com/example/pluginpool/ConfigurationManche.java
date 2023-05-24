@@ -97,40 +97,23 @@ public class ConfigurationManche extends AppCompatActivity
         communication = Communication.getInstance(handler);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
-        filtresNom = new InputFilter[] { new InputFilter() {
-          public CharSequence
-            filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend){
-                if(source.length() < 1) return null;
-                for(int i = start; i < end; i++)
+        filtresNom = new InputFilter[] {
+            new InputFilter() {
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
                 {
-                    char lettre = source.charAt(i);
-                    if(!(Character.isLetter(lettre) || lettre == ' '))
+                    if(source.length() < 1) return null;
+                    for(int i = start; i < end; i++)
                     {
-                        return "";
+                        char lettre = source.charAt(i);
+                        if(!(Character.isLetter(lettre) || (lettre == ' ' && i != 0)))
+                        {
+                            return "";
+                        }
                     }
+                    return null;
                 }
-                return null;
             }
-        }
-        , new InputFilter() {
-          public CharSequence filter(CharSequence source,
-                               int          start,
-                               int          end,
-                               Spanned      dest,
-                               int          dstart,
-                               int          dend)
-          {
-            if(source.length() < 1)
-                return null;
-            char premiereLettre = source.charAt(0);
-            if(premiereLettre == ' ')
-            {
-                return "";
-            }
-            return null;
-          }
-        }
-    };
+        };
     }
 
     /**
@@ -208,9 +191,7 @@ public class ConfigurationManche extends AppCompatActivity
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
                 choixNomTable           = boutonTable.getText().toString();
                 Log.d(TAG, "clic choixTable : " + choixNomTable);
-                //!< @todo seConnecter() à choixNomTable
-                communication.seConnecter("pool-1");
-                // connexionTable = true; // Provisoire pour les tests
+                communication.seConnecter(choixNomTable);
             }
         });
 
@@ -226,8 +207,10 @@ public class ConfigurationManche extends AppCompatActivity
                     Log.d(TAG, "Table : " + choixNomTable);
                     String nomJoueur1 = editionNomJoueur1.getText().toString();
                     String nomJoueur2 = editionNomJoueur2.getText().toString();
+
                     ajouterNomsJoueurs(nomJoueur1, nomJoueur2);
                     Intent activiteManche = parametrerActiviteManche();
+
                     startActivity(activiteManche);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }
@@ -249,6 +232,7 @@ public class ConfigurationManche extends AppCompatActivity
         activiteManche.putExtra("joueur1", nomJoueur1);
         activiteManche.putExtra("joueur2", nomJoueur2);
         activiteManche.putExtra("connexionTable", connexionTable);
+        activiteManche.putExtra("choixNomTable", choixNomTable);
         return activiteManche;
     }
 

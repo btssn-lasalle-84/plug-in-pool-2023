@@ -149,7 +149,8 @@
                 android:background="@color/bleu"
                 android:contentDescription="@string/bouton_actualiser"
                 android:scaleType="fitCenter"
-                android:src="@drawable/bouton_actualiser" />
+                android:src="@drawable/bouton_actualiser"
+                android:visibility="invisible"/>
 
         </LinearLayout>
 
@@ -168,28 +169,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/bleu"
-                    android:text="Table n°1" />
+                    android:text="pool-1" />
 
                 <RadioButton
                     android:id="@+id/boutonTable2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/bleu"
-                    android:text="Table n°2" />
+                    android:text="pool-2" />
 
                 <RadioButton
                     android:id="@+id/boutonTable3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/bleu"
-                    android:text="Table n°3" />
+                    android:text="pool-3" />
 
                 <RadioButton
                     android:id="@+id/boutonTable4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/bleu"
-                    android:text="Table n°4" />
+                    android:text="pool-4" />
             </RadioGroup>
         </LinearLayout>
 
@@ -200,7 +201,7 @@
             android:text="Suivant"
             android:textSize="16sp"
             android:layout_margin="8dp"
-            android:background="@color/bleu"
+            android:backgroundTint="@color/bleu"
             android:layout_alignParentBottom="true"/>
 
     </LinearLayout>

@@ -31,16 +31,18 @@
             android:textColor="@color/bleu"/>
 
         <Button
-            android:id="@+id/boutonStatistiques"
+            android:id="@+id/boutonHistorique"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="statistiques" />
+            android:text="Historique"
+            android:backgroundTint="@color/bleu"/>
 
         <Button
             android:id="@+id/boutonJouer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jouer" />
+            android:text="Jouer"
+            android:backgroundTint="@color/bleu"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
