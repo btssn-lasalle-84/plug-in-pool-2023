@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['ecranpool_159',['EcranPool',['../class_ecran_pool.html#a3ea2f80b89371b7befca3fa020581ebe',1,'EcranPool']]],
-  ['estconfiguree_160',['estConfiguree',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a36dd62768bc35f6c81d3101c99d209d4',1,'com::example::pluginpool::ConfigurationManche']]]
+  ['communication_341',['Communication',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a3d5657fc92275d24119a2289bc2e33a4',1,'com.example.pluginpool.Communication.Communication()'],['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a5c09bac06c7a84155e5f13a47c4a8ba5',1,'com.example.pluginpool.Communication.Communication(Handler handler)']]],
+  ['creersocket_342',['creerSocket',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#aea3c34e161277168ca4c263587481b0b',1,'com::example::pluginpool::Communication']]]
 ];

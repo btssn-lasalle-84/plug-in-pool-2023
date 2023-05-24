@@ -1,10 +1,19 @@
 var searchData=
 [
-  ['champ_5ftype_188',['CHAMP_TYPE',['../classcom_1_1example_1_1pluginpool_1_1_protocole.html#ad7951e68ee7ca03af125f1d746d360c7',1,'com::example::pluginpool::Protocole']]],
-  ['choixnomsjoueur1_189',['choixNomsJoueur1',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acd6a7213f67a1ff458bb33be4b5874a6',1,'com::example::pluginpool::ConfigurationManche']]],
-  ['choixnomsjoueur2_190',['choixNomsJoueur2',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a4a5fb3893c5b7a059e89d3c300727a55',1,'com::example::pluginpool::ConfigurationManche']]],
-  ['choixnomtable_191',['choixNomTable',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#afed84afc625a0e9c955977ea660b7308',1,'com::example::pluginpool::ConfigurationManche']]],
-  ['connexiontable_192',['connexionTable',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a646df656421badc098abccbb0dceb923',1,'com::example::pluginpool::ConfigurationManche']]],
-  ['couleursdefinies_193',['couleursDefinies',['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a7f16bf40f2157a18c8e74f0c88ebaab7',1,'com::example::pluginpool::GestionManche']]],
-  ['couleursjoueurs_194',['couleursJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4eda1d433086f0c127f863029d650184',1,'com::example::pluginpool::GestionManche']]]
+  ['canalbluetooth_429',['canalBluetooth',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#abfd8ffaba08a072350ada8b5d329110a',1,'com::example::pluginpool::Communication']]],
+  ['categories_430',['CATEGORIES',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a83132615c071a7255d5ce0ef725e85d1',1,'com::example::pluginpool::Historique']]],
+  ['categoriesrecherche_431',['categoriesRecherche',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#af5343f9ce9850dccd039fcb27b79462c',1,'com::example::pluginpool::Historique']]],
+  ['champ_5fpoche_432',['CHAMP_POCHE',['../classcom_1_1example_1_1pluginpool_1_1_protocole.html#a544172a6d1bb6a02ce1a8255db70209c',1,'com::example::pluginpool::Protocole']]],
+  ['choixnomsjoueur1_433',['choixNomsJoueur1',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acd6a7213f67a1ff458bb33be4b5874a6',1,'com::example::pluginpool::ConfigurationManche']]],
+  ['choixnomsjoueur2_434',['choixNomsJoueur2',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a4a5fb3893c5b7a059e89d3c300727a55',1,'com::example::pluginpool::ConfigurationManche']]],
+  ['choixnomtable_435',['choixNomTable',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#afed84afc625a0e9c955977ea660b7308',1,'com::example::pluginpool::ConfigurationManche']]],
+  ['communication_436',['communication',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#aac83ff27440830b5d462ca56d41f1cb4',1,'com.example.pluginpool.Manche.communication()'],['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a778afc644903670e61ecb602a208c12b',1,'com.example.pluginpool.ConfigurationManche.communication()'],['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a849c91bbf4cd28cfef98d1c1b86cd3e4',1,'com.example.pluginpool.Communication.communication()']]],
+  ['comptearebours_437',['compteARebours',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a24e6b258276afee6a3dff4e6813b226c',1,'com::example::pluginpool::Manche']]],
+  ['connecte_438',['connecte',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a5607c9e1bf85e7a49e04ddd4320e63d2',1,'com::example::pluginpool::Communication']]],
+  ['connexion_5fbluetooth_439',['CONNEXION_BLUETOOTH',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a8bc0f912ad9786087fb8805e55bf41a5',1,'com::example::pluginpool::Communication']]],
+  ['connexiontable_440',['connexionTable',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a52482c847f3bf9d0e2fb8c84fd5a72f7',1,'com.example.pluginpool.ConfigurationManche.connexionTable()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a548e1404d73408096bf348560cc9c32f',1,'com.example.pluginpool.Manche.connexionTable()']]],
+  ['constante_5felo1_441',['CONSTANTE_ELO1',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5099c148b9a55ab0a90d5ed04fdc7383',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['constante_5felo2_442',['CONSTANTE_ELO2',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#af801ac6d522400add72f0d2201086cf2',1,'com::example::pluginpool::BaseDeDonnees']]],
+  ['couleursdefinies_443',['couleursDefinies',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a9580393870b304fee6f1fa90add1915a',1,'com::example::pluginpool::Manche']]],
+  ['couleursjoueurs_444',['couleursJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a7e9f13aa38a449368243e1326133295b',1,'com::example::pluginpool::Manche']]]
 ];

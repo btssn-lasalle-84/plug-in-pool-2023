@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -88,6 +88,7 @@ $(document).ready(function(){initNavTree('class_ecran_pool.html',''); initResiza
 <a href="#pub-types">Types publics</a> &#124;
 <a href="#pub-slots">Connecteurs publics</a> &#124;
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
+<a href="#pub-static-attribs">Attributs publics statiques</a> &#124;
 <a href="#pri-methods">Fonctions membres privées</a> &#124;
 <a href="#pri-attribs">Attributs privés</a>  </div>
   <div class="headertitle">
@@ -104,8 +105,9 @@ Graphe de collaboration de EcranPool:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_ecran_pool__coll__graph.png" border="0" usemap="#a_ecran_pool_coll__map" alt="Collaboration graph"/></div>
 <map name="a_ecran_pool_coll__map" id="a_ecran_pool_coll__map">
-<area shape="rect" title="L&#39;IHM de l&#39;application." alt="" coords="5,131,193,296"/>
-<area shape="rect" href="class_q_widget.html" title=" " alt="" coords="60,5,139,83"/>
+<area shape="rect" title="L&#39;IHM de l&#39;application." alt="" coords="5,204,225,545"/>
+<area shape="rect" href="class_q_widget.html" title=" " alt="" coords="11,35,89,112"/>
+<area shape="rect" href="class_joueurs.html" title="Déclare les joueurs de la partie." alt="" coords="113,5,248,141"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -121,6 +123,12 @@ Types publics</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-slots"></a>
 Connecteurs publics</h2></td></tr>
+<tr class="memitem:a840f3bdbc18f8035e64e78d3a26e4cbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">afficherDecompteManche</a> ()</td></tr>
+<tr class="memdesc:a840f3bdbc18f8035e64e78d3a26e4cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le décompte pour jouer.  <a href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a840f3bdbc18f8035e64e78d3a26e4cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb2c54d5142285cdfd2b50a38ed1ff4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4">afficherDureePartie</a> ()</td></tr>
+<tr class="memdesc:abfb2c54d5142285cdfd2b50a38ed1ff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la durée de le partie.  <a href="class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abfb2c54d5142285cdfd2b50a38ed1ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0f3cba32b3a2cace45be0fc47b93a5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a> (<a class="el" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a> ecran)</td></tr>
 <tr class="memdesc:af0f3cba32b3a2cace45be0fc47b93a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selectionne la fenêtre et l'affiche.  <a href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af0f3cba32b3a2cace45be0fc47b93a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +141,14 @@ Connecteurs publics</h2></td></tr>
 <tr class="memitem:af46c80736a1f8fc6840ea248e3819207"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#af46c80736a1f8fc6840ea248e3819207">afficherEcranPartie</a> ()</td></tr>
 <tr class="memdesc:af46c80736a1f8fc6840ea248e3819207"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selectionne la fenêtre de la partie.  <a href="class_ecran_pool.html#af46c80736a1f8fc6840ea248e3819207">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af46c80736a1f8fc6840ea248e3819207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac683d73d0aa066b9fb5128856ab24ff9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#ac683d73d0aa066b9fb5128856ab24ff9">afficherEcranPrecedent</a> ()</td></tr>
+<tr class="memdesc:ac683d73d0aa066b9fb5128856ab24ff9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode qui permet d'afficher l'écran précédent dans le QStackedWidget.  <a href="class_ecran_pool.html#ac683d73d0aa066b9fb5128856ab24ff9">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac683d73d0aa066b9fb5128856ab24ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747e94a5b213970d9d9bf95156f7c597"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">afficherEcranSuivant</a> ()</td></tr>
+<tr class="memdesc:a747e94a5b213970d9d9bf95156f7c597"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode qui permet d'afficher l'écran suivant dans le QStackedWidget.  <a href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a747e94a5b213970d9d9bf95156f7c597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36d7988b7d3a84371ded9ccb9c138d38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">afficherHeure</a> ()</td></tr>
+<tr class="separator:a36d7988b7d3a84371ded9ccb9c138d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
@@ -143,21 +159,44 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memdesc:a8eb20bac7d51d9514ddffc488c108ec8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de la classe <a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a>.  <a href="class_ecran_pool.html#a8eb20bac7d51d9514ddffc488c108ec8">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a8eb20bac7d51d9514ddffc488c108ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Attributs publics statiques</h2></td></tr>
+<tr class="memitem:ab16a111df81578c65287815cdea23395"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#ab16a111df81578c65287815cdea23395">INTERVALLE_SECONDE</a> = 1000</td></tr>
+<tr class="separator:ab16a111df81578c65287815cdea23395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Fonctions membres privées</h2></td></tr>
+<tr class="memitem:a2a0fac6cd81e3e64bb25b8e64a3aac3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b">initialiserDecompteManche</a> ()</td></tr>
+<tr class="memdesc:a2a0fac6cd81e3e64bb25b8e64a3aac3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise le décompte d'une manche.  <a href="class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2a0fac6cd81e3e64bb25b8e64a3aac3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05f160912c8eb1792ae1aca08325cfc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">initialiserEcran</a> ()</td></tr>
 <tr class="memdesc:a05f160912c8eb1792ae1aca08325cfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'écran et affiche la fenêtre d'accueil.  <a href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a05f160912c8eb1792ae1aca08325cfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d2215011acac5eb9385f1fe766d58f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a04d2215011acac5eb9385f1fe766d58f">initialiserHeure</a> ()</td></tr>
+<tr class="memdesc:a04d2215011acac5eb9385f1fe766d58f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'affichage de l'heure.  <a href="class_ecran_pool.html#a04d2215011acac5eb9385f1fe766d58f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a04d2215011acac5eb9385f1fe766d58f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f5e53f45b1ac3e52d1c10b3673fdf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3">initialiserJoueurs</a> ()</td></tr>
+<tr class="memdesc:a58f5e53f45b1ac3e52d1c10b3673fdf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'affichage de l'heure.  <a href="class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a58f5e53f45b1ac3e52d1c10b3673fdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af591fdd1db40efcff09771a935cfc1a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2">initialiserRaccourcisClavier</a> ()</td></tr>
+<tr class="memdesc:af591fdd1db40efcff09771a935cfc1a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Méthode qui permet de créer des raccourcis clavier pour les tests des écrans.  <a href="class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2">Plus de détails...</a><br /></td></tr>
+<tr class="separator:af591fdd1db40efcff09771a935cfc1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
+<tr class="memitem:ad55956c315343e5bca61d95fde6f75a3"><td class="memItemLeft" align="right" valign="top">qint64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3">dureePartie</a></td></tr>
+<tr class="separator:ad55956c315343e5bca61d95fde6f75a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c9647a3e67d61180747dbaf17e0daaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_joueurs.html">Joueurs</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">joueurs</a></td></tr>
+<tr class="separator:a2c9647a3e67d61180747dbaf17e0daaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e3f4b3f936f76bfac5b6e647f0249f3"><td class="memItemLeft" align="right" valign="top">QVector&lt; QLabel * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">labelsHeure</a></td></tr>
+<tr class="separator:a8e3f4b3f936f76bfac5b6e647f0249f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9597fef78d56298534cbe49cd668e738"><td class="memItemLeft" align="right" valign="top">Ui::EcranPool *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a></td></tr>
 <tr class="separator:a9597fef78d56298534cbe49cd668e738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>L'IHM de l'application. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00029">29</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00037">37</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
 </div><h2 class="groupheader">Documentation des énumérations membres</h2>
 <a id="a6be804b1a55f637c2aa72e0ed81f891d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6be804b1a55f637c2aa72e0ed81f891d">&#9670;&nbsp;</a></span>Ecran</h2>
@@ -179,17 +218,17 @@ Attributs privés</h2></td></tr>
 <tr><td class="fieldname"><a id="a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4"></a>NbEcrans&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00038">38</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">Accueil</a>,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b">Partie</a>,</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b">FinPartie</a>,</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4">NbEcrans</a></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    };</div>
-<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">EcranPool::Accueil</a></div><div class="ttdeci">@ Accueil</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00040">ecranpool.h:40</a></div></div>
-<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4">EcranPool::NbEcrans</a></div><div class="ttdeci">@ NbEcrans</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00044">ecranpool.h:43</a></div></div>
-<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b">EcranPool::FinPartie</a></div><div class="ttdeci">@ FinPartie</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00042">ecranpool.h:42</a></div></div>
-<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b">EcranPool::Partie</a></div><div class="ttdeci">@ Partie</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00041">ecranpool.h:41</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00047">47</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">Accueil</a>,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b">Partie</a>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b">FinPartie</a>,</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4">NbEcrans</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
+<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">EcranPool::Accueil</a></div><div class="ttdeci">@ Accueil</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00049">ecranpool.h:49</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4">EcranPool::NbEcrans</a></div><div class="ttdeci">@ NbEcrans</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00053">ecranpool.h:52</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b">EcranPool::FinPartie</a></div><div class="ttdeci">@ FinPartie</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00051">ecranpool.h:51</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b">EcranPool::Partie</a></div><div class="ttdeci">@ Partie</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00050">ecranpool.h:50</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -218,17 +257,31 @@ Attributs privés</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00018">18</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                    : <a class="code" href="class_q_widget.html">QWidget</a>(parent), <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>(<span class="keyword">new</span> Ui::EcranPool)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">initialiserEcran</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;}</div>
-<div class="ttc" id="aclass_ecran_pool_html_a05f160912c8eb1792ae1aca08325cfc1"><div class="ttname"><a href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">EcranPool::initialiserEcran</a></div><div class="ttdeci">void initialiserEcran()</div><div class="ttdoc">Initialise l'écran et affiche la fenêtre d'accueil.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00078">ecranpool.cpp:78</a></div></div>
-<div class="ttc" id="aclass_ecran_pool_html_a9597fef78d56298534cbe49cd668e738"><div class="ttname"><a href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">EcranPool::ui</a></div><div class="ttdeci">Ui::EcranPool * ui</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00051">ecranpool.h:51</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00021">21</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                                    :</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_q_widget.html">QWidget</a>(parent), <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>(<span class="keyword">new</span> Ui::EcranPool), <a class="code" href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">joueurs</a>(<span class="keyword">nullptr</span>), <a class="code" href="class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3">dureePartie</a>(0)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">initialiserEcran</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3">initialiserJoueurs</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_ecran_pool.html#a04d2215011acac5eb9385f1fe766d58f">initialiserHeure</a>();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b">initialiserDecompteManche</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef TEST_EcranPool</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2">initialiserRaccourcisClavier</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a04d2215011acac5eb9385f1fe766d58f"><div class="ttname"><a href="class_ecran_pool.html#a04d2215011acac5eb9385f1fe766d58f">EcranPool::initialiserHeure</a></div><div class="ttdeci">void initialiserHeure()</div><div class="ttdoc">Initialise l'affichage de l'heure.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00157">ecranpool.cpp:157</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a05f160912c8eb1792ae1aca08325cfc1"><div class="ttname"><a href="class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1">EcranPool::initialiserEcran</a></div><div class="ttdeci">void initialiserEcran()</div><div class="ttdoc">Initialise l'écran et affiche la fenêtre d'accueil.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00129">ecranpool.cpp:129</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a2a0fac6cd81e3e64bb25b8e64a3aac3b"><div class="ttname"><a href="class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b">EcranPool::initialiserDecompteManche</a></div><div class="ttdeci">void initialiserDecompteManche()</div><div class="ttdoc">Initialise le décompte d'une manche.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00171">ecranpool.cpp:171</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a2c9647a3e67d61180747dbaf17e0daaa"><div class="ttname"><a href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">EcranPool::joueurs</a></div><div class="ttdeci">Joueurs * joueurs</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00061">ecranpool.h:61</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a58f5e53f45b1ac3e52d1c10b3673fdf3"><div class="ttname"><a href="class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3">EcranPool::initialiserJoueurs</a></div><div class="ttdeci">void initialiserJoueurs()</div><div class="ttdoc">Initialise l'affichage de l'heure.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00148">ecranpool.cpp:148</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_a9597fef78d56298534cbe49cd668e738"><div class="ttname"><a href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">EcranPool::ui</a></div><div class="ttdeci">Ui::EcranPool * ui</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00060">ecranpool.h:60</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_ad55956c315343e5bca61d95fde6f75a3"><div class="ttname"><a href="class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3">EcranPool::dureePartie</a></div><div class="ttdeci">qint64 dureePartie</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00063">ecranpool.h:63</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_af591fdd1db40efcff09771a935cfc1a2"><div class="ttname"><a href="class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2">EcranPool::initialiserRaccourcisClavier</a></div><div class="ttdeci">void initialiserRaccourcisClavier()</div><div class="ttdoc">Méthode qui permet de créer des raccourcis clavier pour les tests des écrans.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00183">ecranpool.cpp:183</a></div></div>
 <div class="ttc" id="aclass_q_widget_html"><div class="ttname"><a href="class_q_widget.html">QWidget</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00078">initialiserEcran()</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00171">initialiserDecompteManche()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00129">initialiserEcran()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00157">initialiserHeure()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00148">initialiserJoueurs()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00183">initialiserRaccourcisClavier()</a>.</p>
 
 </div>
 </div>
@@ -250,17 +303,92 @@ Attributs privés</h2></td></tr>
 <p>Destructeur de la classe <a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a>. </p>
 <p>Libère les ressources de l'application </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00030">30</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00041">41</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">joueurs</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">delete</span> <a class="code" href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">joueurs</a>;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00051">ui</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00061">joueurs</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des fonctions membres</h2>
+<a id="a840f3bdbc18f8035e64e78d3a26e4cbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840f3bdbc18f8035e64e78d3a26e4cbf">&#9670;&nbsp;</a></span>afficherDecompteManche</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::afficherDecompteManche </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Affiche le décompte pour jouer. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">A faire:</a></b></dt><dd>Afficher le décompte </dd></dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00116">116</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00171">initialiserDecompteManche()</a>.</p>
+
+</div>
+</div>
+<a id="abfb2c54d5142285cdfd2b50a38ed1ff4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb2c54d5142285cdfd2b50a38ed1ff4">&#9670;&nbsp;</a></span>afficherDureePartie</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::afficherDureePartie </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Affiche la durée de le partie. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00104">104</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;{</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    ++<a class="code" href="class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3">dureePartie</a>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QString dureeFormatee =</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      QDateTime::fromTime_t(<a class="code" href="class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3">dureePartie</a>).toUTC().toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;labelDureePartie-&gt;setText(dureeFormatee);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00063">dureePartie</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00157">initialiserHeure()</a>.</p>
+
+</div>
+</div>
 <a id="af0f3cba32b3a2cace45be0fc47b93a5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af0f3cba32b3a2cace45be0fc47b93a5e">&#9670;&nbsp;</a></span>afficherEcran</h2>
 
@@ -287,14 +415,14 @@ Attributs privés</h2></td></tr>
 
 <p>Selectionne la fenêtre et l'affiche. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00040">40</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;ecrans-&gt;setCurrentIndex(ecran);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00053">53</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;ecrans-&gt;setCurrentIndex(ecran);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00051">ui</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00049">afficherEcranAcceuil()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00067">afficherEcranFinPartie()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00058">afficherEcranPartie()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00062">afficherEcranAcceuil()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00082">afficherEcranFinPartie()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00072">afficherEcranPartie()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00219">afficherEcranPrecedent()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00207">afficherEcranSuivant()</a>.</p>
 
 </div>
 </div>
@@ -323,15 +451,17 @@ Attributs privés</h2></td></tr>
 
 <p>Selectionne la fenêtre d'accueil. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00049">49</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::Accueil);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="ttc" id="aclass_ecran_pool_html_af0f3cba32b3a2cace45be0fc47b93a5e"><div class="ttname"><a href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">EcranPool::afficherEcran</a></div><div class="ttdeci">void afficherEcran(EcranPool::Ecran ecran)</div><div class="ttdoc">Selectionne la fenêtre et l'affiche.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00040">ecranpool.cpp:40</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00062">62</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::Accueil);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">afficherHeure</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a36d7988b7d3a84371ded9ccb9c138d38"><div class="ttname"><a href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">EcranPool::afficherHeure</a></div><div class="ttdeci">void afficherHeure()</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00092">ecranpool.cpp:92</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_af0f3cba32b3a2cace45be0fc47b93a5e"><div class="ttname"><a href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">EcranPool::afficherEcran</a></div><div class="ttdeci">void afficherEcran(EcranPool::Ecran ecran)</div><div class="ttdoc">Selectionne la fenêtre et l'affiche.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00053">ecranpool.cpp:53</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00040">afficherEcran()</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00078">initialiserEcran()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00129">initialiserEcran()</a>.</p>
 
 </div>
 </div>
@@ -360,12 +490,13 @@ Attributs privés</h2></td></tr>
 
 <p>Selectionne la fenêtre de fin de partie. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00067">67</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::FinPartie);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00082">82</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;{</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::FinPartie);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">afficherHeure</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00040">afficherEcran()</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>.</p>
 
 </div>
 </div>
@@ -394,12 +525,172 @@ Attributs privés</h2></td></tr>
 
 <p>Selectionne la fenêtre de la partie. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00058">58</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::Partie);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00072">72</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(EcranPool::Ecran::Partie);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">afficherHeure</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00040">afficherEcran()</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>.</p>
+
+</div>
+</div>
+<a id="ac683d73d0aa066b9fb5128856ab24ff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac683d73d0aa066b9fb5128856ab24ff9">&#9670;&nbsp;</a></span>afficherEcranPrecedent</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::afficherEcranPrecedent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode qui permet d'afficher l'écran précédent dans le QStackedWidget. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00219">219</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;{</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordtype">int</span> ecran = <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;ecrans-&gt;currentIndex();</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    --ecran;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keywordflow">if</span>(ecran &lt; <span class="keywordtype">int</span>(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">EcranPool::Accueil</a>))</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        ecran = int(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da65f9f264154761dbe5a9e1a54f5f929b">EcranPool::FinPartie</a>);</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a>(ecran));</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a6be804b1a55f637c2aa72e0ed81f891d"><div class="ttname"><a href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a></div><div class="ttdeci">Ecran</div><div class="ttdoc">Les différents écrans.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00047">ecranpool.h:48</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00049">Accueil</a>, <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, <a class="el" href="ecranpool_8h_source.html#l00051">FinPartie</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00183">initialiserRaccourcisClavier()</a>.</p>
+
+</div>
+</div>
+<a id="a747e94a5b213970d9d9bf95156f7c597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a747e94a5b213970d9d9bf95156f7c597">&#9670;&nbsp;</a></span>afficherEcranSuivant</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::afficherEcranSuivant </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode qui permet d'afficher l'écran suivant dans le QStackedWidget. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00207">207</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;{</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keywordtype">int</span> ecran = <a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a>(<a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;ecrans-&gt;currentIndex());</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    ++ecran;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    <span class="keywordflow">if</span>(ecran &gt;= <span class="keywordtype">int</span>(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4">EcranPool::NbEcrans</a>))</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        ecran = int(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04">EcranPool::Accueil</a>);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <a class="code" href="class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e">afficherEcran</a>(<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a>(ecran));</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00049">Accueil</a>, <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, <a class="el" href="ecranpool_8h_source.html#l00052">NbEcrans</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00183">initialiserRaccourcisClavier()</a>.</p>
+
+</div>
+</div>
+<a id="a36d7988b7d3a84371ded9ccb9c138d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d7988b7d3a84371ded9ccb9c138d38">&#9670;&nbsp;</a></span>afficherHeure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::afficherHeure </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00092">92</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    QString heureActuelle = QDateTime::currentDateTime().toString(<span class="stringliteral">&quot;hh:mm&quot;</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">// tous les écrans affichent l&#39;heure</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">labelsHeure</a>[<a class="code" href="class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d">EcranPool::Ecran</a>(<a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;ecrans-&gt;currentIndex())]-&gt;setText(</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      heureActuelle);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a8e3f4b3f936f76bfac5b6e647f0249f3"><div class="ttname"><a href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">EcranPool::labelsHeure</a></div><div class="ttdeci">QVector&lt; QLabel * &gt; labelsHeure</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00062">ecranpool.h:62</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00062">labelsHeure</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00062">afficherEcranAcceuil()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00082">afficherEcranFinPartie()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00072">afficherEcranPartie()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00157">initialiserHeure()</a>.</p>
+
+</div>
+</div>
+<a id="a2a0fac6cd81e3e64bb25b8e64a3aac3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a0fac6cd81e3e64bb25b8e64a3aac3b">&#9670;&nbsp;</a></span>initialiserDecompteManche()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::initialiserDecompteManche </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialise le décompte d'une manche. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00171">171</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;{</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    QTimer* minuteur = <span class="keyword">new</span> QTimer(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    minuteur-&gt;start(<a class="code" href="class_ecran_pool.html#ab16a111df81578c65287815cdea23395">INTERVALLE_SECONDE</a>);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    connect(minuteur, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">afficherDecompteManche</a>()));</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a840f3bdbc18f8035e64e78d3a26e4cbf"><div class="ttname"><a href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">EcranPool::afficherDecompteManche</a></div><div class="ttdeci">void afficherDecompteManche()</div><div class="ttdoc">Affiche le décompte pour jouer.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00116">ecranpool.cpp:116</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_ab16a111df81578c65287815cdea23395"><div class="ttname"><a href="class_ecran_pool.html#ab16a111df81578c65287815cdea23395">EcranPool::INTERVALLE_SECONDE</a></div><div class="ttdeci">static const int INTERVALLE_SECONDE</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8h_source.html#l00042">ecranpool.h:42</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00116">afficherDecompteManche()</a>, et <a class="el" href="ecranpool_8h_source.html#l00042">INTERVALLE_SECONDE</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00021">EcranPool()</a>.</p>
 
 </div>
 </div>
@@ -428,25 +719,266 @@ Attributs privés</h2></td></tr>
 
 <p>Initialise l'écran et affiche la fenêtre d'accueil. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00078">78</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;{</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#ifdef PLEIN_ECRAN</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    showFullScreen();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    showMaximized();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_ecran_pool.html#a06faffdfcf5d282e8491969db9510374">afficherEcranAcceuil</a>();</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
-<div class="ttc" id="aclass_ecran_pool_html_a06faffdfcf5d282e8491969db9510374"><div class="ttname"><a href="class_ecran_pool.html#a06faffdfcf5d282e8491969db9510374">EcranPool::afficherEcranAcceuil</a></div><div class="ttdeci">void afficherEcranAcceuil()</div><div class="ttdoc">Selectionne la fenêtre d'accueil.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00049">ecranpool.cpp:49</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00129">129</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;{</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="comment">// tous les écrans affichent l&#39;heure</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">labelsHeure</a>.push_back(<a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;labelHeureAccueil);   <span class="comment">// dans l&#39;écran Accueil</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">labelsHeure</a>.push_back(<a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;labelHeurePartie);    <span class="comment">// dans l&#39;écran Partie</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3">labelsHeure</a>.push_back(<a class="code" href="class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738">ui</a>-&gt;labelHeureFinPartie); <span class="comment">// dans l&#39;écran FinPartie</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#ifdef PLEIN_ECRAN</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    showFullScreen();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    showMaximized();</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="class_ecran_pool.html#a06faffdfcf5d282e8491969db9510374">afficherEcranAcceuil</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a06faffdfcf5d282e8491969db9510374"><div class="ttname"><a href="class_ecran_pool.html#a06faffdfcf5d282e8491969db9510374">EcranPool::afficherEcranAcceuil</a></div><div class="ttdeci">void afficherEcranAcceuil()</div><div class="ttdoc">Selectionne la fenêtre d'accueil.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00062">ecranpool.cpp:62</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00049">afficherEcranAcceuil()</a>, et <a class="el" href="ecranpool_8h_source.html#l00051">ui</a>.</p>
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00062">afficherEcranAcceuil()</a>, <a class="el" href="ecranpool_8h_source.html#l00062">labelsHeure</a>, et <a class="el" href="ecranpool_8h_source.html#l00060">ui</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00018">EcranPool()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00021">EcranPool()</a>.</p>
+
+</div>
+</div>
+<a id="a04d2215011acac5eb9385f1fe766d58f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04d2215011acac5eb9385f1fe766d58f">&#9670;&nbsp;</a></span>initialiserHeure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::initialiserHeure </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialise l'affichage de l'heure. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00157">157</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;{</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    QTimer* horloge = <span class="keyword">new</span> QTimer(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    connect(horloge, &amp;QTimer::timeout, <span class="keyword">this</span>, &amp;<a class="code" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">EcranPool::afficherHeure</a>);</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    connect(horloge, &amp;QTimer::timeout, <span class="keyword">this</span>, &amp;<a class="code" href="class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4">EcranPool::afficherDureePartie</a>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    horloge-&gt;start(<a class="code" href="class_ecran_pool.html#ab16a111df81578c65287815cdea23395">INTERVALLE_SECONDE</a>);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">afficherHeure</a>();</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4">afficherDureePartie</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_abfb2c54d5142285cdfd2b50a38ed1ff4"><div class="ttname"><a href="class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4">EcranPool::afficherDureePartie</a></div><div class="ttdeci">void afficherDureePartie()</div><div class="ttdoc">Affiche la durée de le partie.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00104">ecranpool.cpp:104</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00104">afficherDureePartie()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>, et <a class="el" href="ecranpool_8h_source.html#l00042">INTERVALLE_SECONDE</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00021">EcranPool()</a>.</p>
+
+</div>
+</div>
+<a id="a58f5e53f45b1ac3e52d1c10b3673fdf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f5e53f45b1ac3e52d1c10b3673fdf3">&#9670;&nbsp;</a></span>initialiserJoueurs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::initialiserJoueurs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialise l'affichage de l'heure. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00148">148</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="code" href="class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa">joueurs</a> = <span class="keyword">new</span> <a class="code" href="class_joueurs.html">Joueurs</a>();</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;}</div>
+<div class="ttc" id="aclass_joueurs_html"><div class="ttname"><a href="class_joueurs.html">Joueurs</a></div><div class="ttdoc">Déclare les joueurs de la partie.</div><div class="ttdef"><b>Definition:</b> <a href="joueurs_8h_source.html#l00011">joueurs.h:12</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8h_source.html#l00061">joueurs</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00021">EcranPool()</a>.</p>
+
+</div>
+</div>
+<a id="af591fdd1db40efcff09771a935cfc1a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af591fdd1db40efcff09771a935cfc1a2">&#9670;&nbsp;</a></span>initialiserRaccourcisClavier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void EcranPool::initialiserRaccourcisClavier </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Méthode qui permet de créer des raccourcis clavier pour les tests des écrans. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8cpp_source.html#l00183">183</a> du fichier <a class="el" href="ecranpool_8cpp_source.html">ecranpool.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="comment">// Flèche droite pour écran suivant</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    QAction* actionAllerDroite = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    actionAllerDroite-&gt;setShortcut(QKeySequence(Qt::Key_Right));</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    addAction(actionAllerDroite);</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    connect(actionAllerDroite,</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;            SIGNAL(triggered()),</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            SLOT(<a class="code" href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">afficherEcranSuivant</a>()));</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="comment">// Flèche gauche pour écran précédent</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    QAction* actionAllerGauche = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    actionAllerGauche-&gt;setShortcut(QKeySequence(Qt::Key_Left));</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    addAction(actionAllerGauche);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    connect(actionAllerGauche,</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            SIGNAL(triggered()),</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            SLOT(<a class="code" href="class_ecran_pool.html#ac683d73d0aa066b9fb5128856ab24ff9">afficherEcranPrecedent</a>()));</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
+<div class="ttc" id="aclass_ecran_pool_html_a747e94a5b213970d9d9bf95156f7c597"><div class="ttname"><a href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">EcranPool::afficherEcranSuivant</a></div><div class="ttdeci">void afficherEcranSuivant()</div><div class="ttdoc">Méthode qui permet d'afficher l'écran suivant dans le QStackedWidget.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00207">ecranpool.cpp:207</a></div></div>
+<div class="ttc" id="aclass_ecran_pool_html_ac683d73d0aa066b9fb5128856ab24ff9"><div class="ttname"><a href="class_ecran_pool.html#ac683d73d0aa066b9fb5128856ab24ff9">EcranPool::afficherEcranPrecedent</a></div><div class="ttdeci">void afficherEcranPrecedent()</div><div class="ttdoc">Méthode qui permet d'afficher l'écran précédent dans le QStackedWidget.</div><div class="ttdef"><b>Definition:</b> <a href="ecranpool_8cpp_source.html#l00219">ecranpool.cpp:219</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="ecranpool_8cpp_source.html#l00219">afficherEcranPrecedent()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00207">afficherEcranSuivant()</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00021">EcranPool()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des champs</h2>
+<a id="ad55956c315343e5bca61d95fde6f75a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad55956c315343e5bca61d95fde6f75a3">&#9670;&nbsp;</a></span>dureePartie</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">qint64 EcranPool::dureePartie</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00063">63</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00104">afficherDureePartie()</a>.</p>
+
+</div>
+</div>
+<a id="ab16a111df81578c65287815cdea23395"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab16a111df81578c65287815cdea23395">&#9670;&nbsp;</a></span>INTERVALLE_SECONDE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int EcranPool::INTERVALLE_SECONDE = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00042">42</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00171">initialiserDecompteManche()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00157">initialiserHeure()</a>.</p>
+
+</div>
+</div>
+<a id="a2c9647a3e67d61180747dbaf17e0daaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c9647a3e67d61180747dbaf17e0daaa">&#9670;&nbsp;</a></span>joueurs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_joueurs.html">Joueurs</a>* EcranPool::joueurs</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00061">61</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00148">initialiserJoueurs()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00041">~EcranPool()</a>.</p>
+
+</div>
+</div>
+<a id="a8e3f4b3f936f76bfac5b6e647f0249f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e3f4b3f936f76bfac5b6e647f0249f3">&#9670;&nbsp;</a></span>labelsHeure</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector&lt;QLabel*&gt; EcranPool::labelsHeure</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00062">62</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00129">initialiserEcran()</a>.</p>
+
+</div>
+</div>
 <a id="a9597fef78d56298534cbe49cd668e738"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9597fef78d56298534cbe49cd668e738">&#9670;&nbsp;</a></span>ui</h2>
 
@@ -467,9 +999,9 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00051">51</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00060">60</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00040">afficherEcran()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00078">initialiserEcran()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00030">~EcranPool()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="ecranpool_8cpp_source.html#l00104">afficherDureePartie()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00053">afficherEcran()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00219">afficherEcranPrecedent()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00207">afficherEcranSuivant()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00092">afficherHeure()</a>, <a class="el" href="ecranpool_8cpp_source.html#l00129">initialiserEcran()</a>, et <a class="el" href="ecranpool_8cpp_source.html#l00041">~EcranPool()</a>.</p>
 
 </div>
 </div>
@@ -484,7 +1016,7 @@ Attributs privés</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_ecran_pool.html">EcranPool</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 23:01:06 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mercredi 24 Mai 2023 05:46:40 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

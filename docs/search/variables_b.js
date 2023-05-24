@@ -1,4 +1,21 @@
 var searchData=
 [
-  ['rouge_213',['ROUGE',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a8b6776b3aa899b674fe7317b212685b5',1,'com.example.pluginpool.BlackBall.ROUGE()'],['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a233dc790865713086cf618806e3dae9c',1,'com.example.pluginpool.GestionManche.ROUGE()']]]
+  ['nb_5fbilles_5fcouleur_480',['NB_BILLES_COULEUR',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5e7071e85bf21cf8c050c277e3ebe2ec',1,'com::example::pluginpool::BlackBall']]],
+  ['nb_5fcouleurs_481',['NB_COULEURS',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5ef374cdb340e41063bfaba7898708c9',1,'com::example::pluginpool::BlackBall']]],
+  ['nb_5fgroupes_5fbilles_482',['NB_GROUPES_BILLES',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a6cf972be668e36c55d5fd3d4d0739f04',1,'com::example::pluginpool::BlackBall']]],
+  ['nb_5fjoueurs_483',['NB_JOUEURS',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a243d8f8b080db9b4dea2d4084a0cb40c',1,'com::example::pluginpool::BlackBall']]],
+  ['nb_5fpaliers_484',['NB_PALIERS',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a1084c71aeda7849d3443627c9b846b35',1,'com::example::pluginpool::Manche']]],
+  ['nb_5fpoches_485',['NB_POCHES',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#ab1b00c879de30b817094e2b29d5ba5be',1,'com::example::pluginpool::BlackBall']]],
+  ['nbbillesempochees_486',['nbBillesEmpochees',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a4e05ec78e07f2f374e181fc646c39e9e',1,'com::example::pluginpool::Manche']]],
+  ['nbmanches_487',['nbManches',['../classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html#ae4fdf24aaac06874adc1965aed9795ee',1,'com::example::pluginpool::HistoriqueJoueur']]],
+  ['nbvictoires_488',['nbVictoires',['../classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html#ae092d9f7140788d9ce007bf46e7e90a6',1,'com::example::pluginpool::HistoriqueJoueur']]],
+  ['noire_489',['NOIRE',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#aead71e3520011d806da2061d2c066d6e',1,'com::example::pluginpool::BlackBall']]],
+  ['nomjoueur_490',['nomJoueur',['../classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html#ac7ca58557e43f45625694eaaaf65220b',1,'com::example::pluginpool::HistoriqueJoueur']]],
+  ['nomjoueurs_491',['nomJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a76757005c11552d9c15680519df53468',1,'com::example::pluginpool::Manche']]],
+  ['noms_492',['noms',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#ae2117845d24b04e5687587ecb64f7489',1,'com::example::pluginpool::Historique']]],
+  ['noms_5fbilles_493',['NOMS_BILLES',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a8f0975c8e9d682bde6d2ec9219fdb547',1,'com::example::pluginpool::BlackBall']]],
+  ['nomsjoueurs_494',['nomsJoueurs',['../class_joueurs.html#a491f62a7d2dc6a632b66a096d9d7714e',1,'Joueurs::nomsJoueurs()'],['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a57033096e3655d125c4af697f08b3ebf',1,'com.example.pluginpool.ConfigurationManche.nomsJoueurs()'],['../classcom_1_1example_1_1pluginpool_1_1_historique_manche.html#aa0842b8fa7ef108d3327be87c4079496',1,'com.example.pluginpool.HistoriqueManche.nomsJoueurs()']]],
+  ['nomsrecherches_495',['nomsRecherches',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#af93f865e4c828603673948dc97585f46',1,'com::example::pluginpool::Historique']]],
+  ['numero_5ftable_5fdefaut_496',['NUMERO_TABLE_DEFAUT',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#ade79a7a5262b004ce0f35d556238f126',1,'com::example::pluginpool::Manche']]],
+  ['numerotable_497',['numeroTable',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#ab84afbe8dc1770e0a4a1ccad802f0958',1,'com::example::pluginpool::Manche']]]
 ];

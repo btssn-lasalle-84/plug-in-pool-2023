@@ -8,6 +8,7 @@
   - [Documentation du code](#documentation-du-code)
   - [Recette](#recette)
   - [Versions](#versions)
+    - [0.2](#02)
     - [0.1](#01)
   - [Annexes](#annexes)
     - [Blackball](#blackball)
@@ -15,6 +16,7 @@
       - [Fautes](#fautes)
       - [Fin de jeu](#fin-de-jeu)
   - [Auteurs](#auteurs)
+
 
 ---
 
@@ -34,15 +36,37 @@ https://btssn-lasalle-84.github.io/plug-in-pool-2023/
 
 ## Recette
 
-| Fonctionnalité                                   | Oui | Non |
+| Fonctionnalité (Android)                         | Oui | Non |
 | ------------------------------------------------ |:---:|:---:|
 | Configurer une manche                            |  X  |     |
-| Jouer une manche et afficher son déroulement     |     |  X  |
-| Enregistrer les données de jeu                   |     |  X  |
-| Afficher les statistiques des manches effectuées |     |  X  |
-| Communiquer entre les modules                    |     |  X  |
+| Jouer une manche et afficher son déroulement     |  X  |     |
+| Enregistrer les données de jeu                   |  X  |     |
+| Afficher les statistiques des manches effectuées |     |     |
+| Communiquer entre les modules                    |  /  |  /  |
 
 ## Versions
+
+![](images/jira-livraisons.png)
+
+### 0.2
+
+![](images/jira-tickets-v0.2.png)
+
+- Android :
+
+![](images/screenshot-android-accueil-v0.2.png)
+
+![](images/screenshot-android-configuration-v0.2.png)
+
+![](images/screenshot-android-manche-v0.2.png)
+
+- Qt :
+
+![](images/screenshot-qt-accueil-v0.2.png)
+
+![](images/screenshot-qt-partie-v0.2.png)
+
+![](images/screenshot-qt-fin-v0.2.png)
 
 ### 0.1
 

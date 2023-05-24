@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['gestionmanche_161',['GestionManche',['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a46e011181a10d21c51c53de57debf68a',1,'com::example::pluginpool::GestionManche']]]
+  ['deconnecter_343',['deconnecter',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#ad8687d14d8cc2e92f6738179aae64804',1,'com::example::pluginpool::Communication']]],
+  ['demarrercomptearebours_344',['demarrerCompteARebours',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a7d0a755b742cdc036aa8dbe2aafbaba5',1,'com::example::pluginpool::Manche']]]
 ];

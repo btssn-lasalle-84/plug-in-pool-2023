@@ -2,12 +2,15 @@ var files_dup =
 [
     [ "AndroidManifest.xml", "_android_manifest_8xml.html", null ],
     [ "backup_rules.xml", "backup__rules_8xml.html", null ],
+    [ "BaseDeDonnees.java", "_base_de_donnees_8java.html", [
+      [ "BaseDeDonnees", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees" ]
+    ] ],
     [ "BlackBall.java", "_black_ball_8java.html", [
       [ "BlackBall", "classcom_1_1example_1_1pluginpool_1_1_black_ball.html", "classcom_1_1example_1_1pluginpool_1_1_black_ball" ]
     ] ],
     [ "colors.xml", "colors_8xml.html", null ],
-    [ "Compteur.java", "_compteur_8java.html", [
-      [ "Compteur", "classcom_1_1example_1_1pluginpool_1_1_compteur.html", "classcom_1_1example_1_1pluginpool_1_1_compteur" ]
+    [ "Communication.java", "_communication_8java.html", [
+      [ "Communication", "classcom_1_1example_1_1pluginpool_1_1_communication.html", "classcom_1_1example_1_1pluginpool_1_1_communication" ]
     ] ],
     [ "configuration_manche.xml", "configuration__manche_8xml.html", null ],
     [ "ConfigurationManche.java", "_configuration_manche_8java.html", [
@@ -26,13 +29,30 @@ var files_dup =
     [ "ExampleUnitTest.java", "_example_unit_test_8java.html", [
       [ "ExampleUnitTest", "classcom_1_1example_1_1pluginpool_1_1_example_unit_test.html", "classcom_1_1example_1_1pluginpool_1_1_example_unit_test" ]
     ] ],
-    [ "GestionManche.java", "_gestion_manche_8java.html", [
-      [ "GestionManche", "classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html", "classcom_1_1example_1_1pluginpool_1_1_gestion_manche" ]
+    [ "fenetre_fin_de_manche.xml", "fenetre__fin__de__manche_8xml.html", null ],
+    [ "fenetre_historique_joueur.xml", "fenetre__historique__joueur_8xml.html", null ],
+    [ "fenetre_historique_manche.xml", "fenetre__historique__manche_8xml.html", null ],
+    [ "FinDeManche.java", "_fin_de_manche_8java.html", [
+      [ "FinDeManche", "classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html", "classcom_1_1example_1_1pluginpool_1_1_fin_de_manche" ]
+    ] ],
+    [ "Historique.java", "_historique_8java.html", [
+      [ "Historique", "classcom_1_1example_1_1pluginpool_1_1_historique.html", "classcom_1_1example_1_1pluginpool_1_1_historique" ]
+    ] ],
+    [ "historique.xml", "historique_8xml.html", null ],
+    [ "HistoriqueJoueur.java", "_historique_joueur_8java.html", [
+      [ "HistoriqueJoueur", "classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html", "classcom_1_1example_1_1pluginpool_1_1_historique_joueur" ]
+    ] ],
+    [ "HistoriqueManche.java", "_historique_manche_8java.html", [
+      [ "HistoriqueManche", "classcom_1_1example_1_1pluginpool_1_1_historique_manche.html", "classcom_1_1example_1_1pluginpool_1_1_historique_manche" ]
     ] ],
     [ "ic_launcher.xml", "ic__launcher_8xml.html", null ],
     [ "ic_launcher_background.xml", "ic__launcher__background_8xml.html", null ],
     [ "ic_launcher_foreground.xml", "ic__launcher__foreground_8xml.html", null ],
     [ "ic_launcher_round.xml", "ic__launcher__round_8xml.html", null ],
+    [ "joueurs.cpp", "joueurs_8cpp.html", null ],
+    [ "joueurs.h", "joueurs_8h.html", [
+      [ "Joueurs", "class_joueurs.html", "class_joueurs" ]
+    ] ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "Manche.java", "_manche_8java.html", [
       [ "Manche", "classcom_1_1example_1_1pluginpool_1_1_manche.html", "classcom_1_1example_1_1pluginpool_1_1_manche" ]
