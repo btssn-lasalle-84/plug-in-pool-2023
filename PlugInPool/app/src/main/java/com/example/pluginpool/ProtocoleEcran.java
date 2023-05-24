@@ -7,7 +7,7 @@ package com.example.pluginpool;
 public class ProtocoleEcran {
 
     public static char DELIMITEUR_DEBUT = "$".charAt(0);
-    public static char DELIMITEUR_CHAMPS = "$".charAt(0);
+    public static char DELIMITEUR_CHAMPS = ";".charAt(0);
     public static char DELIMITEUR_FIN = "\n".charAt(0);
 
     public static String TABLES = "0123";
