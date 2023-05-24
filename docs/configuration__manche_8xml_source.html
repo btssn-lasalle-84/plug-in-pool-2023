@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -236,66 +236,67 @@ $(document).ready(function(){initNavTree('configuration__manche_8xml_source.html
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;0dp&quot;</span></div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                <span class="keyword">android:layout_weight</span>=<span class="stringliteral">&quot;0.1&quot;</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <span class="keyword">android:background</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                <span class="keyword">android:background</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;                <span class="keyword">android:contentDescription</span>=<span class="stringliteral">&quot;@string/bouton_actualiser&quot;</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                <span class="keyword">android:scaleType</span>=<span class="stringliteral">&quot;fitCenter&quot;</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                <span class="keyword">android:src</span>=<span class="stringliteral">&quot;@drawable/bouton_actualiser&quot;</span> /&gt;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        &lt;<span class="keywordtype">LinearLayout</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keyword">android:orientation</span>=<span class="stringliteral">&quot;horizontal&quot;</span>&gt;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            &lt;<span class="keywordtype">RadioGroup</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/groupeBoutonsTables&quot;</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;match_parent&quot;</span>&gt;</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable1&quot;</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Table n°1&quot;</span> /&gt;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable2&quot;</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Table n°2&quot;</span> /&gt;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160; </div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable3&quot;</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Table n°3&quot;</span> /&gt;</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable4&quot;</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Table n°4&quot;</span> /&gt;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            &lt;/<span class="keywordtype">RadioGroup</span>&gt;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160; </div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        &lt;<span class="keywordtype">Button</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonSuivant&quot;</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Suivant&quot;</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keyword">android:textSize</span>=<span class="stringliteral">&quot;16sp&quot;</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keyword">android:layout_margin</span>=<span class="stringliteral">&quot;8dp&quot;</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keyword">android:background</span>=<span class="stringliteral">&quot;#112233&quot;</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keyword">android:layout_alignParentBottom</span>=<span class="stringliteral">&quot;true&quot;</span>/&gt;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;&lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                <span class="keyword">android:src</span>=<span class="stringliteral">&quot;@drawable/bouton_actualiser&quot;</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                <span class="keyword">android:visibility</span>=<span class="stringliteral">&quot;invisible&quot;</span>/&gt;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        &lt;<span class="keywordtype">LinearLayout</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keyword">android:orientation</span>=<span class="stringliteral">&quot;horizontal&quot;</span>&gt;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            &lt;<span class="keywordtype">RadioGroup</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/groupeBoutonsTables&quot;</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;match_parent&quot;</span>&gt;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable1&quot;</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;pool-1&quot;</span> /&gt;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable2&quot;</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;pool-2&quot;</span> /&gt;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable3&quot;</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;pool-3&quot;</span> /&gt;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                &lt;<span class="keywordtype">RadioButton</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;                    <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonTable4&quot;</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;                    <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;                    <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;                    <span class="keyword">android:buttonTint</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;                    <span class="keyword">android:text</span>=<span class="stringliteral">&quot;pool-4&quot;</span> /&gt;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            &lt;/<span class="keywordtype">RadioGroup</span>&gt;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        &lt;<span class="keywordtype">Button</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keyword">android:id</span>=<span class="stringliteral">&quot;@+id/boutonSuivant&quot;</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;            <span class="keyword">android:layout_width</span>=<span class="stringliteral">&quot;match_parent&quot;</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;            <span class="keyword">android:layout_height</span>=<span class="stringliteral">&quot;wrap_content&quot;</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            <span class="keyword">android:text</span>=<span class="stringliteral">&quot;Suivant&quot;</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keyword">android:textSize</span>=<span class="stringliteral">&quot;16sp&quot;</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;            <span class="keyword">android:layout_margin</span>=<span class="stringliteral">&quot;8dp&quot;</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            <span class="keyword">android:backgroundTint</span>=<span class="stringliteral">&quot;@color/bleu&quot;</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            <span class="keyword">android:layout_alignParentBottom</span>=<span class="stringliteral">&quot;true&quot;</span>/&gt;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    &lt;/<span class="keywordtype">LinearLayout</span>&gt;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;&lt;/<span class="keywordtype">androidx.constraintlayout.widget.ConstraintLayout</span>&gt;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- HTML footer for doxygen 1.9.1-->
@@ -303,7 +304,7 @@ $(document).ready(function(){initNavTree('configuration__manche_8xml_source.html
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_2513b1ef193f295f0393046e8f05dd2c.html">PlugInPool</a></li><li class="navelem"><a class="el" href="dir_71eaeaf4b1f6df7fe843586f692a9c08.html">app</a></li><li class="navelem"><a class="el" href="dir_a2f5a94aec2f9053f793abd834c5b554.html">src</a></li><li class="navelem"><a class="el" href="dir_bf60d68db589fa3b852dff0da76cca8e.html">main</a></li><li class="navelem"><a class="el" href="dir_7824722f1627377f6baaa3778648ed26.html">res</a></li><li class="navelem"><a class="el" href="dir_dcbbda0922875c498e4c6a5d47693bf6.html">layout</a></li><li class="navelem"><a class="el" href="configuration__manche_8xml.html">configuration_manche.xml</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 23:01:06 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mercredi 24 Mai 2023 05:46:40 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['initialiserattributs_162',['initialiserAttributs',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#add812377413e373b83c1bee7f306eb07',1,'com.example.pluginpool.ConfigurationManche.initialiserAttributs()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a98716e9a8eb9ac7d3076b34efe902345',1,'com.example.pluginpool.Manche.initialiserAttributs()']]],
-  ['initialiserecran_163',['initialiserEcran',['../class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1',1,'EcranPool']]],
-  ['initialiserressources_164',['initialiserRessources',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#abd003d24a36724eb757c7942162b00d1',1,'com.example.pluginpool.ConfigurationManche.initialiserRessources()'],['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a63189b12cf30c6156f5ec4ceef612ce8',1,'com.example.pluginpool.EcranPrincipal.initialiserRessources()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a0fa63341ecdb1b8120c51c18fee2a607',1,'com.example.pluginpool.Manche.initialiserRessources()']]]
+  ['ecranpool_345',['EcranPool',['../class_ecran_pool.html#a3ea2f80b89371b7befca3fa020581ebe',1,'EcranPool']]],
+  ['empocherbilleblanche_346',['empocherBilleBlanche',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a91a5acf163a1b80b3fb68ae4ebc2cf95',1,'com::example::pluginpool::Manche']]],
+  ['empocherbillecouleur_347',['empocherBilleCouleur',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a2e6e72a4514e1ab37f4d6cddcb54006d',1,'com::example::pluginpool::Manche']]],
+  ['empocherbillenoire_348',['empocherBilleNoire',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a0c4e2c12b275ac3e63179f12a254e932',1,'com::example::pluginpool::Manche']]],
+  ['envoyer_349',['envoyer',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#af1bb7ebbca0b78a6926326f5488fce35',1,'com::example::pluginpool::Communication']]],
+  ['estconfiguree_350',['estConfiguree',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a36dd62768bc35f6c81d3101c99d209d4',1,'com::example::pluginpool::ConfigurationManche']]]
 ];

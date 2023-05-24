@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gestionmanche_200',['gestionManche',['../classcom_1_1example_1_1pluginpool_1_1_compteur.html#a43dd229ab1ebf495aac5502d6fe6ef14',1,'com.example.pluginpool.Compteur.gestionManche()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a0eb13b9010cfc7938e51e7d562aa83cb',1,'com.example.pluginpool.Manche.gestionManche()']]]
+  ['handler_462',['handler',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a41deb69a7110b4046c7bfbdc73a2beac',1,'com.example.pluginpool.Communication.handler()'],['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a95453f76f69955e1d4ab573e5abc36f0',1,'com.example.pluginpool.ConfigurationManche.handler()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a119f492768661419e880972fdef84da9',1,'com.example.pluginpool.Manche.handler()']]]
 ];

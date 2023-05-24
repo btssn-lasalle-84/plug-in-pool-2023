@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -89,22 +89,70 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#add812377413e373b83c1bee7f306eb07">com.example.pluginpool.ConfigurationManche.initialiserAttributs</a>  ()</dt>
-<dd><a class="anchor" id="_todo000001"></a>initialiser nomsJoueur à partir de la base de donnees  </dd>
-<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#abd003d24a36724eb757c7942162b00d1">com.example.pluginpool.ConfigurationManche.initialiserRessources</a>  ()</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000002"></a>rafraichir tables en attente de connexion </p>
-<p class="interdd"><a class="anchor" id="_todo000003"></a>seConnecter() </p>
-<p class="interdd"><a class="anchor" id="_todo000004"></a>enregistrer les noms, instancier <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html" title="GestionManche définit l&#39;état d&#39;une manche et regroupe l&#39;ensemble des méthodes déclenchées par les tra...">GestionManche</a>? </p>
-<p class="enddd"><a class="anchor" id="_todo000005"></a>afficher un message d'erreur ?  </p>
-</dd>
-<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a63189b12cf30c6156f5ec4ceef612ce8">com.example.pluginpool.EcranPrincipal.initialiserRessources</a>  ()</dt>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5099c148b9a55ab0a90d5ed04fdc7383">com.example.pluginpool.BaseDeDonnees.CONSTANTE_ELO1</a>  </dt>
+<dd><a class="anchor" id="_todo000008"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#af801ac6d522400add72f0d2201086cf2">com.example.pluginpool.BaseDeDonnees.CONSTANTE_ELO2</a>  </dt>
+<dd><a class="anchor" id="_todo000009"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ab27e913e8217f6532932ba5b9591493e">com.example.pluginpool.BaseDeDonnees.PARTIES</a>  </dt>
+<dd><a class="anchor" id="_todo000005"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a0ef5e2634f2992be267db8e5e61a8970">com.example.pluginpool.BaseDeDonnees.SCORE_ELO</a>  </dt>
+<dd><a class="anchor" id="_todo000007"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a8bd3c5b4321f2ec265ca419fed0c888f">com.example.pluginpool.BaseDeDonnees.VICTOIRES</a>  </dt>
 <dd><a class="anchor" id="_todo000006"></a>  </dd>
-<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#ad99b2b6c6c9ae9e923c961ff6782919b">com.example.pluginpool.GestionManche.traiterTrame</a>  (int trame)</dt>
-<dd><p class="startdd"><a class="anchor" id="_todo000007"></a>JoueurActif a gagné </p>
-<p class="interdd"><a class="anchor" id="_todo000008"></a>joueurActif a perdu </p>
-<p class="interdd"><a class="anchor" id="_todo000009"></a>redémarrer compteur </p>
-<p class="enddd"><a class="anchor" id="_todo000010"></a>redémarrer compteur </p>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a8f0975c8e9d682bde6d2ec9219fdb547">com.example.pluginpool.BlackBall.NOMS_BILLES</a>  </dt>
+<dd><a class="anchor" id="_todo000010"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a64539c17b6a60a6c24d994d278326c1a">com.example.pluginpool.Communication.rechercherTables</a>  ()</dt>
+<dd><a class="anchor" id="_todo000011"></a>Rechercher les tables  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#abd003d24a36724eb757c7942162b00d1">com.example.pluginpool.ConfigurationManche.initialiserRessources</a>  ()</dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000012"></a>rafraichir tables en attente de connexion </p>
+<p class="enddd"><a class="anchor" id="_todo000013"></a>afficher un message d'erreur ?  </p>
 </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a6c942e330300aa01e517c1a26caa76f7">com.example.pluginpool.Historique.adaptateurCategoriesRecherche</a>  </dt>
+<dd><a class="anchor" id="_todo000014"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a093da6635d57b7f7891cb9b5fb15bae7">com.example.pluginpool.Historique.adaptateurListeDeroulante</a>  </dt>
+<dd><a class="anchor" id="_todo000021"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a6b645ac87ffa3ba0f158a4f7a386c0b0">com.example.pluginpool.Historique.barreRecherche</a>  </dt>
+<dd><a class="anchor" id="_todo000022"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#aa05e42b321d67b51090d839d2b63fe84">com.example.pluginpool.Historique.boutonMenu</a>  </dt>
+<dd><a class="anchor" id="_todo000024"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#ae71d49c1fcaaedad06548d64102e2fc6">com.example.pluginpool.Historique.boutonRechercher</a>  </dt>
+<dd><a class="anchor" id="_todo000025"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#af5343f9ce9850dccd039fcb27b79462c">com.example.pluginpool.Historique.categoriesRecherche</a>  </dt>
+<dd><a class="anchor" id="_todo000023"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a7aa29492b4913a5092bd42a047bb4150">com.example.pluginpool.Historique.filtresRecherche</a>  </dt>
+<dd><a class="anchor" id="_todo000019"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a4baa10866b23d5e5435e5cd0b91d1696">com.example.pluginpool.Historique.initialiserRessources</a>  ()</dt>
+<dd><p class="startdd"><a class="anchor" id="_todo000026"></a> </p>
+<p class="enddd"><a class="anchor" id="_todo000027"></a>  </p>
+</dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a2e8c26ad1822b14f16c943d11f1aca60">com.example.pluginpool.Historique.listeDeroulante</a>  </dt>
+<dd><a class="anchor" id="_todo000020"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a5e28875c02c7271397629f2c38439297">com.example.pluginpool.Historique.manches</a>  </dt>
+<dd><a class="anchor" id="_todo000017"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a775df045e92a0766d8f828c47bbd45c0">com.example.pluginpool.Historique.manchesRecherchees</a>  </dt>
+<dd><a class="anchor" id="_todo000018"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#ae2117845d24b04e5687587ecb64f7489">com.example.pluginpool.Historique.noms</a>  </dt>
+<dd><a class="anchor" id="_todo000015"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#af93f865e4c828603673948dc97585f46">com.example.pluginpool.Historique.nomsRecherches</a>  </dt>
+<dd><a class="anchor" id="_todo000016"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a548e1404d73408096bf348560cc9c32f">com.example.pluginpool.Manche.connexionTable</a>  </dt>
+<dd><a class="anchor" id="_todo000030"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a91a5acf163a1b80b3fb68ae4ebc2cf95">com.example.pluginpool.Manche.empocherBilleBlanche</a>  ()</dt>
+<dd><a class="anchor" id="_todo000031"></a>Ask client!  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a0d887200e1767b6d139215a90d67ecd4">com.example.pluginpool.Manche.fenetreFinDeManche</a>  </dt>
+<dd><a class="anchor" id="_todo000029"></a>  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a001344687517b3ba2f238a53b412d997">com.example.pluginpool.Manche.recommencer</a>  ()</dt>
+<dd><a class="anchor" id="_todo000032"></a>réinit compteur à faire ou déjà fait dans une des fonctions?  </dd>
+<dt>Global(e) <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#ac77c81af8c32f9bd9c0cf6893f96ad0f">com.example.pluginpool.Manche.table</a>  </dt>
+<dd><a class="anchor" id="_todo000028"></a>  </dd>
+<dt>Global(e) <a class="el" href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">EcranPool::afficherDecompteManche</a>  ()</dt>
+<dd><a class="anchor" id="_todo000001"></a>Afficher le décompte  </dd>
+<dt>Global(e) <a class="el" href="class_joueurs.html#a19449e9d7555e963128b281177736b41">Joueurs::ajouterJoueur</a>  (QString nomsJoueur)</dt>
+<dd><a class="anchor" id="_todo000004"></a>Ajouter le nomJoueur au nomsJoueurs  </dd>
+<dt>Global(e) <a class="el" href="class_joueurs.html#a865aaa42d6fed682c03a5f4c3f9db38e">Joueurs::getJoueurs</a>  ()</dt>
+<dd><a class="anchor" id="_todo000003"></a>Retourner les joueurs  </dd>
+<dt>Global(e) <a class="el" href="class_joueurs.html#ada6e9fe9003193efde6cad13635cc1e3">Joueurs::Joueurs</a>  ()</dt>
+<dd><a class="anchor" id="_todo000002"></a>Mettre les commentaires Doxygen </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
@@ -113,7 +161,7 @@ $(document).ready(function(){initNavTree('todo.html',''); initResizable(); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 23:01:06 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mercredi 24 Mai 2023 05:46:40 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

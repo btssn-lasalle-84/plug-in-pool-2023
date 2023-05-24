@@ -1,10 +1,16 @@
 var searchData=
 [
-  ['nb_5fbilles_5fcouleur_79',['NB_BILLES_COULEUR',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#a5e7071e85bf21cf8c050c277e3ebe2ec',1,'com.example.pluginpool.BlackBall.NB_BILLES_COULEUR()'],['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a049a761025f9201ab16e89e372eabd35',1,'com.example.pluginpool.GestionManche.NB_BILLES_COULEUR()']]],
-  ['nb_5fpoches_80',['NB_POCHES',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#ab1b00c879de30b817094e2b29d5ba5be',1,'com.example.pluginpool.BlackBall.NB_POCHES()'],['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a682cf42213ff3aed1e5f27279a8e07f9',1,'com.example.pluginpool.GestionManche.NB_POCHES()']]],
-  ['nbecrans_81',['NbEcrans',['../class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da0981e6a19b59e59a17324f9bb0dea8e4',1,'EcranPool']]],
-  ['noire_82',['NOIRE',['../classcom_1_1example_1_1pluginpool_1_1_black_ball.html#aead71e3520011d806da2061d2c066d6e',1,'com.example.pluginpool.BlackBall.NOIRE()'],['../classcom_1_1example_1_1pluginpool_1_1_gestion_manche.html#a4877c63f3ff35f1577b20ba78d03c049',1,'com.example.pluginpool.GestionManche.NOIRE()']]],
-  ['nomjoueur1_83',['nomJoueur1',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a07872e955b47b3b8a825f1284637f7b5',1,'com::example::pluginpool::Manche']]],
-  ['nomjoueur2_84',['nomJoueur2',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a7da12c9c4caebf12180123b453683038',1,'com::example::pluginpool::Manche']]],
-  ['nomsjoueurs_85',['nomsJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a57033096e3655d125c4af697f08b3ebf',1,'com::example::pluginpool::ConfigurationManche']]]
+  ['main_172',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp_173',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['manche_174',['Manche',['../classcom_1_1example_1_1pluginpool_1_1_manche.html',1,'com::example::pluginpool']]],
+  ['manche_175',['manche',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a8a34587e59fd14ef16f9c1b8e8bf60fc',1,'com::example::pluginpool::Manche']]],
+  ['manche_2ejava_176',['Manche.java',['../_manche_8java.html',1,'']]],
+  ['manche_2exml_177',['manche.xml',['../manche_8xml.html',1,'']]],
+  ['manchedemarree_178',['mancheDemarree',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#ad9b49573b737087ecd48057c806b9e6d',1,'com::example::pluginpool::Manche']]],
+  ['manches_179',['manches',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a5e28875c02c7271397629f2c38439297',1,'com::example::pluginpool::Historique']]],
+  ['manchesrecherchees_180',['manchesRecherchees',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a775df045e92a0766d8f828c47bbd45c0',1,'com::example::pluginpool::Historique']]],
+  ['masque_5fcouleur_181',['MASQUE_COULEUR',['../classcom_1_1example_1_1pluginpool_1_1_protocole.html#a4617c1632616060b96a4df6ed80bbd53',1,'com::example::pluginpool::Protocole']]],
+  ['masque_5fpoche_182',['MASQUE_POCHE',['../classcom_1_1example_1_1pluginpool_1_1_protocole.html#a7630c55efc6d696f4520f25c438e5bee',1,'com::example::pluginpool::Protocole']]],
+  ['masque_5ftype_183',['MASQUE_TYPE',['../classcom_1_1example_1_1pluginpool_1_1_protocole.html#aa53fee895b5299e640b89af694235c59',1,'com::example::pluginpool::Protocole']]],
+  ['millisec_5fpar_5fsec_184',['MILLISEC_PAR_SEC',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#ab1c1d93f156ca61f96fa725f93cc8660',1,'com::example::pluginpool::Manche']]]
 ];

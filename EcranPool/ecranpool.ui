@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>2761</width>
-    <height>1080</height>
+    <height>1148</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -83,16 +83,16 @@
             <number>6</number>
            </property>
            <property name="leftMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="topMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="rightMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="bottomMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <item>
             <layout class="QVBoxLayout" name="verticalLayoutAccueilEntete">
@@ -112,11 +112,33 @@
               <number>0</number>
              </property>
              <item>
+              <widget class="QLabel" name="labelHeureAccueil">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;</string>
+               </property>
+               <property name="text">
+                <string>00:00</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QLabel" name="labelTitreAccueil">
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>Plug-in-pool</string>
@@ -132,9 +154,14 @@
                 <bool>true</bool>
                </property>
                <property name="styleSheet">
-                <string notr="true">color: rgb(255, 255, 255);
+                <string notr="true">border: none;
+color: rgb(255, 255, 255);
 font: 48pt &quot;Sans Serif&quot;;
-background-color: transparent;</string>
+background-color: transparent;
+/*background-color: rgba(0, 0, 0, 0);*/</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
                </property>
                <property name="text">
                 <string/>
@@ -153,10 +180,17 @@ background-color: transparent;</string>
             <layout class="QHBoxLayout" name="horizontalLayoutAccueilPied">
              <item>
               <widget class="QLabel" name="labelMessageAccueil">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
                <property name="font">
                 <font>
                  <pointsize>48</pointsize>
                 </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
                </property>
                <property name="text">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion ...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -174,31 +208,374 @@ background-color: transparent;</string>
        </widget>
        <widget class="QWidget" name="Partie">
         <property name="styleSheet">
-         <string notr="true"/>
+         <string notr="true">background-image:url(:/background.jpg);</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
           <layout class="QVBoxLayout" name="verticalLayoutPartie">
            <property name="leftMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="topMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="rightMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
            <property name="bottomMargin">
-            <number>50</number>
+            <number>25</number>
            </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayoutPartieEntete" stretch="0,0">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayoutHeure">
+               <property name="topMargin">
+                <number>0</number>
+               </property>
+               <property name="rightMargin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="labelHeurePartie">
+                 <property name="font">
+                  <font>
+                   <pointsize>32</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: none;
+background-color: transparent;</string>
+                 </property>
+                 <property name="text">
+                  <string>00:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelDureePartie">
+                 <property name="font">
+                  <font>
+                   <pointsize>32</pointsize>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">border: none;
+background-color: transparent;</string>
+                 </property>
+                 <property name="text">
+                  <string>00:00</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelTitrePartie">
+               <property name="font">
+                <font>
+                 <pointsize>52</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string>Plug-in-pool</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignHCenter|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutPartieMilieu">
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayoutPartieGauche">
+               <item>
+                <widget class="QLabel" name="label">
+                 <property name="font">
+                  <font>
+                   <pointsize>24</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Table n° X</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelTablePartie">
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="pixmap">
+                  <pixmap resource="ressources.qrc">:/pool_table.png</pixmap>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelAnnonceCoup">
+                 <property name="font">
+                  <font>
+                   <pointsize>28</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Texte annonce coup</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayoutPartieDroite">
+               <item>
+                <widget class="QLabel" name="labelDecompteManche">
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <pointsize>26</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>00:00:0</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutJoueurs">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayoutJoueurGauche">
+                   <item>
+                    <widget class="QLabel" name="labelNomJoueurGauche">
+                     <property name="font">
+                      <font>
+                       <pointsize>24</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Joueur 1</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayoutJoueurDroite">
+                   <item>
+                    <widget class="QLabel" name="labelNomJoueurDroite">
+                     <property name="font">
+                      <font>
+                       <pointsize>24</pointsize>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string>Joueur 2</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayoutPartiePied">
+             <item>
+              <widget class="QLabel" name="labelAnnonceTour">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>C'est à X de jouer !</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </item>
         </layout>
        </widget>
        <widget class="QWidget" name="FinPartie">
-        <layout class="QVBoxLayout" name="verticalLayout_5">
+        <property name="styleSheet">
+         <string notr="true">background-image:url(:/background.jpg);</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayoutPrincipalFinPartie">
+         <property name="spacing">
+          <number>6</number>
+         </property>
+         <property name="leftMargin">
+          <number>9</number>
+         </property>
+         <property name="topMargin">
+          <number>9</number>
+         </property>
+         <property name="rightMargin">
+          <number>9</number>
+         </property>
+         <property name="bottomMargin">
+          <number>9</number>
+         </property>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayoutFinPartie"/>
+          <layout class="QVBoxLayout" name="verticalLayoutFinPartie">
+           <property name="spacing">
+            <number>6</number>
+           </property>
+           <property name="leftMargin">
+            <number>25</number>
+           </property>
+           <property name="topMargin">
+            <number>25</number>
+           </property>
+           <property name="rightMargin">
+            <number>25</number>
+           </property>
+           <property name="bottomMargin">
+            <number>25</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayoutFinPartieEntete">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="labelHeureFinPartie">
+               <property name="font">
+                <font>
+                 <pointsize>32</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;</string>
+               </property>
+               <property name="text">
+                <string>00:00</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelTitreFinPartie">
+               <property name="font">
+                <font>
+                 <pointsize>52</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string>Plug-in-pool</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutFinPartiePied">
+             <item>
+              <widget class="QLabel" name="labelMessageFinPartie">
+               <property name="enabled">
+                <bool>true</bool>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>24</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border: none;
+background-color: transparent;</string>
+               </property>
+               <property name="text">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fin de la partie ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
         </layout>
        </widget>

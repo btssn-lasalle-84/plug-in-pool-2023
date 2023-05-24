@@ -1,0 +1,26 @@
+class FinDeManche
+!!!144554.java!!!	FinDeManche(inout manche : Manche)
+        super(manche);
+        activiteManche = manche;
+        initialiserRessources();
+!!!144682.java!!!	initialiserRessources() : void
+        View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
+        boutonMenu = fenetre.findViewById(R.id.boutonMenu);
+        boutonRejouer = fenetre.findViewById(R.id.boutonRejouer);
+        resultats = fenetre.findViewById(R.id.resultats);
+        setView(fenetre);
+
+        boutonMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), EcranPrincipal.class);
+                getContext().startActivity(intent);
+            }
+        });
+        boutonRejouer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activiteManche.recommencer();
+                FinDeManche.this.dismiss();
+            }
+        });

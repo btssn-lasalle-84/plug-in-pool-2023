@@ -1,0 +1,285 @@
+format 224
+
+classinstance 128042 class_ref 134706 // EcranPrincipal
+  name ""   xyz 438 4 2000 life_line_z 2000
+classinstance 128170 class_ref 128050 // Joueur
+  name ""   xyz 68 4 2000 life_line_z 2000
+note 129194 "clic sur le bouton \"JOUER\""
+  xyzwh 130 252 2000 385 51
+classinstance 129706 class_ref 134698 // ConfigurationManche
+  name ""   xyz 769 4 2000 life_line_z 2000
+classinstance 130346 class_ref 142122 // Handler
+  name ""   xyz 1415 5 2005 life_line_z 2000
+classinstance 131370 class_ref 141482 // BaseDeDonnees
+  name ""   xyz 1579 4 2000 life_line_z 2000
+classinstance 131754 class_ref 141738 // Communication
+  name ""   xyz 1870 4 2000 life_line_z 2000
+fragment 133034 "opt"
+  xyzwh 25 846 2020 924 164
+end
+note 133546 "clic sur un des boutons radios pour choisir la table "
+  xyzwh 130 1170 2000 395 89
+note 134698 "clic sur le bouton SUIVANT\""
+  xyzwh 133.5 1447.5 2000 385 51
+fragment 135722 "loop"
+  xyzwh 816 1590 1995 900 103
+end
+fragment 136362 "alt"
+  xyzwh 809 1497 1990 920 358
+end
+textcanvas 136490 "[est configurée ]"
+  xyzwh 961 1502 3005 209 30
+textcanvas 136746 "[pour chaque nom]"
+  xyzwh 1010 1597 2030 246 30
+classinstance 136874 class_ref 134826 // Manche
+  name ""   xyz 1188 4 2000 life_line_z 2000
+note 138282 "sélectionne un joueur dans la liste déroulante"
+  xyzwh 298 919 2000 451 81
+fragment 138666 "ref"
+  refer sequencediagram_ref 134698 // Lancer une manche
+  xyzwh 939 1900 2015 293 105
+end
+durationcanvas 128298 classinstance_ref 128042 // :EcranPrincipal
+  xyzwh 536 86 2010 11 85
+  overlappingdurationcanvas 128554
+    xyzwh 542 136 2020 11 25
+  end
+end
+durationcanvas 128810 classinstance_ref 128170 // :Joueur
+  xyzwh 113 213 2010 11 40
+end
+durationcanvas 128938 classinstance_ref 128042 // :EcranPrincipal
+  xyzwh 536 213 2010 11 92
+  overlappingdurationcanvas 129450
+    xyzwh 542 250 2020 11 49
+  end
+end
+durationcanvas 129834 classinstance_ref 129706 // :ConfigurationManche
+  xyzwh 913 285 2010 11 520
+  overlappingdurationcanvas 130090
+    xyzwh 919 324 2020 11 60
+  end
+  overlappingdurationcanvas 130730
+    xyzwh 919 467 2020 11 236
+  end
+  overlappingdurationcanvas 132394
+    xyzwh 919 758 2020 11 25
+  end
+end
+durationcanvas 130474 classinstance_ref 130346 // :Handler
+  xyzwh 1471 358 2010 11 25
+end
+durationcanvas 131498 classinstance_ref 131370 // :BaseDeDonnees
+  xyzwh 1694 514 2010 11 25
+end
+durationcanvas 131882 classinstance_ref 131370 // :BaseDeDonnees
+  xyzwh 1694 614 2010 11 25
+end
+durationcanvas 132138 classinstance_ref 131754 // :Communication
+  xyzwh 1976 692 2010 11 25
+end
+durationcanvas 132650 classinstance_ref 128170 // :Joueur
+  xyzwh 113 896 2010 11 40
+end
+durationcanvas 132778 classinstance_ref 129706 // :ConfigurationManche
+  xyzwh 913 896 2010 11 25
+end
+durationcanvas 133162 classinstance_ref 128170 // :Joueur
+  xyzwh 113 1101 2010 11 40
+end
+durationcanvas 133290 classinstance_ref 129706 // :ConfigurationManche
+  xyzwh 913 1103 2010 11 99
+end
+durationcanvas 133802 classinstance_ref 131754 // :Communication
+  xyzwh 1976 1161 2010 11 124
+  overlappingdurationcanvas 137258
+    xyzwh 1982 1208 2020 11 50
+  end
+end
+durationcanvas 134314 classinstance_ref 128170 // :Joueur
+  xyzwh 113 1397 2010 11 40
+end
+durationcanvas 134442 classinstance_ref 129706 // :ConfigurationManche
+  xyzwh 913 1401 2010 11 475
+  overlappingdurationcanvas 134954
+    xyzwh 919 1451 2020 11 25
+  end
+  overlappingdurationcanvas 135210
+    xyzwh 919 1574 2020 11 80
+  end
+  overlappingdurationcanvas 135850
+    xyzwh 919 1734 2020 11 25
+  end
+  overlappingdurationcanvas 136106
+    xyzwh 919 1791 2020 11 54
+  end
+end
+durationcanvas 135466 classinstance_ref 131370 // :BaseDeDonnees
+  xyzwh 1694 1641 2010 11 35
+end
+durationcanvas 137002 classinstance_ref 136874 // :Manche
+  xyzwh 1244 1832 2010 11 70
+end
+durationcanvas 137514 classinstance_ref 130346 // :Handler
+  xyzwh 1471 1246 2010 11 105
+  overlappingdurationcanvas 137770
+    xyzwh 1477 1298 2020 11 47
+  end
+end
+durationcanvas 138026 classinstance_ref 129706 // :ConfigurationManche
+  xyzwh 913 1334 2010 11 25
+end
+reflexivemsg 128426 synchronous
+  to durationcanvas_ref 128298
+  yz 86 2015 msg operation_ref 128050 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 486 56
+reflexivemsg 128682 synchronous
+  to durationcanvas_ref 128554
+  yz 136 2025 msg operation_ref 128818 // "initialiserRessources() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 553 112
+msg 129066 asynchronous
+  from durationcanvas_ref 128810
+  to durationcanvas_ref 128938
+  yz 213 2015 explicitmsg "onClick()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 272 183
+reflexivemsg 129578 synchronous
+  to durationcanvas_ref 129450
+  yz 250 2025 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 551 222
+msg 129962 synchronous
+  from durationcanvas_ref 129450
+  to durationcanvas_ref 129834
+  yz 285 2025 msg operation_ref 134570 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 663 255
+reflexivemsg 130218 synchronous
+  to durationcanvas_ref 130090
+  yz 324 2025 msg operation_ref 144426 // "initialiserHandler() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 930 291
+msg 130602 asynchronous
+  from durationcanvas_ref 130090
+  to durationcanvas_ref 130474
+  yz 358 2025 explicitmsg "Handler()"
+  stereotype "<<new>>" xyz 1299 370 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1297 322
+reflexivemsg 130858 synchronous
+  to durationcanvas_ref 130730
+  yz 467 2025 msg operation_ref 134698 // "initialiserAttributs() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 930 440
+msg 131626 synchronous
+  from durationcanvas_ref 130730
+  to durationcanvas_ref 131498
+  yz 515 2030 msg operation_ref 142250 // "getInstance(inout context : Context) : BaseDeDonnees"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1503 482
+msg 132010 synchronous
+  from durationcanvas_ref 130730
+  to durationcanvas_ref 131882
+  yz 614 2025 msg operation_ref 142634 // "getNomsJoueurs() : ArrayList<String>"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1438 582
+msg 132266 synchronous
+  from durationcanvas_ref 130730
+  to durationcanvas_ref 132138
+  yz 692 2025 msg operation_ref 142890 // "getInstance() : Communication"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1751 659
+reflexivemsg 132522 synchronous
+  to durationcanvas_ref 132394
+  yz 758 2025 msg operation_ref 134826 // "initialiserRessources() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 933 732
+msg 132906 asynchronous
+  from durationcanvas_ref 132650
+  to durationcanvas_ref 132778
+  yz 896 2015 explicitmsg "onItemSelected()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 619 867
+msg 133418 asynchronous
+  from durationcanvas_ref 133162
+  to durationcanvas_ref 133290
+  yz 1103 2015 explicitmsg "onCheckedChanged()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 585 1069
+msg 133930 synchronous
+  from durationcanvas_ref 133290
+  to durationcanvas_ref 133802
+  yz 1161 2015 msg operation_ref 143786 // "seConnecter(in nomPeripherique : String) : boolean"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1749 1128
+msg 134570 asynchronous
+  from durationcanvas_ref 134314
+  to durationcanvas_ref 134442
+  yz 1401 2015 explicitmsg "onClick()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 687 1369
+reflexivemsg 135082 synchronous
+  to durationcanvas_ref 134954
+  yz 1451 2025 msg operation_ref 134954 // "estConfiguree() : Boolean"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 931 1423
+reflexivemsg 135338 synchronous
+  to durationcanvas_ref 135210
+  yz 1574 2025 msg operation_ref 146346 // "ajouterNomsJoueurs(in nomJoueur1 : String, in nomJoueur2 : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 930 1545
+msg 135594 synchronous
+  from durationcanvas_ref 135210
+  to durationcanvas_ref 135466
+  yz 1643 2025 msg operation_ref 142378 // "ajouterNom(in nomJoueur : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1500 1612
+reflexivemsg 135978 synchronous
+  to durationcanvas_ref 135850
+  yz 1734 2025 msg operation_ref 146474 // "parametrerActiviteManche() : Intent"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 932 1704
+reflexivemsg 136234 synchronous
+  to durationcanvas_ref 136106
+  yz 1791 2025 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 931 1762
+msg 137130 synchronous
+  from durationcanvas_ref 136106
+  to durationcanvas_ref 137002
+  yz 1832 2030 msg operation_ref 135082 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1017 1802
+reflexivemsg 137386 synchronous
+  to durationcanvas_ref 137258
+  yz 1208 2025 msg operation_ref 143914 // "creerSocket() : boolean"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1993 1178
+msg 137642 asynchronous
+  from durationcanvas_ref 137258
+  to durationcanvas_ref 137514
+  yz 1246 2025 explicitmsg "sendMessage()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1488 1216
+reflexivemsg 137898 synchronous
+  to durationcanvas_ref 137770
+  yz 1298 2025 explicitmsg "handleMessage()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1381 1268
+msg 138154 synchronous
+  from durationcanvas_ref 137770
+  to durationcanvas_ref 138026
+  yz 1334 3005 msg operation_ref 146602 // "actualiserEtatConnexionTable(inout etat : boolean) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 936 1304
+line 129322 -_-_
+  from ref 129194 z 2016 to ref 129066
+line 133674 -_-_ decenter_end 355
+  from ref 133546 z 2016 to ref 133418
+line 134826 -_-_ decenter_end 348
+  from ref 134698 z 2016 to ref 134570
+line 138794 -_-_
+  from ref 138666 z 2016 to ref 137002
+end
