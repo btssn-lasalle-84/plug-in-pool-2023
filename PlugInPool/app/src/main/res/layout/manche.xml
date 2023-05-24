@@ -74,6 +74,16 @@
         android:layout_height="match_parent"
         android:layout_margin="16dp">
 
+        <Button
+            android:id="@+id/boutonAfficher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ecran"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:backgroundTint="@color/bleu"/>
+
         <FrameLayout
             android:id="@+id/poche0BilleJauneLayout"
             android:layout_width="wrap_content"

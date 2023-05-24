@@ -32,7 +32,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     private static final int    VERSION_POOL_DONNEES = 1; //!< Version
     public static final int DEFAUT = -1; //!< Clef primaire d'une table par défaut (vide)
     private static final int DONNEES_JOUEUR = 3; //!< Nombre de donnees associées à un joueur
-    private static final int PARTIES = 0; //!< @todo
+    private static final int MANCHES = 0; //!< @todo
     private static final int VICTOIRES = 1; //!< @todo
     private static final int SCORE_ELO = 2; //!< @todo
     private static final int CONSTANTE_ELO1 = 100; //!< @todo
@@ -144,7 +144,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
 
     /**
      * @brief Pour ajouter une manche terminée à la base de données et incrémenter le nombre de
-     * parties effectuées et de victoires des joueurs concernés
+     * manches effectuées et de victoires des joueurs concernés
      */
      public void ajouterManche(String[] joueurs,
                               int               indexJoueurGagnant,
@@ -212,14 +212,14 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     }
 
     /**
-     * @brief Actualiser le nombre de parties, de victoires et le scoreELO de chaque joueur
+     * @brief Actualiser le nombre de manches, de victoires et le scoreELO de chaque joueur
      */
     private void actualiserJoueurs(String gagnant, String perdant)
     {
         int[] donneesGagnant = new int[DONNEES_JOUEUR];
         int[] donneesPerdant = new int[DONNEES_JOUEUR];
 
-        Cursor curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + gagnant + "'", null);
+        Cursor curseur = sqlite.rawQuery("SELECT manches, victoires, scoreELO FROM joueurs WHERE nom = '" + gagnant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
@@ -227,7 +227,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             }
         }
         curseur.close();
-        curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + perdant + "'", null);
+        curseur = sqlite.rawQuery("SELECT manches, victoires, scoreELO FROM joueurs WHERE nom = '" + perdant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
@@ -236,11 +236,11 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         }
         curseur.close();
 
-        donneesGagnant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesGagnant[PARTIES] + 1 + donneesGagnant[SCORE_ELO] / (donneesGagnant[VICTOIRES] + 1)) * (1 -(1 /(1 + 10^((donneesPerdant[SCORE_ELO] - donneesGagnant[SCORE_ELO])/CONSTANTE_ELO2))));
-        donneesPerdant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesPerdant[PARTIES] + 1 + donneesPerdant[SCORE_ELO] / (donneesPerdant[VICTOIRES] + 1)) * (-1 /(1 + 10^((donneesGagnant[SCORE_ELO] - donneesPerdant[SCORE_ELO])/CONSTANTE_ELO2)));
+        donneesGagnant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesGagnant[MANCHES] + 1 + donneesGagnant[SCORE_ELO] / (donneesGagnant[VICTOIRES] + 1)) * (1 -(1 /(1 + 10^((donneesPerdant[SCORE_ELO] - donneesGagnant[SCORE_ELO])/CONSTANTE_ELO2))));
+        donneesPerdant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesPerdant[MANCHES] + 1 + donneesPerdant[SCORE_ELO] / (donneesPerdant[VICTOIRES] + 1)) * (-1 /(1 + 10^((donneesGagnant[SCORE_ELO] - donneesPerdant[SCORE_ELO])/CONSTANTE_ELO2)));
 
-        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
-        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
+        sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
+        sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
     }
     /**
      * @brief Récupérer la liste des joueurs présents dans la base de données
@@ -270,9 +270,9 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         Log.d(TAG, "initialiserBaseDeDonnees()");
         // Pour les tests
         sqlite.execSQL(
-                "INSERT INTO joueurs(nom, parties, victoires) VALUES ('TRICHET Clément', 3, 3);");
+                "INSERT INTO joueurs(nom, manches, victoires) VALUES ('TRICHET Clément', 3, 3);");
         sqlite.execSQL(
-                "INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 3, 0);");
+                "INSERT INTO joueurs(nom, manches, victoires) VALUES ('GAUME Benjamin', 3, 0);");
     }
 
     /**

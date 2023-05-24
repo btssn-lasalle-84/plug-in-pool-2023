@@ -1,10 +1,10 @@
 package com.example.pluginpool;
 
 /**
- * @class Protocole
+ * @class ProtocoleTable
  * @brief Définit le protocole PlugInPool
  */
-public class Protocole
+public class ProtocoleTable
 {
     // Trame MobilePool -> Table
     public static final int DEBUT = 0x9c;
