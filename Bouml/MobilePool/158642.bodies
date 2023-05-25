@@ -1,5 +1,0 @@
-class ExampleUnitTest
-!!!149170.java!!!	addition_isCorrect() : void
-        assertEquals(4, 2 + 2);
-!!!149682.java!!!	addition_isCorrect() : void
-        assertEquals(4, 2 + 2);

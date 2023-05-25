@@ -6,51 +6,17 @@
 
 package com.example.pluginpool;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.UserHandle;
 import android.util.Log;
-import android.view.Display;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 
@@ -69,12 +35,14 @@ public class Communication
     public final static int CONNEXION_BLUETOOTH   = 0;
     public final static int RECEPTION_BLUETOOTH   = 1;
     public final static int DECONNEXION_BLUETOOTH = 2;
+    public final static int TABLE = 0;
+    public final static int ECRAN = 1;
 
     /**
      * Attributs
      */
-    private static Communication communication =
-      null; //!< l'instance unique de Communication (Singleton)
+    private static Communication[] communications =
+            {null, null}; //!< les deux uniques instances de Communication (multiton)
     private BluetoothAdapter adaptateurBluetooth = null;
     private BluetoothDevice  peripherique        = null;
     private BluetoothSocket  canalBluetooth      = null;
@@ -88,24 +56,24 @@ public class Communication
      * @fn getInstance
      * @brief Retourne l'instance Communication
      */
-    public synchronized static Communication getInstance()
+    public synchronized static Communication getInstance(int peripherique)
     {
-        if(communication == null)
-            communication = new Communication();
-        return communication;
+        if(communications[peripherique] == null)
+            communications[peripherique] = new Communication();
+        return communications[peripherique];
     }
 
     /**
      * @fn getInstance
      * @brief Retourne l'instance Communication
      */
-    public synchronized static Communication getInstance(Handler handler)
+    public synchronized static Communication getInstance(Handler handler, int peripherique)
     {
-        if(communication == null)
-            communication = new Communication(handler);
+        if(communications[peripherique] == null)
+            communications[peripherique] = new Communication(handler);
         else
-            communication.setHandler(handler);
-        return communication;
+            communications[peripherique].setHandler(handler);
+        return communications[peripherique];
     }
 
     /**
@@ -285,42 +253,6 @@ public class Communication
     }
 
     /**
-     * @brief Pour se déconnecter d'une table
-     */
-    @SuppressLint("MissingPermission")
-    public void deconnecter()
-    {
-        // Fermer les connexions et le socket
-        try
-        {
-            if(inputStream != null)
-            {
-                inputStream.close();
-            }
-            if(outputStream != null)
-            {
-                outputStream.close();
-            }
-            if(canalBluetooth != null)
-            {
-                canalBluetooth.close();
-            }
-            connecte = false;
-            if(handler != null)
-            {
-                Message messageHandler = new Message();
-                messageHandler.what    = DECONNEXION_BLUETOOTH;
-                messageHandler.obj     = peripherique.getName();
-                handler.sendMessage(messageHandler);
-            }
-        }
-        catch(IOException e)
-        {
-            Log.e(TAG, "Erreur lors de la fermeture des connexions.");
-        }
-    }
-
-    /**
      * @brief Pour envoyer un message via le Bluetooth
      */
     public void envoyer(int message)
@@ -344,6 +276,41 @@ public class Communication
                     {
                         Log.d(TAG, "envoyer() 0x" + Integer.toHexString(message));
                         outputStream.write(message);
+                        outputStream.flush();
+                    }
+                }
+                catch(IOException e)
+                {
+                    Log.e(TAG, "Erreur lors de l'envoi de données");
+                }
+            }
+        }.start();
+    }
+
+    /**
+     * @brief Pour envoyer un message via le Bluetooth
+     */
+    public void envoyer(String message)
+    {
+        if(!connecte)
+            return;
+        if(canalBluetooth == null)
+            return;
+
+        new Thread() {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    if(!canalBluetooth.isConnected())
+                    {
+                        Log.d(TAG, "envoyer() socket non connecté !");
+                    }
+                    else
+                    {
+                        Log.d(TAG, "envoyer( " + message + " )");
+                        outputStream.write(message.getBytes());
                         outputStream.flush();
                     }
                 }
@@ -385,7 +352,7 @@ public class Communication
                     catch(IOException e)
                     {
                         Log.e(TAG, "Erreur lors de la réception de données");
-                        deconnecter();
+                        seDeconnecter();
                     }
                 }
                 Log.d(TAG, "recevoir() thread arrêté");

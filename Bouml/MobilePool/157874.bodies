@@ -7,7 +7,7 @@ class BaseDeDonnees
 !!!145074.java!!!	onCreate(inout sqlite : SQLiteDatabase) : void
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME UNIQUE NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
         sqlite.execSQL(
@@ -122,7 +122,7 @@ class BaseDeDonnees
         int[] donneesGagnant = new int[DONNEES_JOUEUR];
         int[] donneesPerdant = new int[DONNEES_JOUEUR];
 
-        Cursor curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + gagnant + "'", null);
+        Cursor curseur = sqlite.rawQuery("SELECT manches, victoires, scoreELO FROM joueurs WHERE nom = '" + gagnant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
@@ -130,7 +130,7 @@ class BaseDeDonnees
             }
         }
         curseur.close();
-        curseur = sqlite.rawQuery("SELECT parties, victoires, scoreELO FROM joueurs WHERE nom = '" + perdant + "'", null);
+        curseur = sqlite.rawQuery("SELECT manches, victoires, scoreELO FROM joueurs WHERE nom = '" + perdant + "'", null);
         if (curseur.moveToFirst()) {
             for(int donnee = 0; donnee < DONNEES_JOUEUR; donnee++)
             {
@@ -139,61 +139,106 @@ class BaseDeDonnees
         }
         curseur.close();
 
-        donneesGagnant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesGagnant[PARTIES] + 1 + donneesGagnant[SCORE_ELO] / (donneesGagnant[VICTOIRES] + 1)) * (1 -(1 /(1 + 10^((donneesPerdant[SCORE_ELO] - donneesGagnant[SCORE_ELO])/CONSTANTE_ELO2))));
-        donneesPerdant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesPerdant[PARTIES] + 1 + donneesPerdant[SCORE_ELO] / (donneesPerdant[VICTOIRES] + 1)) * (-1 /(1 + 10^((donneesGagnant[SCORE_ELO] - donneesPerdant[SCORE_ELO])/CONSTANTE_ELO2)));
+        donneesGagnant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesGagnant[MANCHES] + 1 + donneesGagnant[SCORE_ELO] / (donneesGagnant[VICTOIRES] + 1)) * (1 -(1 /(1 + 10^((donneesPerdant[SCORE_ELO] - donneesGagnant[SCORE_ELO])/CONSTANTE_ELO2))));
+        donneesPerdant[SCORE_ELO] += CONSTANTE_ELO1 / (donneesPerdant[MANCHES] + 1 + donneesPerdant[SCORE_ELO] / (donneesPerdant[VICTOIRES] + 1)) * (-1 /(1 + 10^((donneesGagnant[SCORE_ELO] - donneesPerdant[SCORE_ELO])/CONSTANTE_ELO2)));
 
-        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
-        sqlite.execSQL("UPDATE joueurs SET parties = parties + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
+        sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
+        sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
 !!!145970.java!!!	getNomsJoueurs() : ArrayList<String>
         ArrayList<String> nomsJoueurs = new ArrayList<String>();
-        Cursor            cursor      = sqlite.rawQuery("SELECT nom FROM joueurs", null);
-        if(cursor.moveToFirst())
+        Cursor            curseur      = sqlite.rawQuery("SELECT nom FROM joueurs", null);
+        if(curseur.moveToFirst())
         {
             do
             {
-                String nomJoueur = cursor.getString(0);
+                String nomJoueur = curseur.getString(0);
                 nomsJoueurs.add(nomJoueur);
-            } while(cursor.moveToNext());
+            } while(curseur.moveToNext());
         }
-        cursor.close();
+        curseur.close();
         Log.d(TAG, "getNomsJoueurs() " + nomsJoueurs);
         return nomsJoueurs;
 !!!146098.java!!!	initialiserBaseDeDonnees(inout sqlite : SQLiteDatabase) : void
         Log.d(TAG, "initialiserBaseDeDonnees()");
         // Pour les tests
         sqlite.execSQL(
-                "INSERT INTO joueurs(nom, parties, victoires) VALUES ('TRICHET Clément', 3, 3);");
+                "INSERT INTO joueurs(nom, manches, victoires) VALUES ('TRICHET Clément', 3, 3);");
         sqlite.execSQL(
-                "INSERT INTO joueurs(nom, parties, victoires) VALUES ('GAUME Benjamin', 3, 0);");
+                "INSERT INTO joueurs(nom, manches, victoires) VALUES ('GAUME Benjamin', 3, 0);");
 !!!146226.java!!!	getNomsJoueursTries() : Vector<String>
         Log.d(TAG, "getNomsJoueursTries()");
 
-        Cursor cursor = sqlite.query("joueurs", new String[]{"nom"}, null, null,
-                null, null, "scoreELO DESC, id ASC");
+        Cursor curseur = sqlite.rawQuery("SELECT nom FROM joueurs ORDER BY scoreELO DESC, id ASC", null);
 
         Vector<String> listeJoueurs = new Vector<>();
 
-        while (cursor.moveToNext())
+        while (curseur.moveToNext())
         {
-            String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+            String nom = curseur.getString(curseur.getColumnIndexOrThrow("nom"));
             listeJoueurs.add(nom);
         }
-        cursor.close();
+        curseur.close();
 
         return listeJoueurs;
 !!!146354.java!!!	getManchesTriees() : Vector<String>
         Log.d(TAG, "getManchesTriees()");
 
-        Cursor cursor = sqlite.query("manches", new String[]{"horodatage"}, null, null,
-                null, null, "horodatage DESC");
+        Cursor curseur = sqlite.rawQuery("SELECT horodatage FROM manches ORDER BY horodatage DESC", null);
 
         Vector<String> listeManches = new Vector<>();
 
-        while (cursor.moveToNext())
+        while (curseur.moveToNext())
         {
-            String date = cursor.getString(cursor.getColumnIndexOrThrow("horodatage"));
+            String date = curseur.getString(curseur.getColumnIndexOrThrow("horodatage"));
             listeManches.add(date);
         }
-        cursor.close();
+        curseur.close();
 
         return listeManches;
+!!!214578.java!!!	getScoreElo(in nom : String) : int
+        Log.d(TAG, "getScoreElo( nom = " + nom + " )");
+
+        int scoreElo = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT scoreELO FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            scoreElo = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return scoreElo;
+!!!214706.java!!!	getNbManches(in nom : String) : int
+        Log.d(TAG, "getNbManches( nom = " + nom + " )");
+
+        int nbManches = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT manches FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            nbManches = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return nbManches;
+!!!214834.java!!!	getNbVictoires(in nom : String) : int
+        Log.d(TAG, "getNbManches( nom = " + nom + " )");
+
+        int nbVictoires = 0;
+        Cursor curseur = sqlite.rawQuery("SELECT victoires FROM joueurs WHERE nom = '" + nom + "'", null);
+        if (curseur.moveToFirst()) {
+            nbVictoires = curseur.getInt(0);
+        }
+        curseur.close();
+
+        return nbVictoires;
+!!!214962.java!!!	supprimerJoueur(in nom : String) : void
+        sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
+!!!215090.java!!!	supprimerManche(in date : String) : void
+        sqlite.execSQL("DELETE FROM manches WHERE horodatage = '" + date + "'", null);
+!!!215218.java!!!	getNomJoueur(in qualificatifJoueur : String, in date : String) : String
+        Cursor curseur  = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs INNERJOIN manches ON joueurs.id = '" + "manches." + qualificatifJoueur + "Id" + "' WHERE manches.horodatage = '" + date + "'", null);
+        if(curseur.moveToFirst())
+        {
+            return curseur.toString();
+        }
+        else
+        {
+            return "Inconnu";
+        }

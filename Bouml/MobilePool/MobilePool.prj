@@ -1,6 +1,6 @@
 format 224
 "MobilePool"
-  revision 8
+  revision 11
   modified_by 50 "btssn2"
   java_root_dir "../../"
 
@@ -491,7 +491,7 @@ ${members}}
       
     end
 
-    sequencediagram 141234 "Sequence de jeu"
+    sequencediagram 141234 "Jouer une manche"
       sequencediagramsettings end
       overlapping_bars size A0
     end
@@ -506,4 +506,50 @@ ${members}}
   package_ref 136242 // myapplication
 
   package_ref 136370 // Documents
+
+  usecaseview 134570 "Diagrammes de séquence"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 134570 "Configurer une manche"
+      sequencediagramsettings end
+      overlapping_bars size A0
+    end
+
+    class 142122 "Handler"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    sequencediagram 134698 "Lancer une manche"
+      sequencediagramsettings end
+      overlapping_bars size A0
+    end
+  end
 end

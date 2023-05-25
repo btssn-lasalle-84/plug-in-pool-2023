@@ -1,14 +1,14 @@
 class Communication
-!!!146482.java!!!	getInstance() : Communication
-        if(communication == null)
-            communication = new Communication();
-        return communication;
-!!!146610.java!!!	getInstance(inout handler : Handler) : Communication
-        if(communication == null)
-            communication = new Communication(handler);
+!!!215346.java!!!	getInstance(in peripherique : int) : Communication
+        if(communications[peripherique] == null)
+            communications[peripherique] = new Communication();
+        return communications[peripherique];
+!!!215474.java!!!	getInstance(inout handler : Handler, in peripherique : int) : Communication
+        if(communications[peripherique] == null)
+            communications[peripherique] = new Communication(handler);
         else
-            communication.setHandler(handler);
-        return communication;
+            communications[peripherique].setHandler(handler);
+        return communications[peripherique];
 !!!146738.java!!!	Communication()
         activer();
 !!!146866.java!!!	Communication(inout handler : Handler)
@@ -180,6 +180,35 @@ class Communication
                     {
                         Log.d(TAG, "envoyer() 0x" + Integer.toHexString(message));
                         outputStream.write(message);
+                        outputStream.flush();
+                    }
+                }
+                catch(IOException e)
+                {
+                    Log.e(TAG, "Erreur lors de l'envoi de données");
+                }
+            }
+        }.start();
+!!!215602.java!!!	envoyer(in message : String) : void
+        if(!connecte)
+            return;
+        if(canalBluetooth == null)
+            return;
+
+        new Thread() {
+            @Override
+            public void run()
+            {
+                try
+                {
+                    if(!canalBluetooth.isConnected())
+                    {
+                        Log.d(TAG, "envoyer() socket non connecté !");
+                    }
+                    else
+                    {
+                        Log.d(TAG, "envoyer( " + message + " )");
+                        outputStream.write(message.getBytes());
                         outputStream.flush();
                     }
                 }

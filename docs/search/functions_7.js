@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['redemarrer_172',['redemarrer',['../classcom_1_1example_1_1pluginpool_1_1_compteur.html#a7812ac45dabafe40cf424f9f2a63823f',1,'com::example::pluginpool::Compteur']]]
+  ['historiquejoueur_362',['HistoriqueJoueur',['../classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html#aef3f891d3c78ec881aaa0147185210bd',1,'com::example::pluginpool::HistoriqueJoueur']]],
+  ['historiquemanche_363',['HistoriqueManche',['../classcom_1_1example_1_1pluginpool_1_1_historique_manche.html#aa2becbb0b6584d16aae5249beaf5a472',1,'com::example::pluginpool::HistoriqueManche']]]
 ];

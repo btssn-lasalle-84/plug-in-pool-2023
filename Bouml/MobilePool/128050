@@ -1,6 +1,6 @@
 format 224
 "pluginpool" // pluginpool
-  revision 5
+  revision 7
   modified_by 50 "btssn2"
   // class settings
   
@@ -244,385 +244,6 @@ et détruite par le système Android)
       end
     end
 
-    classdiagram 134578 "diagramme classes 0.1"
-      classdiagramsettings draw_all_relations no member_max_width 0 show_relation_visibility yes end
-      size A0
-    end
-
-    class 147890 "GestionManche"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      comment "@class GestionManche
-@brief GestionManche définit l'état d'une manche et regroupe l'ensemble des méthodes déclenchées par les trames issues de la table
-"
-      attribute 141362 "NOIRE"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 0"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Bille noire 0"
-      end
-
-      attribute 141490 "ROUGE"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 1"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Bille rouge 1"
-      end
-
-      attribute 141618 "JAUNE"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 2"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Bille jaune 2"
-      end
-
-      attribute 141746 "BLANCHE"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 3"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Bille blanche 3"
-      end
-
-      attribute 141874 "NB_BILLES_COULEUR"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 7"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Nombre de billes d'une même couleur (rouges ou jaunes) 7"
-      end
-
-      attribute 142002 "NB_POCHES"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 6"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-	comment " !< @def Nombre de poches de la table 6"
-      end
-
-      attribute 142130 "joueurs"
-	private explicit_type "String"
-	multiplicity "[]"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142258 "couleursJoueurs"
-	private explicit_type "String, Integer"
-	stereotype "Map"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142386 "billes"
-	private explicit_type "Integer, Integer"
-	stereotype "Map"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142514 "poches"
-	private explicit_type "Integer"
-	multiplicity "[]"
-	stereotype "ArrayList"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}>${multiplicity} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142642 "manche"
-	private explicit_type "ArrayList<Integer>"
-	stereotype "ArrayList"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142770 "joueurActif"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 142898 "couleursDefinies"
-	private explicit_type "Boolean"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 143026 "mancheDemarree"
-	private explicit_type "Boolean"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 143154 "compteur"
-	private explicit_type "Compteur"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 135346 "GestionManche"
-	public explicit_return_type ""
-	nparams 3
-	  param in name "joueur1" explicit_type "String"
-	  param in name "joueur2" explicit_type "String"
-	  param in name "premierJoueur" explicit_type "int"
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 135474 "interpreterTrame"
-	public explicit_return_type "void"
-	nparams 1
-	  param in name "trame" explicit_type "int"
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      classrelation 134578 // <aggregation>
-	relation 134578 o---
-	  a role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 134578 // <aggregation>
-	  b role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 134706 // <aggregation>
-      end
-
-      classrelation 135090 // <aggregation>
-	relation 134834 o---
-	  a role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 135090 // <aggregation>
-	  b role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 135218 // <aggregation>
-      end
-
-      classrelation 135730 // <aggregation>
-	relation 135218 o---
-	  a role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 135730 // <aggregation>
-	  b role_name "" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 135858 // <aggregation>
-      end
-    end
-
-    class 148018 "Compteur"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      classrelation 134706 // <aggregation>
-	relation_ref 134578 // <aggregation>
-      end
-
-      classrelation 143538 // <generalisation>
-	relation 142898 ---|>
-	  a public
-	    java "${type}"
-	    classrelation_ref 143538 // <generalisation>
-	  b parent class_ref 158770 // Timer
-      end
-
-      attribute 156850 "DUREE_TIR"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 45"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 156978 "tempsRestant"
-	private explicit_type "int"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      classrelation 143666 // manche (<unidirectional association>)
-	relation 143026 --->
-	  a role_name "manche" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 143666 // manche (<unidirectional association>)
-	  b parent class_ref 134826 // Manche
-      end
-
-      attribute 157106 "actualiser"
-	private explicit_type "TimerTask"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 149426 "Compteur"
-	public explicit_return_type "void"
-	nparams 1
-	  param inout name "manche" type class_ref 134826 // Manche
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 149554 "redemarrer"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
     class 148146 "Reception"
       visibility package 
       cpp_decl ""
@@ -635,9 +256,6 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 135218 // <aggregation>
-	relation_ref 134834 // <aggregation>
-      end
     end
 
     class 148274 "BaseDonnees"
@@ -652,9 +270,6 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 135858 // <aggregation>
-	relation_ref 135218 // <aggregation>
-      end
     end
 
     class 134570 "BlackBall"
@@ -1110,16 +725,6 @@ ${members}}
 !< les joueurs"
       end
 
-      classrelation 134826 // gestionManche (<unidirectional association>)
-	relation 134826 --->
-	  a role_name "gestionManche" init_value " null" private
-	    comment "!< pour gérer la manche"
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 134826 // gestionManche (<unidirectional association>)
-	  b parent class_ref 147890 // GestionManche
-      end
-
       attribute 137642 "nomJoueur1"
 	private explicit_type "TextView"
 	cpp_decl ""
@@ -1290,131 +895,6 @@ ${members}}
       end
     end
 
-    class 157618 "BuildConfig"
-      visibility public 
-      cpp_decl ""
-      final java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      attribute 150450 "DEBUG"
-	class_attribute const_attribute public explicit_type "boolean"
-	init_value " Boolean.parseBoolean(\"true\")"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 150578 "APPLICATION_ID"
-	class_attribute const_attribute public explicit_type "String"
-	init_value " \"com.example.pluginpool\""
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 150706 "BUILD_TYPE"
-	class_attribute const_attribute public explicit_type "String"
-	init_value " \"debug\""
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 150834 "VERSION_CODE"
-	class_attribute const_attribute public explicit_type "int"
-	init_value " 1"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 150962 "VERSION_NAME"
-	class_attribute const_attribute public explicit_type "String"
-	init_value " \"1.0\""
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-    end
-
-    class 157746 "ExampleInstrumentedTest"
-      visibility public 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      java_annotation "@RunWith(AndroidJUnit4.class)
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      comment "Instrumented test, which will execute on an Android device.
-
-@see <a href=\"http://d.android.com/tools/testing\">Testing documentation</a>
-"
-      operation 144818 "useAppContext"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	java_annotation "@Test
-"
-	
-	
-	
-      end
-
-      operation 149298 "useAppContext"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	java_annotation "@Test
-"
-	
-	
-	
-      end
-    end
-
     class 157874 "BaseDeDonnees"
       visibility public 
       cpp_decl ""
@@ -1432,12 +912,12 @@ ${members}}
 @class BaseDeDonnees
 @brief La classe assurant la gestion de la base de données SQLITE
 "
-      classrelation 142642 // <generalisation>
-	relation 142002 ---|>
+      classrelation 154930 // <generalisation>
+	relation 154290 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 142642 // <generalisation>
-	  b parent class_ref 158002 // SQLiteOpenHelper
+	    classrelation_ref 154930 // <generalisation>
+	  b parent class_ref 141610 // SQLiteOpenHelper
       end
 
       attribute 151090 "TAG"
@@ -1511,7 +991,7 @@ ${members}}
 	comment "!< Nombre de donnees associées à un joueur"
       end
 
-      attribute 151730 "PARTIES"
+      attribute 170674 "MANCHES"
 	class_attribute const_attribute private explicit_type "int"
 	init_value " 0"
 	cpp_decl ""
@@ -1723,7 +1203,7 @@ Attributs
 	
 	
 	comment "@brief Pour ajouter une manche terminée à la base de données et incrémenter le nombre de
-parties effectuées et de victoires des joueurs concernés
+manches effectuées et de victoires des joueurs concernés
 "
       end
 
@@ -1739,7 +1219,7 @@ parties effectuées et de victoires des joueurs concernés
 	
 	
 	
-	comment "@brief Actualiser le nombre de parties, de victoires et le scoreELO de chaque joueur
+	comment "@brief Actualiser le nombre de manches, de victoires et le scoreELO de chaque joueur
 "
       end
 
@@ -1782,7 +1262,7 @@ parties effectuées et de victoires des joueurs concernés
 	
 	
 	
-	comment "@brief Renvoie un vecteur de string contenant le noms des joueurs enregistrés
+	comment "@brief Renvoie un vecteur de string contenant le noms des joueurs enregistrés triés par scoreElo décroissant
 "
       end
 
@@ -1791,6 +1271,97 @@ parties effectuées et de victoires des joueurs concernés
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Renvoie un vecteur de string contenant le dates des manches enregistrées triées dans l'ordre décroissant
+"
+      end
+
+      operation 214578 "getScoreElo"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Renvoie le scoreELO d'un joueur dont on connaît le nom
+"
+      end
+
+      operation 214706 "getNbManches"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Renvoie le nombre de manches d'un joueur dont on connaît le nom
+"
+      end
+
+      operation 214834 "getNbVictoires"
+	public explicit_return_type "int"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Renvoie le nombre de victoires d'un joueur dont on connaît le nom
+"
+      end
+
+      operation 214962 "supprimerJoueur"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Supprime un joueur, dont on connaît le nom, de la base de donnees
+"
+      end
+
+      operation 215090 "supprimerManche"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Supprime une manche, dont on connaît le date, de la base de donnees
+"
+      end
+
+      operation 215218 "getNomJoueur"
+	public explicit_return_type "String"
+	nparams 2
+	  param in name "qualificatifJoueur" explicit_type "String"
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -1883,17 +1454,43 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 142898 // communication (<unidirectional association>)
-	relation 142258 --->
-	  a role_name "communication" init_value "
-      null" class_relation private
+      attribute 170802 "TABLE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170930 "ECRAN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 155058 // communications (<unidirectional association>)
+	relation 154418 --->
+	  a role_name "communications" multiplicity "[]" init_value "
+            {null, null}" class_relation private
 	    comment "
 Attributs
 
-!< l'instance unique de Communication (Singleton)"
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+!< les deux uniques instances de Communication (multiton)"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
 "
-	    classrelation_ref 142898 // communication (<unidirectional association>)
+	    classrelation_ref 155058 // communications (<unidirectional association>)
 	  b parent class_ref 158130 // Communication
       end
 
@@ -2000,11 +1597,12 @@ Attributs
 	MysqlColumn
       end
 
-      operation 146482 "getInstance"
+      operation 215346 "getInstance"
 	class_operation public return_type class_ref 158130 // Communication
-	nparams 0
+	nparams 1
+	  param in name "peripherique" explicit_type "int"
 	
-	preserve_java_body_indent synchronized java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+	preserve_java_body_indent synchronized java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -2015,12 +1613,13 @@ Attributs
 "
       end
 
-      operation 146610 "getInstance"
+      operation 215474 "getInstance"
 	class_operation public return_type class_ref 158130 // Communication
-	nparams 1
+	nparams 2
 	  param inout name "handler" explicit_type "Handler"
+	  param in name "peripherique" explicit_type "int"
 	
-	preserve_java_body_indent synchronized java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+	preserve_java_body_indent synchronized java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
   ${body}}
 "
 	
@@ -2189,6 +1788,21 @@ Attributs
 "
       end
 
+      operation 215602 "envoyer"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Pour envoyer un message via le Bluetooth
+"
+      end
+
       operation 148018 "recevoir"
 	public explicit_return_type "void"
 	nparams 0
@@ -2219,12 +1833,12 @@ ${members}}
       comment "@class FinDeManche
 @brief La fenêtre s'affichant au terme d'une manche
 "
-      classrelation 143026 // <generalisation>
-	relation 142386 ---|>
+      classrelation 155186 // <generalisation>
+	relation 154546 ---|>
 	  a public
 	    java "${type}"
-	    classrelation_ref 143026 // <generalisation>
-	  b parent class_ref 158386 // AlertDialog
+	    classrelation_ref 155186 // <generalisation>
+	  b parent class_ref 141994 // AlertDialog
       end
 
       attribute 154162 "TAG"
@@ -2241,6 +1855,18 @@ ${members}}
 	comment "Constantes
 
 !< TAG pour les logs"
+      end
+
+      classrelation 143154 // activiteManche (<unidirectional association>)
+	relation 142514 --->
+	  a role_name "activiteManche" private
+	    comment "Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143154 // activiteManche (<unidirectional association>)
+	  b parent class_ref 134826 // Manche
       end
 
       attribute 154290 "boutonMenu"
@@ -2268,9 +1894,6 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "Ressources GUI
-
-"
       end
 
       attribute 154546 "billesEmpochees"
@@ -2299,13 +1922,16 @@ ${members}}
 	MysqlColumn
       end
 
-      classrelation 143154 // activiteManche (<unidirectional association>)
-	relation 142514 --->
-	  a role_name "activiteManche" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+      attribute 171058 "fenetre"
+	private explicit_type "View"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 143154 // activiteManche (<unidirectional association>)
-	  b parent class_ref 134826 // Manche
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 148146 "FinDeManche"
@@ -2342,7 +1968,7 @@ ${members}}
       end
 
       operation 148402 "setResultats"
-	public explicit_return_type "void"
+	private explicit_return_type "void"
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
@@ -2351,6 +1977,8 @@ ${members}}
 	
 	
 	
+	comment "@brief Définit le contenu des Textview, affichant le nombre de billes de chaque couleur empochées par le joueur au cours de la manche
+"
       end
     end
 
@@ -2495,7 +2123,7 @@ ${members}}
 
       classrelation 143410 // baseDonnees (<unidirectional association>)
 	relation 142770 --->
-	  a role_name "baseDonnees" private
+	  a role_name "baseDonnees" public
 	    comment "!< Classe d'échange avec la base de donnees"
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -2658,7 +2286,7 @@ ${members}}
       end
     end
 
-    class 158642 "ExampleUnitTest"
+    class 175794 "HistoriqueJoueur"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
@@ -2670,32 +2298,584 @@ ${members}}
       explicit_switch_type ""
       mysql_decl ""
       
-      comment "Example local unit test, which will execute on the development machine (host).
-
-@see <a href=\"http://d.android.com/tools/testing\">Testing documentation</a>
+      comment "@class HistoriqueJoueur
+@brief La fenêtre s'affichant lors de la sélection lors de la selection d'un joueur, sur laquelle figurent les informations relatives à ce dernier
 "
-      operation 149170 "addition_isCorrect"
-	public explicit_return_type "void"
-	nparams 0
-	
-	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	java_annotation "@Test
-"
-	
-	
-	
+      classrelation 155314 // <generalisation>
+	relation 154674 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155314 // <generalisation>
+	  b parent class_ref 141994 // AlertDialog
       end
 
-      operation 149682 "addition_isCorrect"
-	public explicit_return_type "void"
+      attribute 171186 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_HistoriqueJoueur\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs"
+      end
+
+      classrelation 155442 // activiteHistorique (<unidirectional association>)
+	relation 154802 --->
+	  a role_name "activiteHistorique" private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 155442 // activiteHistorique (<unidirectional association>)
+	  b parent class_ref 158514 // Historique
+      end
+
+      attribute 171314 "nomJoueur"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Ressources GUI
+
+"
+      end
+
+      attribute 171442 "scoreElo"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171570 "nbManches"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171698 "nbVictoires"
+	private explicit_type "TextView"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171826 "boutonSuppression"
+	private explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 171954 "fenetre"
+	private explicit_type "View"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 215730 "HistoriqueJoueur"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "historique" type class_ref 158514 // Historique
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe HistoriqueJoueur
+"
+      end
+
+      operation 215858 "initialiserRessources"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "nom" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Initialise les ressources graphiques de la classe HistoriqueJoueur
+"
+      end
+    end
+
+    class 175922 "HistoriqueManche"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class HistoriqueManche
+@brief La fenêtre s'affichant lors de la sélection lors de la selection d'une manche, sur laquelle figurent les informations relatives à cette dernière
+"
+      classrelation 155570 // <generalisation>
+	relation 154930 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 155570 // <generalisation>
+	  b parent class_ref 141994 // AlertDialog
+      end
+
+      attribute 172082 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_HistoriqueManche\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs"
+      end
+
+      classrelation 155698 // activiteHistorique (<unidirectional association>)
+	relation 155058 --->
+	  a role_name "activiteHistorique" private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 155698 // activiteHistorique (<unidirectional association>)
+	  b parent class_ref 158514 // Historique
+      end
+
+      attribute 172210 "joueurs"
+	private explicit_type "String"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172338 "boutonSuppression"
+	private explicit_type "Button"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Ressources GUI
+
+"
+      end
+
+      attribute 172466 "nomsJoueurs"
+	private explicit_type "TextView"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172594 "billesEmpochees"
+	private explicit_type "TextView"
+	multiplicity "[][]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 215986 "HistoriqueManche"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "historique" type class_ref 158514 // Historique
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe HistoriqueManche
+"
+      end
+
+      operation 216114 "initialiserRessources"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "date" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Initialise les ressources graphiques de la classe HistoriqueManche
+"
+      end
+
+      operation 216242 "setResultats"
+	private explicit_return_type "void"
 	nparams 0
 	
 	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
   ${body}}
 "
-	java_annotation "@Test
+	
+	
+	
+	comment "@brief Définit le contenu des Textview, affichant le nombre de billes de chaque couleur empochées par le joueur au cours de la manche
+"
+      end
+    end
+
+    class 176050 "ProtocoleEcran"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class ProtocoleEcran
+@brief Définit le protocole Ecran-Pool
+"
+      attribute 172722 "DELIMITEUR_DEBUT"
+	class_attribute public explicit_type "char"
+	init_value " \"$\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172850 "DELIMITEUR_CHAMPS"
+	class_attribute public explicit_type "char"
+	init_value " \";\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 172978 "DELIMITEUR_FIN"
+	class_attribute public explicit_type "char"
+	init_value " \"\\n\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173106 "TABLES"
+	class_attribute public explicit_type "String"
+	init_value " \"0123\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173234 "TYPE_EMPOCHE"
+	class_attribute public explicit_type "char"
+	init_value " \"E\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "        ${Type};{Table};{Poche};{Couleur}\\n
+"
+      end
+
+      attribute 173362 "POCHES"
+	class_attribute public explicit_type "String"
+	init_value " \"012345\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173490 "COULEURS"
+	class_attribute public explicit_type "String"
+	init_value " \"0123\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 173618 "TYPE_NOM"
+	class_attribute public explicit_type "char"
+	init_value " \"N\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "        ${Type};{Table};{Joueur1};{Joueur2}\\n
+"
+      end
+
+      attribute 173746 "TYPE_CHANGEMENT_JOUEUR"
+	class_attribute public explicit_type "char"
+	init_value " \"C\".charAt(0)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "        ${Type};{Table};{ChangementJoueur}\\n
+"
+      end
+
+      attribute 173874 "JOUEURS"
+	class_attribute public explicit_type "String"
+	init_value " \"01\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 176178 "ProtocoleTable"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class ProtocoleTable
+@brief Définit le protocole PlugInPool
+"
+      attribute 174002 "DEBUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0x9c"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Trame MobilePool -> Table
+"
+      end
+
+      attribute 174130 "ARRET"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0x80"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 174258 "EMPOCHAGE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Trame Table -> MobilePool
+ !< Une trame empochage Table -> MobilePool"
+      end
+
+      attribute 174386 "MASQUE_TYPE"
+	class_attribute const_attribute public explicit_type "byte"
+	init_value " (byte)0b10000000"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Format : {Type}{Table}{Poche}{Couleur}
+| 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
+| 0  | X  | X  | X  | X  | X  | X  | X  |
+|Type|N°Table  |N°Poche       |Couleur  |
+
+"
+      end
+
+      attribute 174514 "MASQUE_POCHE"
+	class_attribute const_attribute public explicit_type "byte"
+	init_value " (byte)0b00001100"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< Masque du bit représentant le type de message
+ !< Masque des bits représentants le numéro de la poche"
+      end
+
+      attribute 174642 "MASQUE_COULEUR"
+	class_attribute const_attribute public explicit_type "byte"
+	init_value " (byte)0b00000011"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< Masque des bits représentants la couleur"
+      end
+
+      attribute 174770 "CHAMP_POCHE"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " !< Bit n°2"
+      end
+
+      operation 216370 "byteToBinaryString"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "trame" explicit_type "byte"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -2720,16 +2900,6 @@ ${definition}"
 @brief Déclaration de l'activité principale
 @author Clément TRICHET
 "
-    end
-
-    artifact 134578 "GestionManche"
-      stereotype "source"
-      java_src "${comment}
-${package}
-${imports}
-${definition}"
-      associated_elems
-      end
     end
 
     artifact 134570 "BlackBall"
@@ -2780,34 +2950,6 @@ ${definition}"
       end
     end
 
-    artifact 143794 "BuildConfig"
-      stereotype "source"
-      java_src "${comment}
-${package}
-${imports}
-${definition}"
-      associated_elems
-	class_ref 157618 // BuildConfig
-      end
-    end
-
-    artifact 143922 "ExampleInstrumentedTest"
-      stereotype "source"
-      java_src "${comment}
-${package}
-${imports}
-import android.content.Context;
-import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
-${definition}"
-      associated_elems
-	class_ref 157746 // ExampleInstrumentedTest
-      end
-    end
-
     artifact 144050 "BaseDeDonnees"
       stereotype "source"
       java_src "${comment}
@@ -2825,6 +2967,10 @@ ${definition}"
       associated_elems
 	class_ref 157874 // BaseDeDonnees
       end
+      comment "@author Clément Trichet
+@file BaseDeDonnees.java
+@brief TODO
+"
     end
 
     artifact 144178 "Communication"
@@ -2832,55 +2978,26 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.IntentSender;
-import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.database.DatabaseErrorHandler;
-import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
-import android.os.UserHandle;
 import android.util.Log;
-import android.view.Display;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.UUID;
 ${definition}"
       associated_elems
 	class_ref 158130 // Communication
       end
+      comment "@file Communication.java
+@brief Déclaration de la classe Communication
+@author Clément TRICHET
+"
     end
 
     artifact 144306 "FinDeManche"
@@ -2901,6 +3018,10 @@ ${definition}"
       associated_elems
 	class_ref 158258 // FinDeManche
       end
+      comment "@file FinDeManche.java
+@brief Déclaration de la classe définissant la fenêtre apparaissant au terme d'une manche
+@author Clément TRICHET
+"
     end
 
     artifact 144434 "Historique"
@@ -2927,31 +3048,75 @@ ${definition}"
       associated_elems
 	class_ref 158514 // Historique
       end
+      comment "@author Clément Trichet
+@file Historique.java
+@brief TODO
+"
     end
 
-    artifact 144562 "ExampleUnitTest"
+    artifact 161586 "HistoriqueJoueur"
       stereotype "source"
       java_src "${comment}
 ${package}
 ${imports}
-import org.junit.Test;
-import static org.junit.Assert.*;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 ${definition}"
       associated_elems
-	class_ref 158642 // ExampleUnitTest
+	class_ref 175794 // HistoriqueJoueur
+      end
+      comment "@file HistoriqueJoueur.java
+@brief Déclaration de la classe définissant la fenêtre apparaissant lors de la sélection d'un joueur
+@author Clément TRICHET
+"
+    end
+
+    artifact 161714 "HistoriqueManche"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+${definition}"
+      associated_elems
+	class_ref 175922 // HistoriqueManche
+      end
+      comment "@file HistoriqueManche.java
+@brief Déclaration de la classe définissant la fenêtre apparaissant lors de la selection d'une manche
+@author Clément TRICHET
+"
+    end
+
+    artifact 161842 "ProtocoleEcran"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 176050 // ProtocoleEcran
       end
     end
 
-    artifact 144690 "Compteur"
+    artifact 161970 "ProtocoleTable"
       stereotype "source"
       java_src "${comment}
 ${package}
 ${imports}
-import java.util.Timer;
-import java.util.TimerTask;
 ${definition}"
       associated_elems
-	class_ref 148018 // Compteur
+	class_ref 176178 // ProtocoleTable
       end
     end
   end

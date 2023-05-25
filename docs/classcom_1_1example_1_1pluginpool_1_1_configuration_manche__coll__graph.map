@@ -1,3 +1,5 @@
 <map id="com.example.pluginpool.ConfigurationManche" name="com.example.pluginpool.ConfigurationManche">
-<area shape="rect" id="node1" title="L&#39;activité de configuration d&#39;une manche." alt="" coords="5,5,280,361"/>
+<area shape="rect" id="node1" title="L&#39;activité de configuration d&#39;une manche." alt="" coords="220,556,495,912"/>
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1pluginpool_1_1_communication.html" title="La classe Communicaion Bluetooth." alt="" coords="5,35,296,464"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="455,5,673,493"/>
 </map>
