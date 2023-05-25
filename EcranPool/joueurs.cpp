@@ -1,9 +1,9 @@
 /**
- * @file Joueurs.cpp
+ * @file joueurs.cpp
  *
  * @brief Définition de la classe Joueurs
  * @author Benjamin GAUME
- * @version 0.1
+ * @version 1.0
  */
 
 #include "joueurs.h"
@@ -51,7 +51,7 @@ QVector<QString> Joueurs::getJoueurs()
  * @fn Joueurs::ajouterJoueur
  * @brief Ajoute un joueur
  */
-void Joueurs::ajouterJoueur(QString nomsJoueur)
+void Joueurs::ajouterJoueur(QString nomJoueur)
 {
     /**
      * @todo Ajouter le nomJoueur au nomsJoueurs
