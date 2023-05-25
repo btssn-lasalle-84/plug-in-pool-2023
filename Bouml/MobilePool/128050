@@ -1,6 +1,6 @@
 format 224
 "pluginpool" // pluginpool
-  revision 7
+  revision 8
   modified_by 50 "btssn2"
   // class settings
   
@@ -236,40 +236,6 @@ et détruite par le système Android)
 "
       end
 
-      classrelation 135346 // <dependency>
-	relation 134962 -_->
-	  a public
-	    classrelation_ref 135346 // <dependency>
-	  b parent class_ref 148274 // BaseDonnees
-      end
-    end
-
-    class 148146 "Reception"
-      visibility package 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-    end
-
-    class 148274 "BaseDonnees"
-      visibility package 
-      cpp_decl ""
-      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
-${members}}
-"
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
     end
 
     class 134570 "BlackBall"
