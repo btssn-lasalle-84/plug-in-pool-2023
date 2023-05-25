@@ -1,0 +1,44 @@
+format 224
+
+classcanvas 128023 class_ref 128151 // joueurs
+  classdiagramsettings member_max_width 0 end
+  xyz 9 25 2000
+end
+classcanvas 128151 class_ref 128279 // manches
+  classdiagramsettings member_max_width 0 end
+  xyz 277 8 2006
+end
+classcanvas 128535 class_ref 128407 // tours
+  classdiagramsettings member_max_width 0 end
+  xyz 112 282 2012
+end
+classcanvas 128919 class_ref 128535 // empoches
+  classdiagramsettings member_max_width 0 end
+  xyz 426 282 2018
+end
+relationcanvas 128279 relation_ref 128151 // <unidirectional association>
+  from ref 128151 z 2007 to ref 128023
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128407 relation_ref 128279 // <unidirectional association>
+  from ref 128151 z 2007 to ref 128023
+  role_a_pos 169 70 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128663 relation_ref 128407 // <unidirectional association>
+  from ref 128535 z 2013 to ref 128023
+  role_a_pos 130 162 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128791 relation_ref 128535 // <unidirectional association>
+  from ref 128535 z 2013 to ref 128151
+  role_a_pos 328 179 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129047 relation_ref 128663 // <unidirectional association>
+  from ref 128919 z 2019 to ref 128535
+  role_a_pos 328 327 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

@@ -1,0 +1,45 @@
+class HistoriqueManche
+!!!135319.java!!!	HistoriqueManche(inout historique : Historique, in date : String)
+        super(historique);
+        setContentView(R.layout.fenetre_historique_manche);
+        activiteHistorique = historique;
+        initialiserRessources(date);
+!!!135447.java!!!	initialiserRessources(in date : String) : void
+        Log.d(TAG, "initialiserRessources( date =  " + date + " )");
+
+        View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_historique_manche, null);
+        boutonSuppression = (Button) fenetre.findViewById(R.id.boutonSupprimer);
+        billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.JAUNE] = (TextView) fenetre.findViewById(R.id.nbJaunesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.JAUNE] = (TextView) fenetre.findViewById(R.id.nbJaunesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.BLANCHE] = (TextView) fenetre.findViewById(R.id.nbBlanchesJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.BLANCHE] = (TextView) fenetre.findViewById(R.id.nbBlanchesJoueur2);
+        billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.NOIRE] = (TextView) fenetre.findViewById(R.id.nbNoiresJoueur1);
+        billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.NOIRE] = (TextView) fenetre.findViewById(R.id.nbNoiresJoueur2);
+        joueurs = new String[BlackBall.NB_JOUEURS];
+        joueurs[Manche.PREMIER_JOUEUR] = activiteHistorique.baseDonnees.getNomJoueur("gagnant", date);
+        joueurs[Manche.SECOND_JOUEUR] = activiteHistorique.baseDonnees.getNomJoueur("perdant", date);
+        nomsJoueurs = new TextView[BlackBall.NB_JOUEURS];
+        nomsJoueurs[Manche.PREMIER_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur1);
+        nomsJoueurs[Manche.PREMIER_JOUEUR].setText("Gagnant : " + joueurs[Manche.PREMIER_JOUEUR]);
+        nomsJoueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
+        nomsJoueurs[Manche.SECOND_JOUEUR].setText("Perdant : " + joueurs[Manche.SECOND_JOUEUR]);
+        boutonSuppression.setOnClickListener(new View.OnClickListener() {
+
+             @Override
+             public void onClick(View view) {
+                 activiteHistorique.baseDonnees.supprimerManche(date);
+                 HistoriqueManche.this.dismiss();
+             }
+         });
+        setResultats();
+!!!135575.java!!!	setResultats() : void
+        for(int joueur = 0; joueur < BlackBall.NB_JOUEURS; joueur++)
+        {
+            for(int couleur = BlackBall.ROUGE; couleur < BlackBall.NB_COULEURS; couleur++)
+            {
+                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteHistorique.baseDonnees.getNbEmpoches(couleur, joueurs[joueur], BaseDeDonnees.DEFAUT)));
+            }
+        }
