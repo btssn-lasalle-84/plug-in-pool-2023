@@ -495,6 +495,11 @@ ${members}}
       sequencediagramsettings end
       overlapping_bars size A0
     end
+
+    classdiagram 147762 "Diagramme de classe"
+      classdiagramsettings member_max_width 0 end
+      size A0
+    end
   end
 
   package_ref 128050 // pluginpool
@@ -552,4 +557,5 @@ ${members}}
       overlapping_bars size A0
     end
   end
+
 end

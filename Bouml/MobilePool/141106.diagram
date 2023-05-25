@@ -1,100 +1,100 @@
 format 224
 
 classinstance 128178 class_ref 134706 // EcranPrincipal
-  name ""   xyz 53 7 2005 life_line_z 2000
+  name ""   xyz 52.9 7.7 2005 life_line_z 2000
 classinstance 128306 class_ref 134698 // ConfigurationManche
-  name ""   xyz 197 8 2005 life_line_z 2000
+  name ""   xyz 197.2 9.4 2005 life_line_z 2000
 classinstance 128434 class_ref 157874 // BaseDeDonnees
-  name "baseDonnees"   xyz 454 140 2005 life_line_z 2000
+  name "baseDonnees"   xyz 453.7 140.8 2005 life_line_z 2000
 classinstance 128562 class_ref 158130 // Communication
-  name "communication"   xyz 605 227 2005 life_line_z 2000
+  name "communication"   xyz 605.2 227.7 2005 life_line_z 2000
 classinstance 128690 class_ref 128050 // Joueur
-  name ""   xyz 4 17 2000 life_line_z 2000
+  name ""   xyz 4 16.9 2000 life_line_z 2000
 classinstance 134834 class_ref 134826 // Manche
-  name ""   xyz 790 793 2005 life_line_z 2000
+  name ""   xyz 790.1 792.9 2005 life_line_z 2000
 fragment 136754 "alt"
-  xyzwh 184 634 1995 694 319
+  xyzwh 184 635.1 3010 694 319
 end
 textcanvas 136882 "[configurée]"
-  xyzwh 234 636 3005 82 17
+  xyzwh 233.8 636.8 3005 82 17
 fragment 137010 "ref"
   refer sequencediagram_ref 141234 // Jouer une manche
-  xyzwh 731 882 2000 137 59
+  xyzwh 731.3 881.7 2000 137 61
 end
 durationcanvas 129202 classinstance_ref 128178 // :EcranPrincipal
-  xyzwh 102 78 2010 11 72
+  xyzwh 101 78.1 2010 11 72
   overlappingdurationcanvas 129586
-    xyzwh 108 86 2020 11 48
+    xyzwh 107 86.3 2020 11 48
   end
 end
 durationcanvas 129842 classinstance_ref 128306 // :ConfigurationManche
-  xyzwh 271 123 2010 11 229
+  xyzwh 271 123.9 2010 11 229
   overlappingdurationcanvas 130098
     xyzwh 277 128 2020 11 25
   end
   overlappingdurationcanvas 130354
-    xyzwh 277 156 2020 11 151
+    xyzwh 277 156.7 2020 11 151
   end
   overlappingdurationcanvas 135218
-    xyzwh 277 321 2020 11 25
+    xyzwh 277 321.1 2020 11 25
   end
 end
 durationcanvas 130610 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
-  xyzwh 556 190 2010 11 49
+  xyzwh 554 190.8 2010 11 49
   overlappingdurationcanvas 130866
-    xyzwh 562 208 2020 11 25
+    xyzwh 560 208 2020 11 25
   end
 end
 durationcanvas 131378 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
-  xyzwh 556 246 2010 11 25
+  xyzwh 554 246.6 2010 11 25
 end
 durationcanvas 131634 classinstance_ref 128562 // communication:Communication
-  xyzwh 711 277 2010 11 42
+  xyzwh 711 276.9 2010 11 42
   overlappingdurationcanvas 131890
     xyzwh 717 288 2020 11 25
   end
 end
 durationcanvas 132530 classinstance_ref 128306 // :ConfigurationManche
-  xyzwh 271 383 2010 11 30
+  xyzwh 271 382.9 2010 11 30
 end
 durationcanvas 132914 classinstance_ref 128306 // :ConfigurationManche
-  xyzwh 271 421 2010 11 27
+  xyzwh 271 421.8 2010 11 27
 end
 durationcanvas 133298 classinstance_ref 128306 // :ConfigurationManche
-  xyzwh 271 456 2010 11 31
+  xyzwh 271 456.7 2010 11 31
 end
 durationcanvas 133682 classinstance_ref 128562 // communication:Communication
-  xyzwh 711 476 2010 11 25
+  xyzwh 711 476.6 2010 11 25
 end
 durationcanvas 133938 classinstance_ref 128306 // :ConfigurationManche
-  xyzwh 271 569 2010 11 397
+  xyzwh 271 569.9 2010 11 397
   overlappingdurationcanvas 134578
     xyzwh 277 825 2020 11 31
   end
   overlappingdurationcanvas 135474
-    xyzwh 277 591 2020 11 25
+    xyzwh 277 591.1 2020 11 25
   end
   overlappingdurationcanvas 135730
-    xyzwh 277 667 2020 11 111
+    xyzwh 277 667.4 2020 11 111
   end
   overlappingdurationcanvas 136498
-    xyzwh 277 794 2020 11 25
+    xyzwh 277 794.2 2020 11 25
   end
 end
 durationcanvas 134962 classinstance_ref 134834 // :Manche
-  xyzwh 818 845 2010 11 25
+  xyzwh 818 845.9 2010 11 25
 end
 durationcanvas 135986 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
-  xyzwh 556 699 2010 11 25
+  xyzwh 554 699.7 2010 11 25
 end
 durationcanvas 136242 classinstance_ref 128434 // baseDonnees:BaseDeDonnees
-  xyzwh 556 753 2010 11 25
+  xyzwh 554 753.5 2010 11 25
 end
-lostfoundmsgsupport 129330 xyz 27 82 2015
-lostfoundmsgsupport 132658 xyz 26 385 2015
-lostfoundmsgsupport 133042 xyz 26 423 2015
-lostfoundmsgsupport 133426 xyz 25 458 2015
-lostfoundmsgsupport 134066 xyz 26 571 2015
+lostfoundmsgsupport 129330 xyz 27.7 82.2 2015
+lostfoundmsgsupport 132658 xyz 26 385.3 2015
+lostfoundmsgsupport 133042 xyz 26 423.9 2015
+lostfoundmsgsupport 133426 xyz 25.3 458.4 2015
+lostfoundmsgsupport 134066 xyz 26 570.8 2015
 msg 129458 found_synchronous
   from lostfoundmsgsupport_ref 129330
   to durationcanvas_ref 129202
