@@ -1,3 +1,11 @@
+/**
+ * @file joueurs.h
+ *
+ * @brief Déclaration de la classe Joueurs
+ * @author Benjamin GAUME
+ * @version 1.0
+ */
+
 #ifndef JOUEURS_H
 #define JOUEURS_H
 
@@ -16,7 +24,7 @@ class Joueurs
     ~Joueurs();
 
     QVector<QString> getJoueurs();
-    void             ajouterJoueur(QString nomsJoueur);
+    void             ajouterJoueur(QString nomJoueur);
 
   private:
     QVector<QString> nomsJoueurs;
