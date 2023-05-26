@@ -51,5 +51,5 @@ QVector<QString> Joueurs::getJoueurs()
  */
 void Joueurs::ajouterJoueur(QString nomJoueur)
 {
-    nomsJoueurs.append(nomsJoueur);
+    nomsJoueurs.append(nomJoueur);
 }

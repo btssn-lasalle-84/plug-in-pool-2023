@@ -8,9 +8,6 @@
 
 #include "communicationbluetooth.h"
 #include <QDebug>
-#include <QList>
-#include <QBluetoothLocalDevice>
-#include <QString>
 
 /**
  * @brief Constructeur de la classe CommunicationBluetooth
@@ -22,11 +19,6 @@ CommunicationBluetooth::CommunicationBluetooth(QObject* parent) :
     QObject(parent), serveur(nullptr), socket(nullptr)
 {
     qDebug() << Q_FUNC_INFO;
-    decouverteAgent = new QBluetoothDeviceDiscoveryAgent(this);
-    connect(decouverteAgent,
-            SIGNAL(peripheriqueDecouvert(QBluetoothDeviceInfo)),
-            this,
-            SLOT(peripheriqueDecouvert(QBluetoothDeviceInfo)));
 }
 
 /**
@@ -57,31 +49,5 @@ void CommunicationBluetooth::verifierActivationBluetooth(
 
         // Rendre le périphérique visible aux autres
         peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
-
-        // Obtenir les périphériques connectés
-        QList<QBluetoothAddress> peripheriques;
-        peripheriques = peripheriqueLocal.connectedDevices();
     }
-}
-
-/**
- * @brief Commence la recherche de périphériques
- *
- * @fn CommunicationBluetooth::commencerRecherchePeripherique()
- */
-void CommunicationBluetooth::commencerRecherchePeripherique()
-{
-    decouverteAgent->start();
-}
-
-/**
- * @brief Commence la recherche de périphériques
- *
- * @fn CommunicationBluetooth::commencerRecherchePeripherique()
- */
-void CommunicationBluetooth::afficherPeripheriqueDecouvert(
-  const QBluetoothDeviceInfo& peripherique)
-{
-    qDebug() << "Nouveau périphérique trouvé :" << peripherique.name() << '('
-             << peripherique.address().toString() << ')';
 }
