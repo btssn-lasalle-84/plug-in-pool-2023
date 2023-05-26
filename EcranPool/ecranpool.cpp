@@ -117,9 +117,26 @@ void EcranPool::afficherDureePartie()
  */
 void EcranPool::afficherDecompteManche()
 {
-    /**
-     * @todo Afficher le décompte
-     */
+    static int decompte      = 45; // décompte initial de 45 secondes
+    QString    texteDecompte = QString::number(
+      decompte); // Convertir le décompte en chaîne de caractères
+
+    // Afficher le décompte dans le QLabel
+    ui->labelDecompteManche->setText(texteDecompte);
+
+    // Décrémente le décompte
+    --decompte;
+
+    // Arrêter le décompte lorsque le temps est écoulé
+    if(decompte < 0)
+    {
+        // Arrêter le minuteur associé à la méthode
+        QTimer* minuteur = qobject_cast<QTimer*>(sender());
+        minuteur->stop();
+
+        // Réinitialiser le décompte pour la prochaine manche
+        decompte = 45;
+    }
 }
 
 // Méthodes privées
@@ -172,9 +189,9 @@ void EcranPool::initialiserHeure()
  */
 void EcranPool::initialiserDecompteManche()
 {
-    QTimer* minuteur = new QTimer(this);
-    minuteur->start(INTERVALLE_SECONDE);
-    connect(minuteur, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
+    QTimer* decompte = new QTimer(this);
+    decompte->start(INTERVALLE_SECONDE);
+    connect(decompte, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
 }
 
 #ifdef TEST_EcranPool

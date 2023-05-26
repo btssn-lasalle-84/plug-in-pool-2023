@@ -26,14 +26,21 @@ class CommunicationBluetooth : public QObject
   public:
     CommunicationBluetooth(QObject* parent = nullptr);
     ~CommunicationBluetooth();
+    void verifierActivationBluetooth(QString& nomPeripheriqueLocal);
+    void commencerRecherchePeripherique();
+
+  private slots:
+    void afficherPeripheriqueDecouvert(
+      const QBluetoothDeviceInfo& peripherique);
 
   private:
     QBluetoothLocalDevice
-      peripheriqueLocal;       //!< L'interface Bluetooth de la Raspberry Pi
-    QBluetoothServer* serveur; //!< Le serveur Bluetooth
-    QBluetoothSocket* socket;  //!< La socket de communication Bluetooth
+                      peripheriqueLocal; //!< L'interface Bluetooth de la Raspberry Pi
+    QBluetoothServer* serveur;           //!< Le serveur Bluetooth
+    QBluetoothSocket* socket; //!< La socket de communication Bluetooth
     QBluetoothServiceInfo
-      serviceInfo; //!< Les informations sur le service bluetooth
+                                    serviceInfo; //!< Les informations sur le service bluetooth
+    QBluetoothDeviceDiscoveryAgent* decouverteAgent;
 
   signals:
 };

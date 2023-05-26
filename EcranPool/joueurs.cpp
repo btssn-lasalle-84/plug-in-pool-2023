@@ -42,9 +42,7 @@ Joueurs::~Joueurs()
  */
 QVector<QString> Joueurs::getJoueurs()
 {
-    /**
-     * @todo Retourner les joueurs
-     */
+    return nomsJoueurs;
 }
 
 /**
@@ -53,7 +51,5 @@ QVector<QString> Joueurs::getJoueurs()
  */
 void Joueurs::ajouterJoueur(QString nomsJoueur)
 {
-    /**
-     * @todo Ajouter le nomJoueur au nomsJoueurs
-     */
+    nomsJoueurs.append(nomsJoueur);
 }
