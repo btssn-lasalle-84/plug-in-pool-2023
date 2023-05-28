@@ -58,8 +58,11 @@ var files_dup =
       [ "Manche", "classcom_1_1example_1_1pluginpool_1_1_manche.html", "classcom_1_1example_1_1pluginpool_1_1_manche" ]
     ] ],
     [ "manche.xml", "manche_8xml.html", null ],
-    [ "Protocole.java", "_protocole_8java.html", [
-      [ "Protocole", "classcom_1_1example_1_1pluginpool_1_1_protocole.html", "classcom_1_1example_1_1pluginpool_1_1_protocole" ]
+    [ "ProtocoleEcran.java", "_protocole_ecran_8java.html", [
+      [ "ProtocoleEcran", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran" ]
+    ] ],
+    [ "ProtocoleTable.java", "_protocole_table_8java.html", [
+      [ "ProtocoleTable", "classcom_1_1example_1_1pluginpool_1_1_protocole_table.html", "classcom_1_1example_1_1pluginpool_1_1_protocole_table" ]
     ] ],
     [ "rond.xml", "rond_8xml.html", null ],
     [ "strings.xml", "strings_8xml.html", null ],
