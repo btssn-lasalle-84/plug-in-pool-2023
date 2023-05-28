@@ -15,7 +15,8 @@ var annotated_dup =
           [ "HistoriqueJoueur", "classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html", "classcom_1_1example_1_1pluginpool_1_1_historique_joueur" ],
           [ "HistoriqueManche", "classcom_1_1example_1_1pluginpool_1_1_historique_manche.html", "classcom_1_1example_1_1pluginpool_1_1_historique_manche" ],
           [ "Manche", "classcom_1_1example_1_1pluginpool_1_1_manche.html", "classcom_1_1example_1_1pluginpool_1_1_manche" ],
-          [ "Protocole", "classcom_1_1example_1_1pluginpool_1_1_protocole.html", "classcom_1_1example_1_1pluginpool_1_1_protocole" ]
+          [ "ProtocoleEcran", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran" ],
+          [ "ProtocoleTable", "classcom_1_1example_1_1pluginpool_1_1_protocole_table.html", "classcom_1_1example_1_1pluginpool_1_1_protocole_table" ]
         ] ]
       ] ]
     ] ],

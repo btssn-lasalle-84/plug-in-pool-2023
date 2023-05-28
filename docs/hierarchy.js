@@ -5,7 +5,8 @@ var hierarchy =
     [ "com.example.pluginpool.ExampleInstrumentedTest", "classcom_1_1example_1_1pluginpool_1_1_example_instrumented_test.html", null ],
     [ "com.example.pluginpool.ExampleUnitTest", "classcom_1_1example_1_1pluginpool_1_1_example_unit_test.html", null ],
     [ "Joueurs", "class_joueurs.html", null ],
-    [ "com.example.pluginpool.Protocole", "classcom_1_1example_1_1pluginpool_1_1_protocole.html", null ],
+    [ "com.example.pluginpool.ProtocoleEcran", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html", null ],
+    [ "com.example.pluginpool.ProtocoleTable", "classcom_1_1example_1_1pluginpool_1_1_protocole_table.html", null ],
     [ "QWidget", "class_q_widget.html", [
       [ "EcranPool", "class_ecran_pool.html", null ]
     ] ],

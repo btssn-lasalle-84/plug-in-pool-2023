@@ -21,7 +21,7 @@ class EcranPrincipal
         super.onDestroy();
         Log.d(TAG, "onDestroy()");
 !!!128818.java!!!	initialiserRessources() : void
-        boutonStatistiques = (Button)findViewById(R.id.boutonStatistiques);
+        boutonStatistiques = (Button)findViewById(R.id.boutonHistorique);
         boutonJouer        = (Button)findViewById(R.id.boutonJouer);
 
         boutonStatistiques.setOnClickListener(new View.OnClickListener()
@@ -29,7 +29,8 @@ class EcranPrincipal
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonStatistiques");
-                //!< @todo
+                Intent activiteHistorique = new Intent(EcranPrincipal.this, Historique.class);
+                startActivity(activiteHistorique);
             }
         });
         boutonJouer.setOnClickListener(new View.OnClickListener()

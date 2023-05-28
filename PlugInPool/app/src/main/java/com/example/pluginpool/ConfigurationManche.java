@@ -47,15 +47,16 @@ public class ConfigurationManche extends AppCompatActivity
     private ArrayAdapter<String> adaptateurNomsJoueurs; //!< Adaptateur pour l'affichage du nom des joueurs déjà enregistrés
     private InputFilter[] filtresNom;                   //!< Filtre les caractères non admis dans le nom d'un joueur
     private String  choixNomTable  = "Aucune";
-    Communication   communication  = null;              //!< Classe de communication Bluetooth
-    private boolean connexionTable = false;
+    Communication  communication  = null;              //!< Classe de communication Bluetooth
+    private boolean connexion = false;
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
     /**
      * Ressources GUI
      */
     private Spinner choixNomsJoueur1; //!< Spinner permettant de choisir le premier joueur parmi la
-                                      //!< liste des joueurs enregistrés
+                                      //!< liste
+                                      // des joueurs enregistrés
     private Spinner choixNomsJoueur2; //!< Spinner permettant de choisir le second joueur parmi la
                                       //!< liste des joueurs enregistrés
     private EditText editionNomJoueur1; //!< Zone permettant de saisir le nom du premier joueur
@@ -94,7 +95,7 @@ public class ConfigurationManche extends AppCompatActivity
     {
         baseDonnees = BaseDeDonnees.getInstance(this);
         nomsJoueurs   = baseDonnees.getNomsJoueurs();
-        communication = Communication.getInstance(handler);
+        communication = Communication.getInstance(handler, Communication.TABLE);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
         filtresNom = new InputFilter[] {
@@ -209,7 +210,7 @@ public class ConfigurationManche extends AppCompatActivity
                     String nomJoueur2 = editionNomJoueur2.getText().toString();
 
                     ajouterNomsJoueurs(nomJoueur1, nomJoueur2);
-                    Intent activiteManche = parametrerActiviteManche();
+                    Intent activiteManche = parametrerActiviteManche(nomJoueur1, nomJoueur2);
 
                     startActivity(activiteManche);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
@@ -227,19 +228,19 @@ public class ConfigurationManche extends AppCompatActivity
         baseDonnees.ajouterNom(nomJoueur2);
     }
 
-    private Intent parametrerActiviteManche() {
+    private Intent parametrerActiviteManche(String nomJoueur1, String nomJoueur2) {
         Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
         activiteManche.putExtra("joueur1", nomJoueur1);
         activiteManche.putExtra("joueur2", nomJoueur2);
-        activiteManche.putExtra("connexionTable", connexionTable);
+        activiteManche.putExtra("connexionTable", connexion);
         activiteManche.putExtra("choixNomTable", choixNomTable);
         return activiteManche;
     }
 
     private Boolean estConfiguree()
     {
-        Log.d(TAG, "estConfiguree() connexionTable = " + connexionTable);
-        if(!connexionTable)
+        Log.d(TAG, "estConfiguree() connexionTable = " + connexion);
+        if(!connexion)
             return false;
         Log.d(TAG,
               "estConfiguree() joueur1 = " + !editionNomJoueur1.getText().toString().isEmpty() +
@@ -287,6 +288,6 @@ public class ConfigurationManche extends AppCompatActivity
     }
 
     private void actualiserEtatConnexionTable(boolean etat) {
-        connexionTable = etat;
+        connexion = etat;
     }
 }

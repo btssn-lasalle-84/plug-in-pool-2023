@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">0.2</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -94,12 +94,16 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <ul>
 <li><a href="#projet-plug-in-pool-2023">Projet plug-in-pool 2023</a><ul>
 <li><a href="#documentation-du-code">Documentation du code</a></li>
-<li><a href="#recette">Recette</a></li>
 <li><a href="#versions">Versions</a><ul>
+<li><a href="#10">1.0</a></li>
 <li><a href="#02">0.2</a></li>
 <li><a href="#01">0.1</a></li>
 </ul>
 </li>
+<li><a href="#diagramme-de-classes">Diagramme de classes</a></li>
+<li><a href="#base-de-donn%C3%A9es-sqlite">Base de données SQLite</a></li>
+<li><a href="#planification">Planification</a></li>
+<li><a href="#protocoles">Protocoles</a></li>
 <li><a href="#annexes">Annexes</a><ul>
 <li><a href="#blackball">Blackball</a><ul>
 <li><a href="#casse">Casse</a></li>
@@ -115,31 +119,64 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 </ul>
 <hr  />
 <p>Le système Plug in Pool est un système numérique permettant de jouer une partie de <a href="#blackball">Blackball</a> (parfois appelé billard anglais, billard pool ou 8 pool).</p>
+<p><img src="pluginpool-logo.png" alt="" class="inline"/></p>
 <p>Le système Plug-in-Pool est décomposé en trois modules :</p>
 <ul>
 <li>Module de détection des billes (Détection-POOL EC)​ : le billard est équipé de capteurs permettant de détecter l’empochage et la couleur d’une bille</li>
 <li>Module de gestion de partie (Mobile-POOL IR)​ : les joueurs paramètrent et lancent la partie à partir d’une application sur un terminal mobile (sous Android)</li>
 <li>Module de visualisation de partie (Écran-POOL IR)​ : le déroulement de la partie est affiché sur un écran de télévision.</li>
 </ul>
-<h2>Documentation du code</h2>
-<p><a href="https://btssn-lasalle-84.github.io/plug-in-pool-2023/">https://btssn-lasalle-84.github.io/plug-in-pool-2023/</a></p>
-<h2>Recette</h2>
+<p><img src="modules.png" alt="" class="inline"/></p>
+<p><img src="uc-mobilepool.png" alt="" class="inline"/></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Fonctionnalité (Android)   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">Non    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Configurer une manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Lancer une manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Jouer une manche et afficher son déroulement   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Configurer la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Enregistrer les données de jeu   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Éditer un joueur   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Afficher les statistiques des manches effectuées   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Suivre le déroulement de la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Communiquer entre les modules   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter">/   </td></tr>
+<td class="markdownTableBodyNone">Enregistrer la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Accéder à la base de données   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Consulter l'historique   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Purger l'historique   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Dialoguer avec les modules   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 </table>
+<p><img src="uc-ecranpool.png" alt="" class="inline"/></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Fonctionnalité (Qt)   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">Non    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Visualiser les données du match   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Dialoguer avec le module   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+</table>
+<h2>Documentation du code</h2>
+<p><a href="https://btssn-lasalle-84.github.io/plug-in-pool-2023/">https://btssn-lasalle-84.github.io/plug-in-pool-2023/</a></p>
 <h2>Versions</h2>
 <p><img src="jira-livraisons.png" alt="" class="inline"/></p>
+<h3>1.0</h3>
+<p><img src="jira-tickets-v1.0.png" alt="" class="inline"/></p>
+<ul>
+<li>Android :</li>
+</ul>
+<p><img src="screenshot-android-accueil-v1.0.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-configuration-v0.2.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-manche-v1.0.png" alt="" class="inline"/></p>
+<ul>
+<li>Qt :</li>
+</ul>
+<p><img src="screenshot-qt-accueil-v1.0.png" alt="" class="inline"/></p>
+<p><img src="screenshot-qt-partie-v1.0.png" alt="" class="inline"/></p>
+<p><img src="screenshot-qt-fin-v1.0.png" alt="" class="inline"/></p>
 <h3>0.2</h3>
 <p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
 <ul>
@@ -166,6 +203,55 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <li>Qt :</li>
 </ul>
 <p><img src="screenshot-qt-accueil-v0.1.png" alt="" class="inline"/></p>
+<h2>Diagramme de classes</h2>
+<ul>
+<li>MobilePool (Android) :</li>
+</ul>
+<p><img src="diagramme-classes-1.0.png" alt="" class="inline"/></p>
+<ul>
+<li><a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a> (Qt) :</li>
+</ul>
+<p><img src="dc-ecranpool-v1.0.png" alt="" class="inline"/></p>
+<h2>Base de données SQLite</h2>
+<p><img src="bdd.png" alt="" class="inline"/></p>
+<div class="fragment"><div class="line"><span class="comment">--- LDD (langage de définition de données)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">--- Supprime les tables</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> empoches;</div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> tours;</div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> manches;</div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> joueurs;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">--- Table joueurs</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> joueurs (id <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, nom TEXT <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, parties <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, victoires <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">--- Table manches</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> manches (id <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, horodatage DATETIME <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, gagnantId <span class="keywordtype">INTEGER</span>, perdantId <span class="keywordtype">INTEGER</span>, numeroTable <span class="keywordtype">INTEGER</span>, <span class="keyword">FOREIGN</span> KEY (gagnantId) <span class="keyword">REFERENCES</span> joueurs(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE, <span class="keyword">FOREIGN</span> KEY (perdantId) <span class="keyword">REFERENCES</span> joueurs(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">--- Table tours</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> tours (id <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, joueurId <span class="keywordtype">INTEGER</span>, mancheId <span class="keywordtype">INTEGER</span>, <span class="keyword">FOREIGN</span> KEY (joueurId) <span class="keyword">REFERENCES</span> joueurs(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE, <span class="keyword">FOREIGN</span> KEY (mancheId) <span class="keyword">REFERENCES</span> manches(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">--- Table empoches</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> empoches (id <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, tourId <span class="keywordtype">INTEGER</span>, poche <span class="keywordtype">INTEGER</span>, couleur <span class="keywordtype">INTEGER</span>, <span class="keyword">FOREIGN</span> KEY (tourId) <span class="keyword">REFERENCES</span> tours(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE);</div>
+</div><!-- fragment --><h2>Planification</h2>
+<p><img src="gantt.png" alt="" class="inline"/></p>
+<h2>Protocoles</h2>
+<ul>
+<li>Mobile-pool ←→ Table de billard</li>
+</ul>
+<p>Protocole orienté bit</p>
+<p><img src="protocole-mobilepool-1.png" alt="" class="inline"/></p>
+<p><img src="protocole-mobilepool-2.png" alt="" class="inline"/></p>
+<ul>
+<li>Mobile-pool → Ecan-pool</li>
+</ul>
+<p>Protocole orienté caractères ASCII</p>
+<p><img src="protocole-ecranpool.png" alt="" class="inline"/></p>
 <hr  />
 <h2>Annexes</h2>
 <h3>Blackball</h3>
@@ -208,7 +294,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <h2>Auteurs</h2>
 <ul>
 <li>Clement Trichet &lt;<a href="#" onclick="location.href='mai'+'lto:'+'cle'+'me'+'nt.'+'tr'+'ich'+'et'+'.pr'+'o@'+'gma'+'il'+'.co'+'m'; return false;">clement.trichet.pro@gmail.com</a>&gt;</li>
-<li>Gaume Benjamin &lt;[<a href="#" onclick="location.href='mai'+'lto:'+'ben'+'ja'+'min'+'.g'+'aum'+'e@'+'gma'+'il'+'.co'+'m'; return false;">benja<span style="display: none;">.nosp@m.</span>min.<span style="display: none;">.nosp@m.</span>gaume<span style="display: none;">.nosp@m.</span>@gma<span style="display: none;">.nosp@m.</span>il.co<span style="display: none;">.nosp@m.</span>m</a>&gt;</li>
+<li>Gaume Benjamin &lt;<a href="#" onclick="location.href='mai'+'lto:'+'ben'+'ja'+'min'+'.g'+'aum'+'e@'+'gma'+'il'+'.co'+'m'; return false;">benjamin.gaume@gmail.com</a>&gt;</li>
 </ul>
 <hr  />
 <p> ©️ LaSalle Avignon </p>
@@ -219,7 +305,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mercredi 24 Mai 2023 05:46:40 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

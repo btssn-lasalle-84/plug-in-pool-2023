@@ -188,7 +188,7 @@ msg 132010 synchronous
 msg 132266 synchronous
   from durationcanvas_ref 130730
   to durationcanvas_ref 132138
-  yz 692 2025 msg operation_ref 142890 // "getInstance() : Communication"
+  yz 692 2025 explicitmsg "getInstance"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 1751 659
 reflexivemsg 132522 synchronous
@@ -238,7 +238,7 @@ msg 135594 synchronous
   label_xy 1500 1612
 reflexivemsg 135978 synchronous
   to durationcanvas_ref 135850
-  yz 1734 2025 msg operation_ref 146474 // "parametrerActiviteManche() : Intent"
+  yz 1734 2025 msg operation_ref 146474 // "parametrerActiviteManche(in nomJoueur1 : String, in nomJoueur2 : String) : Intent"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 932 1704
 reflexivemsg 136234 synchronous

@@ -44,6 +44,8 @@ public class Manche extends AppCompatActivity
     private static final int DUREE_TIR = 45000;         //!< Duree en millisecondes d'un tir
     private static final int MILLISEC_PAR_SEC = 1000;   //!< Nombre de millisecondes par seconde
     private static final int NB_PALIERS = 450;          //!< Nombre de palliers de la barre de progression du timer
+    private static final int CHAR_NUMERO_TABLE = 5;      //!< Indice du caractère du nom de la table correspondant à son numéro
+
     /**
      * Attributs
      */
@@ -61,7 +63,7 @@ public class Manche extends AppCompatActivity
     private Boolean                 couleursDefinies;   //!< Booléen indiquant si la couleur du groupe des billes attribué aux joueurs est définie ou non
     private Boolean                 mancheDemarree;     //!< Booléen indiquant si la manche a ou non démarré
     private CountDownTimer compteARebours;              //!< Compteur indiquant le temps restant pour le tir en cours
-    Communication   communication  = null;              //!< Classe de communication Bluetooth
+    Communication[]   communications  = {null, null};              //!< Classe de communication Bluetooth
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
 
     /**
@@ -76,6 +78,7 @@ public class Manche extends AppCompatActivity
     private ProgressBar barreProgression;               //!< Barre de progression du compteur
     private ImageView[][] billesRestantes;              //!< Images des billes restantes de chaque joueur
     private Button boutonQuitter;                       //!< Bouton arretant la partie en cours et renvoyant au menu
+    private Button boutonAfficher;                      //!< Bouton permettant d'afficher la partie à l'écran (TV)
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -91,7 +94,7 @@ public class Manche extends AppCompatActivity
         initialiserHandler();
         initialiserAttributs();
         initialiserRessources();
-        communication.envoyer(Protocole.DEBUT);
+        communications[Communication.TABLE].envoyer(ProtocoleTable.DEBUT);
     }
 
     /**
@@ -103,7 +106,7 @@ public class Manche extends AppCompatActivity
 
         baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = NUMERO_TABLE_DEFAUT;
-        communication = Communication.getInstance(handler);
+        communications[Communication.TABLE] = Communication.getInstance(handler, Communication.TABLE);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
@@ -133,9 +136,20 @@ public class Manche extends AppCompatActivity
         boutonQuitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                communication.seDeconnecter();
+                communications[Communication.TABLE].seDeconnecter();
                 Intent intent = new Intent(Manche.this, EcranPrincipal.class);
                 startActivity(intent);
+            }
+        });
+
+        boutonAfficher = (Button) findViewById(R.id.boutonAfficher);
+        boutonAfficher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communications[Communication.ECRAN] = Communication.getInstance(Communication.ECRAN);
+                communications[Communication.ECRAN].seConnecter("EcranPool");
+                String trameDebut = ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
+                communications[Communication.ECRAN].envoyer(trameDebut);
             }
         });
 
@@ -197,6 +211,7 @@ public class Manche extends AppCompatActivity
     private void empocherBilleCouleur(int numero, int couleur)
     {
         Log.d(TAG, "empocherBilleCouleur( numero" + numero + " couleur = " + couleur + " )");
+
         if(! couleursDefinies)
         {
             couleursDefinies = true;
@@ -268,7 +283,7 @@ public class Manche extends AppCompatActivity
         fenetreFinDeManche.setTitle("Partie terminée");
         fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !");
         fenetreFinDeManche.show();
-        communication.envoyer(Protocole.ARRET);
+        communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }
 
     /**
@@ -276,9 +291,14 @@ public class Manche extends AppCompatActivity
      */
     private void traiterTrameService(byte trame)
     {
-        Log.d(TAG, "traiterTrameService( 0b" + Protocole.byteToBinaryString(trame) + ")");
+        Log.d(TAG, "traiterTrameService( 0b" + ProtocoleTable.byteToBinaryString(trame) + ")");
         if(mancheDemarree)
         {
+            if(communications[Communication.ECRAN] != null)
+            {
+                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
+            }
+
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
             manche.add(new Vector<int[]>());
             if(couleursDefinies)
@@ -317,17 +337,23 @@ public class Manche extends AppCompatActivity
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
                         byte trame = ((Integer)message.obj).byteValue();
-                        Log.d(TAG, "trame = " + Protocole.byteToBinaryString(trame));
-                        if((trame & Protocole.MASQUE_TYPE) != 0)
+                        Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);
                         }
                         else
                         {
-                            int couleur = (int)(trame & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((trame & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int couleur = (int)(trame & ProtocoleTable.MASQUE_COULEUR);
+                            int poche = (int)((trame & ProtocoleTable.MASQUE_POCHE) >> ProtocoleTable.CHAMP_POCHE);
                             int[] empoche = {poche, couleur};
                             manche.get(manche.size() - 1).add(empoche);
+
+                            if(communications[Communication.ECRAN] != null)
+                            {
+                                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(poche) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(couleur) + ProtocoleEcran.DELIMITEUR_FIN;
+                                communications[Communication.ECRAN].envoyer(trameEnvoie);
+                            }
                             if(couleur == BlackBall.NOIRE)
                             {
                                 empocherBilleNoire();
@@ -358,7 +384,7 @@ public class Manche extends AppCompatActivity
     {
         reinitialiserAttributs();
         initialiserRessourcesDeDebutdeManche();
-        communication.envoyer(Protocole.DEBUT);
+        communications[Communication.TABLE].envoyer(ProtocoleTable.DEBUT);
         //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
     }
 

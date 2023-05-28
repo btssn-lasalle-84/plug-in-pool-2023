@@ -23,7 +23,7 @@ var classcom_1_1example_1_1pluginpool_1_1_base_de_donnees =
     [ "CONSTANTE_ELO2", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#af801ac6d522400add72f0d2201086cf2", null ],
     [ "DEFAUT", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5c180e9296fed8c8e8b2bdefcc3a429f", null ],
     [ "DONNEES_JOUEUR", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a9b6f7ae69242650b88f06b4266a90308", null ],
-    [ "PARTIES", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ab27e913e8217f6532932ba5b9591493e", null ],
+    [ "MANCHES", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a072c1779b8cf01f2b720559f3e27910d", null ],
     [ "POOL_DONNEES", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ab072277c80570da7eb809d00665b170e", null ],
     [ "SCORE_ELO", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a0ef5e2634f2992be267db8e5e61a8970", null ],
     [ "sqlite", "classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a6e4e59290422ff70a42d4e9789bfe0cb", null ],

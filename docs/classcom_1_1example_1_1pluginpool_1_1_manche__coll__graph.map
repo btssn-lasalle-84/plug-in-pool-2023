@@ -1,6 +1,6 @@
 <map id="com.example.pluginpool.Manche" name="com.example.pluginpool.Manche">
-<area shape="rect" id="node1" title="L&#39;activité d&#39;accès à l&#39;historique des manches effectuées et des statistiques des joueurs." alt="" coords="238,556,477,1132"/>
-<area shape="rect" id="node3" href="$classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html" title="La fenêtre s&#39;affichant au terme d&#39;une manche." alt="" coords="254,1195,461,1389"/>
-<area shape="rect" id="node2" href="$classcom_1_1example_1_1pluginpool_1_1_communication.html" title="La classe Communicaion Bluetooth." alt="" coords="5,35,296,464"/>
-<area shape="rect" id="node4" href="$classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="455,5,673,493"/>
+<area shape="rect" id="node1" title="L&#39;activité d&#39;accès à l&#39;historique des manches effectuées et des statistiques des joueurs." alt="" coords="241,556,479,1147"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html" title="La fenêtre s&#39;affichant au terme d&#39;une manche." alt="" coords="257,1209,463,1404"/>
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1pluginpool_1_1_communication.html" title="La classe Communicaion Bluetooth." alt="" coords="5,13,296,486"/>
+<area shape="rect" id="node4" href="$classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="461,5,680,493"/>
 </map>
