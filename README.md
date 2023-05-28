@@ -6,10 +6,14 @@
 
 - [Projet plug-in-pool 2023](#projet-plug-in-pool-2023)
   - [Documentation du code](#documentation-du-code)
-  - [Recette](#recette)
   - [Versions](#versions)
+    - [1.0](#10)
     - [0.2](#02)
     - [0.1](#01)
+  - [Diagramme de classes](#diagramme-de-classes)
+  - [Base de données SQLite](#base-de-donn%C3%A9es-sqlite)
+  - [Planification](#planification)
+  - [Protocoles](#protocoles)
   - [Annexes](#annexes)
     - [Blackball](#blackball)
       - [Casse](#casse)
@@ -17,10 +21,11 @@
       - [Fin de jeu](#fin-de-jeu)
   - [Auteurs](#auteurs)
 
-
 ---
 
 Le système Plug in Pool est un système numérique permettant de jouer une partie de [Blackball](#blackball) (parfois appelé billard anglais, billard pool ou 8 pool).
+
+![](images/pluginpool-logo.png)
 
 Le système Plug-in-Pool est décomposé en trois modules :
 
@@ -30,23 +35,56 @@ Le système Plug-in-Pool est décomposé en trois modules :
 
 - Module de visualisation de partie (Écran-POOL IR)​ : le déroulement de la partie est affiché sur un écran de télévision.
 
+![](images/modules.png)
+
+![](images/uc-mobilepool.png)
+
+| Fonctionnalité (Android)                         | Oui | Non |
+| ------------------------------------------------ |:---:|:---:|
+| Lancer une manche                                |  X  |     |
+| Configurer la manche                             |  X  |     |
+| Éditer un joueur                                 |  X  |     |
+| Suivre le déroulement de la manche               |  X  |     |
+| Enregistrer la manche                            |  X  |     |
+| Accéder à la base de données                     |  X  |     |
+| Consulter l'historique                           |  /  |     |
+| Purger l'historique                              |     |     |
+| Dialoguer avec les modules                       |  X  |     |
+
+![](images/uc-ecranpool.png)
+
+| Fonctionnalité (Qt)                         | Oui | Non |
+| ------------------------------------------- |:---:|:---:|
+| Visualiser les données du match             |  /  |     |
+| Dialoguer avec le module                    |  /  |     |
+
 ## Documentation du code
 
 https://btssn-lasalle-84.github.io/plug-in-pool-2023/
 
-## Recette
-
-| Fonctionnalité (Android)                         | Oui | Non |
-| ------------------------------------------------ |:---:|:---:|
-| Configurer une manche                            |  X  |     |
-| Jouer une manche et afficher son déroulement     |  X  |     |
-| Enregistrer les données de jeu                   |  X  |     |
-| Afficher les statistiques des manches effectuées |     |     |
-| Communiquer entre les modules                    |  /  |  /  |
-
 ## Versions
 
 ![](images/jira-livraisons.png)
+
+### 1.0
+
+![](images/jira-tickets-v1.0.png)
+
+- Android :
+
+![](images/screenshot-android-accueil-v1.0.png)
+
+![](images/screenshot-android-configuration-v0.2.png)
+
+![](images/screenshot-android-manche-v1.0.png)
+
+- Qt :
+
+![](images/screenshot-qt-accueil-v1.0.png)
+
+![](images/screenshot-qt-partie-v1.0.png)
+
+![](images/screenshot-qt-fin-v1.0.png)
 
 ### 0.2
 
@@ -83,6 +121,67 @@ https://btssn-lasalle-84.github.io/plug-in-pool-2023/
 - Qt :
 
 ![](images/screenshot-qt-accueil-v0.1.png)
+
+## Diagramme de classes
+
+- MobilePool (Android) :
+
+![](images/diagramme-classes-1.0.png)
+
+- EcranPool (Qt) :
+
+![](images/dc-ecranpool-v1.0.png)
+
+## Base de données SQLite
+
+![](images/bdd.png)
+
+```sql
+--- LDD (langage de définition de données)
+
+--- Supprime les tables
+
+DROP TABLE IF EXISTS empoches;
+DROP TABLE IF EXISTS tours;
+DROP TABLE IF EXISTS manches;
+DROP TABLE IF EXISTS joueurs;
+
+--- Table joueurs
+
+CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, parties INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0);
+
+--- Table manches
+
+CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE);
+
+--- Table tours
+
+CREATE TABLE IF NOT EXISTS tours (id INTEGER PRIMARY KEY AUTOINCREMENT, joueurId INTEGER, mancheId INTEGER, FOREIGN KEY (joueurId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (mancheId) REFERENCES manches(id) ON DELETE CASCADE);
+
+--- Table empoches
+
+CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id) ON DELETE CASCADE);
+```
+
+## Planification
+
+![](images/gantt.png)
+
+## Protocoles
+
+- Mobile-pool ←→ Table de billard
+
+Protocole orienté bit
+
+![](images/protocole-mobilepool-1.png)
+
+![](images/protocole-mobilepool-2.png)
+
+- Mobile-pool → Ecan-pool
+
+Protocole orienté caractères ASCII
+
+![](images/protocole-ecranpool.png)
 
 ---
 
@@ -161,7 +260,7 @@ Le joueur gagne dans le cas où après avoir empoché l'ensemble des billes de s
 ## Auteurs
 
 - Clement Trichet <[clement.trichet.pro@gmail.com](mailto:clement.trichet.pro@gmail.com)>
-- Gaume Benjamin <[benjamin.gaume@gmail.com>
+- Gaume Benjamin <[benjamin.gaume@gmail.com](mailto:benjamin.gaume@gmail.com)>
 
 ---
 ©️ LaSalle Avignon

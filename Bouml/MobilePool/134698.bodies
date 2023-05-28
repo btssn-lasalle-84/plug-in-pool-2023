@@ -9,43 +9,26 @@ class ConfigurationManche
 !!!134698.java!!!	initialiserAttributs() : void
         baseDonnees = BaseDeDonnees.getInstance(this);
         nomsJoueurs   = baseDonnees.getNomsJoueurs();
-        communication = Communication.getInstance(handler);
+        communication = Communication.getInstance(handler, Communication.TABLE);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
-        filtresNom = new InputFilter[] { new InputFilter() {
-          public CharSequence
-            filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend){
-                if(source.length() < 1) return null;
-                for(int i = start; i < end; i++)
+        filtresNom = new InputFilter[] {
+            new InputFilter() {
+                public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
                 {
-                    char lettre = source.charAt(i);
-                    if(!(Character.isLetter(lettre) || lettre == ' '))
+                    if(source.length() < 1) return null;
+                    for(int i = start; i < end; i++)
                     {
-                        return "";
+                        char lettre = source.charAt(i);
+                        if(!(Character.isLetter(lettre) || (lettre == ' ' && i != 0)))
+                        {
+                            return "";
+                        }
                     }
+                    return null;
                 }
-                return null;
             }
-        }
-        , new InputFilter() {
-          public CharSequence filter(CharSequence source,
-                               int          start,
-                               int          end,
-                               Spanned      dest,
-                               int          dstart,
-                               int          dend)
-          {
-            if(source.length() < 1)
-                return null;
-            char premiereLettre = source.charAt(0);
-            if(premiereLettre == ' ')
-            {
-                return "";
-            }
-            return null;
-          }
-        }
-    };
+        };
 !!!134826.java!!!	initialiserRessources() : void
         choixNomsJoueur1      = (Spinner)findViewById(R.id.joueur1Spinner);
         choixNomsJoueur2      = (Spinner)findViewById(R.id.joueur2Spinner);
@@ -117,9 +100,7 @@ class ConfigurationManche
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
                 choixNomTable           = boutonTable.getText().toString();
                 Log.d(TAG, "clic choixTable : " + choixNomTable);
-                //!< @todo seConnecter() à choixNomTable
-                communication.seConnecter("pool-1");
-                // connexionTable = true; // Provisoire pour les tests
+                communication.seConnecter(choixNomTable);
             }
         });
 
@@ -135,8 +116,10 @@ class ConfigurationManche
                     Log.d(TAG, "Table : " + choixNomTable);
                     String nomJoueur1 = editionNomJoueur1.getText().toString();
                     String nomJoueur2 = editionNomJoueur2.getText().toString();
+
                     ajouterNomsJoueurs(nomJoueur1, nomJoueur2);
-                    Intent activiteManche = parametrerActiviteManche();
+                    Intent activiteManche = parametrerActiviteManche(nomJoueur1, nomJoueur2);
+
                     startActivity(activiteManche);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }
@@ -149,15 +132,16 @@ class ConfigurationManche
 !!!146346.java!!!	ajouterNomsJoueurs(in nomJoueur1 : String, in nomJoueur2 : String) : void
         baseDonnees.ajouterNom(nomJoueur1);
         baseDonnees.ajouterNom(nomJoueur2);
-!!!146474.java!!!	parametrerActiviteManche() : Intent
+!!!146474.java!!!	parametrerActiviteManche(in nomJoueur1 : String, in nomJoueur2 : String) : Intent
         Intent activiteManche = new Intent(ConfigurationManche.this, Manche.class);
         activiteManche.putExtra("joueur1", nomJoueur1);
         activiteManche.putExtra("joueur2", nomJoueur2);
-        activiteManche.putExtra("connexionTable", connexionTable);
+        activiteManche.putExtra("connexionTable", connexion);
+        activiteManche.putExtra("choixNomTable", choixNomTable);
         return activiteManche;
 !!!134954.java!!!	estConfiguree() : Boolean
-        Log.d(TAG, "estConfiguree() connexionTable = " + connexionTable);
-        if(!connexionTable)
+        Log.d(TAG, "estConfiguree() connexionTable = " + connexion);
+        if(!connexion)
             return false;
         Log.d(TAG,
               "estConfiguree() joueur1 = " + !editionNomJoueur1.getText().toString().isEmpty() +
@@ -197,4 +181,4 @@ class ConfigurationManche
             }
         };
 !!!146602.java!!!	actualiserEtatConnexionTable(inout etat : boolean) : void
-        connexionTable = etat;
+        connexion = etat;

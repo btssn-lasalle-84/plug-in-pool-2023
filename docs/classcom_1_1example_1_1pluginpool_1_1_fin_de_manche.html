@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">0.2</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -102,9 +102,9 @@ Graphe de collaboration de com.example.pluginpool.FinDeManche:</div>
 <div class="center"><img src="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche__coll__graph.png" border="0" usemap="#acom_8example_8pluginpool_8_fin_de_manche_coll__map" alt="Collaboration graph"/></div>
 <map name="acom_8example_8pluginpool_8_fin_de_manche_coll__map" id="acom_8example_8pluginpool_8_fin_de_manche_coll__map">
 <area shape="rect" title="La fenêtre s&#39;affichant au terme d&#39;une manche." alt="" coords="5,152,212,347"/>
-<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_manche.html" title="L&#39;activité d&#39;accès à l&#39;historique des manches effectuées et des statistiques des joueurs." alt="" coords="213,556,452,1132"/>
-<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_communication.html" title="La classe Communicaion Bluetooth." alt="" coords="247,35,538,464"/>
-<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="697,5,915,493"/>
+<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_manche.html" title="L&#39;activité d&#39;accès à l&#39;historique des manches effectuées et des statistiques des joueurs." alt="" coords="213,556,452,1147"/>
+<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_communication.html" title="La classe Communicaion Bluetooth." alt="" coords="247,13,538,486"/>
+<area shape="rect" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="703,5,922,493"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -268,7 +268,7 @@ Attributs privés statiques</h2></td></tr>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html#a303e9540926307f1d5ead33fa2f10e71">boutonMenu</a>.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            @Override</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            public void onClick(View view) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                activiteManche.communication.seDeconnecter();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                activiteManche.communications[Communication.TABLE].seDeconnecter();</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                Intent intent = new Intent(getContext(), EcranPrincipal.class);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                getContext().startActivity(intent);</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            }</div>
@@ -331,7 +331,7 @@ Attributs privés statiques</h2></td></tr>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
 <div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_base_de_donnees_html_acdd7af8d758228a429479021d60c0bba"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#acdd7af8d758228a429479021d60c0bba">com.example.pluginpool.BaseDeDonnees.getNbEmpoches</a></div><div class="ttdeci">int getNbEmpoches(int couleur, String joueur, int mancheId)</div><div class="ttdef"><b>Definition:</b> <a href="_base_de_donnees_8java_source.html#l00106">BaseDeDonnees.java:106</a></div></div>
-<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_manche_html_a29dfe445179c245b6da7f779777345a0"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a29dfe445179c245b6da7f779777345a0">com.example.pluginpool.Manche.baseDonnees</a></div><div class="ttdeci">BaseDeDonnees baseDonnees</div><div class="ttdoc">Classe d'échange avec la base de donnees.</div><div class="ttdef"><b>Definition:</b> <a href="_manche_8java_source.html#l00053">Manche.java:53</a></div></div>
+<div class="ttc" id="aclasscom_1_1example_1_1pluginpool_1_1_manche_html_a29dfe445179c245b6da7f779777345a0"><div class="ttname"><a href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a29dfe445179c245b6da7f779777345a0">com.example.pluginpool.Manche.baseDonnees</a></div><div class="ttdeci">BaseDeDonnees baseDonnees</div><div class="ttdoc">Classe d'échange avec la base de donnees.</div><div class="ttdef"><b>Definition:</b> <a href="_manche_8java_source.html#l00055">Manche.java:55</a></div></div>
 </div><!-- fragment -->
 <p class="reference">Références <a class="el" href="_base_de_donnees_8java_source.html#l00033">com.example.pluginpool.BaseDeDonnees.DEFAUT</a>, <a class="el" href="_black_ball_8java_source.html#l00013">com.example.pluginpool.BlackBall.NB_COULEURS</a>, <a class="el" href="_black_ball_8java_source.html#l00017">com.example.pluginpool.BlackBall.NB_JOUEURS</a>, <a class="el" href="_black_ball_8java_source.html#l00025">com.example.pluginpool.BlackBall.NOMS_BILLES</a>, et <a class="el" href="_black_ball_8java_source.html#l00009">com.example.pluginpool.BlackBall.ROUGE</a>.</p>
 
@@ -537,7 +537,7 @@ Attributs privés statiques</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><b>example</b></li><li class="navelem"><a class="el" href="namespacecom_1_1example_1_1pluginpool.html">pluginpool</a></li><li class="navelem"><a class="el" href="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html">FinDeManche</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mercredi 24 Mai 2023 05:46:40 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>
