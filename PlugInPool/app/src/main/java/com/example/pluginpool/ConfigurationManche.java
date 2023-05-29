@@ -71,7 +71,7 @@ public class ConfigurationManche extends AppCompatActivity
       boutonTable4; //!< Bouton permettant de sélectionner la table 4 pour s'y connecter
     private ImageButton
       boutonActualiser; //!< Bouton permettant de rechercher les tables disponibles
-    private Button
+    private ImageButton
       boutonSuivant; //!< Bouton permettant de passer à l'activité de suivi de partie "Manche"
 
     /**
@@ -132,7 +132,7 @@ public class ConfigurationManche extends AppCompatActivity
         boutonTable3          = (RadioButton)findViewById(R.id.boutonTable3);
         boutonTable4          = (RadioButton)findViewById(R.id.boutonTable4);
         boutonActualiser      = (ImageButton)findViewById(R.id.boutonActualiser);
-        boutonSuivant         = (Button)findViewById(R.id.boutonSuivant);
+        boutonSuivant         = (ImageButton)findViewById(R.id.boutonSuivant);
 
         choixNomsJoueur1.setAdapter(adaptateurNomsJoueurs);
         choixNomsJoueur2.setAdapter(adaptateurNomsJoueurs);

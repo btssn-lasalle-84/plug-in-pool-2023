@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="rouge">#B11C28</color>
+    <color name="acajou">#632400</color>
+    <color name="marron">#3F1E00</color>
     <color name="bleu">#112233</color>
     <color name="jaune">#FF9800</color>
+    <color name="or">#EFAB22</color>
     <color name="cyan">#2196F3</color>
+    <color name="gris">#9F9E9E</color>
+    <color name="beige">#CEC393</color>
 </resources>

@@ -10,17 +10,69 @@
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/table_billard"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tapis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_droit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_droit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_gauche"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_gauche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_droit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:foregroundGravity="center_horizontal"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_gauche"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:foregroundGravity="center_horizontal"
+        android:scaleType="centerCrop"/>
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="80dp"
+        android:layout_marginVertical="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginBottom="80dp"
         android:scaleType="fitXY"
@@ -29,6 +81,37 @@
         app:srcCompat="@drawable/eclair" />
 
     <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="2dp">
+
+        <ImageButton
+            android:id="@+id/boutonAfficher"
+            android:layout_width="230dp"
+            android:layout_height="100dp"
+            android:src="@drawable/bouton_fond_reflet"
+            android:scaleType="fitXY"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/transparent"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" Afficher"
+            android:textSize="40sp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:fontFamily="@font/celtica_bold"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,9 +124,9 @@
             android:id="@+id/fondCompteur"
             android:layout_width="130dp"
             android:layout_height="130dp"
+            android:layout_gravity="center"
             android:background="@drawable/rond"
-            android:backgroundTint="@color/cyan"
-            android:layout_gravity="center"/>
+            android:backgroundTint="@color/acajou" />
 
         <ProgressBar
             android:id="@+id/barreProgression"
@@ -51,11 +134,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="0dp"
-            android:indeterminateTint="@color/bleu"
+            android:indeterminateOnly="false"
+            android:max="450"
+            android:min="0"
             android:minWidth="150dp"
             android:minHeight="150dp"
-            android:max="450"
-            android:min="0"/>
+            android:progressDrawable="@drawable/cercle" />
 
         <TextView
             android:id="@+id/decompte"
@@ -63,26 +147,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="45"
-            android:textColor="@color/bleu"
+            android:textColor="@color/black"
             android:textSize="60sp"
             android:textStyle="bold" />
 
     </FrameLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp">
+        android:layout_margin="16dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
 
-        <Button
-            android:id="@+id/boutonAfficher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ecran"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:backgroundTint="@color/bleu"/>
 
         <FrameLayout
             android:id="@+id/poche0BilleJauneLayout"
@@ -93,11 +171,11 @@
 
             <ImageView
                 android:id="@+id/poche0BilleJauneView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_jaune" />
 
             <TextView
                 android:id="@+id/poche0BilleJauneNombre"
@@ -105,10 +183,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
         </FrameLayout>
 
@@ -120,11 +197,11 @@
 
             <ImageView
                 android:id="@+id/poche0BilleRougeView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_rouge" />
 
             <TextView
                 android:id="@+id/poche0BilleRougeNombre"
@@ -132,7 +209,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -147,11 +224,11 @@
 
             <ImageView
                 android:id="@+id/poche4BilleJauneView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_jaune" />
 
             <TextView
                 android:id="@+id/poche4BilleJauneNombre"
@@ -159,7 +236,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -173,11 +250,11 @@
 
             <ImageView
                 android:id="@+id/poche4BilleRougeView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_rouge" />
 
             <TextView
                 android:id="@+id/poche4BilleRougeNombre"
@@ -185,7 +262,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -199,11 +276,11 @@
 
             <ImageView
                 android:id="@+id/poche1BilleJauneView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_jaune" />
 
             <TextView
                 android:id="@+id/poche1BilleJauneNombre"
@@ -211,7 +288,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -226,11 +303,11 @@
 
             <ImageView
                 android:id="@+id/poche1BilleRougeView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_rouge" />
 
             <TextView
                 android:id="@+id/poche1BilleRougeNombre"
@@ -238,7 +315,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -253,11 +330,11 @@
 
             <ImageView
                 android:id="@+id/poche3BilleJauneView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_jaune"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_jaune" />
 
             <TextView
                 android:id="@+id/poche3BilleJauneNombre"
@@ -265,7 +342,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -280,11 +357,11 @@
 
             <ImageView
                 android:id="@+id/poche3BilleRougeView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge"
-                android:visibility="invisible"/>
+                android:visibility="invisible"
+                app:srcCompat="@drawable/bille_rouge" />
 
             <TextView
                 android:id="@+id/poche3BilleRougeNombre"
@@ -292,7 +369,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:textColor="@color/bleu"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -313,18 +390,18 @@
 
                 <ImageView
                     android:id="@+id/poche2BilleJauneView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
 
                 <TextView
                     android:id="@+id/poche2BilleJauneNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="@color/bleu"
+                    android:textColor="@color/black"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -338,18 +415,18 @@
 
                 <ImageView
                     android:id="@+id/poche2BilleRougeView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_rouge"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_rouge" />
 
                 <TextView
                     android:id="@+id/poche2BilleRougeNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="@color/bleu"
+                    android:textColor="@color/black"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -370,23 +447,23 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp">
 
-            <ImageView
-                android:id="@+id/poche5BilleRougeView"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:gravity="center"
-                app:srcCompat="@drawable/bille_rouge"
-                android:visibility="invisible"/>
+                <ImageView
+                    android:id="@+id/poche5BilleRougeView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_rouge" />
 
 
-            <TextView
-                android:id="@+id/poche5BilleRougeNombre"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:textColor="@color/bleu"
-                android:textSize="30sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/poche5BilleRougeNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
             </FrameLayout>
 
@@ -398,18 +475,18 @@
 
                 <ImageView
                     android:id="@+id/poche5BilleJauneView"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:gravity="center"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
 
                 <TextView
                     android:id="@+id/poche5BilleJauneNombre"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:textColor="@color/bleu"
+                    android:textColor="@color/black"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -420,10 +497,11 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toEndOf="@id/poche0BilleJauneLayout"
             android:layout_below="@id/poche0BilleRougeLayout"
-            android:layout_margin="8dp">
+            android:layout_marginStart="32dp"
+            android:layout_margin="40dp"
+            android:layout_toEndOf="@id/poche0BilleJauneLayout"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/Joueur1"
@@ -431,38 +509,42 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:text="Robert"
-                android:textColor="@color/cyan"
-                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textSize="42sp"
+                android:fontFamily="@font/celtica_bold"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:id="@+id/bille0Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
+
                 <ImageView
                     android:id="@+id/bille1Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
+
                 <ImageView
                     android:id="@+id/bille2Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
 
                 <ImageView
                     android:id="@+id/bille3Joueur1"
@@ -472,30 +554,33 @@
                     android:gravity="left"
                     android:visibility="invisible"
                     app:srcCompat="@drawable/bille_jaune" />
+
                 <ImageView
                     android:id="@+id/bille4Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
+
                 <ImageView
                     android:id="@+id/bille5Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
+
                 <ImageView
                     android:id="@+id/bille6Joueur1"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginRight="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginRight="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
             </LinearLayout>
 
         </LinearLayout>
@@ -503,96 +588,142 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toStartOf="@id/poche3BilleRougeLayout"
             android:layout_above="@id/poche3BilleJauneLayout"
-            android:layout_margin="8dp">
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="40dp"
+            android:layout_toStartOf="@id/poche3BilleRougeLayout"
+            android:gravity="right"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/bille0Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
-                <ImageView
-                    android:id="@+id/bille1Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
-                <ImageView
-                    android:id="@+id/bille2Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
-                <ImageView
-                    android:id="@+id/bille3Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
-                <ImageView
-                    android:id="@+id/bille4Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
-                <ImageView
-                    android:id="@+id/bille5Joueur2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
-                    android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
+                android:orientation="horizontal"
+                android:gravity="right">
+
                 <ImageView
                     android:id="@+id/bille6Joueur2"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
                     android:gravity="left"
-                    app:srcCompat="@drawable/bille_jaune"
                     android:visibility="invisible"
-                    android:layout_marginLeft="5dp"/>
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille5Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille4Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille3Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille2Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille1Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
+
+                <ImageView
+                    android:id="@+id/bille0Joueur2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="left"
+                    android:visibility="invisible"
+                    app:srcCompat="@drawable/bille_jaune" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/Joueur2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
                 android:text="Lulu"
-                android:textColor="@color/cyan"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                />
+                android:textColor="@color/black"
+                android:textSize="42sp"
+                android:fontFamily="@font/celtica_bold"
+                android:textStyle="bold" />
 
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/boutonQuitter"
-            android:layout_width="wrap_content"
+    </RelativeLayout>
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="16dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quitter"
-            android:textSize="20sp"
-            android:layout_centerHorizontal="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_alignParentBottom="true"
-            android:backgroundTint="@color/bleu"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp">
+
+            <ImageButton
+                android:id="@+id/boutonQuitter"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:src="@drawable/bouton_fond_reflet"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Quitter "
+                android:textSize="40sp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"/>
+
+        </FrameLayout>
 
     </RelativeLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

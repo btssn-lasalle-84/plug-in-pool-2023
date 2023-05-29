@@ -10,10 +10,47 @@
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/table_billard"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tapis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_droit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_droit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_gauche"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_gauche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,21 +65,71 @@
             android:text=" Plug-in-Pool "
             android:textSize="60sp"
             android:gravity="center_horizontal"
-            android:textColor="@color/bleu"/>
+            android:textColor="@color/or"
+            android:layout_marginTop="140dp"
+            android:layout_marginBottom="100dp"
+            android:fontFamily="@font/celticmd"/>
 
-        <Button
-            android:id="@+id/boutonHistorique"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Historique"
-            android:backgroundTint="@color/bleu"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/boutonJouer"
+            <ImageButton
+                android:id="@+id/boutonHistorique"
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+                android:src="@drawable/bouton_fond_reflet"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Historique "
+                android:textSize="60sp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"/>
+
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Jouer"
-            android:backgroundTint="@color/bleu"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="40dp">
+
+            <ImageButton
+                android:id="@+id/boutonJouer"
+                android:layout_width="400dp"
+                android:layout_height="200dp"
+                android:src="@drawable/bouton_fond_reflet"
+                android:scaleType="fitXY"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" Jouer "
+                android:textSize="60sp"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"/>
+
+        </FrameLayout>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
