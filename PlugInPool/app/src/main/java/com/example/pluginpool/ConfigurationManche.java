@@ -198,7 +198,7 @@ public class ConfigurationManche extends AppCompatActivity
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
-                choixNomTable           = boutonTable.getText().toString();
+                choixNomTable           = boutonTable.getContentDescription().toString();
                 Log.d(TAG, "clic choixTable : " + choixNomTable);
                 communication.seConnecter(choixNomTable);
             }

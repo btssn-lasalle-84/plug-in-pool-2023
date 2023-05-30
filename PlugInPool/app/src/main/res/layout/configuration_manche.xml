@@ -224,7 +224,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/or"
-                    android:text="pool-1"
+                    android:text=" Table n° 1 "
+                    android:contentDescription="pool-1"
                     android:fontFamily="@font/celtica_bold"
                     android:textSize="20sp"
                     android:visibility="visible"/> //TODO fixme
@@ -234,17 +235,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/or"
-                    android:text="pool-2"
+                    android:text=" Table n° 2 "
+                    android:contentDescription="pool-2"
                     android:fontFamily="@font/celtica_bold"
                     android:textSize="20sp"
-                    android:visibility="invisible"/>
+                    android:visibility="visible"/> //TODO fixme
 
                 <RadioButton
                     android:id="@+id/boutonTable3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/or"
-                    android:text="pool-3"
+                    android:text=" Table n° 3 "
+                    android:contentDescription="pool-3"
                     android:fontFamily="@font/celtica_bold"
                     android:textSize="20sp"
                     android:visibility="invisible"/>
@@ -254,7 +257,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/or"
-                    android:text="pool-4"
+                    android:text=" Table n° 4 "
+                    android:contentDescription="pool-4"
                     android:fontFamily="@font/celtica_bold"
                     android:textSize="20sp"
                     android:visibility="invisible"/>
