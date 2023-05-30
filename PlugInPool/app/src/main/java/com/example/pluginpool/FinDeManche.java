@@ -6,16 +6,16 @@
 
 package com.example.pluginpool;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.pluginpool.EcranPrincipal;
 
 /**
  * @class FinDeManche
@@ -36,8 +36,8 @@ public class FinDeManche extends AlertDialog
     /**
      * Ressources GUI
      */
-    private Button boutonMenu;
-    private Button boutonRejouer;
+    private ImageButton boutonMenu;
+    private ImageButton boutonRejouer;
     private TextView[][] billesEmpochees;
     private TextView[] joueurs;
     private View fenetre;
@@ -59,8 +59,8 @@ public class FinDeManche extends AlertDialog
         Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2 + " )");
 
         fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
-        boutonMenu = (Button) fenetre.findViewById(R.id.boutonMenu);
-        boutonRejouer =  (Button) fenetre.findViewById(R.id.boutonRejouer);
+        boutonMenu = (ImageButton) fenetre.findViewById(R.id.boutonMenu);
+        boutonRejouer =  (ImageButton) fenetre.findViewById(R.id.boutonRejouer);
         billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
         billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
         billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);
@@ -76,6 +76,10 @@ public class FinDeManche extends AlertDialog
         joueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
         joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
         setResultats();
+
+        fenetre.setMinimumWidth(200); //!< @todo CONSTANTES
+        fenetre.setMinimumHeight(300);
+
         setView(fenetre);
 
         boutonMenu.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +88,7 @@ public class FinDeManche extends AlertDialog
                 activiteManche.communications[Communication.TABLE].seDeconnecter();
                 Communication.supprimerInstance();
                 activiteManche.setResult(Activity.RESULT_OK, new Intent());
+                FinDeManche.this.dismiss();
                 activiteManche.finish();
             }
         });

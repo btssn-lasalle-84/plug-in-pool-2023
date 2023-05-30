@@ -1,11 +1,12 @@
 /**
  * @author Clément Trichet
  * @file Historique.java
- * @brief TODO
+ * @brief Activité de recherche et d'affichage des données enregistrées
  */
 
 package com.example.pluginpool;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -44,6 +45,8 @@ public class Historique extends AppCompatActivity {
     private Vector<String> manches;             //!< @todo
     private Vector<String> manchesRecherchees;  //!< @todo
     private InputFilter[] filtresRecherche;     //!< @todo
+    private HistoriqueJoueur fenetreJoueur;     //!< @todo
+    private HistoriqueJoueur fenetreManche;     //!< @todo
     public BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
 
     /**
@@ -102,6 +105,8 @@ public class Historique extends AppCompatActivity {
                 }
             }
         };
+        fenetreJoueur = null;
+        fenetreManche = null;
     }
 
     /**
@@ -118,11 +123,11 @@ public class Historique extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(categoriesRecherche.getSelectedItem().toString() == "Joueurs")
                 {
-                    //!<@todo
+                    afficherFenetreJoueur(parent.getItemAtPosition(position).toString());
                 }
                 else
                 {
-                    //!<@todo
+                    afficherFenetreManche(parent.getItemAtPosition(position).toString());
                 }
             }
         });
@@ -244,5 +249,22 @@ public class Historique extends AppCompatActivity {
             adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, manchesRecherchees);
             listeDeroulante.setAdapter(adaptateurListeDeroulante);
         }
+    }
+
+    /**
+     * @brief @todo
+     */
+    private void afficherFenetreJoueur(String joueur)
+    {
+        fenetreJoueur = new HistoriqueJoueur(this, joueur);
+        fenetreJoueur.show();
+    }
+
+    /**
+     * @brief @todo
+     */
+    private void afficherFenetreManche(String dateEtJoueurs)
+    {
+        //!< @todo
     }
 }
