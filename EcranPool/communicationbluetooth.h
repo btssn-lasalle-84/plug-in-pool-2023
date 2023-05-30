@@ -29,7 +29,6 @@ class CommunicationBluetooth : public QObject
     void demarrerCommunication();
     void arreterCommunication();
     void initialiserCommunication();
-    //void verifierActivationBluetooth(QString& nomPeripheriqueLocal);
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
@@ -42,11 +41,10 @@ class CommunicationBluetooth : public QObject
     QBluetoothServiceInfo
       serviceInfo; //!< Les informations sur le service bluetooth
 
-    QString               nomPeripheriqueLocal;
-    QString               adressePeripheriqueLocal;
+    QString nomPeripheriqueLocal;
+    QString adressePeripheriqueLocal;
 
   private slots:
-
 
   signals:
 };

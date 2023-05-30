@@ -32,76 +32,67 @@ CommunicationBluetooth::~CommunicationBluetooth()
 }
 
 /**
-* @brief Démarre la communication Bluetooth (SERVEUR)
-*
-* @fn CommunicationBluetooth::demarrerCommunication
-*/
+ * @brief Démarre la communication Bluetooth (SERVEUR)
+ *
+ * @fn CommunicationBluetooth::demarrerCommunication
+ */
 void CommunicationBluetooth::demarrerCommunication()
 {
+    // vérifie la présence du Bluetooth en local
+    if(!peripheriqueLocal.isValid())
+        return;
 
-    if (serveur == nullptr)
+    if(serveur == nullptr)
     {
-        serveur = new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
+        serveur =
+          new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
         connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
 
         QBluetoothUuid uuid = QBluetoothUuid(serviceUuid);
-        serviceInfo = serveur->listen(uuid, serviceNom);
+        serviceInfo         = serveur->listen(uuid, serviceNom);
     }
 }
 
 /**
-* @brief Arrête la communication Bluetooth (SERVEUR)
-*
-* @fn CommunicationBluetooth::arreterCommunication()
-*/
+ * @brief Arrête la communication Bluetooth (SERVEUR)
+ *
+ * @fn CommunicationBluetooth::arreterCommunication()
+ */
 void CommunicationBluetooth::arreterCommunication()
 {
-    {
-        if (serveur == nullptr)
+    // vérifie la présence du Bluetooth en local
+    if(!peripheriqueLocal.isValid())
         return;
 
-        serviceInfo.unregisterService();
+    if(serveur == nullptr)
+        return;
 
-        if (socket)
-        {
-            if (socket->isOpen())
-               socket->close();
-            delete socket;
-            socket = NULL;
-        }
+    serviceInfo.unregisterService();
 
-        delete serveur;
-        serveur = NULL;
+    if(socket)
+    {
+        if(socket->isOpen())
+            socket->close();
+        delete socket;
+        socket = nullptr;
     }
+
+    delete serveur;
+    serveur = nullptr;
 }
 
 /**
-* @brief Initialise la communication Bluetooth (SERVEUR)
-*
-* @fn CommunicationBluetooth::initialiserCommunication()
-*/
+ * @brief Initialise la communication Bluetooth (SERVEUR)
+ *
+ * @fn CommunicationBluetooth::initialiserCommunication()
+ */
 void CommunicationBluetooth::initialiserCommunication()
 {
+    // vérifie la présence du Bluetooth en local
+    if(!peripheriqueLocal.isValid())
+        return;
     peripheriqueLocal.powerOn();
-    nomPeripheriqueLocal = peripheriqueLocal.name();
+    nomPeripheriqueLocal     = peripheriqueLocal.name();
     adressePeripheriqueLocal = peripheriqueLocal.address().toString();
     peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
 }
-
-
-
-/**
- * @brief Vérifie si le Bluetooth est actif
- *
- * @fn CommunicationBluetooth::verifierActivationBluetooth()
- */
-/*
-void CommunicationBluetooth::verifierActivationBluetooth(
-  QString& nomPeripheriqueLocal)
-{
-    if(peripheriqueLocal.isValid())
-    {
-
-    }
-}
-*/
