@@ -235,6 +235,7 @@ public class ConfigurationManche extends AppCompatActivity
     {
         for(int table = 0; table < Communication.NB_TABLES; table++)
         {
+            Log.d(TAG, "afficherTablesDisponibles() table = " + table + " -> " + Communication.tables.get(Communication.TABLES[table]));
             if(Communication.tables.get(Communication.TABLES[table]))
             {
                 boutonsTables[table].setVisibility(View.VISIBLE);

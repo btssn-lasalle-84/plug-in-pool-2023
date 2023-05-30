@@ -99,10 +99,7 @@ public class Communication
         if(configurationManche != null)
         {
             tables = new HashMap<>();
-            for(int table = 0; table < NB_TABLES; table++)
-            {
-                tables.put(TABLES[table], false);
-            }
+            initialiserRechercheTables();
         }
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication(handler);
@@ -160,33 +157,37 @@ public class Communication
         }
     }
 
+    private static void initialiserRechercheTables()
+    {
+        for(int table = 0; table < NB_TABLES; table++)
+        {
+            tables.put(TABLES[table], false);
+        }
+    }
+
     /**
      * @brief Pour rechercher des tables
      */
     @SuppressLint("MissingPermission")
     public void rechercherTables()
     {
-        Log.d(TAG, "rechercherTables()");
         if (adaptateurBluetooth.isEnabled())
         {
+            initialiserRechercheTables();
             adaptateurBluetooth.startDiscovery();
             Set<BluetoothDevice> peripheriquesAppaires = adaptateurBluetooth.getBondedDevices();
 
             Iterator<BluetoothDevice> iterator = peripheriquesAppaires.iterator();
             while (iterator.hasNext())
             {
-                BluetoothDevice appareil = iterator.next();
-                String nomAppareil = appareil.getName();
-                Boolean trouve = false;
-                int table = 0;
-                while(!trouve && table < Communication.NB_TABLES)
+                String nomAppareil = iterator.next().getName();
+                for(int table = 0; table < NB_TABLES; table++)
                 {
-                    if(nomAppareil == Communication.TABLES[table])
+                    if(nomAppareil.equals(Communication.TABLES[table]))
                     {
-                        trouve = true;
                         Communication.tables.put(TABLES[table], true);
+                        Log.d(TAG, "rechercherTables() table = " + TABLES[table] + " -> " + Communication.tables.get(TABLES[table]));
                     }
-                    table++;
                 }
             }
         }
