@@ -32,22 +32,76 @@ CommunicationBluetooth::~CommunicationBluetooth()
 }
 
 /**
+* @brief Démarre la communication Bluetooth (SERVEUR)
+*
+* @fn CommunicationBluetooth::demarrerCommunication
+*/
+void CommunicationBluetooth::demarrerCommunication()
+{
+
+    if (serveur == nullptr)
+    {
+        serveur = new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
+        connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
+
+        QBluetoothUuid uuid = QBluetoothUuid(serviceUuid);
+        serviceInfo = serveur->listen(uuid, serviceNom);
+    }
+}
+
+/**
+* @brief Arrête la communication Bluetooth (SERVEUR)
+*
+* @fn CommunicationBluetooth::arreterCommunication()
+*/
+void CommunicationBluetooth::arreterCommunication()
+{
+    {
+        if (serveur == nullptr)
+        return;
+
+        serviceInfo.unregisterService();
+
+        if (socket)
+        {
+            if (socket->isOpen())
+               socket->close();
+            delete socket;
+            socket = NULL;
+        }
+
+        delete serveur;
+        serveur = NULL;
+    }
+}
+
+/**
+* @brief Initialise la communication Bluetooth (SERVEUR)
+*
+* @fn CommunicationBluetooth::initialiserCommunication()
+*/
+void CommunicationBluetooth::initialiserCommunication()
+{
+    peripheriqueLocal.powerOn();
+    nomPeripheriqueLocal = peripheriqueLocal.name();
+    adressePeripheriqueLocal = peripheriqueLocal.address().toString();
+    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
+}
+
+
+
+/**
  * @brief Vérifie si le Bluetooth est actif
  *
  * @fn CommunicationBluetooth::verifierActivationBluetooth()
  */
+/*
 void CommunicationBluetooth::verifierActivationBluetooth(
   QString& nomPeripheriqueLocal)
 {
     if(peripheriqueLocal.isValid())
     {
-        // Activer le Bluetooth
-        peripheriqueLocal.powerOn();
 
-        // Lire le nom du périphérique local
-        nomPeripheriqueLocal = peripheriqueLocal.name();
-
-        // Rendre le périphérique visible aux autres
-        peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
     }
 }
+*/
