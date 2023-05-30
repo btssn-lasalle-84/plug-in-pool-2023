@@ -240,6 +240,10 @@ public class ConfigurationManche extends AppCompatActivity
             {
                 boutonsTables[table].setVisibility(View.VISIBLE);
             }
+            else
+            {
+                boutonsTables[table].setVisibility(View.INVISIBLE);
+            }
         }
     }
 
