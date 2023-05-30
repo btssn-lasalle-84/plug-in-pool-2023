@@ -107,7 +107,7 @@ public class Manche extends AppCompatActivity
 
         baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = NUMERO_TABLE_DEFAUT;
-        communications[Communication.TABLE] = Communication.getInstance(handler, Communication.TABLE);
+        communications[Communication.TABLE] = Communication.getInstance(handler, Communication.TABLE, null);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
@@ -138,8 +138,9 @@ public class Manche extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 communications[Communication.TABLE].seDeconnecter();
-                Intent intent = new Intent(Manche.this, EcranPrincipal.class);
-                startActivity(intent);
+                setResult(RESULT_OK, new Intent());
+                Communication.supprimerInstance();
+                finish();
             }
         });
 
@@ -147,7 +148,7 @@ public class Manche extends AppCompatActivity
         boutonAfficher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                communications[Communication.ECRAN] = Communication.getInstance(Communication.ECRAN);
+                communications[Communication.ECRAN] = Communication.getInstance();
                 communications[Communication.ECRAN].seConnecter("EcranPool");
                 String trameDebut = ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
@@ -236,6 +237,14 @@ public class Manche extends AppCompatActivity
             nbBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
         }
         demarrerCompteARebours();
+    }
+
+    @Override
+    public void onBackPressed() {
+        communications[Communication.TABLE].seDeconnecter();
+        Communication.supprimerInstance();
+        setResult(RESULT_OK, new Intent());
+        finish();
     }
 
     private void afficherBillesRestantes(int couleurBille)
@@ -387,7 +396,8 @@ public class Manche extends AppCompatActivity
         reinitialiserAttributs();
         initialiserRessourcesDeDebutdeManche();
         communications[Communication.TABLE].envoyer(ProtocoleTable.DEBUT);
-        //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
+        barreProgression.setProgress(NB_PALIERS);
+        decompte.setText(String.valueOf(DUREE_TIR / MILLISEC_PAR_SEC));
     }
 
     /**

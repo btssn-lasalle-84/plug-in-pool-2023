@@ -82,8 +82,9 @@ public class FinDeManche extends AlertDialog
             @Override
             public void onClick(View view) {
                 activiteManche.communications[Communication.TABLE].seDeconnecter();
-                Intent intent = new Intent(getContext(), EcranPrincipal.class);
-                getContext().startActivity(intent);
+                Communication.supprimerInstance();
+                activiteManche.setResult(Activity.RESULT_OK, new Intent());
+                activiteManche.finish();
             }
         });
         boutonRejouer.setOnClickListener(new View.OnClickListener() {

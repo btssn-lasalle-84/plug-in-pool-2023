@@ -6,10 +6,17 @@
 
 package com.example.pluginpool;
 
+import static androidx.core.content.ContextCompat.registerReceiver;
+
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -17,6 +24,10 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
@@ -37,6 +48,9 @@ public class Communication
     public final static int DECONNEXION_BLUETOOTH = 2;
     public final static int TABLE = 0;
     public final static int ECRAN = 1;
+    public static int NB_TABLES = 4;
+    private static int NB_INSTANCES = 2;
+    public final static String[] TABLES = {"pool-1", "pool-2", "pool-3", "pool-4"};
 
     /**
      * Attributs
@@ -51,24 +65,45 @@ public class Communication
     private boolean          connecte            = false;
     private Thread           filExecutionReception;
     private Handler          handler = null;
+    public static Map<String, Boolean>  tables;
+    private static Activity configurationManche;
 
     /**
      * @fn getInstance
      * @brief Retourne l'instance Communication
      */
-    public synchronized static Communication getInstance(int peripherique)
+    public synchronized static Communication getInstance()
     {
-        if(communications[peripherique] == null)
-            communications[peripherique] = new Communication();
-        return communications[peripherique];
+        configurationManche = null;
+        if(communications[ECRAN] == null)
+            communications[ECRAN] = new Communication();
+        return communications[ECRAN];
+    }
+
+    public synchronized static void supprimerInstance()
+    {
+        for(int instance = 0; instance < NB_INSTANCES; instance++)
+        {
+            Communication.communications[instance] = null;
+        }
     }
 
     /**
      * @fn getInstance
      * @brief Retourne l'instance Communication
      */
-    public synchronized static Communication getInstance(Handler handler, int peripherique)
+    public synchronized static Communication getInstance(Handler handler, int peripherique, Activity activiteConfiguration)
     {
+
+        configurationManche = activiteConfiguration;
+        if(configurationManche != null)
+        {
+            tables = new HashMap<>();
+            for(int table = 0; table < NB_TABLES; table++)
+            {
+                tables.put(TABLES[table], false);
+            }
+        }
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication(handler);
         else
@@ -131,9 +166,34 @@ public class Communication
     @SuppressLint("MissingPermission")
     public void rechercherTables()
     {
-        /**
-         * @todo Rechercher les tables
-         */
+        Log.d(TAG, "rechercherTables()");
+        if (adaptateurBluetooth.isEnabled())
+        {
+            adaptateurBluetooth.startDiscovery();
+            Set<BluetoothDevice> peripheriquesAppaires = adaptateurBluetooth.getBondedDevices();
+
+            Iterator<BluetoothDevice> iterator = peripheriquesAppaires.iterator();
+            while (iterator.hasNext())
+            {
+                BluetoothDevice appareil = iterator.next();
+                String nomAppareil = appareil.getName();
+                Boolean trouve = false;
+                int table = 0;
+                while(!trouve && table < Communication.NB_TABLES)
+                {
+                    if(nomAppareil == Communication.TABLES[table])
+                    {
+                        trouve = true;
+                        Communication.tables.put(TABLES[table], true);
+                    }
+                    table++;
+                }
+            }
+        }
+        else
+        {
+            Log.d(TAG, "Le bluetooth est desactive");
+        }
     }
 
     /**

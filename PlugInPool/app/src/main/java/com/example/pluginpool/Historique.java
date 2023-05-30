@@ -162,8 +162,7 @@ public class Historique extends AppCompatActivity {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonMenu");
-                Intent activiteEcranPrincipal = new Intent(Historique.this, EcranPrincipal.class);
-                startActivity(activiteEcranPrincipal);
+                finish();
             }
         });
 
