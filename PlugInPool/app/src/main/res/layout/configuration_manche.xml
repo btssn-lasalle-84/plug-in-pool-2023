@@ -11,29 +11,70 @@
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/table_billard" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/tapis"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_droit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_droit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_gauche"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_bas_gauche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="35dp">
+        android:paddingLeft="140dp"
+        android:paddingTop="120dp"
+        android:paddingRight="140dp"
+        tools:layout_editor_absoluteX="-30dp"
+        tools:layout_editor_absoluteY="119dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/celticmd"
             android:gravity="center"
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
-            android:text="Configuration de la manche"
-            android:textSize="24sp"
+            android:text="Configuration"
+            android:textColor="@color/or"
+            android:textSize="50sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -41,12 +82,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/celtica_bold"
                 android:gravity="left"
                 android:paddingLeft="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:text="Joueur 1"
-                android:textSize="16sp"
+                android:textColor="@color/or"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <Spinner
@@ -56,11 +99,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:focusable="false"
+                android:fontFamily="@font/celtica_bold"
                 android:gravity="left"
                 android:hint="Joueur 1"
                 android:padding="8dp"
                 android:spinnerMode="dropdown"
-                android:focusable="false"/>
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -71,14 +116,16 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/celtica_bold"
             android:hint="Saisir le nom du premier joueur"
             android:inputType="text"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal">
 
             <TextView
@@ -86,12 +133,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/celtica_bold"
                 android:gravity="left"
                 android:paddingLeft="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:text="Joueur 2"
-                android:textSize="16sp"
+                android:textColor="@color/or"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <Spinner
@@ -101,11 +150,13 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
+                android:focusable="false"
+                android:fontFamily="@font/celtica_bold"
                 android:gravity="left"
                 android:hint="Joueur 2"
                 android:padding="8dp"
                 android:spinnerMode="dropdown"
-                android:focusable="false"/>
+                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -116,9 +167,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/celtica_bold"
             android:hint="Saisir le nom du second joueur"
             android:inputType="text"
-            android:padding="8dp" />
+            android:padding="8dp"
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -133,24 +186,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
+                android:fontFamily="@font/celtica_bold"
                 android:gravity="left"
                 android:paddingLeft="16dp"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
                 android:text="Tables"
-                android:textSize="16sp"
+                android:textColor="@color/or"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/boutonActualiser"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="0.1"
-                android:background="@color/bleu"
-                android:contentDescription="@string/bouton_actualiser"
-                android:scaleType="fitCenter"
-                android:src="@drawable/bouton_actualiser"
-                android:visibility="invisible"/>
+                android:background="@drawable/bouton_fond_reflet"
+                android:scaleType="centerInside"
+                android:src="@drawable/loupe" />
 
         </LinearLayout>
 
@@ -168,42 +222,85 @@
                     android:id="@+id/boutonTable1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/bleu"
-                    android:text="pool-1" />
+                    android:buttonTint="@color/or"
+                    android:contentDescription="pool-1"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text=" Table n° 1 "
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <RadioButton
                     android:id="@+id/boutonTable2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/bleu"
-                    android:text="pool-2" />
+                    android:buttonTint="@color/or"
+                    android:contentDescription="pool-2"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text=" Table n° 2 "
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <RadioButton
                     android:id="@+id/boutonTable3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/bleu"
-                    android:text="pool-3" />
+                    android:buttonTint="@color/or"
+                    android:contentDescription="pool-3"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text=" Table n° 3 "
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
 
                 <RadioButton
                     android:id="@+id/boutonTable4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:buttonTint="@color/bleu"
-                    android:text="pool-4" />
+                    android:buttonTint="@color/or"
+                    android:contentDescription="pool-4"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text=" Table n° 4 "
+                    android:textSize="20sp"
+                    android:visibility="invisible" />
             </RadioGroup>
         </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/boutonSuivant"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Suivant"
-            android:textSize="16sp"
-            android:layout_margin="8dp"
-            android:backgroundTint="@color/bleu"
-            android:layout_alignParentBottom="true"/>
+            android:layout_marginTop="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp">
 
-    </LinearLayout>
+            <ImageButton
+                android:id="@+id/boutonSuivant"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bouton_fond_reflet" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"
+                android:gravity="center_horizontal"
+                android:text=" Suivant "
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </FrameLayout>
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

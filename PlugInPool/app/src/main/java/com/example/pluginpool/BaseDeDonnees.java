@@ -6,6 +6,8 @@
 
 package com.example.pluginpool;
 
+import static android.provider.MediaStore.getVersion;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
@@ -77,6 +79,14 @@ public class BaseDeDonnees extends SQLiteOpenHelper
 
     /**
      * @brief Supprimer les tables existantes pour en recréer des vierges
+     */
+    public void effacer()
+    {
+        onUpgrade(sqlite, sqlite.getVersion(), sqlite.getVersion() + 1);
+    }
+
+    /**
+     * @brief Supprimer les tables existantes pour en recréer des vierges
      * @warning le plus simple est de supprimer l'application puis de la réinstaller !
      */
     @Override
@@ -87,6 +97,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         sqlite.execSQL("DROP TABLE IF EXISTS tours");
         sqlite.execSQL("DROP TABLE IF EXISTS manches");
         sqlite.execSQL("DROP TABLE IF EXISTS joueurs");
+        sqlite.setVersion(newVersion);
         onCreate(sqlite);
     }
 
@@ -373,7 +384,13 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void supprimerJoueur(String nom)
     {
-        sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
+        try {
+            sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
+        }
+        catch(Exception e)
+        {
+            Log.d(TAG, "SupprimerJoueur()", e);
+        }
     }
 
     /**

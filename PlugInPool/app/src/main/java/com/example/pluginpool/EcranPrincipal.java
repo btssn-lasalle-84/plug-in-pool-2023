@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 /**
  * @class EcranPrincipal
@@ -28,8 +29,8 @@ public class EcranPrincipal extends AppCompatActivity
     /**
      * Ressources GUI
      */
-    private Button boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
-    private Button boutonJouer;        //!< Le bouton permettant de jouer une partie
+    private ImageButton boutonStatistiques; //!< Le bouton permettant d'accèder aux statistiques des parties
+    private ImageButton boutonJouer;        //!< Le bouton permettant de jouer une partie
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -102,8 +103,8 @@ public class EcranPrincipal extends AppCompatActivity
      */
     private void initialiserRessources()
     {
-        boutonStatistiques = (Button)findViewById(R.id.boutonHistorique);
-        boutonJouer        = (Button)findViewById(R.id.boutonJouer);
+        boutonStatistiques = (ImageButton) findViewById(R.id.boutonHistorique);
+        boutonJouer        = (ImageButton) findViewById(R.id.boutonJouer);
 
         boutonStatistiques.setOnClickListener(new View.OnClickListener()
         {
