@@ -1,6 +1,6 @@
 format 224
 "MobilePool"
-  revision 11
+  revision 12
   modified_by 50 "btssn2"
   java_root_dir "../../"
 
@@ -496,9 +496,325 @@ ${members}}
       overlapping_bars size A0
     end
 
-    classdiagram 147762 "Diagramme de classe"
-      classdiagramsettings member_max_width 0 end
+    usecasediagram 154290 "MobilePool"
+      usecasediagramsettings draw_all_relations no end
       size A0
+    end
+
+    usecase 136114 "lancer une manche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 142514
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136498 // configurer la manche
+      end
+
+      simplerelation 142770
+	-_->
+	  stereotype "include"
+	  on usecase_ref 137266 // suivre le deroulement de la manche
+      end
+
+      simplerelation 143794
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136882 // dialoguer avec le module Table de billard
+      end
+    end
+
+    usecase 136242 "enregister la manche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 143666
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136370 // acceder a la base de donnees
+      end
+    end
+
+    usecase 136370 "acceder a la base de donnees"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 136498 "configurer la manche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 136626 "editer un joueur"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 142642
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 136498 // configurer la manche
+      end
+
+      simplerelation 143922
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136370 // acceder a la base de donnees
+      end
+    end
+
+    usecase 136754 "dialoguer avec le module EcranPool"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 136882 "dialoguer avec le module Table de billard"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 143282
+	-_->
+	  on usecase_ref 136114 // lancer une manche
+      end
+    end
+
+    usecase 137010 "purger l'historique"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 143154
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 137138 // consulter l'historique
+      end
+    end
+
+    usecase 137138 "consulter l'historique"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 143410
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136370 // acceder a la base de donnees
+      end
+    end
+
+    usecase 137266 "suivre le deroulement de la manche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 142898
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136242 // enregister la manche
+      end
+    end
+
+    usecase 137394 "afficher la manche a l'ecran"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 143026
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 137266 // suivre le deroulement de la manche
+      end
+
+      simplerelation 143538
+	-_->
+	  stereotype "include"
+	  on usecase_ref 136754 // dialoguer avec le module EcranPool
+      end
     end
   end
 
@@ -557,5 +873,4 @@ ${members}}
       overlapping_bars size A0
     end
   end
-
 end

@@ -1,0 +1,78 @@
+format 224
+
+classcanvas 128050 class_ref 128050 // Joueur
+  simpleclassdiagramsettings end
+  xyz 30 358 2000
+end
+usecasecanvas 128178 usecase_ref 136114 // lancer une manche
+  xyzwh 118 170 3005 64 32 label_xy 88 202
+end
+usecasecanvas 128306 usecase_ref 136242 // enregister la manche
+  xyzwh 454 170 3005 64 32 label_xy 430 207
+end
+usecasecanvas 128434 usecase_ref 136370 // acceder a la base de donnees
+  xyzwh 806 355 3005 64 32 label_xy 742 387
+end
+usecasecanvas 128562 usecase_ref 136498 // configurer la manche
+  xyzwh 279 322 3010 64 32 label_xy 241 354
+end
+usecasecanvas 128690 usecase_ref 136626 // editer un joueur
+  xyzwh 415 423 3005 64 32 label_xy 394 455
+end
+usecasecanvas 128818 usecase_ref 136754 // dialoguer avec le module EcranPool
+  xyzwh 749 37 3005 64 32 label_xy 663 69
+end
+usecasecanvas 128946 usecase_ref 136882 // dialoguer avec le module Table de billard
+  xyzwh 516 286 3010 64 32 label_xy 413 318
+end
+usecasecanvas 129202 usecase_ref 137010 // purger l'historique
+  xyzwh 671 562 3005 64 32 label_xy 641 594
+end
+usecasecanvas 129330 usecase_ref 137138 // consulter l'historique
+  xyzwh 263 588 3015 64 32 label_xy 240 629
+end
+usecasecanvas 129970 usecase_ref 137266 // suivre le deroulement de la manche
+  xyzwh 228 72 3005 64 32 label_xy 142 104
+end
+usecasecanvas 130354 usecase_ref 137394 // afficher la manche a l'ecran
+  xyzwh 504 35 3005 64 32 label_xy 446 67
+end
+line 129458 ----
+  from ref 128050 z 3006 to ref 128178
+simplerelationcanvas 129586 simplerelation_ref 142514
+  from ref 128178 z 3011 stereotype "<<include>>" xyz 189.5 260.5 3000 to ref 128562
+end
+simplerelationcanvas 129714 simplerelation_ref 142642
+  from ref 128690 z 3011 stereotype "<<extend>>" xyz 338.5 392.5 3000 to point 332 361
+  line 131634 z 3011 to ref 128562
+end
+line 129842 ----
+  from ref 128050 z 3016 to ref 129330
+simplerelationcanvas 130098 simplerelation_ref 142770
+  from ref 128178 z 3006 stereotype "<<include>>" xyz 160 135.5 3000 to ref 129970
+end
+simplerelationcanvas 130226 simplerelation_ref 142898
+  from ref 129970 z 3006 stereotype "<<include>>" xyz 331.5 134.5 3000 to ref 128306
+end
+simplerelationcanvas 130482 simplerelation_ref 143026
+  from ref 130354 z 3006 stereotype "<<extend>>" xyz 357 67 3000 to ref 129970
+end
+simplerelationcanvas 130610 simplerelation_ref 143154
+  from ref 129202 z 3016 stereotype "<<extend>>" xyz 458 589 3000 to ref 129330
+end
+simplerelationcanvas 131250 simplerelation_ref 143410
+  from ref 129330 z 3016 stereotype "<<include>>" xyz 525 485 3000 to ref 128434
+end
+simplerelationcanvas 131378 simplerelation_ref 143538
+  from ref 130354 z 3006 stereotype "<<include>>" xyz 617 50.5 3000 to ref 128818
+end
+simplerelationcanvas 131506 simplerelation_ref 143666
+  from ref 128306 z 3006 stereotype "<<include>>" xyz 622.5 277 3000 to ref 128434
+end
+simplerelationcanvas 131762 simplerelation_ref 143794
+  from ref 128178 z 3011 stereotype "<<include>>" xyz 308 242 3000 to ref 128946
+end
+simplerelationcanvas 131890 simplerelation_ref 143922
+  from ref 128690 z 3006 stereotype "<<include>>" xyz 601.5 402 3000 to ref 128434
+end
+end
