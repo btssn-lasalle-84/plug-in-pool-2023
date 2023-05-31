@@ -31,16 +31,17 @@ public class FinDeManche extends AlertDialog
     /**
      * Attributs
      */
-    private Manche activiteManche;
+    private Manche activiteManche;          //!< @todo
 
     /**
      * Ressources GUI
      */
-    private ImageButton boutonMenu;
-    private ImageButton boutonRejouer;
-    private TextView[][] billesEmpochees;
-    private TextView[] joueurs;
-    private View fenetre;
+    private ImageButton boutonMenu;         //!< @todo
+    private ImageButton boutonRejouer;      //!< @todo
+    private TextView entete;                //!< @todo
+    private TextView[][] billesEmpochees;   //!< @todo
+    private TextView[] joueurs;             //!< @todo
+    private View fenetre;                   //!< @todo
 
     /**
      * @brief Constructeur de la classe FinDeManche
@@ -59,8 +60,12 @@ public class FinDeManche extends AlertDialog
         Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2 + " )");
 
         fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
+
         boutonMenu = (ImageButton) fenetre.findViewById(R.id.boutonMenu);
         boutonRejouer =  (ImageButton) fenetre.findViewById(R.id.boutonRejouer);
+
+        entete = (TextView) fenetre.findViewById(R.id.entete);
+
         billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
         billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
         billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);
@@ -110,9 +115,14 @@ public class FinDeManche extends AlertDialog
         {
             for(int couleur = BlackBall.ROUGE; couleur < BlackBall.NB_COULEURS; couleur++)
             {
-                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteManche.baseDonnees.getNbEmpoches(couleur, (String)joueurs[joueur].getText(), BaseDeDonnees.DEFAUT)));
+                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES[couleur] + String.valueOf( activiteManche.baseDonnees.getNbEmpoches(couleur, (String)joueurs[joueur].getText(), BaseDeDonnees.DEFAUT)));
             }
         }
+    }
+
+    public void setEntete(String joueur)
+    {
+        entete.setText(joueur + " remporte la manche !");
     }
 }
 

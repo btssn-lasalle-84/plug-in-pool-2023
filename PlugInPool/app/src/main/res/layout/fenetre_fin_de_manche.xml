@@ -18,7 +18,7 @@
         android:layout_margin="32dp">
 
         <TextView
-            android:id="@+id/felicitations"
+            android:id="@+id/entete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/celticmd"

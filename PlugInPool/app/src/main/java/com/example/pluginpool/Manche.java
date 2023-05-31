@@ -304,8 +304,7 @@ public class Manche extends AppCompatActivity
         }
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
-       // fenetreFinDeManche.setTitle("Partie terminée");                                // !<@todo
-       // fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !");  // !< @todo
+        fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }
