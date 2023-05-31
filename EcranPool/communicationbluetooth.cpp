@@ -147,6 +147,62 @@ void CommunicationBluetooth::lireDonnees()
 {
     QByteArray donnees;
 
-    donnees += socket->readAll();
-    qDebug() << Q_FUNC_INFO << donnees;
+    donnees = socket->readAll();
+
+    trame += QString(donnees.data());
+    qDebug() << Q_FUNC_INFO << "trame" << trame;
+
+    if(trame.startsWith(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
+      {
+          QStringList trames = trame.split(DELIMITEUR_FIN, QString::SkipEmptyParts);
+
+          qDebug() << Q_FUNC_INFO << trames;
+
+          for(int i = 0; i < trames.count(); ++i)
+          {
+              qDebug() << Q_FUNC_INFO << i << trames[i];
+              champsTrame = trames[i].split(DELIMITEUR_CHAMP);
+              decoderTrame(champsTrame);
+          }
+          trame.clear();
+
+          qDebug() << Q_FUNC_INFO << "CLEAR" << trames;
+      }
+
+}
+
+void CommunicationBluetooth::decoderTrame(QStringList champsTrame)
+{
+    if (champsTrame.isEmpty())
+        return;
+
+    QString type = champsTrame.value(POSITION_TYPE);
+
+    if (type.isEmpty())
+        return;
+
+    switch (type.at(0).toLatin1()) {
+        case 'E': {
+            int table = champsTrame.value(POSITION_TABLE).toInt();
+            int poche = champsTrame.value(POSITION_POCHE).toInt();
+            int couleur = champsTrame.value(POSITION_COULEUR).toInt();
+            emit empochage(table, poche, couleur);
+            break;
+        }
+        case 'N': {
+            int table = champsTrame.value(POSITION_TABLE).toInt();
+            QString joueur1 = champsTrame.value(POSITION_JOUEUR1);
+            QString joueur2 = champsTrame.value(POSITION_JOUEUR2);
+            emit nomsJoueurs(table, joueur1, joueur2);
+            break;
+        }
+        case 'C': {
+            int table = champsTrame.value(POSITION_TABLE).toInt();
+            int changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
+            emit changementJoueur(table, changement);
+            break;
+        }
+        default:
+            break;
+    }
 }

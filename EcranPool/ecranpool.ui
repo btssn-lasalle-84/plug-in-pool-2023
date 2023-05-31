@@ -320,14 +320,14 @@ background-color: transparent;</string>
              <item>
               <layout class="QVBoxLayout" name="verticalLayoutPartieGauche">
                <item>
-                <widget class="QLabel" name="label">
+                <widget class="QLabel" name="labelNumeroTable">
                  <property name="font">
                   <font>
                    <pointsize>24</pointsize>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Table n° X</string>
+                  <string>0</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
