@@ -263,6 +263,11 @@
                     android:visibility="invisible" />
             </RadioGroup>
         </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -271,7 +276,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp">
 
             <ImageButton
                 android:id="@+id/boutonSuivant"
@@ -293,7 +300,7 @@
                 android:textSize="40sp" />
 
         </FrameLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

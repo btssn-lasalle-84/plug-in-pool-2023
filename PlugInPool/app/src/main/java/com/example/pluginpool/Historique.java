@@ -56,8 +56,10 @@ public class Historique extends AppCompatActivity {
     private ArrayAdapter<String> adaptateurListeDeroulante; //!< @todo
     private EditText barreRecherche;                        //!< @todo
     private Spinner categoriesRecherche;                    //!< @todo
-    private Button boutonMenu;                              //!< @todo
+    private ImageButton boutonMenu;                         //!< @todo
     private ImageButton boutonRechercher;                   //!< @todo
+    private ImageButton boutonEffacer;                      //!< @todo
+
     /**
      * @brief Méthode appelée à la création de l'activité
      */
@@ -145,12 +147,12 @@ public class Historique extends AppCompatActivity {
             Log.d(TAG, "clic categoriesRecherche : position = " + position + " -> " + elementSelectionne);
             if(elementSelectionne == "Joueurs")
             {
-                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
+                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
             else
             {
-                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
+                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
         }
@@ -162,7 +164,7 @@ public class Historique extends AppCompatActivity {
         }
     });
 
-        boutonMenu = (Button) findViewById(R.id.boutonMenu);
+        boutonMenu = (ImageButton) findViewById(R.id.boutonMenu);
         boutonMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
@@ -184,6 +186,15 @@ public class Historique extends AppCompatActivity {
                 {
                     rechercherManches();
                 }
+            }
+        });
+
+        boutonEffacer = (ImageButton) findViewById(R.id.boutonEffacer);
+        boutonRechercher.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonRechercher");
+                baseDonnees.effacer();
             }
         });
     }
