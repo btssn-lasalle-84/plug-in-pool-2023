@@ -33,7 +33,7 @@
 #define TRAME_STOP  0x80
 
 #define TRAME_EMPOCHE 0x00
-#define TRAME_SUIVANT 0x9f
+#define TRAME_SUIVANT 0x9f // 1001 1111
 #define TRAME_FAUTE   0x80
 
 #define ERREUR_TRAME_INCONNUE      0
@@ -47,7 +47,7 @@
 #define NB_BILLES_ROUGE 7
 #define NB_BILLES_JAUNE 7
 
-#define TIR_LOUPE 9 // simule un tir loupé
+#define TIR_LOUPE 9     // simule un tir loupé
 
 #define ANTI_REBOND 400 //
 
@@ -128,10 +128,10 @@ EtatPartie etatPartie            = Finie; //!< l'état de la partie
 int        nbBilles[NB_COULEURS] = {
     NB_BILLES_ROUGE,
     NB_BILLES_JAUNE
-}; //!< le nombre de billes à empocher pour chaque couleur
+};                     //!< le nombre de billes à empocher pour chaque couleur
 CouleurBille joueurCourant =
   CouleurBille::NOIRE; //!< la couleur du joueur qui tire
-bool etatJoueur[NB_COULEURS] = { false, false }; //!< le joueur a joué ou pas
+bool etatJoueur[NB_COULEURS] = { false, false };   //!< le joueur a joué ou pas
 bool joueurGagnant[NB_COULEURS]       = { false,
                                           false }; //!< le joueur a gagné ou pas
 const String codeCouleur[NB_COULEURS] = {
@@ -157,12 +157,41 @@ String extraireChamp(String& trame, unsigned int numeroChamp)
 }
 
 /**
+ * @brief Envoie une trame NEXT via le Bluetooth
+ *
+ */
+void envoyerTrameNext()
+{
+    uint8_t empoche = TRAME_SUIVANT;
+
+    /*
+    Trame de service
+    Format : {Type}{Requête/Réponse}
+    | 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
+    | 1  | X  | X  | 1  | 1  | 1  | 1  | 1  |
+    |Type|N°Table  |Suivant sans faute      |
+    */
+
+    empoche |= (uint8_t(numeroTable - 1) << CHAMP_TABLE);
+
+    ESPBluetooth.write(&empoche, 1);
+#ifdef DEBUG
+    char trameEnvoi[5];
+    sprintf((char*)trameEnvoi, "%02X\n", empoche);
+    String trame = String(trameEnvoi);
+    // trame.remove(trame.indexOf("\r"), 2);
+    Serial.print("> ");
+    Serial.println(trame);
+#endif
+}
+
+/**
  * @brief Envoie une trame d'acquittement via le Bluetooth
  *
  */
 void envoyerTrameAcquittement()
 {
-    // non implémenté
+    envoyerTrameNext();
     return;
 }
 
@@ -195,35 +224,6 @@ void envoyerTrameEmpoche(Poche numeroPoche, CouleurBille couleurBille)
     empoche |= (uint8_t(numeroTable - 1) << CHAMP_TABLE);
     empoche |= (uint8_t(numeroPoche) << CHAMP_POCHE);
     empoche |= (uint8_t(couleurBille) << CHAMP_COULEUR);
-
-    ESPBluetooth.write(&empoche, 1);
-#ifdef DEBUG
-    char trameEnvoi[5];
-    sprintf((char*)trameEnvoi, "%02X\n", empoche);
-    String trame = String(trameEnvoi);
-    // trame.remove(trame.indexOf("\r"), 2);
-    Serial.print("> ");
-    Serial.println(trame);
-#endif
-}
-
-/**
- * @brief Envoie une trame NEXT via le Bluetooth
- *
- */
-void envoyerTrameNext()
-{
-    uint8_t empoche = TRAME_SUIVANT;
-
-    /*
-    Trame de service
-    Format : {Type}{Requête/Réponse}
-    | 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
-    | 1  | X  | X  | 1  | 1  | 1  | 1  | 1  |
-    |Type|N°Table  |Suivant sans faute      |
-    */
-
-    empoche |= (uint8_t(numeroTable - 1) << CHAMP_TABLE);
 
     ESPBluetooth.write(&empoche, 1);
 #ifdef DEBUG
