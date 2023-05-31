@@ -52,6 +52,18 @@ class EcranPool : public QWidget
         FinPartie,
         NbEcrans
     };
+    /**
+     * @enum Couleur
+     * @brief Les différentes couleurs
+     */
+    enum Couleur
+    {
+        ROUGE,
+        JAUNE,
+        BLANCHE,
+        NOIRE,
+        NB_COULEURS
+    };
 
   public:
     EcranPool(QWidget* parent = nullptr);
@@ -65,6 +77,7 @@ class EcranPool : public QWidget
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
 
+    void initialiserCommunication();
     void initialiserEcran();
     void initialiserJoueurs();
     void initialiserHeure();
@@ -81,7 +94,6 @@ class EcranPool : public QWidget
     void afficherHeure();
     void afficherDureePartie();
     void afficherDecompteManche();
-    void initialiserCommunication();
 #ifdef TEST_EcranPool
     void afficherEcranSuivant();
     void afficherEcranPrecedent();

@@ -24,6 +24,7 @@ EcranPool::EcranPool(QWidget* parent) :
     communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0)
 {
     qDebug() << Q_FUNC_INFO;
+    initialiserCommunication();
     initialiserEcran();
     initialiserJoueurs();
     initialiserHeure();
@@ -141,6 +142,22 @@ void EcranPool::afficherDecompteManche()
 
 // Méthodes privées
 
+void EcranPool::initialiserCommunication()
+{
+    communicationBluetooth->initialiserCommunication();
+
+    connect(communicationBluetooth,
+            SIGNAL(clientConnecte()),
+            this,
+            SLOT(afficherEcranPartie()));
+    connect(communicationBluetooth,
+            SIGNAL(clientDeconnecte()),
+            this,
+            SLOT(afficherEcranAcceuil()));
+
+    communicationBluetooth->demarrerCommunication();
+}
+
 /**
  * @fn EcranPool::initialiserEcran
  * @brief Initialise l'écran et affiche la fenêtre d'accueil
@@ -244,9 +261,4 @@ void EcranPool::afficherEcranPrecedent()
     afficherEcran(EcranPool::Ecran(ecran));
 }
 
-void CommunicationBluetooth::initialiserCommunication()
-{
-    CommunicationBluetooth communication;
-    communication.initialiserCommunication();
-}
 #endif

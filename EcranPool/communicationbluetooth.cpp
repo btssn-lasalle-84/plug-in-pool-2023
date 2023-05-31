@@ -45,12 +45,17 @@ void CommunicationBluetooth::demarrerCommunication()
 
     if(serveur == nullptr)
     {
+        qDebug() << Q_FUNC_INFO;
         serveur =
           new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
-        connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
+        connect(serveur,
+                SIGNAL(newConnection()),
+                this,
+                SLOT(connecterClient()));
 
-        QBluetoothUuid uuid = QBluetoothUuid(serviceUuid);
-        serviceInfo         = serveur->listen(uuid, serviceNom);
+        QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
+        // QBluetoothUuid uuid = QBluetoothUuid(serviceUuid);
+        serviceInfo = serveur->listen(uuid, serviceNom);
     }
 }
 
@@ -61,7 +66,7 @@ void CommunicationBluetooth::demarrerCommunication()
  */
 void CommunicationBluetooth::arreterCommunication()
 {
-    // vérifie la présence du Bluetooth en local
+    // Vérifie la présence du Bluetooth en local
     if(!peripheriqueLocal.isValid())
         return;
 
@@ -80,6 +85,7 @@ void CommunicationBluetooth::arreterCommunication()
 
     delete serveur;
     serveur = nullptr;
+    qDebug() << Q_FUNC_INFO;
 }
 
 /**
@@ -89,42 +95,17 @@ void CommunicationBluetooth::arreterCommunication()
  */
 void CommunicationBluetooth::initialiserCommunication()
 {
-    // vérifie la présence du Bluetooth en local
+    // Vérifie la présence du Bluetooth en local
     if(!peripheriqueLocal.isValid())
         return;
 
-    // Configuration de l'adresse MAC dans la clé USB Bluetooth
-    peripheriqueLocal.ad(QBluetoothAddress(adresseMAC));
     peripheriqueLocal.powerOn();
-    nomPeripheriqueLocal      = peripheriqueLocal.name();
-    QBluetoothAddress adresse = peripheriqueLocal.address();
-    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
-
-    qDebug() << "Communication Bluetooth initialisée avec l'adresse MAC :"
-             << adresseMAC;
-}
-
-/**
- * @brief Méthode pour vérifier si la communication est fonctionnelle
- */
-bool CommunicationBluetooth::testerCommunication()
-{
-    // Vérifie si le serveur est initialisé
-    if(serveur == nullptr)
-    {
-        qDebug() << "La communication Bluetooth n'est pas démarrée.";
-        return false;
-    }
-
-    // Vérifie si le service est enregistré
-    if(!serviceInfo.isRegistered())
-    {
-        qDebug() << "Le service Bluetooth n'est pas enregistré.";
-        return false;
-    }
-
-    qDebug() << "La communication Bluetooth est fonctionnelle.";
-    return true;
+    nomPeripheriqueLocal     = peripheriqueLocal.name();
+    adressePeripheriqueLocal = peripheriqueLocal.address().toString();
+    qDebug() << Q_FUNC_INFO << "nomPeripheriqueLocal" << nomPeripheriqueLocal
+             << "adressePeripheriqueLocal" << adressePeripheriqueLocal;
+    // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
+    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
 }
 
 /**
@@ -140,26 +121,32 @@ QString CommunicationBluetooth::getNomPeripheriqueLocal()
  */
 QString CommunicationBluetooth::getAdressePeripheriqueLocal()
 {
-    return peripheriqueLocal.address().toString();
+    return adressePeripheriqueLocal;
 }
 
-/**
- * @brief Méthode pour définir l'adresse MAC
- */
-void CommunicationBluetooth::definirAdresseMAC()
+void CommunicationBluetooth::connecterClient()
 {
-    QBluetoothAddress adresse(adresseMAC);
-    if(adresse.isNull())
-    {
-        qDebug() << "Adresse MAC invalide : " << adresseMAC;
+    qDebug() << Q_FUNC_INFO;
+    socket = serveur->nextPendingConnection();
+    if(!socket)
         return;
-    }
 
-    if(!peripheriqueLocal.setHost(adresse))
-    {
-        qDebug() << "Impossible de définir l'adresse MAC : " << adresseMAC;
-        return;
-    }
+    connect(socket, SIGNAL(disconnected()), this, SLOT(deconnecterClient()));
+    connect(socket, SIGNAL(readyRead()), this, SLOT(lireDonnees()));
 
-    qDebug() << "Adresse MAC définie : " << adresseMAC;
+    emit clientConnecte();
+}
+
+void CommunicationBluetooth::deconnecterClient()
+{
+    qDebug() << Q_FUNC_INFO;
+    emit clientDeconnecte();
+}
+
+void CommunicationBluetooth::lireDonnees()
+{
+    QByteArray donnees;
+
+    donnees += socket->readAll();
+    qDebug() << Q_FUNC_INFO << donnees;
 }

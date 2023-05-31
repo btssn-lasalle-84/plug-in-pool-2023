@@ -15,8 +15,8 @@
 
 static const QString serviceUuid(
   QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
+// 00000003-0000-1000-8000-00805f9b34fb
 static const QString serviceNom(QStringLiteral("EcranPool"));
-static const QString adresseMAC("00:1A:7D:DA:71:0A");
 
 /**
  * @class CommunicationBluetooth
@@ -31,8 +31,6 @@ class CommunicationBluetooth : public QObject
     void demarrerCommunication();
     void arreterCommunication();
     void initialiserCommunication();
-    bool testerCommunication();
-    void definirAdresseMAC();
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
@@ -49,8 +47,16 @@ class CommunicationBluetooth : public QObject
     QString adressePeripheriqueLocal;
 
   private slots:
+    void connecterClient();
+    void deconnecterClient();
+    void lireDonnees();
 
   signals:
+    void clientConnecte();
+    void clientDeconnecte();
+    void empochage(int numeroTable, int numeroPoche, int couleur);
+    void nomsJoueurs(int numeroTable, QString nomJoueur1, QString nomJoueur2);
+    void changementJoueur(int numeroTable, int changementJoueur);
 };
 
 #endif // COMMUNICATIONBLUETOOTH_H
