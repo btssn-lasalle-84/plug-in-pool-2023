@@ -243,4 +243,10 @@ void EcranPool::afficherEcranPrecedent()
         ecran = int(EcranPool::FinPartie);
     afficherEcran(EcranPool::Ecran(ecran));
 }
+
+void CommunicationBluetooth::initialiserCommunication()
+{
+    CommunicationBluetooth communication;
+    communication.initialiserCommunication();
+}
 #endif

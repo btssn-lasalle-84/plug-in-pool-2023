@@ -8,6 +8,7 @@
 
 #include "communicationbluetooth.h"
 #include <QDebug>
+#include <QBluetoothLocalDevice>
 
 /**
  * @brief Constructeur de la classe CommunicationBluetooth
@@ -91,8 +92,74 @@ void CommunicationBluetooth::initialiserCommunication()
     // vérifie la présence du Bluetooth en local
     if(!peripheriqueLocal.isValid())
         return;
+
+    // Configuration de l'adresse MAC dans la clé USB Bluetooth
+    peripheriqueLocal.ad(QBluetoothAddress(adresseMAC));
     peripheriqueLocal.powerOn();
-    nomPeripheriqueLocal     = peripheriqueLocal.name();
-    adressePeripheriqueLocal = peripheriqueLocal.address().toString();
+    nomPeripheriqueLocal      = peripheriqueLocal.name();
+    QBluetoothAddress adresse = peripheriqueLocal.address();
     peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
+
+    qDebug() << "Communication Bluetooth initialisée avec l'adresse MAC :"
+             << adresseMAC;
+}
+
+/**
+ * @brief Méthode pour vérifier si la communication est fonctionnelle
+ */
+bool CommunicationBluetooth::testerCommunication()
+{
+    // Vérifie si le serveur est initialisé
+    if(serveur == nullptr)
+    {
+        qDebug() << "La communication Bluetooth n'est pas démarrée.";
+        return false;
+    }
+
+    // Vérifie si le service est enregistré
+    if(!serviceInfo.isRegistered())
+    {
+        qDebug() << "Le service Bluetooth n'est pas enregistré.";
+        return false;
+    }
+
+    qDebug() << "La communication Bluetooth est fonctionnelle.";
+    return true;
+}
+
+/**
+ * @brief Récupère le nom du périphérique local
+ */
+QString CommunicationBluetooth::getNomPeripheriqueLocal()
+{
+    return peripheriqueLocal.name();
+}
+
+/**
+ * @brief Récupère l'adresse du périphérique local
+ */
+QString CommunicationBluetooth::getAdressePeripheriqueLocal()
+{
+    return peripheriqueLocal.address().toString();
+}
+
+/**
+ * @brief Méthode pour définir l'adresse MAC
+ */
+void CommunicationBluetooth::definirAdresseMAC()
+{
+    QBluetoothAddress adresse(adresseMAC);
+    if(adresse.isNull())
+    {
+        qDebug() << "Adresse MAC invalide : " << adresseMAC;
+        return;
+    }
+
+    if(!peripheriqueLocal.setHost(adresse))
+    {
+        qDebug() << "Impossible de définir l'adresse MAC : " << adresseMAC;
+        return;
+    }
+
+    qDebug() << "Adresse MAC définie : " << adresseMAC;
 }

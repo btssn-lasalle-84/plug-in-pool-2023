@@ -81,6 +81,7 @@ class EcranPool : public QWidget
     void afficherHeure();
     void afficherDureePartie();
     void afficherDecompteManche();
+    void initialiserCommunication();
 #ifdef TEST_EcranPool
     void afficherEcranSuivant();
     void afficherEcranPrecedent();
