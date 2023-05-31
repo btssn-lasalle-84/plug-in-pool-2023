@@ -29,6 +29,7 @@ class EcranPool;
 }
 
 class Joueurs;
+class CommunicationBluetooth;
 
 /**
  * @class EcranPool
@@ -51,6 +52,18 @@ class EcranPool : public QWidget
         FinPartie,
         NbEcrans
     };
+    /**
+     * @enum Couleur
+     * @brief Les différentes couleurs
+     */
+    enum Couleur
+    {
+        ROUGE,
+        JAUNE,
+        BLANCHE,
+        NOIRE,
+        NB_COULEURS
+    };
 
   public:
     EcranPool(QWidget* parent = nullptr);
@@ -59,13 +72,16 @@ class EcranPool : public QWidget
   private:
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
+    CommunicationBluetooth*
+                     communicationBluetooth; //<! la communication Bluetooth
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
-    
-    void           initialiserEcran();
-    void           initialiserJoueurs();
-    void           initialiserHeure();
-    void           initialiserDecompteManche();
+
+    void initialiserCommunication();
+    void initialiserEcran();
+    void initialiserJoueurs();
+    void initialiserHeure();
+    void initialiserDecompteManche();
 #ifdef TEST_EcranPool
     void initialiserRaccourcisClavier();
 #endif

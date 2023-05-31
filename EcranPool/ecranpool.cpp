@@ -9,6 +9,7 @@
 #include "ecranpool.h"
 #include "ui_ecranpool.h"
 #include "joueurs.h"
+#include "communicationbluetooth.h"
 #include <QDateTime>
 #include <QTimer>
 
@@ -19,9 +20,11 @@
  * @param parent nullptr définit la fenêtre principale de l'application
  */
 EcranPool::EcranPool(QWidget* parent) :
-    QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr), dureePartie(0)
+    QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr),
+    communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0)
 {
     qDebug() << Q_FUNC_INFO;
+    initialiserCommunication();
     initialiserEcran();
     initialiserJoueurs();
     initialiserHeure();
@@ -115,12 +118,45 @@ void EcranPool::afficherDureePartie()
  */
 void EcranPool::afficherDecompteManche()
 {
-    /**
-     * @todo Afficher le décompte
-     */
+    static int decompte      = 45; // décompte initial de 45 secondes
+    QString    texteDecompte = QString::number(
+      decompte); // Convertir le décompte en chaîne de caractères
+
+    // Afficher le décompte dans le QLabel
+    ui->labelDecompteManche->setText(texteDecompte);
+
+    // Décrémente le décompte
+    --decompte;
+
+    // Arrêter le décompte lorsque le temps est écoulé
+    if(decompte < 0)
+    {
+        // Arrêter le minuteur associé à la méthode
+        QTimer* minuteur = qobject_cast<QTimer*>(sender());
+        minuteur->stop();
+
+        // Réinitialiser le décompte pour la prochaine manche
+        decompte = 45;
+    }
 }
 
 // Méthodes privées
+
+void EcranPool::initialiserCommunication()
+{
+    communicationBluetooth->initialiserCommunication();
+
+    connect(communicationBluetooth,
+            SIGNAL(clientConnecte()),
+            this,
+            SLOT(afficherEcranPartie()));
+    connect(communicationBluetooth,
+            SIGNAL(clientDeconnecte()),
+            this,
+            SLOT(afficherEcranAcceuil()));
+
+    communicationBluetooth->demarrerCommunication();
+}
 
 /**
  * @fn EcranPool::initialiserEcran
@@ -170,9 +206,9 @@ void EcranPool::initialiserHeure()
  */
 void EcranPool::initialiserDecompteManche()
 {
-    QTimer* minuteur = new QTimer(this);
-    minuteur->start(INTERVALLE_SECONDE);
-    connect(minuteur, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
+    QTimer* decompte = new QTimer(this);
+    decompte->start(INTERVALLE_SECONDE);
+    connect(decompte, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
 }
 
 #ifdef TEST_EcranPool
@@ -224,5 +260,5 @@ void EcranPool::afficherEcranPrecedent()
         ecran = int(EcranPool::FinPartie);
     afficherEcran(EcranPool::Ecran(ecran));
 }
-#endif
 
+#endif
