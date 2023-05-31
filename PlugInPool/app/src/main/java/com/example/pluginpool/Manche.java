@@ -45,7 +45,9 @@ public class Manche extends AppCompatActivity
     private static final int DUREE_TIR = 45000;         //!< Duree en millisecondes d'un tir
     private static final int MILLISEC_PAR_SEC = 1000;   //!< Nombre de millisecondes par seconde
     private static final int NB_PALIERS = 450;          //!< Nombre de palliers de la barre de progression du timer
-    private static final int CHAR_NUMERO_TABLE = 5;      //!< Indice du caractère du nom de la table correspondant à son numéro
+    private static final int CHAR_NUMERO_TABLE = 5;     //!< Indice du caractère du nom de la table correspondant à son numéro
+    private static final int TOUR = 0;                  //!< @todo
+    private static final int COULEUR = 0;               //!< @todo
 
     /**
      * Attributs
@@ -152,6 +154,17 @@ public class Manche extends AppCompatActivity
                 communications[Communication.ECRAN].seConnecter("EcranPool");
                 String trameDebut = ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
+                for(int tour = 0; tour < manche.size(); tour++)
+                {
+                    String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
+                    communications[Communication.ECRAN].envoyer(trameEnvoie);
+                    for(int empoche = 0; empoche < manche.get(tour).size(); empoche++)
+                    {
+                        trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(manche.get(tour).get(empoche)[TOUR]) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(manche.get(tour).get(empoche)[COULEUR]) + ProtocoleEcran.DELIMITEUR_FIN;
+                        communications[Communication.ECRAN].envoyer(trameEnvoie);
+                    }
+                }
+
             }
         });
 
