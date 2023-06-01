@@ -124,6 +124,9 @@ QString CommunicationBluetooth::getAdressePeripheriqueLocal()
     return adressePeripheriqueLocal;
 }
 
+/**
+ * @brief Connecte le client
+ */
 void CommunicationBluetooth::connecterClient()
 {
     qDebug() << Q_FUNC_INFO;
@@ -137,12 +140,18 @@ void CommunicationBluetooth::connecterClient()
     emit clientConnecte();
 }
 
+/**
+ * @brief Déconnecte le client
+ */
 void CommunicationBluetooth::deconnecterClient()
 {
     qDebug() << Q_FUNC_INFO;
     emit clientDeconnecte();
 }
 
+/**
+ * @brief Lit les données
+ */
 void CommunicationBluetooth::lireDonnees()
 {
     QByteArray donnees;
@@ -153,53 +162,65 @@ void CommunicationBluetooth::lireDonnees()
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
     if(trame.startsWith(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
-      {
-          QStringList trames = trame.split(DELIMITEUR_FIN, QString::SkipEmptyParts);
+    {
+        QStringList trames =
+          trame.split(DELIMITEUR_FIN, QString::SkipEmptyParts);
 
-          qDebug() << Q_FUNC_INFO << trames;
+        qDebug() << Q_FUNC_INFO << trames;
 
-          for(int i = 0; i < trames.count(); ++i)
-          {
-              qDebug() << Q_FUNC_INFO << i << trames[i];
-              champsTrame = trames[i].split(DELIMITEUR_CHAMP);
-              decoderTrame(champsTrame);
-          }
-          trame.clear();
+        for(int i = 0; i < trames.count(); ++i)
+        {
+            qDebug() << Q_FUNC_INFO << i << trames[i];
+            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
+            decoderTrame(champsTrame);
+        }
+        // trame.clear();
 
-          qDebug() << Q_FUNC_INFO << "CLEAR" << trames;
-      }
-
+        // qDebug() << Q_FUNC_INFO << "CLEAR" << trames;
+    }
 }
 
+/**
+ * @brief Décode la trame reçue
+ */
 void CommunicationBluetooth::decoderTrame(QStringList champsTrame)
 {
-    if (champsTrame.isEmpty())
+    if(champsTrame.isEmpty())
         return;
 
     QString type = champsTrame.value(POSITION_TYPE);
 
-    if (type.isEmpty())
+    if(type.isEmpty())
         return;
 
-    switch (type.at(0).toLatin1()) {
-        case 'E': {
-            int table = champsTrame.value(POSITION_TABLE).toInt();
-            int poche = champsTrame.value(POSITION_POCHE).toInt();
-            int couleur = champsTrame.value(POSITION_COULEUR).toInt();
+    QString joueur1; // Déclaration de la variable joueur1
+    QString joueur2; // Déclaration de la variable joueur2
+
+    switch(type.at(0).toLatin1())
+    {
+        case 'E':
+        {
+            int  table   = champsTrame.value(POSITION_TABLE).toInt();
+            int  poche   = champsTrame.value(POSITION_POCHE).toInt();
+            int  couleur = champsTrame.value(POSITION_COULEUR).toInt();
             emit empochage(table, poche, couleur);
             break;
         }
-        case 'N': {
-            int table = champsTrame.value(POSITION_TABLE).toInt();
+        case 'N':
+        {
+            int     table   = champsTrame.value(POSITION_TABLE).toInt();
             QString joueur1 = champsTrame.value(POSITION_JOUEUR1);
             QString joueur2 = champsTrame.value(POSITION_JOUEUR2);
-            emit nomsJoueurs(table, joueur1, joueur2);
+            emit    nomsJoueurs(table, joueur1, joueur2);
             break;
         }
-        case 'C': {
-            int table = champsTrame.value(POSITION_TABLE).toInt();
-            int changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
+        case 'C':
+        {
+            int  table      = champsTrame.value(POSITION_TABLE).toInt();
+            int  changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
             emit changementJoueur(table, changement);
+            qDebug() << Q_FUNC_INFO << "numeroTable" << table << "joueur1"
+                     << joueur1 << "joueur2" << joueur2;
             break;
         }
         default:
