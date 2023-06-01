@@ -183,6 +183,8 @@ void EcranPool::initialiserCommunication()
 void EcranPool::initialiserEcran()
 {
     ui->setupUi(this);
+    labelNumeroTable = new QLabel(this);
+    ui->verticalLayoutPartieGauche->addWidget(labelNumeroTable);
     // tous les écrans affichent l'heure
     labelsHeure.push_back(ui->labelHeureAccueil);   // dans l'écran Accueil
     labelsHeure.push_back(ui->labelHeurePartie);    // dans l'écran Partie
@@ -235,10 +237,12 @@ void EcranPool::initialiserDecompteManche()
  */
 void EcranPool::afficherNumeroTable(int table)
 {
-    // Affichage du numéro de la table dans le QLabel
-    QString numeroTable = QString::number(table);
-    labelNumeroTable->setText(numeroTable);
-    ui->labelNumeroTable->setText(QString::number(table));
+    qDebug() << Q_FUNC_INFO << "numeroTable" << table;
+    /* // Affichage du numéro de la table dans le QLabel
+     QString numeroTable = QString::number(table);
+     labelNumeroTable->setText(numeroTable);
+     ui->labelNumeroTable->setText(QString::number(table));*/
+    labelNumeroTable->setText("Table n° " + QString::number(table) + 1);
 }
 
 /**
