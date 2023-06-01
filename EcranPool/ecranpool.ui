@@ -55,9 +55,12 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Accueil">
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image:url(:/background.jpg);</string>
         </property>
@@ -340,7 +343,7 @@ background-color: transparent;</string>
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="ressources.qrc">:/pool_table.png</pixmap>
+                  <pixmap resource="ressources.qrc">:/pool_table-60.png</pixmap>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -376,14 +379,14 @@ background-color: transparent;</string>
                  </property>
                  <property name="font">
                   <font>
-                   <pointsize>26</pointsize>
+                   <pointsize>34</pointsize>
                   </font>
                  </property>
                  <property name="text">
-                  <string>00 sec</string>
+                  <string>45</string>
                  </property>
                  <property name="alignment">
-                  <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </item>

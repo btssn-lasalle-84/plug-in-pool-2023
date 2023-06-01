@@ -13,6 +13,8 @@
 #include <QDateTime>
 #include <QTimer>
 
+EcranPool* EcranPool::ecranPoolInstance = nullptr;
+
 /**
  * @brief Constructeur de la classe EcranPool
  *
@@ -29,6 +31,13 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
+    // Créer le QLabel "labelNumeroTable"
+    labelNumeroTable = new QLabel(this);
+    labelNumeroTable->setText("Table n° ");
+    labelNumeroTable->setAlignment(Qt::AlignCenter);
+
+    // Ajouter le QLabel au layout "verticalLayoutPartieGauche"
+    ui->verticalLayoutPartieGauche->addWidget(labelNumeroTable);
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -74,8 +83,10 @@ void EcranPool::afficherEcranAcceuil()
  */
 void EcranPool::afficherEcranPartie()
 {
+    int numeroTable = 0;
     afficherEcran(EcranPool::Ecran::Partie);
     afficherHeure();
+    // ecranPoolInstance->afficherNumeroTable(numeroTable);
 }
 
 /**
@@ -190,6 +201,7 @@ void EcranPool::initialiserEcran()
     labelsHeure.push_back(ui->labelHeurePartie);    // dans l'écran Partie
     labelsHeure.push_back(ui->labelHeureFinPartie); // dans l'écran FinPartie
 #ifdef PLEIN_ECRAN
+    setFixedSize(1920, 1080);
     showFullScreen();
 #else
     showMaximized();
@@ -242,7 +254,9 @@ void EcranPool::afficherNumeroTable(int table)
      QString numeroTable = QString::number(table);
      labelNumeroTable->setText(numeroTable);
      ui->labelNumeroTable->setText(QString::number(table));*/
-    labelNumeroTable->setText("Table n° " + QString::number(table) + 1);
+    QString texte = "Table n° " + QString::number(table);
+    labelNumeroTable->setText("Table n° " + QString::number(table));
+    labelNumeroTable->setText(texte);
 }
 
 /**
