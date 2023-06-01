@@ -76,27 +76,32 @@ public class HistoriqueManche extends AlertDialog
         nomsJoueurs[Manche.PREMIER_JOUEUR].setText("Gagnant : " + joueurs[Manche.PREMIER_JOUEUR]);
         nomsJoueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
         nomsJoueurs[Manche.SECOND_JOUEUR].setText("Perdant : " + joueurs[Manche.SECOND_JOUEUR]);
+
         boutonSuppression.setOnClickListener(new View.OnClickListener() {
 
              @Override
              public void onClick(View view) {
                  activiteHistorique.baseDonnees.supprimerManche(date);
+                 activiteHistorique.actualiserManches(date);
                  HistoriqueManche.this.dismiss();
              }
          });
-        setResultats();
+        setResultats(date);
+
+        setView(fenetre);
     }
 
     /**
      * @brief Définit le contenu des Textview, affichant le nombre de billes de chaque couleur empochées par le joueur au cours de la manche
      */
-    private void setResultats()
+    private void setResultats(String date)
     {
         for(int joueur = 0; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
             for(int couleur = BlackBall.ROUGE; couleur < BlackBall.NB_COULEURS; couleur++)
             {
-                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteHistorique.baseDonnees.getNbEmpoches(couleur, joueurs[joueur], BaseDeDonnees.DEFAUT)));
+                Log.d(TAG, String.valueOf(activiteHistorique.baseDonnees.getMancheId(date)));
+                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteHistorique.baseDonnees.getNbEmpoches(couleur, joueurs[joueur], activiteHistorique.baseDonnees.getMancheId(date))));
             }
         }
     }

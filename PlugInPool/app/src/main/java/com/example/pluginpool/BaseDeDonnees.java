@@ -186,7 +186,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         //int gagnantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null).getInt(0);
         //int perdantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + perdant + "'", null).getInt(0);
         try {
-            sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (datetime('now'), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
+            sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (strftime('%d/%m/%Y %H:%M:%S', 'now'), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
         } catch (Exception e){
             Log.d(TAG, "INSERT INTO manches " + e );
         }
@@ -384,13 +384,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void supprimerJoueur(String nom)
     {
-        try {
-            sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
-        }
-        catch(Exception e)
-        {
-            Log.d(TAG, "SupprimerJoueur()", e);
-        }
+        sqlite.execSQL("DELETE FROM joueurs WHERE nom = ?", new String[] {nom});
     }
 
     /**
@@ -398,21 +392,72 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void supprimerManche(String date)
     {
-        sqlite.execSQL("DELETE FROM manches WHERE horodatage = '" + date + "'", null);
+        sqlite.execSQL("DELETE FROM manches WHERE horodatage = ?", new String[] {date});
     }
 
-
+    /**
+     * @brief @todo
+     */
     public String getNomJoueur(String qualificatifJoueur, String date)
     {
-        Cursor curseur  = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs INNERJOIN manches ON joueurs.id = '" + "manches." + qualificatifJoueur + "Id" + "' WHERE manches.horodatage = '" + date + "'", null);
+        Log.d(TAG, "getNomJoueur(qualificatif, date) date = " + date + " qualificatif = " + qualificatifJoueur);
+        String requete = "SELECT joueurs.nom FROM joueurs  INNER JOIN manches ON joueurs.id = manches." + qualificatifJoueur + "Id WHERE manches.horodatage = \"" + date + "\"";
+
+        Cursor curseur = sqlite.rawQuery(requete, null);
         if(curseur.moveToFirst())
         {
-            return curseur.toString();
+            return curseur.getString(curseur.getColumnIndexOrThrow("nom"));
         }
-        else
+        curseur.close();
+        return "Inconnu";
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void supprimerJoueurs()
+    {
+        sqlite.execSQL("DELETE FROM joueurs");
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void supprimerManches()
+    {
+        Log.d(TAG, "supprimerManches()");
+        sqlite.execSQL("DELETE FROM manches");
+    }
+
+    /**
+     * @brief @todo
+     */
+    public String getNomsJoueurs(String date)
+    {
+        Log.d(TAG, "getNomsJoueurs()");
+        String nomsJoueurs = "";
+        Cursor curseur = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs " +
+                "INNER JOIN manches ON joueurs.id = manches.gagnantId OR joueurs.id = manches.perdantId " +
+                "WHERE manches.horodatage = ?", new String[] { date });
+        while(curseur.moveToNext())
         {
-            return "Inconnu";
+            nomsJoueurs += " " + curseur.getString(curseur.getColumnIndexOrThrow("nom"));
         }
+        curseur.close();
+        return nomsJoueurs;
+    }
+
+    /**
+     * @brief @todo
+     */
+    public int getMancheId(String date)
+    {
+        Cursor curseur = sqlite.rawQuery("SELECT id FROM manches WHERE manches.horodatage = ?", new String[] {date});
+        if(curseur.moveToFirst()) {
+            return curseur.getInt(0);
+        }
+        curseur.close();
+        return BaseDeDonnees.DEFAUT;
     }
 }
 

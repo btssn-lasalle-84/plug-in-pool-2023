@@ -46,7 +46,7 @@ public class Historique extends AppCompatActivity {
     private Vector<String> manchesRecherchees;  //!< @todo
     private InputFilter[] filtresRecherche;     //!< @todo
     private HistoriqueJoueur fenetreJoueur;     //!< @todo
-    private HistoriqueJoueur fenetreManche;     //!< @todo
+    private HistoriqueManche fenetreManche;     //!< @todo
     public BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
 
     /**
@@ -147,13 +147,17 @@ public class Historique extends AppCompatActivity {
             Log.d(TAG, "clic categoriesRecherche : position = " + position + " -> " + elementSelectionne);
             if(elementSelectionne == "Joueurs")
             {
-                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
+                adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, nomsRecherches);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
             else
             {
-                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
-                listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                adaptateurListeDeroulante = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1);
+                for(int manche = 0; manche < manchesRecherchees.size(); manche++)
+                {
+                    adaptateurListeDeroulante.add(manchesRecherchees.get(manche) + baseDonnees.getNomsJoueurs(manchesRecherchees.get(manche)));
+                }
+               listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
         }
 
@@ -190,14 +194,44 @@ public class Historique extends AppCompatActivity {
         });
 
         boutonEffacer = (ImageButton) findViewById(R.id.boutonEffacer);
-        boutonRechercher.setOnClickListener(new View.OnClickListener() {
+        boutonEffacer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonRechercher");
-                baseDonnees.effacer();
+                if(categoriesRecherche.getSelectedItem().toString() == "Joueurs")
+                {
+                    supprimerJoueurs();
+                }
+                else
+                {
+                    supprimerManches();
+                }
             }
         });
     }
+
+    /**
+     * @brief todo
+     */
+    private void supprimerJoueurs()
+    {
+        baseDonnees.supprimerJoueurs();
+        noms = new Vector<>();
+        adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noms);
+        listeDeroulante.setAdapter(adaptateurListeDeroulante);
+    }
+
+    /**
+     * @brief todo
+     */
+    private void supprimerManches()
+    {
+        baseDonnees.supprimerManches();
+        manches = new Vector<>();
+        adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, manches);
+        listeDeroulante.setAdapter(adaptateurListeDeroulante);
+    }
+
 
     /**
      * @brief Méthode permettant de rechercher un joueur par son nom et d'afficher les résultats de la recherche dans la liste déroulante
@@ -236,7 +270,7 @@ public class Historique extends AppCompatActivity {
     }
 
     /**
-     * @brief Méthode permettant de rechercher une manche par sa date et d'afficher les résultats de la recherche dans la liste déroulante
+     * @brief Méthode permettant de rechercher une manche par sa date et par le noms des joueurs participants et d'afficher les résultats de la recherche dans la liste déroulante
      */
     private void rechercherManches()
     {
@@ -276,6 +310,48 @@ public class Historique extends AppCompatActivity {
      */
     private void afficherFenetreManche(String dateEtJoueurs)
     {
-        //!< @todo
+        //!< @todo oter joueurs de dateEtJoueurs
+        fenetreManche = new HistoriqueManche(this, dateEtJoueursVersDate(dateEtJoueurs));
+        fenetreManche.show();
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void actualiserNoms(String nom)
+    {
+        noms.remove(nom);
+        nomsRecherches.remove(nom);
+        adaptateurListeDeroulante.remove(nom);
+        listeDeroulante.setAdapter(adaptateurListeDeroulante);
+        manches = baseDonnees.getManchesTriees();
+        manchesRecherchees.addAll(manches);
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void actualiserManches(String dateEtJoueur)
+    {
+        manches.remove(dateEtJoueur);
+        manchesRecherchees.remove(dateEtJoueur);
+        adaptateurListeDeroulante.remove(dateEtJoueur);
+        listeDeroulante.setAdapter(adaptateurListeDeroulante);
+    }
+
+    /**
+     * @brief @todo
+     */
+    private String dateVersDateEtJoueurs(String date)
+    {
+        return date + baseDonnees.getNomsJoueurs(date);
+    }
+
+    /**
+     * @brief @todo
+     */
+    private String dateEtJoueursVersDate(String dateEtJoueurs)
+    {
+        return dateEtJoueurs.substring(0, 19);
     }
 }
