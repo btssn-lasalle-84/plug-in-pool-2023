@@ -1,7 +1,7 @@
 format 224
 "MobilePool"
-  revision 12
-  modified_by 50 "btssn2"
+  revision 13
+  modified_by 42 "tv"
   java_root_dir "../../"
 
 
@@ -105,22 +105,22 @@ format 224
       
       activitydiagramsettings
        end
-      simplerelation 128050
-	-_->
-	  stereotype "include"
-	  on usecase_ref 128306 // Configurer une manche
-      end
-
       simplerelation 128562
 	-_->
 	  stereotype "include"
 	  on usecase_ref 128818 // Suivre le deroulement de la manche
       end
 
-      simplerelation 128818
+      simplerelation 141610
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128306 // Configurer une manche
+      end
+
+      simplerelation 142122
 	-_->
 	  stereotype "include"
-	  on usecase_ref 128946 // Mettre fin a la manche
+	  on usecase_ref 128690 // Dialoguer avec la table
       end
     end
 
@@ -145,23 +145,6 @@ format 224
       
       activitydiagramsettings
        end
-      simplerelation 129074
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 129202 // Purger l'historique
-      end
-
-      simplerelation 129202
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 129330 // Afficher l'historique
-      end
-
-      simplerelation 129330
-	-_->
-	  stereotype "extend"
-	  on usecase_ref 129458 // Afficher les statistiques
-      end
     end
 
     usecase 128306 "Configurer une manche"
@@ -188,7 +171,7 @@ format 224
       simplerelation 128178
 	-_->
 	  stereotype "include"
-	  on usecase_ref 128434 // Editer/Choisir un joueur
+	  on usecase_ref 128434 // Editer/Choisir les joueurs
       end
 
       simplerelation 128306
@@ -197,14 +180,9 @@ format 224
 	  on usecase_ref 128562 // Choisir une table
       end
 
-      simplerelation 129458
-	-_->
-	  stereotype "include"
-	  on usecase_ref 129586 // Dialoguer avec le module Ecran-Pool
-      end
     end
 
-    usecase 128434 "Editer/Choisir un joueur"
+    usecase 128434 "Editer/Choisir les joueurs"
       
       usecasediagramsettings end
       
@@ -276,11 +254,6 @@ format 224
       
       activitydiagramsettings
        end
-      simplerelation 135986
-	-_->
-	  stereotype "include"
-	  on usecase_ref 128050 // Lancer une manche
-      end
     end
 
     class 128178 "Table"
@@ -352,7 +325,7 @@ format 224
        end
       simplerelation 128946
 	-_->
-	  stereotype "extend"
+	  stereotype "include"
 	  on usecase_ref 129074 // Enregistrer la manche
       end
     end
@@ -401,6 +374,11 @@ format 224
       
       activitydiagramsettings
        end
+      simplerelation 141482
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
+      end
     end
 
     usecase 129330 "Afficher l'historique"
@@ -424,6 +402,11 @@ format 224
       
       activitydiagramsettings
        end
+      simplerelation 141354
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
+      end
     end
 
     usecase 129458 "Afficher les statistiques"
@@ -447,6 +430,11 @@ format 224
       
       activitydiagramsettings
        end
+      simplerelation 141226
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
+      end
     end
 
     usecase 129586 "Dialoguer avec le module Ecran-Pool"
@@ -470,6 +458,17 @@ format 224
       
       activitydiagramsettings
        end
+      simplerelation 141866
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128818 // Suivre le deroulement de la manche
+      end
+
+      simplerelation 141994
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128050 // Lancer une manche
+      end
     end
 
     sequencediagram 141106 "Configuration de manche"
@@ -522,12 +521,6 @@ ${members}}
       
       activitydiagramsettings
        end
-      simplerelation 142514
-	-_->
-	  stereotype "include"
-	  on usecase_ref 136498 // configurer la manche
-      end
-
       simplerelation 142770
 	-_->
 	  stereotype "include"
