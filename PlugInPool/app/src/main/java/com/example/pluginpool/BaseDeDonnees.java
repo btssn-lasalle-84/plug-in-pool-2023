@@ -134,6 +134,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         {
             int colonne = curseur.getColumnIndex("count");
             if (colonne != DEFAUT) {
+                Log.d(TAG, "getNbEmpoches() NbEmpoches = " + curseur.getInt(colonne));
                 return curseur.getInt(colonne);
             }
         }

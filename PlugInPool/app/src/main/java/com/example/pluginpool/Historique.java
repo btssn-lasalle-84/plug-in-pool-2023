@@ -302,6 +302,7 @@ public class Historique extends AppCompatActivity {
     private void afficherFenetreJoueur(String joueur)
     {
         fenetreJoueur = new HistoriqueJoueur(this, joueur);
+        fenetreJoueur.getWindow().setLayout(1200, 1500);
         fenetreJoueur.show();
     }
 
@@ -312,6 +313,7 @@ public class Historique extends AppCompatActivity {
     {
         //!< @todo oter joueurs de dateEtJoueurs
         fenetreManche = new HistoriqueManche(this, dateEtJoueursVersDate(dateEtJoueurs));
+        fenetreManche.getWindow().setLayout(1200, 1500);
         fenetreManche.show();
     }
 
