@@ -66,7 +66,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO INTEGER DEFAULT 0)");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME UNIQUE NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
         sqlite.execSQL(
