@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Vector;
 
 /**
@@ -149,6 +154,7 @@ public class Historique extends AppCompatActivity {
             {
                 adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, nomsRecherches);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                rechercherJoueurs();
             }
             else
             {
@@ -157,7 +163,8 @@ public class Historique extends AppCompatActivity {
                 {
                     adaptateurListeDeroulante.add(manchesRecherchees.get(manche) + baseDonnees.getNomsJoueurs(manchesRecherchees.get(manche)));
                 }
-               listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                rechercherManches();
             }
         }
 
@@ -238,34 +245,58 @@ public class Historique extends AppCompatActivity {
      */
     private void rechercherJoueurs()
     {
+        Log.d(TAG, "rechercherJoueurs()");
+
+        nomsRecherches = new Vector<>();
         nomsRecherches.addAll(noms);
         boolean nomSupprime;
         String[] mots = barreRecherche.getText().toString().split("\\s+");
 
         int indiceJoueur = 0;
-        int indiceMot = 0;
+        int indiceMot;
         while(indiceJoueur < nomsRecherches.size())
         {
             indiceMot = 0;
             nomSupprime = false;
             while((!nomSupprime) && indiceMot < mots.length)
             {
-                if(nomsRecherches.get(indiceJoueur).contains(mots[indiceMot]))
+                if(nomsRecherches.get(indiceJoueur).toLowerCase().contains((mots[indiceMot]).toLowerCase()))
                 {
+                    Log.d(TAG, "rechercherJoueurs() nomSupprime = false, indiceMot = " + String.valueOf(indiceMot));
                     indiceMot++;
                 }
                 else
                 {
+                    Log.d(TAG, "rechercherJoueurs() nom = " + nomsRecherches.get(indiceJoueur).toLowerCase() + " mot = " + (mots[indiceMot]).toLowerCase());
+                    Log.d(TAG, "rechercherJoueurs() nomSupprime = true, indiceMot = " + String.valueOf(indiceMot));
                     nomSupprime = true;
                     nomsRecherches.remove(indiceJoueur);
+                    Log.d(TAG, "rechercherJoueurs() " + nomsRecherches);
                 }
             }
-            indiceJoueur += nomSupprime ? 1 : 0;
+            indiceJoueur += nomSupprime ? 0 : 1;
         }
-        if(noms.size() != nomsRecherches.size() && nomsRecherches.size() != 0)
+
+        if(nomsRecherches.size() != adaptateurListeDeroulante.getCount() && nomsRecherches.size() != 0)
         {
             adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomsRecherches);
             listeDeroulante.setAdapter(adaptateurListeDeroulante);
+        }
+        else
+        {
+            if(nomsRecherches.size() == 0) {
+                adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noms);
+                listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+                TextView texte = (TextView) layout.findViewById(R.id.texte);
+                Toast toast = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_SHORT);
+                texte.setText(" Aucun résultat ");
+                toast.setGravity(Gravity.BOTTOM, 0, 50);
+                toast.setView(layout);
+                toast.show();
+            }
         }
     }
 
@@ -274,25 +305,58 @@ public class Historique extends AppCompatActivity {
      */
     private void rechercherManches()
     {
-        manchesRecherchees.addAll(manches);
-        boolean nomSupprime;
-        int indiceManche = 0;
-        while(indiceManche < manchesRecherchees.size())
+        Log.d(TAG, "rechercherManches()");
+
+        adaptateurListeDeroulante = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        for(int manche = 0; manche < manches.size(); manche++)
         {
-            nomSupprime = false;
-            if(! manchesRecherchees.get(indiceManche).contains(barreRecherche.getText().toString()))
-            {
-                manchesRecherchees.remove(indiceManche);
-            }
-            else
-            {
-                indiceManche++;
-            }
+            adaptateurListeDeroulante.add(manches.get(manche) + baseDonnees.getNomsJoueurs(manches.get(manche)));
         }
-        if(manches.size() != manchesRecherchees.size() && manchesRecherchees.size() != 0)
+
+        boolean nomSupprime;
+        String[] mots = barreRecherche.getText().toString().split("\\s+");
+        int indiceManche = 0;
+        int indiceMot;
+        while(indiceManche < adaptateurListeDeroulante.getCount())
         {
-            adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, manchesRecherchees);
+            indiceMot = 0;
+            nomSupprime = false;
+            while((!nomSupprime) && indiceMot < mots.length)
+            {
+                if(adaptateurListeDeroulante.getItem(indiceManche).toLowerCase().contains((mots[indiceMot]).toLowerCase()))
+                {
+                    indiceMot++;
+                }
+                else
+                {
+                    nomSupprime = true;
+                    adaptateurListeDeroulante.remove(adaptateurListeDeroulante.getItem(indiceManche));
+                }
+            }
+            indiceManche += nomSupprime ? 0 : 1;
+        }
+
+        if(manches.size() != adaptateurListeDeroulante.getCount() && adaptateurListeDeroulante.getCount() != 0)
+        {
             listeDeroulante.setAdapter(adaptateurListeDeroulante);
+        }
+        else
+        {
+            if(adaptateurListeDeroulante.getCount() == 0 && manches.size() != adaptateurListeDeroulante.getCount()) {
+                for (int manche = 0; manche < manches.size(); manche++) {
+                    adaptateurListeDeroulante.add(manches.get(manche) + baseDonnees.getNomsJoueurs(manches.get(manche)));
+                }
+                listeDeroulante.setAdapter(adaptateurListeDeroulante);
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+                TextView texte = (TextView) layout.findViewById(R.id.texte);
+                Toast toast = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_SHORT);
+                texte.setText(" Aucun résultat ");
+                toast.setGravity(Gravity.BOTTOM, 0, 50);
+                toast.setView(layout);
+                toast.show();
+            }
         }
     }
 
