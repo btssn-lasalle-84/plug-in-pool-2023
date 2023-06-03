@@ -112,6 +112,7 @@ public class Historique extends AppCompatActivity {
                 }
             }
         };
+        // barreRecherche.setFilters(filtresRecherche);
         fenetreJoueur = null;
         fenetreManche = null;
     }
