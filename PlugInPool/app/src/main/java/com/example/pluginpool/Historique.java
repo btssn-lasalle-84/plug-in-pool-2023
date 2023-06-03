@@ -1,11 +1,12 @@
 /**
  * @author Clément Trichet
  * @file Historique.java
- * @brief TODO
+ * @brief Activité de recherche et d'affichage des données enregistrées
  */
 
 package com.example.pluginpool;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -44,6 +45,8 @@ public class Historique extends AppCompatActivity {
     private Vector<String> manches;             //!< @todo
     private Vector<String> manchesRecherchees;  //!< @todo
     private InputFilter[] filtresRecherche;     //!< @todo
+    private HistoriqueJoueur fenetreJoueur;     //!< @todo
+    private HistoriqueJoueur fenetreManche;     //!< @todo
     public BaseDeDonnees           baseDonnees;        //!< Classe d'échange avec la base de donnees
 
     /**
@@ -53,8 +56,10 @@ public class Historique extends AppCompatActivity {
     private ArrayAdapter<String> adaptateurListeDeroulante; //!< @todo
     private EditText barreRecherche;                        //!< @todo
     private Spinner categoriesRecherche;                    //!< @todo
-    private Button boutonMenu;                              //!< @todo
+    private ImageButton boutonMenu;                         //!< @todo
     private ImageButton boutonRechercher;                   //!< @todo
+    private ImageButton boutonEffacer;                      //!< @todo
+
     /**
      * @brief Méthode appelée à la création de l'activité
      */
@@ -102,6 +107,8 @@ public class Historique extends AppCompatActivity {
                 }
             }
         };
+        fenetreJoueur = null;
+        fenetreManche = null;
     }
 
     /**
@@ -118,11 +125,11 @@ public class Historique extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(categoriesRecherche.getSelectedItem().toString() == "Joueurs")
                 {
-                    //!<@todo
+                    afficherFenetreJoueur(parent.getItemAtPosition(position).toString());
                 }
                 else
                 {
-                    //!<@todo
+                    afficherFenetreManche(parent.getItemAtPosition(position).toString());
                 }
             }
         });
@@ -140,12 +147,12 @@ public class Historique extends AppCompatActivity {
             Log.d(TAG, "clic categoriesRecherche : position = " + position + " -> " + elementSelectionne);
             if(elementSelectionne == "Joueurs")
             {
-                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
+                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, noms);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
             else
             {
-                adaptateurListeDeroulante = adaptateurListeDeroulante = new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
+                adaptateurListeDeroulante= new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_list_item_1, manches);
                 listeDeroulante.setAdapter(adaptateurListeDeroulante);
             }
         }
@@ -157,13 +164,12 @@ public class Historique extends AppCompatActivity {
         }
     });
 
-        boutonMenu = (Button) findViewById(R.id.boutonMenu);
+        boutonMenu = (ImageButton) findViewById(R.id.boutonMenu);
         boutonMenu.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonMenu");
-                Intent activiteEcranPrincipal = new Intent(Historique.this, EcranPrincipal.class);
-                startActivity(activiteEcranPrincipal);
+                finish();
             }
         });
 
@@ -180,6 +186,15 @@ public class Historique extends AppCompatActivity {
                 {
                     rechercherManches();
                 }
+            }
+        });
+
+        boutonEffacer = (ImageButton) findViewById(R.id.boutonEffacer);
+        boutonRechercher.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonRechercher");
+                baseDonnees.effacer();
             }
         });
     }
@@ -245,5 +260,22 @@ public class Historique extends AppCompatActivity {
             adaptateurListeDeroulante = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, manchesRecherchees);
             listeDeroulante.setAdapter(adaptateurListeDeroulante);
         }
+    }
+
+    /**
+     * @brief @todo
+     */
+    private void afficherFenetreJoueur(String joueur)
+    {
+        fenetreJoueur = new HistoriqueJoueur(this, joueur);
+        fenetreJoueur.show();
+    }
+
+    /**
+     * @brief @todo
+     */
+    private void afficherFenetreManche(String dateEtJoueurs)
+    {
+        //!< @todo
     }
 }

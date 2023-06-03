@@ -3,10 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/fenetre_fond" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="60dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -22,26 +30,41 @@
                     android:id="@+id/joueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/or"
+                    android:textSize="24sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbRougesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbJaunesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbBlanchesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbNoiresJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
 
             </LinearLayout>
@@ -55,36 +78,71 @@
                     android:id="@+id/joueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/or"
+                    android:textSize="24sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbRougesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbJaunesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbBlanchesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
                     android:id="@+id/nbNoiresJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
                     android:text="Resultats...." />
 
             </LinearLayout>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/boutonSupprimer"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Supprimer" />
+            android:layout_margin="12dp">
+
+            <ImageButton
+                android:id="@+id/boutonSupprimer"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bouton_fond_reflet" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"
+                android:gravity="center_horizontal"
+                android:text=" Supprimer "
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </FrameLayout>
 
     </LinearLayout>
 

@@ -8,20 +8,20 @@ class Manche
         initialiserHandler();
         initialiserAttributs();
         initialiserRessources();
-        communication.envoyer(Protocole.DEBUT);
+        communications[Communication.TABLE].envoyer(ProtocoleTable.DEBUT);
 !!!135210.java!!!	initialiserAttributs() : void
         Log.d(TAG, "initialiserAttributs() ");
 
-        fenetreFinDeManche = new FinDeManche(this);
         baseDonnees = BaseDeDonnees.getInstance(this);
         numeroTable = NUMERO_TABLE_DEFAUT;
-        communication = Communication.getInstance(handler);
+        communications[Communication.TABLE] = Communication.getInstance(handler, Communication.TABLE);
         Intent activiteManche = getIntent();
         joueurs         = new String[BlackBall.NB_JOUEURS];
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
+        table = activiteManche.getStringExtra("choixNomTable");
+        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
-        compteur         = new Compteur(this);
 
         initialiserAttributsDeDebutDeManche();
 !!!135338.java!!!	initialiserRessources() : void
@@ -33,6 +33,27 @@ class Manche
 
         nbBillesEmpochees = new TextView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
         fondBillesEmpochees = new ImageView[BlackBall.NB_POCHES][BlackBall.NB_GROUPES_BILLES];
+
+        boutonQuitter = (Button) findViewById(R.id.boutonQuitter);
+        boutonQuitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communications[Communication.TABLE].seDeconnecter();
+                Intent intent = new Intent(Manche.this, EcranPrincipal.class);
+                startActivity(intent);
+            }
+        });
+
+        boutonAfficher = (Button) findViewById(R.id.boutonAfficher);
+        boutonAfficher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                communications[Communication.ECRAN] = Communication.getInstance(Communication.ECRAN);
+                communications[Communication.ECRAN].seConnecter("EcranPool");
+                String trameDebut = ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
+                communications[Communication.ECRAN].envoyer(trameDebut);
+            }
+        });
 
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.JAUNE]     = (TextView) findViewById(R.id.poche0BilleJauneNombre);
         nbBillesEmpochees[BlackBall.POCHE_HAUT_GAUCHE][BlackBall.ROUGE]     = (TextView) findViewById(R.id.poche0BilleRougeNombre);
@@ -79,23 +100,25 @@ class Manche
         billesRestantes[SECOND_JOUEUR][6] = (ImageView) findViewById(R.id.bille6Joueur2);
 
         barreProgression = (ProgressBar) findViewById(R.id.barreProgression);
+        barreProgression.setMax(NB_PALIERS);
+        barreProgression.setProgress(NB_PALIERS);
         decompte = (TextView) findViewById(R.id.decompte);
         fondCompteur = (View) findViewById(R.id.fondCompteur);
         initialiserRessourcesDeDebutdeManche();
 !!!144810.java!!!	empocherBilleCouleur(in numero : int, in couleur : int) : void
         Log.d(TAG, "empocherBilleCouleur( numero" + numero + " couleur = " + couleur + " )");
+
         if(! couleursDefinies)
         {
             couleursDefinies = true;
             couleursJoueurs.put(joueurs[joueurActif], couleur);
             couleursJoueurs.put(joueurs[(joueurActif + 1) % BlackBall.NB_JOUEURS], (couleur + 1) % BlackBall.NB_GROUPES_BILLES);
+
             int couleurFond = couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
             fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
             afficherBillesRestantes(couleur);
         }
         billes[couleur]--;
-
-        //!< @todo rendre invisible
         int joueurBille = (couleursJoueurs.get(joueurs[PREMIER_JOUEUR]) == couleur) ? PREMIER_JOUEUR : SECOND_JOUEUR;
         billesRestantes[joueurBille][billes[couleur]].setVisibility(View.INVISIBLE);
 
@@ -106,27 +129,32 @@ class Manche
             fondBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
             nbBillesEmpochees[numero][couleur].setVisibility(View.VISIBLE);
         }
+        demarrerCompteARebours();
 !!!144938.java!!!	afficherBillesRestantes(in couleurBille : int) : void
+        Log.d(TAG, "afficherBillesRestantes( couleurBille = " + couleurBille + " )");
         int couleur;
         for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
-            couleur = (couleursJoueurs.get(joueurs[joueur]) == couleurBille) ? BlackBall.IMAGES_BILLES[joueur]: BlackBall.IMAGES_BILLES[(joueur + 1) % BlackBall.NB_JOUEURS];
+            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? BlackBall.IMAGES_BILLES[couleurBille]: BlackBall.IMAGES_BILLES[(couleurBille + 1) % BlackBall.NB_GROUPES_BILLES];
+            Log.d(TAG, "afficherBillesRestantes() couleur = " + couleur);
             nomJoueurs[joueur].setTextColor(couleur);  //!<@fixme doesn't work
-            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[joueur])]; bille++)
+            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
-                billesRestantes[joueur][bille].setImageResource(couleur);
-                billesRestantes[joueur][bille].setVisibility(View.VISIBLE);
+                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(couleur);
+                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
             }
         }
 !!!145066.java!!!	empocherBilleBlanche() : void
         Log.d(TAG, "empocherBilleBlanche()");
-        //!< @todo Ask client! changerTourOrNot? That's the question
+        demarrerCompteARebours();
+        //!< @todo Ask client!
 !!!145194.java!!!	empocherBilleNoire() : void
         Log.d(TAG, "empocherBilleNoire()");
 
+        arreterCompteARebours();
         int indexJoueurGagnant;
-        if(couleursDefinies) {
-            indexJoueurGagnant = ((manche.size() % BlackBall.NB_JOUEURS != 0 && billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0) || (manche.size() % BlackBall.NB_JOUEURS == 0 && !(billes[couleursJoueurs.get(joueurs[PREMIER_JOUEUR])] == 0))) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        if(couleursDefinies && billes[joueurActif] == 0) {
+            indexJoueurGagnant = joueurActif;
         }
         else {
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
@@ -134,13 +162,18 @@ class Manche
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setTitle("Partie terminée");
-        fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !"); //@todo Mes plus froides félicitations
+        fenetreFinDeManche.setMessage("Bravo " + joueurs[indexJoueurGagnant] + " !");
         fenetreFinDeManche.show();
-        communication.envoyer(Protocole.ARRET);
+        communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
 !!!145322.java!!!	traiterTrameService(in trame : byte) : void
-        Log.d(TAG, "traiterTrameService( 0b" + Protocole.byteToBinaryString(trame) + ")");
+        Log.d(TAG, "traiterTrameService( 0b" + ProtocoleTable.byteToBinaryString(trame) + ")");
         if(mancheDemarree)
         {
+            if(communications[Communication.ECRAN] != null)
+            {
+                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
+            }
+
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
             manche.add(new Vector<int[]>());
             if(couleursDefinies)
@@ -153,6 +186,7 @@ class Manche
         {
             mancheDemarree = true;
         }
+        demarrerCompteARebours();
 !!!145450.java!!!	initialiserHandler() : void
         this.handler = new Handler(this.getMainLooper())
         {
@@ -171,19 +205,24 @@ class Manche
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
-                        compteur.redemarrer();
                         byte trame = ((Integer)message.obj).byteValue();
-                        Log.d(TAG, "trame = " + trame);
-                        if((trame & Protocole.MASQUE_TYPE) != 0)
+                        Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);
                         }
                         else
                         {
-                            int couleur = (int)(trame & Protocole.MASQUE_COULEUR);
-                            int poche = (int)((trame & Protocole.MASQUE_POCHE) >> Protocole.CHAMP_POCHE);
+                            int couleur = (int)(trame & ProtocoleTable.MASQUE_COULEUR);
+                            int poche = (int)((trame & ProtocoleTable.MASQUE_POCHE) >> ProtocoleTable.CHAMP_POCHE);
                             int[] empoche = {poche, couleur};
                             manche.get(manche.size() - 1).add(empoche);
+
+                            if(communications[Communication.ECRAN] != null)
+                            {
+                                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(poche) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(couleur) + ProtocoleEcran.DELIMITEUR_FIN;
+                                communications[Communication.ECRAN].envoyer(trameEnvoie);
+                            }
                             if(couleur == BlackBall.NOIRE)
                             {
                                 empocherBilleNoire();
@@ -208,6 +247,7 @@ class Manche
 !!!145578.java!!!	recommencer() : void
         reinitialiserAttributs();
         initialiserRessourcesDeDebutdeManche();
+        communications[Communication.TABLE].envoyer(ProtocoleTable.DEBUT);
         //!<@todo réinit compteur à faire ou déjà fait dans une des fonctions?
 !!!145706.java!!!	reinitialiserAttributs() : void
         String premierJoueur = joueurs[SECOND_JOUEUR];
@@ -244,6 +284,7 @@ class Manche
             }
         }
         fondCompteur.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
+        decompte.setText(String.valueOf(DUREE_TIR / MILLISEC_PAR_SEC));
         nomJoueurs[PREMIER_JOUEUR].setText("" + joueurs[PREMIER_JOUEUR]);
         nomJoueurs[SECOND_JOUEUR].setText("" + joueurs[SECOND_JOUEUR]);
         nomJoueurs[PREMIER_JOUEUR].setTextColor(ColorStateList.valueOf(getResources().getColor(R.color.cyan)));
@@ -255,9 +296,24 @@ class Manche
                 billesRestantes[joueur][bille].setVisibility(View.INVISIBLE);
             }
         }
-!!!146090.java!!!	actualiserCompteur(in tempsRestant : int) : void
-        Drawable fond = new ColorDrawable(getResources().getColor(R.color.bleu));
-        ClipDrawable clipDrawable = new ClipDrawable(fond, Gravity.LEFT, ClipDrawable.HORIZONTAL);
-        clipDrawable.setLevel(tempsRestant);
-        barreProgression.setProgressDrawable(clipDrawable);
-        decompte.setText("" + tempsRestant);
+!!!156330.java!!!	demarrerCompteARebours() : void
+        if (compteARebours != null) {
+            compteARebours.cancel();
+        }
+        barreProgression.setProgress(NB_PALIERS);
+        compteARebours = new CountDownTimer(DUREE_TIR, PULSATION) {
+            @Override
+            public void onTick(long milliSecondesRestantes) {
+                decompte.setText(String.valueOf(milliSecondesRestantes / MILLISEC_PAR_SEC));
+                barreProgression.setProgress((int) milliSecondesRestantes / PULSATION);
+            }
+
+            @Override
+            public void onFinish() {
+                // Do nothing ?
+            }
+        }.start();
+!!!156458.java!!!	arreterCompteARebours() : void
+        if (compteARebours != null) {
+            compteARebours.cancel();
+        }

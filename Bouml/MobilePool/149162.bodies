@@ -1,0 +1,7 @@
+class ProtocoleTable
+!!!156586.java!!!	byteToBinaryString(in trame : byte) : String
+        StringBuilder bitString = new StringBuilder();
+        for (int indexBit = 7; indexBit >= 0; indexBit--) {
+            bitString.append((trame & (1 << indexBit)) == 0 ? '0' : '1');
+        }
+        return bitString.toString();

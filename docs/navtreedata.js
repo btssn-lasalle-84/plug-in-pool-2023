@@ -56,8 +56,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_android_manifest_8xml.html",
-"classcom_1_1example_1_1pluginpool_1_1_manche.html#a29dfe445179c245b6da7f779777345a0"
+"",
+"classcom_1_1example_1_1pluginpool_1_1_manche.html#a0fa63341ecdb1b8120c51c18fee2a607"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

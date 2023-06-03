@@ -1,15 +1,27 @@
 class Communication
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!130455.java!!!	getInstance(in peripherique : int) : Communication
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication();
         return communications[peripherique];
 !!!130583.java!!!	getInstance(inout handler : Handler, in peripherique : int) : Communication
+=======
+!!!154410.java!!!	getInstance(in peripherique : int) : Communication
+        if(communications[peripherique] == null)
+            communications[peripherique] = new Communication();
+        return communications[peripherique];
+!!!154538.java!!!	getInstance(inout handler : Handler, in peripherique : int) : Communication
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication(handler);
         else
             communications[peripherique].setHandler(handler);
         return communications[peripherique];
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!130711.java!!!	Communication()
+=======
+!!!143146.java!!!	Communication()
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         activer();
 !!!130839.java!!!	Communication(inout handler : Handler)
         this.handler = handler;
@@ -65,7 +77,11 @@ class Communication
                     peripherique.getAddress());
             return creerSocket();
         }
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!131479.java!!!	seDeconnecter() : void
+=======
+!!!154666.java!!!	seDeconnecter() : void
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         try {
             if (inputStream != null) {
                 inputStream.close();
@@ -86,7 +102,11 @@ class Communication
         } catch (Exception e) {
             Log.d(TAG, "Erreur lors de la fermeture des connexions.");
         }
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!131607.java!!!	creerSocket() : boolean
+=======
+!!!143914.java!!!	creerSocket() : boolean
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         // Créer le canal Bluetooth
         try
         {
@@ -160,7 +180,11 @@ class Communication
                 }
             }
         }.start();
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!131863.java!!!	envoyer(in message : String) : void
+=======
+!!!154794.java!!!	envoyer(in message : String) : void
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         if(!connecte)
             return;
         if(canalBluetooth == null)
@@ -189,7 +213,11 @@ class Communication
                 }
             }
         }.start();
+<<<<<<< HEAD:Bouml/MobilePoolAndroid/128535.bodies
 !!!131991.java!!!	recevoir() : void
+=======
+!!!144298.java!!!	recevoir() : void
+>>>>>>> develop:Bouml/MobilePool/141738.bodies
         Log.d(TAG, "recevoir()");
         filExecutionReception = new Thread(new Runnable() {
             @Override

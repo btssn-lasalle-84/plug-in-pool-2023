@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -34,7 +35,7 @@ public class HistoriqueManche extends AlertDialog
     /**
      * Ressources GUI
      */
-    private Button boutonSuppression;
+    private ImageButton boutonSuppression;
     private TextView[] nomsJoueurs;
     private TextView[][] billesEmpochees;
 
@@ -57,7 +58,7 @@ public class HistoriqueManche extends AlertDialog
         Log.d(TAG, "initialiserRessources( date =  " + date + " )");
 
         View fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_historique_manche, null);
-        boutonSuppression = (Button) fenetre.findViewById(R.id.boutonSupprimer);
+        boutonSuppression = (ImageButton) fenetre.findViewById(R.id.boutonSupprimer);
         billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
         billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
         billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);

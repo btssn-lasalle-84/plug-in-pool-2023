@@ -1,18 +1,19 @@
 /**
- * @file Joueurs.cpp
+ * @file joueurs.cpp
  *
  * @brief Définition de la classe Joueurs
  * @author Benjamin GAUME
- * @version 0.1
+ * @version 1.0
  */
 
 #include "joueurs.h"
 #include <QDebug>
 
 /**
- * @todo Mettre les commentaires Doxygen
+ * @brief Constructeur de la classe Joueurs
+ *
+ * @fn Joueurs::Joueurs
  */
-
 Joueurs::Joueurs()
 {
     qDebug() << Q_FUNC_INFO;
@@ -24,21 +25,31 @@ Joueurs::Joueurs(QVector<QString> nomsJoueurs)
     this->nomsJoueurs = nomsJoueurs;
 }
 
+/**
+ * @brief Destructeur de la classe Joueurs
+ *
+ * @fn Joueurs::~Joueurs
+ * @details Libère les ressources de l'application
+ */
 Joueurs::~Joueurs()
 {
     qDebug() << Q_FUNC_INFO;
 }
 
+/**
+ * @fn Joueurs::getJoueurs
+ * @brief Récupére les joueurs
+ */
 QVector<QString> Joueurs::getJoueurs()
 {
-    /**
-     * @todo Retourner les joueurs
-     */
+    return nomsJoueurs;
 }
 
-void Joueurs::ajouterJoueur(QString nomsJoueur)
+/**
+ * @fn Joueurs::ajouterJoueur
+ * @brief Ajoute un joueur
+ */
+void Joueurs::ajouterJoueur(QString nomJoueur)
 {
-    /**
-     * @todo Ajouter le nomJoueur au nomsJoueurs
-     */
+    nomsJoueurs.append(nomJoueur);
 }

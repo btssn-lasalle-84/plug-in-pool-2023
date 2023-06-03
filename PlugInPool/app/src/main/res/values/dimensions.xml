@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fenetre_largeur">300dp</dimen>
+    <dimen name="fenetre_hauteur">200dp</dimen>
+</resources>
