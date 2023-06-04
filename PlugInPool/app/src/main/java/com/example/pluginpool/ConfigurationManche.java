@@ -202,9 +202,10 @@ public class ConfigurationManche extends AppCompatActivity
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
-                if(boutonTable != null) {
+                if(boutonTable != null && boutonTable.isChecked()) {
                     choixNomTable = boutonTable.getContentDescription().toString();
                     Log.d(TAG, "clic choixTable : " + choixNomTable);
+                    afficherConnexion(true, " Connexion " + choixNomTable + " ");
                     communication.seConnecter(choixNomTable);
                 }
             }
@@ -237,7 +238,7 @@ public class ConfigurationManche extends AppCompatActivity
         });
     }
 
-    private void afficherConnexion(boolean connexionReussie)
+    private void afficherConnexion(boolean connexionReussie, String message)
     {
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
@@ -245,12 +246,11 @@ public class ConfigurationManche extends AppCompatActivity
         Toast toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_SHORT);
         if (connexionReussie) {
-            texte.setText(" Connexion : Succès ");
+            texte.setText(message);
         } else {
-            texte.setText(" Connexion : Échec ");
+            texte.setText(message);
             RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
             choixTable.clearCheck();
-            //groupe.clearCheck();
         }
         toast.setGravity(Gravity.BOTTOM, 0, 100);
         toast.setView(layout);
@@ -338,7 +338,7 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(true);
-                        afficherConnexion(true);
+                        afficherConnexion(true, " Connexion : Succès ");
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
@@ -351,7 +351,7 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.ERREUR_BLUETOOTH:
                         Log.d(TAG, "[Handler] ERREUR_BLUETOOTH");
                         actualiserEtatConnexionTable(false);
-                        afficherConnexion(false);
+                        afficherConnexion(false, " Connexion : Échec ");
                         break;
                 }
             }
