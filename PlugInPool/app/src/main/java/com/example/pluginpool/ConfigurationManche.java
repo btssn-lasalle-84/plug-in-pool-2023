@@ -16,6 +16,8 @@ import android.os.Message;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +26,8 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -201,6 +205,25 @@ public class ConfigurationManche extends AppCompatActivity
                 choixNomTable           = boutonTable.getContentDescription().toString();
                 Log.d(TAG, "clic choixTable : " + choixNomTable);
                 communication.seConnecter(choixNomTable);
+                Boolean connexionReussie = communication.seConnecter(choixNomTable);
+
+                LayoutInflater inflater = getLayoutInflater();
+                View           layout   = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+                TextView texte    = (TextView)layout.findViewById(R.id.texte);
+                Toast toast    = new Toast(getApplicationContext());
+                toast.setDuration(Toast.LENGTH_SHORT);
+                if(connexionReussie)
+                {
+                    texte.setText(" Connexion : Succès ");
+                }
+                else
+                {
+                    texte.setText(" Connexion : Echec ");
+                    groupe.clearCheck();
+                }
+                toast.setGravity(Gravity.BOTTOM, 0, 100);
+                toast.setView(layout);
+                toast.show();
             }
         });
 
