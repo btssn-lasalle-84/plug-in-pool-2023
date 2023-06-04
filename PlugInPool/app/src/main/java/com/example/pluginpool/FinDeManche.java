@@ -82,8 +82,8 @@ public class FinDeManche extends AlertDialog
         joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
         setResultats();
 
-        fenetre.setMinimumWidth(200); //!< @todo CONSTANTES
-        fenetre.setMinimumHeight(300);
+        //fenetre.setMinimumWidth(200); //!< @todo CONSTANTES
+        //fenetre.setMinimumHeight(300);
 
         setView(fenetre);
 

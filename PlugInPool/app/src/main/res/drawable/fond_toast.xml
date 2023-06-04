@@ -10,7 +10,7 @@
         android:top="0dp" />
 
     <size
-        android:width="200dp"
+        android:width="300dp"
         android:height="100dp" />
 
     <gradient

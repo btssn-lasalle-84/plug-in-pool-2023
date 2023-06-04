@@ -202,28 +202,11 @@ public class ConfigurationManche extends AppCompatActivity
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
-                choixNomTable           = boutonTable.getContentDescription().toString();
-                Log.d(TAG, "clic choixTable : " + choixNomTable);
-                communication.seConnecter(choixNomTable);
-                Boolean connexionReussie = communication.seConnecter(choixNomTable);
-
-                LayoutInflater inflater = getLayoutInflater();
-                View           layout   = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
-                TextView texte    = (TextView)layout.findViewById(R.id.texte);
-                Toast toast    = new Toast(getApplicationContext());
-                toast.setDuration(Toast.LENGTH_SHORT);
-                if(connexionReussie)
-                {
-                    texte.setText(" Connexion : Succès ");
+                if(boutonTable != null) {
+                    choixNomTable = boutonTable.getContentDescription().toString();
+                    Log.d(TAG, "clic choixTable : " + choixNomTable);
+                    communication.seConnecter(choixNomTable);
                 }
-                else
-                {
-                    texte.setText(" Connexion : Echec ");
-                    groupe.clearCheck();
-                }
-                toast.setGravity(Gravity.BOTTOM, 0, 100);
-                toast.setView(layout);
-                toast.show();
             }
         });
 
@@ -252,6 +235,26 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         });
+    }
+
+    private void afficherConnexion(boolean connexionReussie)
+    {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+        TextView texte = (TextView) layout.findViewById(R.id.texte);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        if (connexionReussie) {
+            texte.setText(" Connexion : Succès ");
+        } else {
+            texte.setText(" Connexion : Échec ");
+            RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
+            choixTable.clearCheck();
+            //groupe.clearCheck();
+        }
+        toast.setGravity(Gravity.BOTTOM, 0, 100);
+        toast.setView(layout);
+        toast.show();
     }
 
     public void afficherTablesDisponibles()
@@ -335,6 +338,7 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(true);
+                        afficherConnexion(true);
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
@@ -343,6 +347,11 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.DECONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] DECONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(false);
+                        break;
+                    case Communication.ERREUR_BLUETOOTH:
+                        Log.d(TAG, "[Handler] ERREUR_BLUETOOTH");
+                        actualiserEtatConnexionTable(false);
+                        afficherConnexion(false);
                         break;
                 }
             }

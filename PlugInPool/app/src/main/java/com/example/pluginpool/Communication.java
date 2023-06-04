@@ -46,6 +46,7 @@ public class Communication
     public final static int CONNEXION_BLUETOOTH   = 0;
     public final static int RECEPTION_BLUETOOTH   = 1;
     public final static int DECONNEXION_BLUETOOTH = 2;
+    public final static int ERREUR_BLUETOOTH = 3;
     public final static int TABLE = 0;
     public final static int ECRAN = 1;
     public static int NB_TABLES = 4;
@@ -210,7 +211,7 @@ public class Communication
         Set<BluetoothDevice> peripheriquesAppaires = adaptateurBluetooth.getBondedDevices();
         if(peripheriquesAppaires.size() > 0)
         {
-            Log.e(TAG, "Nb appareils appairés : " + peripheriquesAppaires.size());
+            Log.d(TAG, "Nb appareils appairés : " + peripheriquesAppaires.size());
             for(BluetoothDevice appareil: peripheriquesAppaires)
             {
                 if(appareil.getName().contains(nomPeripherique))
@@ -300,6 +301,11 @@ public class Communication
         catch(IOException e)
         {
             Log.e(TAG, "Erreur lors de la connexion du canal");
+            Log.d(TAG, "Message handler");
+            Message messageHandler = new Message();
+            messageHandler.what    = ERREUR_BLUETOOTH;
+            messageHandler.obj     = peripherique.getName();
+            handler.sendMessage(messageHandler);
             try
             {
                 canalBluetooth.close();

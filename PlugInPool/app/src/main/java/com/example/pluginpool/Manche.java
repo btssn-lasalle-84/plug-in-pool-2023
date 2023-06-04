@@ -8,6 +8,7 @@ package com.example.pluginpool;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -267,7 +268,7 @@ public class Manche extends AppCompatActivity
         {
             couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? couleurBille : (couleurBille + 1) % BlackBall.NB_GROUPES_BILLES;
             Log.d(TAG, "afficherBillesRestantes() couleur = " + BlackBall.IMAGES_BILLES[couleur]);
-            nomJoueurs[joueur].setTextColor(BlackBall.COULEURS[couleur]); //@fixme
+            nomJoueurs[joueur].setTextColor(ContextCompat.getColor(getApplicationContext(), BlackBall.COULEURS[couleur]));
             for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
                 billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(BlackBall.IMAGES_BILLES[couleur]);
@@ -304,6 +305,7 @@ public class Manche extends AppCompatActivity
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
+        fenetreFinDeManche.getWindow().setLayout(1200, 1500); //!< @todo CONSTANTES
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }

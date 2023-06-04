@@ -398,7 +398,7 @@ public class Historique extends AppCompatActivity
     private void afficherFenetreJoueur(String joueur)
     {
         fenetreJoueur = new HistoriqueJoueur(this, joueur);
-        fenetreJoueur.getWindow().setLayout(1200, 1500);
+        fenetreJoueur.getWindow().setLayout(1200, 1500); //!< @todo CONSTANTES
         fenetreJoueur.show();
     }
 
