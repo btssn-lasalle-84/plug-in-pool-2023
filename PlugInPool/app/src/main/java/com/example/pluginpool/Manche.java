@@ -116,7 +116,7 @@ public class Manche extends AppCompatActivity
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
         table = activiteManche.getStringExtra("choixNomTable");
-        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
+        fenetreFinDeManche = null;
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
 
         initialiserAttributsDeDebutDeManche();
@@ -304,8 +304,9 @@ public class Manche extends AppCompatActivity
         }
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
+        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
-        fenetreFinDeManche.getWindow().setLayout(1200, 1500); //!< @todo CONSTANTES
+        fenetreFinDeManche.getWindow().setLayout(Historique.LARGEUR_FENETRE, Historique.HAUTEUR_FENETRE);
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }

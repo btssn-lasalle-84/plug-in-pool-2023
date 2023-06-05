@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,6 +41,8 @@ public class Historique extends AppCompatActivity
      */
     private static final String TAG                 = "_Historique"; //!< TAG pour les logs
     private static final        String[] CATEGORIES = { "Joueurs", "Manches" };
+    public static final int HAUTEUR_FENETRE = 1500;                 //!< @todo
+    public static final int LARGEUR_FENETRE = 1200;                 //!< @todo
 
     /**
      * Attributs
@@ -398,7 +401,7 @@ public class Historique extends AppCompatActivity
     private void afficherFenetreJoueur(String joueur)
     {
         fenetreJoueur = new HistoriqueJoueur(this, joueur);
-        fenetreJoueur.getWindow().setLayout(1200, 1500); //!< @todo CONSTANTES
+        fenetreJoueur.getWindow().setLayout(LARGEUR_FENETRE, HAUTEUR_FENETRE);
         fenetreJoueur.show();
     }
 
@@ -409,7 +412,7 @@ public class Historique extends AppCompatActivity
     {
         //!< @todo oter joueurs de dateEtJoueurs
         fenetreManche = new HistoriqueManche(this, dateEtJoueursVersDate(dateEtJoueurs));
-        fenetreManche.getWindow().setLayout(1200, 1500);
+        fenetreManche.getWindow().setLayout(LARGEUR_FENETRE, HAUTEUR_FENETRE);
         fenetreManche.show();
     }
 
