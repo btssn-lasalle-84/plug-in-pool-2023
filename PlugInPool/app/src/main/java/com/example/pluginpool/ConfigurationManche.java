@@ -147,8 +147,10 @@ public class ConfigurationManche extends AppCompatActivity
 
         choixNomsJoueur1.setAdapter(adaptateurNomsJoueurs);
         choixNomsJoueur2.setAdapter(adaptateurNomsJoueurs);
-        choixNomsJoueur1.setSelection(0);
-        choixNomsJoueur2.setSelection(1);
+        if(nomsJoueurs.size() > 0)
+            choixNomsJoueur1.setSelection(0);
+        if(nomsJoueurs.size() > 1)
+            choixNomsJoueur2.setSelection(1);
 
         choixNomsJoueur1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

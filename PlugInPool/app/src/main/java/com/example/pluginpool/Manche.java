@@ -12,11 +12,13 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -140,6 +142,7 @@ public class Manche extends AppCompatActivity
         boutonQuitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
                 communications[Communication.TABLE].seDeconnecter();
                 setResult(RESULT_OK, new Intent());
                 Communication.supprimerInstance();
@@ -226,7 +229,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleCouleur(int numero, int couleur)
     {
-        Log.d(TAG, "empocherBilleCouleur( numero" + numero + " couleur = " + couleur + " )");
+        Log.d(TAG, "empocherBilleCouleur( numero = " + numero + ", couleur = " + couleur + " )");
 
         if(! couleursDefinies)
         {
@@ -239,7 +242,13 @@ public class Manche extends AppCompatActivity
             afficherBillesRestantes(couleur);
         }
         billes[couleur]--;
+        if(billes[couleur] < 0)
+            return; // @fixme
         int joueurBille = (couleursJoueurs.get(joueurs[PREMIER_JOUEUR]) == couleur) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        Log.d(TAG, "empocherBilleCouleur() joueurBille = " + joueurBille + " billes[couleur] = " + billes[couleur]);
+        /**
+         * @fixme java.lang.ArrayIndexOutOfBoundsException
+         */
         billesRestantes[joueurBille][billes[couleur]].setVisibility(View.INVISIBLE);
 
         poches[numero][couleur]++;
@@ -267,7 +276,8 @@ public class Manche extends AppCompatActivity
         for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
         {
             couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? couleurBille : (couleurBille + 1) % BlackBall.NB_GROUPES_BILLES;
-            Log.d(TAG, "afficherBillesRestantes() couleur = " + BlackBall.IMAGES_BILLES[couleur]);
+            Log.d(TAG, "afficherBillesRestantes() joueur = " + joueur + " (" + nomJoueurs[joueur].getText() + ") couleur = " + couleur);
+            // @fixme
             nomJoueurs[joueur].setTextColor(ContextCompat.getColor(getApplicationContext(), BlackBall.COULEURS[couleur]));
             for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
@@ -306,7 +316,18 @@ public class Manche extends AppCompatActivity
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
+
         fenetreFinDeManche.getWindow().setLayout(Historique.LARGEUR_FENETRE, Historique.HAUTEUR_FENETRE);
+        // @see
+        /*
+        Rect displayRectangle = new Rect(0, 0, 1200, 1500); //!< @todo CONSTANTES
+        Window window = fenetreFinDeManche.getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+        Log.d(TAG, "empocherBilleNoire() Rect width = " + displayRectangle.width() + " - height = " + displayRectangle.height());
+        // pour modifier la taille du AlertDialog :
+        //fenetreFinDeManche.getWindow().setLayout((int)(displayRectangle.width() * 0.8f), (int)(displayRectangle.height() * 0.8f));
+        Log.d(TAG, "empocherBilleNoire() Window width = " + fenetreFinDeManche.getWindow().getAttributes().width + " - height = " + fenetreFinDeManche.getWindow().getAttributes().height);
+        */
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }
