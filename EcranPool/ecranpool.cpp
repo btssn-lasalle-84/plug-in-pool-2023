@@ -201,7 +201,7 @@ void EcranPool::initialiserEcran()
     labelsHeure.push_back(ui->labelHeurePartie);    // dans l'écran Partie
     labelsHeure.push_back(ui->labelHeureFinPartie); // dans l'écran FinPartie
 #ifdef PLEIN_ECRAN
-    setFixedSize(1920, 1080);
+    // setFixedSize(1920, 1080);
     showFullScreen();
 #else
     showMaximized();
