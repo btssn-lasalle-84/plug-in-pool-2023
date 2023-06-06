@@ -80,6 +80,9 @@ class EcranPool : public QWidget
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
 
+    QString nomJoueur1; // Correspond au joueur de gauche sur l'IHM
+    QString nomJoueur2; // Correspond au joueur de droite sur l'IHM
+
     void initialiserCommunication();
     void initialiserEcran();
     void initialiserJoueurs();
@@ -98,9 +101,9 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
-    void afficherNomsJoueurs(int     numeroTable,
-                             QString nomJoueur1,
-                             QString nomJoueur2);
+    void mettreAJourNomsJoueurs(const QString& nom1, const QString& nom2);
+    void afficherNomsJoueurs(const QString& nomJoueur1,
+                             const QString& nomJoueur2);
     void afficherChangementJoueur(int numeroTable, int changementJoueur);
 
 #ifdef TEST_EcranPool
