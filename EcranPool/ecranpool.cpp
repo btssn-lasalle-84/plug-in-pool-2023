@@ -259,27 +259,18 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 }
 
 /**
- * @brief Met à jour le nom des joueurs
+ * @brief Affiche le nom de chaque joueur
  */
-void EcranPool::mettreAJourNomsJoueurs(const QString& nom1, const QString& nom2)
+void EcranPool::afficherNomsJoueurs(QString nom1, QString nom2)
 {
     nomJoueur1 = nom1;
     nomJoueur2 = nom2;
+    qDebug() << Q_FUNC_INFO << "nomJoueur1" << nomJoueur1 << "nomJoueur2"
+             << nomJoueur2;
 
     // Afficher les noms des joueurs dans les QLabel respectifs
     ui->labelNomJoueurGauche->setText(nomJoueur1);
     ui->labelNomJoueurDroite->setText(nomJoueur2);
-
-    qDebug() << Q_FUNC_INFO << "nomJoueur1" << nomJoueur1;
-    qDebug() << Q_FUNC_INFO << "nomJoueur2" << nomJoueur2;
-}
-
-/**
- * @brief Affiche le nom de chaque joueur
- */
-void EcranPool::afficherNomsJoueurs(const QString& nom1, const QString& nom2)
-{
-    mettreAJourNomsJoueurs(nom1, nom2);
 }
 
 /**

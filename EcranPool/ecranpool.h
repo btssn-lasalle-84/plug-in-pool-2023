@@ -101,9 +101,7 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
-    void mettreAJourNomsJoueurs(const QString& nom1, const QString& nom2);
-    void afficherNomsJoueurs(const QString& nomJoueur1,
-                             const QString& nomJoueur2);
+    void afficherNomsJoueurs(QString nomJoueur1, QString nomJoueur2);
     void afficherChangementJoueur(int numeroTable, int changementJoueur);
 
 #ifdef TEST_EcranPool
