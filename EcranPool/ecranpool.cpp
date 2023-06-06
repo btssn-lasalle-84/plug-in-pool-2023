@@ -173,17 +173,17 @@ void EcranPool::initialiserCommunication()
     connect(communicationBluetooth,
             SIGNAL(empochage(int, int, int)),
             this,
-            SLOT(afficherNumeroTable(int)));
+            SLOT(afficherEmpochage(int, int, int)));
 
     connect(communicationBluetooth,
-            SIGNAL(changementNomsJoueurs(QList<QString>)),
+            SIGNAL(nomsJoueurs(int, QString, QString)),
             this,
-            SLOT(afficherNomsJoueurs(QList<QString>)));
+            SLOT(afficherNomsJoueurs(int, QString, QString)));
 
     connect(communicationBluetooth,
-            SIGNAL(changementJoueur(int)),
+            SIGNAL(changementJoueur(int, int)),
             this,
-            SLOT(afficherNumeroTable(int)));
+            SLOT(afficherChangementJoueur(int, int)));
     communicationBluetooth->demarrerCommunication();
 }
 
@@ -245,25 +245,25 @@ void EcranPool::initialiserDecompteManche()
 }
 
 /**
- * @brief Affiche le numéro de la table
+ * @brief Affiche l'empochage
  */
-void EcranPool::afficherNumeroTable(int table)
+void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 {
-    qDebug() << Q_FUNC_INFO << "numeroTable" << table;
-    /* // Affichage du numéro de la table dans le QLabel
-     QString numeroTable = QString::number(table);
-     labelNumeroTable->setText(numeroTable);
-     ui->labelNumeroTable->setText(QString::number(table));*/
-    QString texte = "Table n° " + QString::number(table);
-    labelNumeroTable->setText("Table n° " + QString::number(table));
+    qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable;
+    QString texte = "Table n° " + QString::number(numeroTable);
+    labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
     labelNumeroTable->setText(texte);
+    /**
+     * @todo Afficher la couleur et le numéro de poche
+     */
 }
 
 /**
  * @brief Affiche le nom de chaque joueur
  */
-void EcranPool::afficherNomsJoueurs(const QString& nomJoueur1,
-                                    const QString& nomJoueur2)
+void EcranPool::afficherNomsJoueurs(int     numeroTable,
+                                    QString nomJoueur1,
+                                    QString nomJoueur2)
 {
     // Afficher les noms des joueurs dans les QLabel respectifs
     ui->labelNomJoueurGauche->setText(nomJoueur1);
@@ -271,6 +271,16 @@ void EcranPool::afficherNomsJoueurs(const QString& nomJoueur1,
 
     qDebug() << Q_FUNC_INFO << "nomJoueur1" << nomJoueur1;
     qDebug() << Q_FUNC_INFO << "nomJoueur2" << nomJoueur2;
+}
+
+/**
+ * @brief Affiche le changement de joueur
+ */
+void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur)
+{
+    /**
+     * @todo Afficher le changement de joueur
+     */
 }
 
 #ifdef TEST_EcranPool

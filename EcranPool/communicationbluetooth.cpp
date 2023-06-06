@@ -155,75 +155,92 @@ void CommunicationBluetooth::deconnecterClient()
 void CommunicationBluetooth::lireDonnees()
 {
     QByteArray donnees;
+    bool       decodage = false;
 
     donnees = socket->readAll();
 
-    trame += QString(donnees.data());
-    qDebug() << Q_FUNC_INFO << "trame" << trame;
+    donneesRecues += QString(donnees.data());
+    qDebug() << Q_FUNC_INFO << "donneesRecues" << donneesRecues;
 
-    if(trame.startsWith(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
+    if(donneesRecues.contains(DELIMITEUR_DEBUT) &&
+       donneesRecues.endsWith(DELIMITEUR_FIN))
     {
         QStringList trames =
-          trame.split(DELIMITEUR_FIN, QString::SkipEmptyParts);
+          donneesRecues.split(DELIMITEUR_FIN, QString::SkipEmptyParts);
+        qDebug() << Q_FUNC_INFO << "trames" << trames;
 
-        qDebug() << Q_FUNC_INFO << trames;
-
+        QStringList champsTrame;
         for(int i = 0; i < trames.count(); ++i)
         {
-            qDebug() << Q_FUNC_INFO << i << trames[i];
-            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
-            decoderTrame(champsTrame);
+            if(trames[i].startsWith(DELIMITEUR_DEBUT))
+            {
+                champsTrame = trames[i].split(DELIMITEUR_CHAMP);
+                decodage    = decoderTrame(champsTrame);
+                qDebug() << Q_FUNC_INFO << "decodage" << decodage;
+                if(decodage)
+                    champsTrame.clear();
+            }
         }
-        // trame.clear();
-
-        // qDebug() << Q_FUNC_INFO << "CLEAR" << trames;
+        donneesRecues.clear();
     }
 }
 
 /**
  * @brief Décode la trame reçue
  */
-void CommunicationBluetooth::decoderTrame(QStringList champsTrame)
+bool CommunicationBluetooth::decoderTrame(const QStringList& champsTrame)
 {
     if(champsTrame.isEmpty())
-        return;
+        return false;
+
+    if(champsTrame.count() < NB_CHAMPS_MIN)
+        return false;
+
+    qDebug() << Q_FUNC_INFO << "champsTrame" << champsTrame;
 
     QString type = champsTrame.value(POSITION_TYPE);
 
     if(type.isEmpty())
-        return;
+        return false;
 
-    QString joueur1; // Déclaration de la variable joueur1
-    QString joueur2; // Déclaration de la variable joueur2
-
-    switch(type.at(0).toLatin1())
+    switch(type.at(POSITION_TYPE + 1).toLatin1())
     {
-        case 'E':
+        case TYPE_EMPOCHAGE:
         {
-            int  table   = champsTrame.value(POSITION_TABLE).toInt();
-            int  poche   = champsTrame.value(POSITION_POCHE).toInt();
-            int  couleur = champsTrame.value(POSITION_COULEUR).toInt();
+            int table   = champsTrame.value(POSITION_TABLE).toInt();
+            int poche   = champsTrame.value(POSITION_POCHE).toInt();
+            int couleur = champsTrame.value(POSITION_COULEUR).toInt();
+            qDebug() << Q_FUNC_INFO << "type"
+                     << type.at(POSITION_TYPE + 1).toLatin1() << "table"
+                     << table << "poche" << poche << "couleur" << couleur;
             emit empochage(table, poche, couleur);
             break;
         }
-        case 'N':
+        case TYPE_NOMS:
         {
             int     table   = champsTrame.value(POSITION_TABLE).toInt();
             QString joueur1 = champsTrame.value(POSITION_JOUEUR1);
             QString joueur2 = champsTrame.value(POSITION_JOUEUR2);
-            emit    nomsJoueurs(table, joueur1, joueur2);
+            qDebug() << Q_FUNC_INFO << "type"
+                     << type.at(POSITION_TYPE + 1).toLatin1() << "table"
+                     << table << "joueur1" << joueur1 << "joueur2" << joueur2;
+            emit nomsJoueurs(table, joueur1, joueur2);
             break;
         }
-        case 'C':
+        case TYPE_CHANGEMENT:
         {
             int  table      = champsTrame.value(POSITION_TABLE).toInt();
             int  changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
             emit changementJoueur(table, changement);
-            qDebug() << Q_FUNC_INFO << "numeroTable" << table << "joueur1"
-                     << joueur1 << "joueur2" << joueur2;
+            qDebug() << Q_FUNC_INFO << "type"
+                     << type.at(POSITION_TYPE + 1).toLatin1() << "table"
+                     << table << "changement" << changement;
             break;
         }
         default:
+            qDebug() << Q_FUNC_INFO << "type inconnu";
+            return false;
             break;
     }
+    return true;
 }
