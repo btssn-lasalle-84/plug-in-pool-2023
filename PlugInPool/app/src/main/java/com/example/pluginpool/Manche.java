@@ -384,7 +384,8 @@ public class Manche extends AppCompatActivity
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
                         byte trame = ((Integer)message.obj).byteValue();
-                        Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        //Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        Log.d(BlackBall.TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
                         if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);

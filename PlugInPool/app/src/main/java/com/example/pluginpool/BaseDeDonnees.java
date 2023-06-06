@@ -205,6 +205,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             int joueurId = participantsId[(indexTour + indexJoueurGagnant) % BlackBall.NB_JOUEURS];
             try {
                 sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES ('" + joueurId + "', '" + mancheId + "')");
+                Log.d(BlackBall.TAG, "nouveau tour");
             } catch (Exception e) {
                 Log.d(TAG, "INSERT INTO tours " + e );
             }
@@ -216,6 +217,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                 int couleur = manche.get(indexTour).get(indexEmpoche)[1];
                 try {
                     sqlite.execSQL("INSERT INTO empoches (tourId, poche, couleur) VALUES ((SELECT max(id) FROM tours), '" + poche + "', '" + couleur + "')");
+                    Log.d(BlackBall.TAG, "empoche, couleur = " + couleur);
                 } catch (Exception e) {
                     Log.d(TAG, "INSERT INTO empoches " + e );
                 }
