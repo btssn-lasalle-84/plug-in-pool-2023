@@ -385,6 +385,10 @@ public class Manche extends AppCompatActivity
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
                         byte trame = ((Integer)message.obj).byteValue();
                         //Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        if(trame >= 128 && trame % 32 == 0) //!< @todo CONSTANTES
+                        {
+                            break;
+                        }
                         Log.d(BlackBall.TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
                         if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {

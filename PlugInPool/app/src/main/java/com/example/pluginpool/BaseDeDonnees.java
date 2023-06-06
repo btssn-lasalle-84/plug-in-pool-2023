@@ -163,6 +163,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                               Vector<Vector<int[]>> manche,
                               int                   numeroTable)
     {
+        Log.d(BlackBall.TAG, "gagnant = " + joueurs[indexJoueurGagnant]);
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
         Log.d(TAG, "ajouterManche() gagnant = " + gagnant + " perdant = " + perdant);
@@ -191,7 +192,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         } catch (Exception e){
             Log.d(TAG, "INSERT INTO manches " + e );
         }
-        int[] participantsId = {perdantId, gagnantId};
+        int[] participantsId = {gagnantId, perdantId};
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
             int mancheId = DEFAUT;
