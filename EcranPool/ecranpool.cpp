@@ -31,13 +31,8 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
-    // Créer le QLabel "labelNumeroTable"
-    labelNumeroTable = new QLabel(this);
-    labelNumeroTable->setText("Table n° ");
-    labelNumeroTable->setAlignment(Qt::AlignCenter);
-
-    // Ajouter le QLabel au layout "verticalLayoutPartieGauche"
-    ui->verticalLayoutPartieGauche->addWidget(labelNumeroTable);
+    afficherNomsJoueurs(numeroTable, nomJoueur1, nomJoueur2);
+    afficherChangementJoueur(numeroTable, changementJoueur, nomJoueur1, nomJoueur2);
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -183,7 +178,7 @@ void EcranPool::initialiserCommunication()
     connect(communicationBluetooth,
             SIGNAL(changementJoueur(int, int)),
             this,
-            SLOT(afficherChangementJoueur(int, int)));
+            SLOT(afficherChangementJoueur(int, int, QString, QString)));
     communicationBluetooth->demarrerCommunication();
 }
 
@@ -194,8 +189,6 @@ void EcranPool::initialiserCommunication()
 void EcranPool::initialiserEcran()
 {
     ui->setupUi(this);
-    labelNumeroTable = new QLabel(this);
-    ui->verticalLayoutPartieGauche->addWidget(labelNumeroTable);
     // tous les écrans affichent l'heure
     labelsHeure.push_back(ui->labelHeureAccueil);   // dans l'écran Accueil
     labelsHeure.push_back(ui->labelHeurePartie);    // dans l'écran Partie
@@ -207,7 +200,6 @@ void EcranPool::initialiserEcran()
     showMaximized();
 #endif
     afficherEcranAcceuil();
-    labelNumeroTable = findChild<QLabel*>("labelNumeroTable");
 }
 
 /**
@@ -251,8 +243,9 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 {
     qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable;
     QString texte = "Table n° " + QString::number(numeroTable);
-    labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
-    labelNumeroTable->setText(texte);
+    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
+    ui->labelNumeroTable->setText(texte);
+    qDebug() << Q_FUNC_INFO << "numeroTable" << texte;
     /**
      * @todo Afficher la couleur et le numéro de poche
      */
@@ -261,12 +254,15 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 /**
  * @brief Affiche le nom de chaque joueur
  */
-void EcranPool::afficherNomsJoueurs(QString nom1, QString nom2)
+void EcranPool::afficherNomsJoueurs(int numeroTable, QString nomJoueur1, QString nomJoueur2)
 {
-    nomJoueur1 = nom1;
-    nomJoueur2 = nom2;
     qDebug() << Q_FUNC_INFO << "nomJoueur1" << nomJoueur1 << "nomJoueur2"
              << nomJoueur2;
+
+    // Afficher le numéro de table
+    QString texte = "Table n° " + QString::number(numeroTable);
+    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
+    ui->labelNumeroTable->setText(texte);
 
     // Afficher les noms des joueurs dans les QLabel respectifs
     ui->labelNomJoueurGauche->setText(nomJoueur1);
@@ -276,11 +272,23 @@ void EcranPool::afficherNomsJoueurs(QString nom1, QString nom2)
 /**
  * @brief Affiche le changement de joueur
  */
-void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur)
+void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur, QString nomJoueur1, QString nomJoueur2)
 {
-    /**
-     * @todo Afficher le changement de joueur
-     */
+    // Afficher le numéro de table
+    QString texte = "Table n° " + QString::number(numeroTable);
+    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
+    ui->labelNumeroTable->setText(texte);
+
+    changementJoueur = 0;
+    // Afficher le changement de joueur
+    if(changementJoueur == 0)
+    {
+        ui->labelAnnonceTour->setText(nomJoueur1);
+    }
+    else
+    {
+        ui->labelAnnonceTour->setText(nomJoueur2);
+    }
 }
 
 #ifdef TEST_EcranPool
