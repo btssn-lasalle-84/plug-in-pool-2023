@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>EcranPool</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image:url(:/background.jpg);</string>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
@@ -55,14 +58,14 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="autoFillBackground">
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image:url(:/background.jpg);</string>
+         <string notr="true"/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="spacing">
@@ -119,6 +122,8 @@
                <property name="font">
                 <font>
                  <pointsize>32</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -137,6 +142,8 @@
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -189,6 +196,8 @@ background-color: transparent;
                <property name="font">
                 <font>
                  <pointsize>48</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -196,7 +205,7 @@ background-color: transparent;
 background-color: transparent;</string>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion ...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En attente d'une connexion...&lt;/p&gt;&lt;p&gt;Veuillez sélectionner une table sur la tablette&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -249,6 +258,8 @@ background-color: transparent;</string>
                  <property name="font">
                   <font>
                    <pointsize>32</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -281,6 +292,8 @@ background-color: transparent;</string>
                  <property name="font">
                   <font>
                    <pointsize>32</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="styleSheet">
@@ -302,6 +315,8 @@ background-color: transparent;</string>
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -330,7 +345,7 @@ background-color: transparent;</string>
                   </font>
                  </property>
                  <property name="text">
-                  <string>0</string>
+                  <string/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>

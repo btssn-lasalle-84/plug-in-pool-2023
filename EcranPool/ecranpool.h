@@ -75,13 +75,16 @@ class EcranPool : public QWidget
     CommunicationBluetooth*
                       communicationBluetooth; //<! la communication Bluetooth
     static EcranPool* ecranPoolInstance;
-    QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro de
+   // QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro de
                               // la table
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
 
+    int numeroTable; // Correspond au numéro de la table
+    int changementJoueur;
     QString nomJoueur1; // Correspond au joueur de gauche sur l'IHM
     QString nomJoueur2; // Correspond au joueur de droite sur l'IHM
+
 
     void initialiserCommunication();
     void initialiserEcran();
@@ -101,8 +104,8 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
-    void afficherNomsJoueurs(QString nomJoueur1, QString nomJoueur2);
-    void afficherChangementJoueur(int numeroTable, int changementJoueur);
+    void afficherNomsJoueurs(int numeroTable, QString nomJoueur1, QString nomJoueur2);
+    void afficherChangementJoueur(int numeroTable, int changementJoueur, QString nomJoueur1, QString nomJoueur2);
 
 #ifdef TEST_EcranPool
     void afficherEcranSuivant();
