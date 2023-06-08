@@ -10,6 +10,9 @@
 #define ECRANPOOL_H
 
 #include <QtWidgets>
+#include <stdlib.h>
+#include <vector>
+#include <string>
 
 /**
  * @def TEST_EcranPool
@@ -76,7 +79,7 @@ class EcranPool : public QWidget
     ~EcranPool();
 
     static QString recupererNomCouleur(int couleur);
-
+    int joueurActif = 1;
   private:
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
@@ -112,6 +115,8 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
+    void afficherCouleurJoueurs(int couleur);
+    void afficherBillesRestantesJoueurs(int billesRestantesJoueur1, int billesRestantesJoueur2);
     void afficherNomsJoueurs(int     numeroTable,
                              QString nomJoueur1,
                              QString nomJoueur2);

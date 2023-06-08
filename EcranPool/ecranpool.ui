@@ -20,7 +20,7 @@
    <string>EcranPool</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image:url(:/background.jpg);</string>
+   <string notr="true">background-color: rgb(139, 174, 255);</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
@@ -220,7 +220,7 @@ background-color: transparent;</string>
        </widget>
        <widget class="QWidget" name="Partie">
         <property name="styleSheet">
-         <string notr="true">background-image:url(:/background.jpg);</string>
+         <string notr="true"/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
@@ -342,6 +342,8 @@ background-color: transparent;</string>
                  <property name="font">
                   <font>
                    <pointsize>24</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -370,10 +372,12 @@ background-color: transparent;</string>
                  <property name="font">
                   <font>
                    <pointsize>28</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Texte annonce coup</string>
+                  <string/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -395,6 +399,8 @@ background-color: transparent;</string>
                  <property name="font">
                   <font>
                    <pointsize>34</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -408,19 +414,38 @@ background-color: transparent;</string>
                <item>
                 <layout class="QHBoxLayout" name="horizontalLayoutJoueurs">
                  <item>
-                  <layout class="QHBoxLayout" name="horizontalLayoutJoueurGauche">
+                  <layout class="QVBoxLayout" name="verticalLayoutJoueurGauche">
                    <item>
                     <widget class="QLabel" name="labelNomJoueurGauche">
                      <property name="font">
                       <font>
                        <pointsize>24</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
                      <property name="text">
                       <string/>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelBillesRestantesJoueurGauche">
+                     <property name="font">
+                      <font>
+                       <pointsize>20</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -433,13 +458,35 @@ background-color: transparent;</string>
                      <property name="font">
                       <font>
                        <pointsize>24</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
                       </font>
                      </property>
                      <property name="text">
                       <string/>
                      </property>
                      <property name="alignment">
-                      <set>Qt::AlignHCenter|Qt::AlignTop</set>
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelBillesRestantesJoueurDroite">
+                     <property name="font">
+                      <font>
+                       <pointsize>20</pointsize>
+                       <weight>75</weight>
+                       <bold>true</bold>
+                      </font>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="scaledContents">
+                      <bool>false</bool>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
                      </property>
                     </widget>
                    </item>
@@ -458,6 +505,8 @@ background-color: transparent;</string>
                <property name="font">
                 <font>
                  <pointsize>32</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -476,7 +525,7 @@ background-color: transparent;</string>
        </widget>
        <widget class="QWidget" name="FinPartie">
         <property name="styleSheet">
-         <string notr="true">background-image:url(:/background.jpg);</string>
+         <string notr="true"/>
         </property>
         <layout class="QVBoxLayout" name="verticalLayoutPrincipalFinPartie">
          <property name="spacing">
@@ -551,6 +600,8 @@ background-color: transparent;</string>
                <property name="font">
                 <font>
                  <pointsize>52</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -568,6 +619,9 @@ background-color: transparent;</string>
             </layout>
            </item>
            <item>
+            <layout class="QVBoxLayout" name="verticalLayoutFinPartieMilieu"/>
+           </item>
+           <item>
             <layout class="QHBoxLayout" name="horizontalLayoutFinPartiePied">
              <item>
               <widget class="QLabel" name="labelMessageFinPartie">
@@ -577,6 +631,8 @@ background-color: transparent;</string>
                <property name="font">
                 <font>
                  <pointsize>24</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -584,7 +640,7 @@ background-color: transparent;</string>
 background-color: transparent;</string>
                </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fin de la partie ...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fin de la partie !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
