@@ -237,6 +237,21 @@ void EcranPool::initialiserDecompteManche()
 }
 
 /**
+ * @fn EcranPool::reinitialiserDecompteManche
+ * @brief Réinitialise le décompte d'une manche
+ */
+/*void EcranPool::reinitialiserDecompteManche()
+{
+    // Arrêter et supprimer le timer de décompte existant
+    if (decompte != nullptr)
+    {
+        decompte->stop();
+        delete decompte;
+        decompte = nullptr;
+    }
+}*/
+
+/**
  * @brief Affiche l'empochage
  */
 void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
