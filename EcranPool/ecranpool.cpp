@@ -23,7 +23,9 @@ EcranPool* EcranPool::ecranPoolInstance = nullptr;
  */
 EcranPool::EcranPool(QWidget* parent) :
     QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr),
-    communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0)
+    communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0),
+    minuteurDecompte(nullptr), numeroTable(0), changementJoueur(0),
+    decompte(TEMPS_TOUR)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserCommunication();
@@ -31,8 +33,6 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
-    afficherNomsJoueurs(numeroTable, nomJoueur1, nomJoueur2);
-    afficherChangementJoueur(numeroTable, changementJoueur, nomJoueur1, nomJoueur2);
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -78,10 +78,14 @@ void EcranPool::afficherEcranAcceuil()
  */
 void EcranPool::afficherEcranPartie()
 {
-    int numeroTable = 0;
+    ui->labelAnnonceCoup->setText("");
+    ui->labelAnnonceTour->setText("");
+    ui->labelNomJoueurGauche->setText("");
+    ui->labelNomJoueurDroite->setText("");
+    decompte = TEMPS_TOUR;
+    ui->labelDecompteManche->setText(QString::number(decompte));
     afficherEcran(EcranPool::Ecran::Partie);
     afficherHeure();
-    // ecranPoolInstance->afficherNumeroTable(numeroTable);
 }
 
 /**
@@ -127,12 +131,8 @@ void EcranPool::afficherDecompteManche()
     // Vérifier si la page courante est "Ecran Partie"
     if(ui->ecrans->currentIndex() == EcranPool::Ecran::Partie)
     {
-        static int decompte      = 45; // décompte initial de 45 secondes
-        QString    texteDecompte = QString::number(
-          decompte); // Convertir le décompte en chaîne de caractères
-
         // Afficher le décompte dans le QLabel
-        ui->labelDecompteManche->setText(texteDecompte);
+        ui->labelDecompteManche->setText(QString::number(decompte));
 
         // Décrémente le décompte
         --decompte;
@@ -140,12 +140,11 @@ void EcranPool::afficherDecompteManche()
         // Arrêter le décompte lorsque le temps est écoulé
         if(decompte < 0)
         {
-            // Arrêter le minuteur associé à la méthode
-            QTimer* minuteur = qobject_cast<QTimer*>(sender());
-            minuteur->stop();
+            // Arrêter le minuteur
+            minuteurDecompte->stop();
 
-            // Réinitialiser le décompte pour la prochaine manche
-            decompte = 45;
+            // Réinitialiser le décompte pour le prochain tour
+            decompte = TEMPS_TOUR;
         }
     }
 }
@@ -178,7 +177,7 @@ void EcranPool::initialiserCommunication()
     connect(communicationBluetooth,
             SIGNAL(changementJoueur(int, int)),
             this,
-            SLOT(afficherChangementJoueur(int, int, QString, QString)));
+            SLOT(afficherChangementJoueur(int, int)));
     communicationBluetooth->demarrerCommunication();
 }
 
@@ -231,9 +230,12 @@ void EcranPool::initialiserHeure()
  */
 void EcranPool::initialiserDecompteManche()
 {
-    QTimer* decompte = new QTimer(this);
-    decompte->start(INTERVALLE_SECONDE);
-    connect(decompte, SIGNAL(timeout()), this, SLOT(afficherDecompteManche()));
+    minuteurDecompte = new QTimer(this);
+    minuteurDecompte->start(INTERVALLE_SECONDE);
+    connect(minuteurDecompte,
+            SIGNAL(timeout()),
+            this,
+            SLOT(afficherDecompteManche()));
 }
 
 /**
@@ -241,28 +243,40 @@ void EcranPool::initialiserDecompteManche()
  */
 void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 {
-    qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable;
-    QString texte = "Table n° " + QString::number(numeroTable);
-    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
-    ui->labelNumeroTable->setText(texte);
-    qDebug() << Q_FUNC_INFO << "numeroTable" << texte;
+    qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable << "numeroPoche"
+             << numeroPoche << "couleur" << couleur;
+
+    // Afficher le numéro de table
+    ui->labelNumeroTable->setText("Table n° " +
+                                  QString::number(numeroTable + 1));
+
+    ui->labelAnnonceCoup->setText(
+      "Bille " + EcranPool::recupererNomCouleur(couleur) + " dans poche n°" +
+      QString::number(numeroPoche + 1));
+
+    decompte = TEMPS_TOUR;
+
     /**
-     * @todo Afficher la couleur et le numéro de poche
+     * @todo Afficher la couleur et le numéro de poche sur le billard
      */
 }
 
 /**
  * @brief Affiche le nom de chaque joueur
  */
-void EcranPool::afficherNomsJoueurs(int numeroTable, QString nomJoueur1, QString nomJoueur2)
+void EcranPool::afficherNomsJoueurs(int     numeroTable,
+                                    QString nomJoueur1,
+                                    QString nomJoueur2)
 {
     qDebug() << Q_FUNC_INFO << "nomJoueur1" << nomJoueur1 << "nomJoueur2"
              << nomJoueur2;
 
+    this->nomJoueur1 = nomJoueur1;
+    this->nomJoueur2 = nomJoueur2;
+
     // Afficher le numéro de table
-    QString texte = "Table n° " + QString::number(numeroTable);
-    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
-    ui->labelNumeroTable->setText(texte);
+    ui->labelNumeroTable->setText("Table n° " +
+                                  QString::number(numeroTable + 1));
 
     // Afficher les noms des joueurs dans les QLabel respectifs
     ui->labelNomJoueurGauche->setText(nomJoueur1);
@@ -272,23 +286,41 @@ void EcranPool::afficherNomsJoueurs(int numeroTable, QString nomJoueur1, QString
 /**
  * @brief Affiche le changement de joueur
  */
-void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur, QString nomJoueur1, QString nomJoueur2)
+void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur)
 {
-    // Afficher le numéro de table
-    QString texte = "Table n° " + QString::number(numeroTable);
-    ui->labelNumeroTable->setText("Table n° " + QString::number(numeroTable));
-    ui->labelNumeroTable->setText(texte);
+    qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable
+             << "changementJoueur" << changementJoueur;
 
-    changementJoueur = 0;
+    this->changementJoueur = changementJoueur;
+
+    // Afficher le numéro de table
+    ui->labelNumeroTable->setText("Table n° " +
+                                  QString::number(numeroTable + 1));
+
     // Afficher le changement de joueur
     if(changementJoueur == 0)
     {
-        ui->labelAnnonceTour->setText(nomJoueur1);
+        ui->labelAnnonceTour->setText("C'est à " + nomJoueur1 + " de jouer !");
     }
     else
     {
-        ui->labelAnnonceTour->setText(nomJoueur2);
+        ui->labelAnnonceTour->setText("C'est à " + nomJoueur2 + " de jouer !");
     }
+
+    decompte = TEMPS_TOUR;
+    // Démarre le minuteur
+    minuteurDecompte->start();
+}
+
+QString EcranPool::recupererNomCouleur(int couleur)
+{
+    QVector<QString> nomsCouleur = { "ROUGE",
+                                     "JAUNE",
+                                     "BLANCHE",
+                                     "NOIRE",
+                                     "INCONNUE" };
+
+    return nomsCouleur[couleur];
 }
 
 #ifdef TEST_EcranPool

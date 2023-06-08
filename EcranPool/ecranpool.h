@@ -23,6 +23,12 @@
  */
 #define PLEIN_ECRAN
 
+/**
+ * @def TEMPS_TOUR
+ * @brief Le temps pour jouer en secondes
+ */
+#define TEMPS_TOUR 45
+
 namespace Ui
 {
 class EcranPool;
@@ -69,22 +75,24 @@ class EcranPool : public QWidget
     EcranPool(QWidget* parent = nullptr);
     ~EcranPool();
 
+    static QString recupererNomCouleur(int couleur);
+
   private:
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
     CommunicationBluetooth*
                       communicationBluetooth; //<! la communication Bluetooth
     static EcranPool* ecranPoolInstance;
-   // QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro de
-                              // la table
+    // QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro
+    // de la table
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
-    qint64 dureePartie; //<! pour l'affichage de la durée d'une partie
-
-    int numeroTable; // Correspond au numéro de la table
-    int changementJoueur;
-    QString nomJoueur1; // Correspond au joueur de gauche sur l'IHM
-    QString nomJoueur2; // Correspond au joueur de droite sur l'IHM
-
+    qint64  dureePartie;      //<! pour l'affichage de la durée d'une partie
+    QTimer* minuteurDecompte; //<! pour gérer le temps d'un tour
+    int     numeroTable;      //<! Correspond au numéro de la table
+    int     changementJoueur; //<! 0 pour nomJoueur1 et 1 pour nomJoueur2
+    QString nomJoueur1;       //<! Correspond au joueur de gauche sur l'IHM
+    QString nomJoueur2;       //<! Correspond au joueur de droite sur l'IHM
+    int     decompte;         //<! le temps d'un tour
 
     void initialiserCommunication();
     void initialiserEcran();
@@ -104,8 +112,10 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
-    void afficherNomsJoueurs(int numeroTable, QString nomJoueur1, QString nomJoueur2);
-    void afficherChangementJoueur(int numeroTable, int changementJoueur, QString nomJoueur1, QString nomJoueur2);
+    void afficherNomsJoueurs(int     numeroTable,
+                             QString nomJoueur1,
+                             QString nomJoueur2);
+    void afficherChangementJoueur(int numeroTable, int changementJoueur);
 
 #ifdef TEST_EcranPool
     void afficherEcranSuivant();
