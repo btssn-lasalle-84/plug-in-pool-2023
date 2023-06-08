@@ -71,6 +71,7 @@ public class Manche extends AppCompatActivity
     private CountDownTimer compteARebours;              //!< Compteur indiquant le temps restant pour le tir en cours
     Communication[]   communications  = {null, null};              //!< Classe de communication Bluetooth
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
+    private int[] nbFautes;                               //!< @todo
 
     /**
      * Ressources GUI
@@ -294,7 +295,7 @@ public class Manche extends AppCompatActivity
     {
         Log.d(TAG, "empocherBilleBlanche()");
         demarrerCompteARebours();
-        //!< @todo Ask client!
+        nbFautes[joueurActif]++;
     }
 
     /**
@@ -316,18 +317,18 @@ public class Manche extends AppCompatActivity
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
         fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
-
-        fenetreFinDeManche.getWindow().setLayout(Historique.LARGEUR_FENETRE, Historique.HAUTEUR_FENETRE);
+        fenetreFinDeManche.setNbFautes(nbFautes[0], nbFautes[1]);
+        //fenetreFinDeManche.getWindow().setLayout(Historique.LARGEUR_FENETRE, Historique.HAUTEUR_FENETRE);
         // @see
-        /*
+
         Rect displayRectangle = new Rect(0, 0, 1200, 1500); //!< @todo CONSTANTES
         Window window = fenetreFinDeManche.getWindow();
         window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
         Log.d(TAG, "empocherBilleNoire() Rect width = " + displayRectangle.width() + " - height = " + displayRectangle.height());
         // pour modifier la taille du AlertDialog :
-        //fenetreFinDeManche.getWindow().setLayout((int)(displayRectangle.width() * 0.8f), (int)(displayRectangle.height() * 0.8f));
+        fenetreFinDeManche.getWindow().setLayout((int)(displayRectangle.width() * 0.8f), (int)(displayRectangle.height() * 0.8f));
         Log.d(TAG, "empocherBilleNoire() Window width = " + fenetreFinDeManche.getWindow().getAttributes().width + " - height = " + fenetreFinDeManche.getWindow().getAttributes().height);
-        */
+
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }
@@ -352,6 +353,10 @@ public class Manche extends AppCompatActivity
             {
                 int couleurFond = (couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE) ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
                 fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
+                if(trame % 2 == 0 && (! aEmpocheBilleBlanche()))
+                {
+                    nbFautes[(joueurActif + 1) % 2]++;
+                }
             }
         }
         else
@@ -468,6 +473,9 @@ public class Manche extends AppCompatActivity
         joueurActif = PREMIER_JOUEUR;
         couleursDefinies = false;
         mancheDemarree = false;
+        nbFautes = new int[2];
+        nbFautes[0] = 0;
+        nbFautes[1] = 0;
     }
 
     /**
@@ -528,6 +536,20 @@ public class Manche extends AppCompatActivity
         if (compteARebours != null) {
             compteARebours.cancel();
         }
+    }
+
+    /**
+     * @brief TODO
+     */
+    private boolean aEmpocheBilleBlanche()
+    {
+        if(manche.get(manche.size()-1).size() != 0 && manche.get(manche.size() -1).get(manche.get(manche.size()-1).size()-1)[1] == BlackBall.BLANCHE)
+        {
+            Log.d(TAG, "aEmpocheBilleBlanche()   true true True TRUE TRUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return true;
+        }
+        Log.d(TAG, "aEmpocheBilleBlanche()   false false False FALSE FALSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        return false;
     }
 }
 

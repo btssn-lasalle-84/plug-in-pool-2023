@@ -91,31 +91,15 @@
                     android:paddingLeft="16dp"
                     android:textSize="24dp" />
 
-                <FrameLayout
+                <TextView
+                    android:id="@+id/nbFautesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp">
-
-                    <ImageButton
-                        android:id="@+id/boutonMenu"
-                        android:layout_width="230dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/bouton_fond_reflet" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/celtica_bold"
-                        android:gravity="center_horizontal"
-                        android:text=" Menu "
-                        android:textColor="@color/black"
-                        android:textSize="40sp" />
-
-                </FrameLayout>
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
 
             </LinearLayout>
 
@@ -175,33 +159,77 @@
                     android:paddingLeft="10dp"
                     android:textSize="24dp" />
 
-                <FrameLayout
+                <TextView
+                    android:id="@+id/nbFautesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp">
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
 
-                    <ImageButton
-                        android:id="@+id/boutonRejouer"
-                        android:layout_width="230dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@android:color/transparent"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/bouton_fond_reflet" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/celtica_bold"
-                        android:gravity="center_horizontal"
-                        android:text=" Rejouer "
-                        android:textColor="@color/black"
-                        android:textSize="40sp" />
-
-                </FrameLayout>
 
             </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/boutonRejouer"
+                    android:layout_width="230dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bouton_fond_reflet" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/celtica_bold"
+                    android:gravity="center_horizontal"
+                    android:text=" Rejouer "
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/boutonMenu"
+                    android:layout_width="230dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bouton_fond_reflet" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/celtica_bold"
+                    android:gravity="center_horizontal"
+                    android:text=" Menu "
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+            </FrameLayout>
 
         </LinearLayout>
     </LinearLayout>
