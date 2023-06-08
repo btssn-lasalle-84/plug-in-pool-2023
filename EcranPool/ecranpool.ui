@@ -58,7 +58,7 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="autoFillBackground">
@@ -417,7 +417,7 @@ background-color: transparent;</string>
                       </font>
                      </property>
                      <property name="text">
-                      <string>Joueur 1</string>
+                      <string/>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -436,7 +436,7 @@ background-color: transparent;</string>
                       </font>
                      </property>
                      <property name="text">
-                      <string>Joueur 2</string>
+                      <string/>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -461,7 +461,7 @@ background-color: transparent;</string>
                 </font>
                </property>
                <property name="text">
-                <string>C'est à X de jouer !</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
