@@ -32,6 +32,12 @@
  */
 #define TEMPS_TOUR 45
 
+/**
+ * @def NB_BILLES
+ * @brief Le nombre de billes par joueur
+ */
+#define NB_BILLES 7
+
 namespace Ui
 {
 class EcranPool;
@@ -79,7 +85,7 @@ class EcranPool : public QWidget
     ~EcranPool();
 
     static QString recupererNomCouleur(int couleur);
-    int joueurActif = 1;
+
   private:
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
@@ -89,13 +95,14 @@ class EcranPool : public QWidget
     // QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro
     // de la table
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
-    qint64  dureePartie;      //<! pour l'affichage de la durée d'une partie
-    QTimer* minuteurDecompte; //<! pour gérer le temps d'un tour
-    int     numeroTable;      //<! Correspond au numéro de la table
-    int     changementJoueur; //<! 0 pour nomJoueur1 et 1 pour nomJoueur2
-    QString nomJoueur1;       //<! Correspond au joueur de gauche sur l'IHM
-    QString nomJoueur2;       //<! Correspond au joueur de droite sur l'IHM
-    int     decompte;         //<! le temps d'un tour
+    qint64       dureePartie; //<! pour l'affichage de la durée d'une partie
+    QTimer*      minuteurDecompte; //<! pour gérer le temps d'un tour
+    int          numeroTable;      //<! Correspond au numéro de la table
+    int          joueurActif;      //<! 0 pour nomJoueur1 et 1 pour nomJoueur2
+    QString      nomJoueur1;       //<! Correspond au joueur de gauche sur l'IHM
+    QString      nomJoueur2;       //<! Correspond au joueur de droite sur l'IHM
+    int          decompte;         //<! le temps d'un tour
+    QVector<int> billesRestantes;
 
     void initialiserCommunication();
     void initialiserEcran();
@@ -116,7 +123,7 @@ class EcranPool : public QWidget
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
     void afficherCouleurJoueurs(int couleur);
-    void afficherBillesRestantesJoueurs(int billesRestantesJoueur1, int billesRestantesJoueur2);
+    void afficherBillesRestantesJoueurs();
     void afficherNomsJoueurs(int     numeroTable,
                              QString nomJoueur1,
                              QString nomJoueur2);

@@ -213,14 +213,6 @@ bool CommunicationBluetooth::decoderTrame(const QStringList& champsTrame)
             qDebug() << Q_FUNC_INFO << "type"
                      << type.at(POSITION_TYPE + 1).toLatin1() << "table"
                      << table << "poche" << poche << "couleur" << couleur;
-
-            bool aEmpocheBilleCouleur = false;
-            if((!aEmpocheBilleCouleur) && couleur < 2)
-            {
-                aEmpocheBilleCouleur = true;
-                EcranPool::afficherCouleurJoueurs(couleur);
-            }
-
             emit empochage(table, poche, couleur);
             break;
         }
@@ -237,13 +229,12 @@ bool CommunicationBluetooth::decoderTrame(const QStringList& champsTrame)
         }
         case TYPE_CHANGEMENT:
         {
-            int  table      = champsTrame.value(POSITION_TABLE).toInt();
-            int  changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
-            EcranPool::joueurActif = (joueurActif + 1) % 2;
-            emit changementJoueur(table, changement);
+            int table      = champsTrame.value(POSITION_TABLE).toInt();
+            int changement = champsTrame.value(POSITION_CHANGEMENT).toInt();
             qDebug() << Q_FUNC_INFO << "type"
                      << type.at(POSITION_TYPE + 1).toLatin1() << "table"
                      << table << "changement" << changement;
+            emit changementJoueur(table, changement);
             break;
         }
         default:

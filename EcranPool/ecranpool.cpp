@@ -26,7 +26,7 @@ EcranPool* EcranPool::ecranPoolInstance = nullptr;
 EcranPool::EcranPool(QWidget* parent) :
     QWidget(parent), ui(new Ui::EcranPool), joueurs(nullptr),
     communicationBluetooth(new CommunicationBluetooth(this)), dureePartie(0),
-    minuteurDecompte(nullptr), numeroTable(0), changementJoueur(0),
+    minuteurDecompte(nullptr), numeroTable(0), joueurActif(0),
     decompte(TEMPS_TOUR)
 {
     qDebug() << Q_FUNC_INFO;
@@ -88,6 +88,7 @@ void EcranPool::afficherEcranPartie()
     ui->labelDecompteManche->setText(QString::number(decompte));
     afficherEcran(EcranPool::Ecran::Partie);
     afficherHeure();
+    afficherBillesRestantesJoueurs();
 }
 
 /**
@@ -183,11 +184,6 @@ void EcranPool::initialiserCommunication()
             this,
             SLOT(afficherChangementJoueur(int, int)));
     communicationBluetooth->demarrerCommunication();
-
-    connect(communicationBluetooth,
-            SIGNAL(changementJoueur(int, int)),
-            this,
-            SLOT(afficherBillesRestantesJoueurs(int, int)));
 }
 
 /**
@@ -217,6 +213,8 @@ void EcranPool::initialiserEcran()
 void EcranPool::initialiserJoueurs()
 {
     joueurs = new Joueurs();
+    billesRestantes.push_back(NB_BILLES);
+    billesRestantes.push_back(NB_BILLES);
 }
 
 /**table
@@ -250,60 +248,72 @@ void EcranPool::initialiserDecompteManche()
 /**
  * @brief Affiche l'empochage
  */
-void EcranPool:: afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
+void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 {
     qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable << "numeroPoche"
-             << numeroPoche << "couleur" << couleur;
+             << numeroPoche << "couleur" << couleur << "joueurActif"
+             << joueurActif;
 
     // Afficher le numéro de table
     ui->labelNumeroTable->setText("Table n° " +
                                   QString::number(numeroTable + 1));
 
-    ui->labelAnnonceCoup->setText(
-      "Bille " + EcranPool::recupererNomCouleur(couleur) + " dans poche n°" +
-      QString::number(numeroPoche + 1));
+    if(joueurActif == 0)
+    {
+        ui->labelAnnonceCoup->setText(
+          "Bille " + EcranPool::recupererNomCouleur(couleur) +
+          " dans poche n°" + QString::number(numeroPoche + 1) + " par " +
+          nomJoueur1);
+    }
+    else
+    {
+        ui->labelAnnonceCoup->setText(
+          "Bille " + EcranPool::recupererNomCouleur(couleur) +
+          " dans poche n°" + QString::number(numeroPoche + 1) + " par " +
+          nomJoueur2);
+    }
 
     decompte = TEMPS_TOUR;
 
     /**
+     * @todo Gérer les billes restantes
+     */
+
+    /**
      * @todo Afficher la couleur et le numéro de poche sur le billard
      */
+    afficherBillesRestantesJoueurs();
 }
 
-
-void afficherCouleurJoueurs(int couleur)
+void EcranPool::afficherCouleurJoueurs(int couleur)
 {
-    int joueurActif;
-    vector<string> couleurs;
+    QVector<QString> couleurs;
     couleurs.push_back("color: red;");
     couleurs.push_back("color: yellow;");
 
-    if(joueurActif = 0)
+    if(joueurActif == 0)
     {
         ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleur]);
-        ui->labelNomJoueurDroit->setStyleSheet(couleurs[(couleur + 1) % 2]);
+        ui->labelNomJoueurDroite->setStyleSheet(couleurs[(couleur + 1) % 2]);
     }
     else
     {
         ui->labelNomJoueurGauche->setStyleSheet(couleurs[(couleur + 1) % 2]);
-        ui->labelNomJoueurDroit->setStyleSheet(couleurs[couleur]);
+        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleur]);
     }
 }
-
 
 /**
  * @brief Affiche les billes restantes de chaque joueur
  */
-void EcranPool::afficherBillesRestantesJoueurs(int billesRestantesJoueur1, int billesRestantesJoueur2)
+void EcranPool::afficherBillesRestantesJoueurs()
 {
-    billesRestantesJoueur1 = 7;
-    billesRestantesJoueur2 = 7;
-
-    if()
-    // Afficher des billes billes restantes de chaque joueur dans les QLabel respectifs
-    ui->labelBillesRestantesJoueurGauche->setText("Billes restantes : " + QString::number(billesRestantesJoueur1));
-    ui->labelBillesRestantesJoueurDroite->setText("Billes restantes : " + QString::number(billesRestantesJoueur2));
-
+    // Afficher des billes billes restantes de chaque joueur dans les QLabel
+    // respectifs
+    ui->labelBillesRestantesJoueurGauche->setText(
+      "Billes restantes : " + QString::number(billesRestantes[0]));
+    ui->labelBillesRestantesJoueurDroite->setText(
+      "Billes restantes : " + QString::number(billesRestantes[1]));
 }
 
 /**
@@ -336,7 +346,7 @@ void EcranPool::afficherChangementJoueur(int numeroTable, int changementJoueur)
     qDebug() << Q_FUNC_INFO << "numeroTable" << numeroTable
              << "changementJoueur" << changementJoueur;
 
-    this->changementJoueur = changementJoueur;
+    this->joueurActif = changementJoueur;
 
     // Afficher le numéro de table
     ui->labelNumeroTable->setText("Table n° " +
