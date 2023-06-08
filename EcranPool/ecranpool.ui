@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2761</width>
+    <width>2875</width>
     <height>1148</height>
    </rect>
   </property>
@@ -58,7 +58,7 @@
      <item>
       <widget class="QStackedWidget" name="ecrans">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="Accueil">
         <property name="autoFillBackground">
