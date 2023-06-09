@@ -103,6 +103,8 @@ class EcranPool : public QWidget
     QString      nomJoueur2;       //<! Correspond au joueur de droite sur l'IHM
     int          decompte;         //<! le temps d'un tour
     QVector<int> billesRestantes;
+    int couleurJoueur1;
+    int couleurJoueur2;
 
     void initialiserCommunication();
     void initialiserEcran();
@@ -122,7 +124,6 @@ class EcranPool : public QWidget
     void afficherDureePartie();
     void afficherDecompteManche();
     void afficherEmpochage(int numeroTable, int numeroPoche, int couleur);
-    void afficherCouleurJoueurs(int couleur);
     void afficherBillesRestantesJoueurs();
     void afficherNomsJoueurs(int     numeroTable,
                              QString nomJoueur1,

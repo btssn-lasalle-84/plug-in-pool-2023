@@ -360,7 +360,7 @@ background-color: transparent;</string>
                   <string/>
                  </property>
                  <property name="pixmap">
-                  <pixmap resource="ressources.qrc">:/pool_table-60.png</pixmap>
+                  <pixmap resource="ressources.qrc">:/pool_table-60-mod.png</pixmap>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>

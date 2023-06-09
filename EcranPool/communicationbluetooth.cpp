@@ -198,7 +198,7 @@ bool CommunicationBluetooth::decoderTrame(const QStringList& champsTrame)
 
     qDebug() << Q_FUNC_INFO << "champsTrame" << champsTrame;
 
-    QString type = champsTrame.value(POSITION_TYPE);
+    QString type = champsTrame.at(POSITION_TYPE);
 
     if(type.isEmpty())
         return false;

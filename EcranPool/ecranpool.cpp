@@ -35,6 +35,8 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
+    couleurJoueur1 = 3;
+    couleurJoueur2 = 3;
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -275,32 +277,37 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
 
     decompte = TEMPS_TOUR;
 
-    /**
-     * @todo Gérer les billes restantes
-     */
+    if(couleur > Couleur::JAUNE)
+        return;
 
-    /**
-     * @todo Afficher la couleur et le numéro de poche sur le billard
-     */
-    afficherBillesRestantesJoueurs();
-}
-
-void EcranPool::afficherCouleurJoueurs(int couleur)
-{
     QVector<QString> couleurs;
-    couleurs.push_back("color: red;");
-    couleurs.push_back("color: yellow;");
+    couleurs.push_back("color: red;"); // couleur 0
+    couleurs.push_back("color: yellow;"); // couleur 1
 
+    // Assigne la couleur de la première bille rentrée au joueur
     if(joueurActif == 0)
     {
-        ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleur]);
-        ui->labelNomJoueurDroite->setStyleSheet(couleurs[(couleur + 1) % 2]);
+        couleurJoueur1 = couleur;
+        couleurJoueur2 = (couleur + 1) % 2;
+        ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleurJoueur1]);
+        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleurJoueur2]);
+
     }
     else
     {
-        ui->labelNomJoueurGauche->setStyleSheet(couleurs[(couleur + 1) % 2]);
-        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleur]);
+        ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleurJoueur2]);
+        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleurJoueur1]);
     }
+
+    if(couleur == couleurJoueur1)
+    {
+        billesRestantes[0]--;
+    }
+    else
+    {
+         billesRestantes[1]--;
+    }
+    afficherBillesRestantesJoueurs();
 }
 
 /**
