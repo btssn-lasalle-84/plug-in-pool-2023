@@ -1,6 +1,6 @@
 format 224
 "MobilePool"
-  revision 14
+  revision 15
   modified_by 50 "btssn2"
   java_root_dir "../../"
 
@@ -182,11 +182,13 @@ format 224
 
       simplerelation 150834
 	-_->
+	  stereotype "include"
 	  on usecase_ref 128562 // Choisir une table
       end
 
       simplerelation 150962
 	-_->
+	  stereotype "include"
 	  on usecase_ref 136626 // Editer/ Choisir un joueur
       end
     end
@@ -336,6 +338,17 @@ format 224
 	-_->
 	  stereotype "include"
 	  on usecase_ref 129074 // Enregistrer la manche
+      end
+
+      simplerelation 158514
+	-_->
+	  on usecase_ref 128946 // Mettre fin a la manche
+      end
+
+      simplerelation 158642
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 136114 // Lancer la manche
       end
     end
 
@@ -616,6 +629,12 @@ ${members}}
 	  stereotype "include"
 	  on usecase_ref 136370 // acceder a la base de donnees
       end
+
+      simplerelation 158770
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128946 // Mettre fin a la manche
+      end
     end
 
     usecase 136370 "acceder a la base de donnees"
@@ -879,6 +898,34 @@ ${members}}
 	-_->
 	  stereotype "include"
 	  on usecase_ref 136754 // Dialoguer avec le module EcranPool
+      end
+    end
+
+    usecase 143922 "Effectuer une recherche"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 158898
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
       end
     end
   end
