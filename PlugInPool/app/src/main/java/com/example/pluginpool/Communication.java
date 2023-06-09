@@ -231,7 +231,15 @@ public class Communication
             Log.d(TAG,
                   "Appareil Bluetooth sélectionné : " + peripherique.getName() + " " +
                     peripherique.getAddress());
-            creerSocket();
+            if(nomPeripherique.equals("EcranPool"))
+            {
+                creerSocket(ECRAN);
+            }
+            else
+            {
+                creerSocket(TABLE);
+            }
+
             return true;
         }
     }
@@ -267,49 +275,89 @@ public class Communication
      * @brief Pour créer un socket Bluetooth
      */
     @SuppressLint("MissingPermission")
-    public void creerSocket()
+    public void creerSocket(int module)
     {
-        new Thread() {
-            @Override
-            public void run() {
-                // Créer le canal Bluetooth
-                try {
-                    canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
-                } catch (IOException e) {
-                    Log.e(TAG, "Erreur lors de la creation du canal");
-                }
-                // Connecter le canal
-                try {
-                    canalBluetooth.connect();
-                    inputStream = canalBluetooth.getInputStream();
-                    outputStream = canalBluetooth.getOutputStream();
-                    connecte = true;
-                    if (handler != null) {
+        if(module == TABLE) {
+            new Thread() {
+                @Override
+                public void run() {
+                    // Créer le canal Bluetooth
+                    try {
+                        canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
+                    } catch (IOException e) {
+                        Log.e(TAG, "Erreur lors de la creation du canal");
+                    }
+                    // Connecter le canal
+                    try {
+                        canalBluetooth.connect();
+                        inputStream = canalBluetooth.getInputStream();
+                        outputStream = canalBluetooth.getOutputStream();
+                        connecte = true;
+                        if (handler != null) {
+                            Log.d(TAG, "Message handler");
+                            Message messageHandler = new Message();
+                            messageHandler.what = CONNEXION_BLUETOOTH;
+                            messageHandler.obj = peripherique.getName();
+                            handler.sendMessage(messageHandler);
+                        }
+                        // Démarrer la reception
+                        recevoir();
+                        Log.d(TAG, "Canal Bluetooth connecté");
+                    } catch (IOException e) {
+                        Log.e(TAG, "Erreur lors de la connexion du canal");
                         Log.d(TAG, "Message handler");
                         Message messageHandler = new Message();
-                        messageHandler.what = CONNEXION_BLUETOOTH;
+                        messageHandler.what = ERREUR_BLUETOOTH;
                         messageHandler.obj = peripherique.getName();
                         handler.sendMessage(messageHandler);
+                        try {
+                            canalBluetooth.close();
+                        } catch (IOException closeException) {
+                            Log.e(TAG, "Erreur lors de la fermeture du socket");
+                        }
+                        connecte = false;
                     }
-                    // Démarrer la reception
-                    recevoir();
-                    Log.d(TAG, "Canal Bluetooth connecté");
-                } catch (IOException e) {
-                    Log.e(TAG, "Erreur lors de la connexion du canal");
+                }
+            }.start();
+        } else if (module == ECRAN)
+        {
+            try {
+                canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
+            } catch (IOException e) {
+                Log.e(TAG, "Erreur lors de la creation du canal");
+            }
+            // Connecter le canal
+            try {
+                canalBluetooth.connect();
+                inputStream = canalBluetooth.getInputStream();
+                outputStream = canalBluetooth.getOutputStream();
+                connecte = true;
+                if (handler != null) {
                     Log.d(TAG, "Message handler");
                     Message messageHandler = new Message();
-                    messageHandler.what = ERREUR_BLUETOOTH;
+                    messageHandler.what = CONNEXION_BLUETOOTH;
                     messageHandler.obj = peripherique.getName();
                     handler.sendMessage(messageHandler);
-                    try {
-                        canalBluetooth.close();
-                    } catch (IOException closeException) {
-                        Log.e(TAG, "Erreur lors de la fermeture du socket");
-                    }
-                    connecte = false;
                 }
+                // Démarrer la reception
+                recevoir();
+                Log.d(TAG, "Canal Bluetooth connecté");
+            } catch (IOException e) {
+                Log.e(TAG, "Erreur lors de la connexion du canal");
+                Log.d(TAG, "Message handler");
+                Message messageHandler = new Message();
+                messageHandler.what = ERREUR_BLUETOOTH;
+                messageHandler.obj = peripherique.getName();
+                handler.sendMessage(messageHandler);
+                try {
+                    canalBluetooth.close();
+                } catch (IOException closeException) {
+                    Log.e(TAG, "Erreur lors de la fermeture du socket");
+                }
+                connecte = false;
             }
-        }.start();
+
+        }
     }
 
     /**
