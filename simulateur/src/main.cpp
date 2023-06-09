@@ -724,7 +724,16 @@ void loop()
         joueurCourant = (CouleurBille)((int(joueurCourant) + 1) % NB_COULEURS);
         afficherSuivant();
         etatJoueur[joueurCourant] = false;
-        envoyerTrameDebutTour();
+        if(joueurSuivant)
+        {
+            envoyerTrameDebutTour();
+            joueurSuivant = false;
+        }
+        else if(fauteEncours)
+        {
+            envoyerTrameFaute();
+            fauteEncours = false;
+        }
         tirEncours = true;
 #ifdef DEBUG
         Serial.print("Joueur ROUGE : ");
@@ -764,8 +773,6 @@ void loop()
             Serial.println("Suivant : JAUNE");
         }
 #endif
-        joueurSuivant = false;
-        fauteEncours  = false;
         // tirer();
     }
 
@@ -791,7 +798,7 @@ void loop()
                 joueurGagnant[CouleurBille::ROUGE] = false;
                 joueurGagnant[CouleurBille::JAUNE] = false;
                 etatPartie                         = EnCours;
-                envoyerTrameDebutTour();
+
                 digitalWrite(GPIO_LED_ROUGE, LOW);
                 digitalWrite(GPIO_LED_ORANGE, LOW);
                 digitalWrite(GPIO_LED_VERTE, HIGH);
@@ -803,9 +810,6 @@ void loop()
 #ifdef DEBUG
                 Serial.println("Nouvelle partie");
 #endif
-                // c'est parti !
-                tirEncours = true;
-                // tirer();
                 break;
             case TypeTrame::STOP:
                 if(etatPartie > Finie)
