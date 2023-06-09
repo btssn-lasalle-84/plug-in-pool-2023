@@ -1,7 +1,7 @@
 format 224
 "MobilePool"
-  revision 13
-  modified_by 42 "tv"
+  revision 14
+  modified_by 50 "btssn2"
   java_root_dir "../../"
 
 
@@ -180,6 +180,15 @@ format 224
 	  on usecase_ref 128562 // Choisir une table
       end
 
+      simplerelation 150834
+	-_->
+	  on usecase_ref 128562 // Choisir une table
+      end
+
+      simplerelation 150962
+	-_->
+	  on usecase_ref 136626 // Editer/ Choisir un joueur
+      end
     end
 
     usecase 128434 "Editer/Choisir les joueurs"
@@ -379,6 +388,24 @@ format 224
 	  stereotype "extend"
 	  on usecase_ref 128178 // Consulter l'historique
       end
+
+      simplerelation 151602
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 137138 // consulter l'historique
+      end
+
+      simplerelation 151730
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
+      end
+
+      simplerelation 151986
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 129330 // Afficher l'historique
+      end
     end
 
     usecase 129330 "Afficher l'historique"
@@ -403,6 +430,12 @@ format 224
       activitydiagramsettings
        end
       simplerelation 141354
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128178 // Consulter l'historique
+      end
+
+      simplerelation 151858
 	-_->
 	  stereotype "extend"
 	  on usecase_ref 128178 // Consulter l'historique
@@ -500,7 +533,7 @@ ${members}}
       size A0
     end
 
-    usecase 136114 "lancer une manche"
+    usecase 136114 "Lancer la manche"
       
       usecasediagramsettings end
       
@@ -532,9 +565,32 @@ ${members}}
 	  stereotype "include"
 	  on usecase_ref 136882 // dialoguer avec le module Table de billard
       end
+
+      simplerelation 150578
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 136498 // Configurer la manche
+      end
+
+      simplerelation 151090
+	-_->
+	  on usecase_ref 136114 // Lancer la manche
+      end
+
+      simplerelation 151218
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128306 // Configurer une manche
+      end
+
+      simplerelation 151346
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128818 // Suivre le deroulement de la manche
+      end
     end
 
-    usecase 136242 "enregister la manche"
+    usecase 136242 "Enregister la manche"
       
       usecasediagramsettings end
       
@@ -585,7 +641,7 @@ ${members}}
        end
     end
 
-    usecase 136498 "configurer la manche"
+    usecase 136498 "Configurer la manche"
       
       usecasediagramsettings end
       
@@ -606,9 +662,14 @@ ${members}}
       
       activitydiagramsettings
        end
+      simplerelation 150450
+	-_->
+	  stereotype "include"
+	  on usecase_ref 128562 // Choisir une table
+      end
     end
 
-    usecase 136626 "editer un joueur"
+    usecase 136626 "Editer/ Choisir un joueur"
       
       usecasediagramsettings end
       
@@ -632,7 +693,7 @@ ${members}}
       simplerelation 142642
 	-_->
 	  stereotype "extend"
-	  on usecase_ref 136498 // configurer la manche
+	  on usecase_ref 136498 // Configurer la manche
       end
 
       simplerelation 143922
@@ -642,7 +703,7 @@ ${members}}
       end
     end
 
-    usecase 136754 "dialoguer avec le module EcranPool"
+    usecase 136754 "Dialoguer avec le module EcranPool"
       
       usecasediagramsettings end
       
@@ -663,6 +724,17 @@ ${members}}
       
       activitydiagramsettings
        end
+      simplerelation 150706
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 137266 // suivre le deroulement de la manche
+      end
+
+      simplerelation 151474
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 128818 // Suivre le deroulement de la manche
+      end
     end
 
     usecase 136882 "dialoguer avec le module Table de billard"
@@ -688,7 +760,7 @@ ${members}}
        end
       simplerelation 143282
 	-_->
-	  on usecase_ref 136114 // lancer une manche
+	  on usecase_ref 136114 // Lancer la manche
       end
     end
 
@@ -772,7 +844,7 @@ ${members}}
       simplerelation 142898
 	-_->
 	  stereotype "include"
-	  on usecase_ref 136242 // enregister la manche
+	  on usecase_ref 136242 // Enregister la manche
       end
     end
 
@@ -806,7 +878,7 @@ ${members}}
       simplerelation 143538
 	-_->
 	  stereotype "include"
-	  on usecase_ref 136754 // dialoguer avec le module EcranPool
+	  on usecase_ref 136754 // Dialoguer avec le module EcranPool
       end
     end
   end
