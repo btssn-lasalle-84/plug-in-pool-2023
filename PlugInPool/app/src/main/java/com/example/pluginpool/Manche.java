@@ -308,12 +308,12 @@ public class Manche extends AppCompatActivity
 
         arreterCompteARebours();
         int indexJoueurGagnant;
-        if(couleursDefinies && billes[joueurActif] == 0) {
+        if(couleursDefinies && billes[couleursJoueurs.get(joueurs[joueurActif])] == 0) {
             Log.d(TAG, "JoueurGagnant = joueurActif");
             indexJoueurGagnant = joueurActif;
         }
         else {
-            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[joueurActif]);
+            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
         }
 
