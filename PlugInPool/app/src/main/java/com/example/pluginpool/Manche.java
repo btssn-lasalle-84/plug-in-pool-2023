@@ -276,17 +276,15 @@ public class Manche extends AppCompatActivity
     private void afficherBillesRestantes(int couleurBille)
     {
         Log.d(TAG, "afficherBillesRestantes( couleurBille = " + couleurBille + " )");
-        int couleur;
-        for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
+
+        for(int i = PREMIER_JOUEUR; i < BlackBall.NB_JOUEURS; i++)
         {
-            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? couleurBille : (couleurBille + 1) % BlackBall.NB_GROUPES_BILLES;
-            Log.d(TAG, "afficherBillesRestantes() joueur = " + joueur + " (" + nomJoueurs[joueur].getText() + ") couleur = " + couleur);
-            // @fixme
-            nomJoueurs[joueur].setTextColor(ContextCompat.getColor(getApplicationContext(), BlackBall.COULEURS[couleur]));
-            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
+            int couleur = (couleurBille + i) % 2;
+            nomJoueurs[(joueurActif + i) % BlackBall.NB_JOUEURS].setTextColor(ContextCompat.getColor(getApplicationContext(), BlackBall.COULEURS[couleur]));
+            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(i + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
-                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(BlackBall.IMAGES_BILLES[couleur]);
-                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
+                billesRestantes[(i + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(BlackBall.IMAGES_BILLES[couleur]);
+                billesRestantes[(i + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
             }
         }
     }
@@ -311,9 +309,11 @@ public class Manche extends AppCompatActivity
         arreterCompteARebours();
         int indexJoueurGagnant;
         if(couleursDefinies && billes[joueurActif] == 0) {
+            Log.d(TAG, "JoueurGagnant = joueurActif");
             indexJoueurGagnant = joueurActif;
         }
         else {
+            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[joueurActif]);
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
         }
 
