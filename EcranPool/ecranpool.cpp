@@ -35,8 +35,8 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
-    couleurJoueur1 = 3;
-    couleurJoueur2 = 3;
+    couleurJoueur1 = -1;
+    couleurJoueur2 = -1;
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -260,6 +260,26 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     ui->labelNumeroTable->setText("Table n° " +
                                   QString::number(numeroTable + 1));
 
+
+
+    /*if (couleur == Couleur::NOIRE)
+    {
+        if (joueurActif == 0)
+        {
+            // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de partie
+            ui->stackedWidget->setCurrentWidget(ui->FinPartie);
+            ui->labelVainqueur->setText(nomJoueur2); // Afficher le nom du vainqueur (joueur 2)
+        }
+        else
+        {
+            // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de partie
+            ui->stackedWidget->setCurrentWidget(ui->FinPartie);
+            ui->labelVainqueur->setText(nomJoueur1); // Afficher le nom du vainqueur (joueur 1)
+        }
+        return;
+    }*/
+
+    // Affiche les informations du coup qui vient d'être joué
     if(joueurActif == 0)
     {
         ui->labelAnnonceCoup->setText(
@@ -281,33 +301,37 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         return;
 
     QVector<QString> couleurs;
-    couleurs.push_back("color: red;"); // couleur 0
-    couleurs.push_back("color: yellow;"); // couleur 1
+    //couleurs.push_back("color: yellow;"); // couleur 0
+    //couleurs.push_back("color: red;"); // couleur 1
 
     // Assigne la couleur de la première bille rentrée au joueur
-    if(joueurActif == 0)
+    if (couleurJoueur1 == -1 && couleurJoueur2 == -1) // Vérifie si la couleur n'a pas déjà été attribuée
     {
         couleurJoueur1 = couleur;
-        couleurJoueur2 = (couleur + 1) % 2;
-        ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleurJoueur1]);
-        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleurJoueur2]);
+        couleurJoueur2 = (couleurJoueur1 + 1) % 2;
+        QString couleurJoueur1Style = "color: ";
+        QString couleurJoueur2Style = "color: ";
 
-    }
-    else
-    {
-        ui->labelNomJoueurGauche->setStyleSheet(couleurs[couleurJoueur2]);
-        ui->labelNomJoueurDroite->setStyleSheet(couleurs[couleurJoueur1]);
-    }
+        // Assigner la couleur du joueur 1 en fonction de la couleur de la bille
+        if (couleurJoueur1 == Couleur::JAUNE)
+        {
+            couleurJoueur1Style += "yellow;";
+            couleurJoueur2Style += "red;";
+        }else if (couleurJoueur1 == Couleur::ROUGE){
+            couleurJoueur1Style += "red;";
+            couleurJoueur2Style += "yellow;";
+        }
+        // Assigner la couleur du joueur 2 en fonction de la couleur de la bille
+        if (couleurJoueur2 == Couleur::JAUNE){
+            couleurJoueur2Style += "yellow;";
+            couleurJoueur1Style += "red;";
+        }else if (couleurJoueur2 == Couleur::ROUGE){
+            couleurJoueur2Style += "red;";
+            couleurJoueur1Style += "yellow;";}
 
-    if(couleur == couleurJoueur1)
-    {
-        billesRestantes[0]--;
+        ui->labelNomJoueurGauche->setStyleSheet(couleurJoueur1Style);
+        ui->labelNomJoueurDroite->setStyleSheet(couleurJoueur2Style);
     }
-    else
-    {
-         billesRestantes[1]--;
-    }
-    afficherBillesRestantesJoueurs();
 }
 
 /**
