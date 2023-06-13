@@ -16,6 +16,8 @@ import android.os.Message;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +26,8 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -143,8 +147,10 @@ public class ConfigurationManche extends AppCompatActivity
 
         choixNomsJoueur1.setAdapter(adaptateurNomsJoueurs);
         choixNomsJoueur2.setAdapter(adaptateurNomsJoueurs);
-        choixNomsJoueur1.setSelection(0);
-        choixNomsJoueur2.setSelection(1);
+        if(nomsJoueurs.size() > 0)
+            choixNomsJoueur1.setSelection(0);
+        if(nomsJoueurs.size() > 1)
+            choixNomsJoueur2.setSelection(1);
 
         choixNomsJoueur1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -181,8 +187,8 @@ public class ConfigurationManche extends AppCompatActivity
         editionNomJoueur1.setHint("Saisir le nom du premier joueur");
         editionNomJoueur2.setHint("Saisir le nom du second joueur");
 
-        editionNomJoueur1.setFilters(filtresNom);
-        editionNomJoueur2.setFilters(filtresNom);
+        //editionNomJoueur1.setFilters(filtresNom); !< @fixme 
+        //editionNomJoueur2.setFilters(filtresNom); !< @fixme
 
         boutonActualiser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
@@ -198,9 +204,12 @@ public class ConfigurationManche extends AppCompatActivity
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
-                choixNomTable           = boutonTable.getContentDescription().toString();
-                Log.d(TAG, "clic choixTable : " + choixNomTable);
-                communication.seConnecter(choixNomTable);
+                if(boutonTable != null && boutonTable.isChecked()) {
+                    choixNomTable = boutonTable.getContentDescription().toString();
+                    Log.d(TAG, "clic choixTable : " + choixNomTable);
+                    afficherConnexion(true, " Connexion " + choixNomTable + " ");
+                    communication.seConnecter(choixNomTable);
+                }
             }
         });
 
@@ -229,6 +238,25 @@ public class ConfigurationManche extends AppCompatActivity
                 }
             }
         });
+    }
+
+    private void afficherConnexion(boolean connexionReussie, String message)
+    {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+        TextView texte = (TextView) layout.findViewById(R.id.texte);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        if (connexionReussie) {
+            texte.setText(message);
+        } else {
+            texte.setText(message);
+            RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
+            choixTable.clearCheck();
+        }
+        toast.setGravity(Gravity.BOTTOM, 0, 100);
+        toast.setView(layout);
+        toast.show();
     }
 
     public void afficherTablesDisponibles()
@@ -312,6 +340,7 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(true);
+                        afficherConnexion(true, " Connexion : Succès ");
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
@@ -320,6 +349,11 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.DECONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] DECONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(false);
+                        break;
+                    case Communication.ERREUR_BLUETOOTH:
+                        Log.d(TAG, "[Handler] ERREUR_BLUETOOTH");
+                        actualiserEtatConnexionTable(false);
+                        afficherConnexion(false, " Connexion : Échec ");
                         break;
                 }
             }

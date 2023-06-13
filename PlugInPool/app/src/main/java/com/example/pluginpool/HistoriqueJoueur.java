@@ -75,6 +75,7 @@ public class HistoriqueJoueur extends AlertDialog
             public void onClick(View view)
             {
                 activiteHistorique.baseDonnees.supprimerJoueur(nom);
+                activiteHistorique.actualiserNoms(nom);
                 HistoriqueJoueur.this.dismiss();
             }
         });

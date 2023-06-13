@@ -11,6 +11,7 @@ public class ProtocoleEcran {
     public static char DELIMITEUR_FIN = "\n".charAt(0);
 
     public static String TABLES = "0123";
+    public static final String TAG = "_PROTOCOLE_ECRAN";
 
 //        ${Type};{Table};{Poche};{Couleur}\n
 

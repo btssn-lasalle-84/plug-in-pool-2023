@@ -66,7 +66,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
     {
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
-                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
+                "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO INTEGER DEFAULT 0)");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS manches (id INTEGER PRIMARY KEY AUTOINCREMENT, horodatage DATETIME UNIQUE NOT NULL, gagnantId INTEGER, perdantId INTEGER, numeroTable INTEGER, FOREIGN KEY (gagnantId) REFERENCES joueurs(id) ON DELETE CASCADE, FOREIGN KEY (perdantId) REFERENCES joueurs(id) ON DELETE CASCADE)");
         sqlite.execSQL(
@@ -134,6 +134,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         {
             int colonne = curseur.getColumnIndex("count");
             if (colonne != DEFAUT) {
+                Log.d(TAG, "getNbEmpoches() NbEmpoches = " + curseur.getInt(colonne));
                 return curseur.getInt(colonne);
             }
         }
@@ -162,6 +163,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                               Vector<Vector<int[]>> manche,
                               int                   numeroTable)
     {
+        Log.d(BlackBall.TAG, "gagnant = " + joueurs[indexJoueurGagnant]);
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
         Log.d(TAG, "ajouterManche() gagnant = " + gagnant + " perdant = " + perdant);
@@ -186,11 +188,11 @@ public class BaseDeDonnees extends SQLiteOpenHelper
         //int gagnantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + gagnant + "'", null).getInt(0);
         //int perdantId = sqlite.rawQuery("SELECT id FROM joueurs WHERE nom = '" + perdant + "'", null).getInt(0);
         try {
-            sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (datetime('now'), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
+            sqlite.execSQL("INSERT INTO manches (horodatage, gagnantId, perdantId, numeroTable) VALUES (strftime('%d/%m/%Y %H:%M:%S', 'now'), '" + gagnantId + "', '" + perdantId + "', '" + numeroTable + "')");
         } catch (Exception e){
             Log.d(TAG, "INSERT INTO manches " + e );
         }
-        int[] participantsId = {perdantId, gagnantId};
+        int[] participantsId = {gagnantId, perdantId};
         for(int indexTour = 0; indexTour < manche.size(); indexTour++)
         {
             int mancheId = DEFAUT;
@@ -204,6 +206,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
             int joueurId = participantsId[(indexTour + indexJoueurGagnant) % BlackBall.NB_JOUEURS];
             try {
                 sqlite.execSQL("INSERT INTO tours (joueurId, mancheId) VALUES ('" + joueurId + "', '" + mancheId + "')");
+                Log.d(BlackBall.TAG, "nouveau tour");
             } catch (Exception e) {
                 Log.d(TAG, "INSERT INTO tours " + e );
             }
@@ -215,6 +218,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
                 int couleur = manche.get(indexTour).get(indexEmpoche)[1];
                 try {
                     sqlite.execSQL("INSERT INTO empoches (tourId, poche, couleur) VALUES ((SELECT max(id) FROM tours), '" + poche + "', '" + couleur + "')");
+                    Log.d(BlackBall.TAG, "empoche, couleur = " + couleur);
                 } catch (Exception e) {
                     Log.d(TAG, "INSERT INTO empoches " + e );
                 }
@@ -384,13 +388,7 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void supprimerJoueur(String nom)
     {
-        try {
-            sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
-        }
-        catch(Exception e)
-        {
-            Log.d(TAG, "SupprimerJoueur()", e);
-        }
+        sqlite.execSQL("DELETE FROM joueurs WHERE nom = ?", new String[] {nom});
     }
 
     /**
@@ -398,21 +396,72 @@ public class BaseDeDonnees extends SQLiteOpenHelper
      */
     public void supprimerManche(String date)
     {
-        sqlite.execSQL("DELETE FROM manches WHERE horodatage = '" + date + "'", null);
+        sqlite.execSQL("DELETE FROM manches WHERE horodatage = ?", new String[] {date});
     }
 
-
+    /**
+     * @brief @todo
+     */
     public String getNomJoueur(String qualificatifJoueur, String date)
     {
-        Cursor curseur  = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs INNERJOIN manches ON joueurs.id = '" + "manches." + qualificatifJoueur + "Id" + "' WHERE manches.horodatage = '" + date + "'", null);
+        Log.d(TAG, "getNomJoueur(qualificatif, date) date = " + date + " qualificatif = " + qualificatifJoueur);
+        String requete = "SELECT joueurs.nom FROM joueurs  INNER JOIN manches ON joueurs.id = manches." + qualificatifJoueur + "Id WHERE manches.horodatage = \"" + date + "\"";
+
+        Cursor curseur = sqlite.rawQuery(requete, null);
         if(curseur.moveToFirst())
         {
-            return curseur.toString();
+            return curseur.getString(curseur.getColumnIndexOrThrow("nom"));
         }
-        else
+        curseur.close();
+        return "Inconnu";
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void supprimerJoueurs()
+    {
+        sqlite.execSQL("DELETE FROM joueurs");
+    }
+
+    /**
+     * @brief @todo
+     */
+    public void supprimerManches()
+    {
+        Log.d(TAG, "supprimerManches()");
+        sqlite.execSQL("DELETE FROM manches");
+    }
+
+    /**
+     * @brief @todo
+     */
+    public String getNomsJoueurs(String date)
+    {
+        Log.d(TAG, "getNomsJoueurs()");
+        String nomsJoueurs = "";
+        Cursor curseur = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs " +
+                "INNER JOIN manches ON joueurs.id = manches.gagnantId OR joueurs.id = manches.perdantId " +
+                "WHERE manches.horodatage = ?", new String[] { date });
+        while(curseur.moveToNext())
         {
-            return "Inconnu";
+            nomsJoueurs += " " + curseur.getString(curseur.getColumnIndexOrThrow("nom"));
         }
+        curseur.close();
+        return nomsJoueurs;
+    }
+
+    /**
+     * @brief @todo
+     */
+    public int getMancheId(String date)
+    {
+        Cursor curseur = sqlite.rawQuery("SELECT id FROM manches WHERE manches.horodatage = ?", new String[] {date});
+        if(curseur.moveToFirst()) {
+            return curseur.getInt(0);
+        }
+        curseur.close();
+        return BaseDeDonnees.DEFAUT;
     }
 }
 

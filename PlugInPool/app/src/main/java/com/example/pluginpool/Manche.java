@@ -8,14 +8,17 @@ package com.example.pluginpool;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,6 +71,7 @@ public class Manche extends AppCompatActivity
     private CountDownTimer compteARebours;              //!< Compteur indiquant le temps restant pour le tir en cours
     Communication[]   communications  = {null, null};              //!< Classe de communication Bluetooth
     private Handler handler        = null;              //!< Handler permettant la communication entre le thread de réception bluetooth et celui de l'interface graphique
+    private int[] nbFautes;                               //!< @todo
 
     /**
      * Ressources GUI
@@ -115,7 +119,7 @@ public class Manche extends AppCompatActivity
         joueurs[PREMIER_JOUEUR] = activiteManche.getStringExtra("joueur1");
         joueurs[SECOND_JOUEUR]  = activiteManche.getStringExtra("joueur2");
         table = activiteManche.getStringExtra("choixNomTable");
-        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
+        fenetreFinDeManche = null;
         connexionTable = activiteManche.getBooleanExtra("connexionTable", false);
 
         initialiserAttributsDeDebutDeManche();
@@ -139,6 +143,7 @@ public class Manche extends AppCompatActivity
         boutonQuitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
                 communications[Communication.TABLE].seDeconnecter();
                 setResult(RESULT_OK, new Intent());
                 Communication.supprimerInstance();
@@ -152,19 +157,21 @@ public class Manche extends AppCompatActivity
             public void onClick(View view) {
                 communications[Communication.ECRAN] = Communication.getInstance();
                 communications[Communication.ECRAN].seConnecter("EcranPool");
-                String trameDebut = ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
+                String trameDebut = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
+                Log.d(ProtocoleEcran.TAG,trameDebut);
                 for(int tour = 0; tour < manche.size(); tour++)
                 {
                     String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
                     communications[Communication.ECRAN].envoyer(trameEnvoie);
+                    Log.d(ProtocoleEcran.TAG,trameEnvoie);
                     for(int empoche = 0; empoche < manche.get(tour).size(); empoche++)
                     {
-                        trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(manche.get(tour).get(empoche)[TOUR]) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(manche.get(tour).get(empoche)[COULEUR]) + ProtocoleEcran.DELIMITEUR_FIN;
+                        trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(manche.get(tour).get(empoche)[TOUR]) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(manche.get(tour).get(empoche)[COULEUR]) + ProtocoleEcran.DELIMITEUR_FIN;
                         communications[Communication.ECRAN].envoyer(trameEnvoie);
+                        Log.d(ProtocoleEcran.TAG,trameEnvoie);
                     }
                 }
-
             }
         });
 
@@ -226,7 +233,7 @@ public class Manche extends AppCompatActivity
      */
     private void empocherBilleCouleur(int numero, int couleur)
     {
-        Log.d(TAG, "empocherBilleCouleur( numero" + numero + " couleur = " + couleur + " )");
+        Log.d(TAG, "empocherBilleCouleur( numero = " + numero + ", couleur = " + couleur + " )");
 
         if(! couleursDefinies)
         {
@@ -239,7 +246,13 @@ public class Manche extends AppCompatActivity
             afficherBillesRestantes(couleur);
         }
         billes[couleur]--;
+        if(billes[couleur] < 0)
+            return; // @fixme
         int joueurBille = (couleursJoueurs.get(joueurs[PREMIER_JOUEUR]) == couleur) ? PREMIER_JOUEUR : SECOND_JOUEUR;
+        Log.d(TAG, "empocherBilleCouleur() joueurBille = " + joueurBille + " billes[couleur] = " + billes[couleur]);
+        /**
+         * @fixme java.lang.ArrayIndexOutOfBoundsException
+         */
         billesRestantes[joueurBille][billes[couleur]].setVisibility(View.INVISIBLE);
 
         poches[numero][couleur]++;
@@ -263,16 +276,15 @@ public class Manche extends AppCompatActivity
     private void afficherBillesRestantes(int couleurBille)
     {
         Log.d(TAG, "afficherBillesRestantes( couleurBille = " + couleurBille + " )");
-        int couleur;
-        for(int joueur = PREMIER_JOUEUR; joueur < BlackBall.NB_JOUEURS; joueur++)
+
+        for(int i = PREMIER_JOUEUR; i < BlackBall.NB_JOUEURS; i++)
         {
-            couleur = (couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS]) == couleurBille) ? couleurBille : (couleurBille + 1) % BlackBall.NB_GROUPES_BILLES;
-            Log.d(TAG, "afficherBillesRestantes() couleur = " + BlackBall.IMAGES_BILLES[couleur]);
-            nomJoueurs[joueur].setTextColor(BlackBall.COULEURS[couleur]); //@fixme
-            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(joueur + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
+            int couleur = (couleurBille + i) % 2;
+            nomJoueurs[(joueurActif + i) % BlackBall.NB_JOUEURS].setTextColor(ContextCompat.getColor(getApplicationContext(), BlackBall.COULEURS[couleur]));
+            for(int bille = 0; bille < billes[couleursJoueurs.get(joueurs[(i + joueurActif) % BlackBall.NB_JOUEURS])]; bille++)
             {
-                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(BlackBall.IMAGES_BILLES[couleur]);
-                billesRestantes[(joueur + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
+                billesRestantes[(i + joueurActif) % BlackBall.NB_JOUEURS][bille].setImageResource(BlackBall.IMAGES_BILLES[couleur]);
+                billesRestantes[(i + joueurActif) % BlackBall.NB_JOUEURS][bille].setVisibility(View.VISIBLE);
             }
         }
     }
@@ -284,7 +296,7 @@ public class Manche extends AppCompatActivity
     {
         Log.d(TAG, "empocherBilleBlanche()");
         demarrerCompteARebours();
-        //!< @todo Ask client!
+        nbFautes[joueurActif]++;
     }
 
     /**
@@ -296,15 +308,30 @@ public class Manche extends AppCompatActivity
 
         arreterCompteARebours();
         int indexJoueurGagnant;
-        if(couleursDefinies && billes[joueurActif] == 0) {
+        if(couleursDefinies && billes[couleursJoueurs.get(joueurs[joueurActif])] == 0) {
+            Log.d(TAG, "JoueurGagnant = joueurActif");
             indexJoueurGagnant = joueurActif;
         }
         else {
+            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
         }
 
         baseDonnees.ajouterManche(joueurs, indexJoueurGagnant, manche, numeroTable);
+        fenetreFinDeManche = new FinDeManche(this, joueurs[PREMIER_JOUEUR], joueurs[SECOND_JOUEUR]);
         fenetreFinDeManche.setEntete(joueurs[indexJoueurGagnant]);
+        fenetreFinDeManche.setNbFautes(nbFautes[0], nbFautes[1]);
+        //fenetreFinDeManche.getWindow().setLayout(Historique.LARGEUR_FENETRE, Historique.HAUTEUR_FENETRE);
+        // @see
+
+        Rect displayRectangle = new Rect(0, 0, 1200, 1500); //!< @todo CONSTANTES
+        Window window = fenetreFinDeManche.getWindow();
+        window.getDecorView().getWindowVisibleDisplayFrame(displayRectangle);
+        Log.d(TAG, "empocherBilleNoire() Rect width = " + displayRectangle.width() + " - height = " + displayRectangle.height());
+        // pour modifier la taille du AlertDialog :
+        fenetreFinDeManche.getWindow().setLayout((int)(displayRectangle.width() * 0.8f), (int)(displayRectangle.height() * 0.8f));
+        Log.d(TAG, "empocherBilleNoire() Window width = " + fenetreFinDeManche.getWindow().getAttributes().width + " - height = " + fenetreFinDeManche.getWindow().getAttributes().height);
+
         fenetreFinDeManche.show();
         communications[Communication.TABLE].envoyer(ProtocoleTable.ARRET);
     }
@@ -320,6 +347,8 @@ public class Manche extends AppCompatActivity
             if(communications[Communication.ECRAN] != null)
             {
                 String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
+                communications[Communication.ECRAN].envoyer(trameEnvoie);
+                Log.d(ProtocoleEcran.TAG,trameEnvoie);
             }
 
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
@@ -328,6 +357,10 @@ public class Manche extends AppCompatActivity
             {
                 int couleurFond = (couleursJoueurs.get(joueurs[joueurActif]) == BlackBall.JAUNE) ? getResources().getColor(R.color.jaune) : getResources().getColor(R.color.rouge);
                 fondCompteur.setBackgroundTintList(ColorStateList.valueOf(couleurFond));
+                if(trame % 2 == 0 && (! aEmpocheBilleBlanche()))
+                {
+                    nbFautes[(joueurActif + 1) % 2]++;
+                }
             }
         }
         else
@@ -360,7 +393,8 @@ public class Manche extends AppCompatActivity
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
                         byte trame = ((Integer)message.obj).byteValue();
-                        Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        //Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        Log.d(BlackBall.TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
                         if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {
                             traiterTrameService(trame);
@@ -374,8 +408,9 @@ public class Manche extends AppCompatActivity
 
                             if(communications[Communication.ECRAN] != null)
                             {
-                                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(poche) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(couleur) + ProtocoleEcran.DELIMITEUR_FIN;
+                                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(poche) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(couleur) + ProtocoleEcran.DELIMITEUR_FIN;
                                 communications[Communication.ECRAN].envoyer(trameEnvoie);
+                                Log.d(ProtocoleEcran.TAG,trameEnvoie);
                             }
                             if(couleur == BlackBall.NOIRE)
                             {
@@ -443,6 +478,9 @@ public class Manche extends AppCompatActivity
         joueurActif = PREMIER_JOUEUR;
         couleursDefinies = false;
         mancheDemarree = false;
+        nbFautes = new int[2];
+        nbFautes[0] = 0;
+        nbFautes[1] = 0;
     }
 
     /**
@@ -503,6 +541,20 @@ public class Manche extends AppCompatActivity
         if (compteARebours != null) {
             compteARebours.cancel();
         }
+    }
+
+    /**
+     * @brief TODO
+     */
+    private boolean aEmpocheBilleBlanche()
+    {
+        if(manche.get(manche.size()-1).size() != 0 && manche.get(manche.size() -1).get(manche.get(manche.size()-1).size()-1)[1] == BlackBall.BLANCHE)
+        {
+            Log.d(TAG, "aEmpocheBilleBlanche()   true true True TRUE TRUE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            return true;
+        }
+        Log.d(TAG, "aEmpocheBilleBlanche()   false false False FALSE FALSE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        return false;
     }
 }
 

@@ -145,7 +145,7 @@ bool      joueurSuivant = false; //!< au joueur suivant ou pas
 Afficheur afficheur(ADRESSE_I2C_OLED,
                     BROCHE_I2C_SDA,
                     BROCHE_I2C_SCL); //!< afficheur OLED SSD1306
-int       numeroTable = 1;
+int       numeroTable = 2;
 
 String extraireChamp(String& trame, unsigned int numeroChamp)
 {
@@ -480,6 +480,7 @@ bool simulerTir()
           (CouleurBille)random((long)CouleurBille::BLANCHE,
                                (long)(CouleurBille::BLANCHE + 2));
         envoyerTrameEmpoche(Poche(tir), couleurBille);
+
 #ifdef DEBUG
         Serial.print("joueur ");
         Serial.print(((int)joueurCourant == CouleurBille::ROUGE)

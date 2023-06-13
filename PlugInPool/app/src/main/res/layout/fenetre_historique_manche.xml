@@ -13,33 +13,38 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="60dp">
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_margin="60dp"
+            android:layout_gravity="center">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="left">
 
                 <TextView
                     android:id="@+id/joueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
-                    android:textColor="@color/or"
-                    android:textSize="24sp"
-                    android:text="Resultats...." />
+                    android:textColor="@color/acajou"
+                    android:textSize="30sp"
+                    android:text="Resultats...."
+                    android:layout_marginBottom="20dp"/>
                 <TextView
                     android:id="@+id/nbRougesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -48,6 +53,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -56,6 +62,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -72,22 +79,26 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_gravity="left">
 
                 <TextView
                     android:id="@+id/joueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
-                    android:textColor="@color/or"
-                    android:textSize="24sp"
-                    android:text="Resultats...." />
+                    android:textColor="@color/acajou"
+                    android:textSize="30sp"
+                    android:text="Resultats...."
+                    android:layout_marginBottom="20dp"/>
                 <TextView
                     android:id="@+id/nbRougesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -96,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -104,6 +116,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/celtica_bold"
                     android:textColor="@color/black"
+                    android:layout_marginBottom="4dp"
                     android:textSize="22sp"
                     android:text="Resultats...." />
                 <TextView
@@ -117,16 +130,23 @@
 
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="12dp"
+            android:layout_alignParentBottom="true">
 
             <ImageButton
                 android:id="@+id/boutonSupprimer"
-                android:layout_width="230dp"
-                android:layout_height="100dp"
+                android:layout_width="250dp"
+                android:layout_height="105dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
@@ -144,6 +164,6 @@
 
         </FrameLayout>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
