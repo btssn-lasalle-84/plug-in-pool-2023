@@ -73,6 +73,7 @@ class EcranPool : public QWidget
      */
     enum Couleur
     {
+        INCONNUE = -1,
         ROUGE,
         JAUNE,
         BLANCHE,
@@ -105,6 +106,8 @@ class EcranPool : public QWidget
     QVector<int> billesRestantes;
     int couleurJoueur1;
     int couleurJoueur2;
+    int billesRestantesJoueur1;
+    int billesRestantesJoueur2;
 
     void initialiserCommunication();
     void initialiserEcran();

@@ -582,6 +582,8 @@ background-color: transparent;</string>
                <property name="font">
                 <font>
                  <pointsize>32</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="styleSheet">
@@ -599,7 +601,7 @@ background-color: transparent;</string>
               <widget class="QLabel" name="labelTitreFinPartie">
                <property name="font">
                 <font>
-                 <pointsize>52</pointsize>
+                 <pointsize>42</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
@@ -609,7 +611,7 @@ background-color: transparent;</string>
 background-color: transparent;</string>
                </property>
                <property name="text">
-                <string>Plug-in-pool</string>
+                <string>Fin de la partie !</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -619,28 +621,18 @@ background-color: transparent;</string>
             </layout>
            </item>
            <item>
-            <layout class="QVBoxLayout" name="verticalLayoutFinPartieMilieu"/>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="horizontalLayoutFinPartiePied">
+            <layout class="QVBoxLayout" name="verticalLayoutFinPartieMilieu">
              <item>
-              <widget class="QLabel" name="labelMessageFinPartie">
-               <property name="enabled">
-                <bool>true</bool>
-               </property>
+              <widget class="QLabel" name="labelVainqueur">
                <property name="font">
                 <font>
-                 <pointsize>24</pointsize>
+                 <pointsize>30</pointsize>
                  <weight>75</weight>
                  <bold>true</bold>
                 </font>
                </property>
-               <property name="styleSheet">
-                <string notr="true">border: none;
-background-color: transparent;</string>
-               </property>
                <property name="text">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fin de la partie !&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string/>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -648,6 +640,9 @@ background-color: transparent;</string>
               </widget>
              </item>
             </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutFinPartiePied"/>
            </item>
           </layout>
          </item>
