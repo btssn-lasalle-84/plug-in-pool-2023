@@ -156,7 +156,7 @@ public class Manche extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 communications[Communication.ECRAN] = Communication.getInstance();
-                communications[Communication.ECRAN].seConnecter("sedatech");
+                communications[Communication.ECRAN].seConnecter("EcranPool");
                 String trameDebut = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
                 Log.d(ProtocoleEcran.TAG,trameDebut);

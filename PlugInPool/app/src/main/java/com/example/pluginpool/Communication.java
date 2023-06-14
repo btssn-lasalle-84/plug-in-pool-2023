@@ -238,7 +238,7 @@ public class Communication
             Log.d(TAG,
                   "Appareil Bluetooth sélectionné : " + peripherique.getName() + " " +
                     peripherique.getAddress());
-            if(nomPeripherique.equals("sedatech"))
+            if(nomPeripherique.equals("EcranPool"))
             {
                 creerSocket(ECRAN);
             }
