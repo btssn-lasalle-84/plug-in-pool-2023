@@ -103,8 +103,6 @@ class EcranPool : public QWidget
     int          couleurJoueur1;   //<! couleur du joueur de gauche sur l'IHM
     int          couleurJoueur2;   //<! couleur du joueur de droite sur l'IHM
     QVector<int> billesRestantes;  //<! billes des joueurs
-    int billesRestantesJoueur1;    //<! billes du joueur de gauche sur l'IHM
-    int billesRestantesJoueur2;    //<! billes du joueur de roite sur l'IHM
 
     void initialiserCommunication();
     void initialiserEcran();

@@ -122,7 +122,7 @@ void EcranPool::afficherDureePartie()
     QString dureeFormatee =
       QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
     ui->labelDureePartie->setText(dureeFormatee);
-    ui->labelDureeTotale->setText(dureeFormatee);
+    //ui->labelDureeTotale->setText(dureeFormatee);
 }
 
 /**
@@ -252,10 +252,6 @@ void EcranPool::initialiserPartie()
 {
     couleurJoueur1         = Couleur::INCONNUE;
     couleurJoueur2         = Couleur::INCONNUE;
-    billesRestantes[0]     = NB_BILLES;
-    billesRestantes[1]     = NB_BILLES;
-    billesRestantesJoueur1 = NB_BILLES;
-    billesRestantesJoueur2 = NB_BILLES;
     ui->labelAnnonceTour->setText("");
     ui->labelAnnonceCoup->setText("");
 }
@@ -357,16 +353,22 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     {
         if(couleur == couleurJoueur1)
         {
-            --billesRestantesJoueur1;
-            --billesRestantes[joueurActif];
+            --billesRestantes[0];
+        }
+        else
+        {
+            --billesRestantes[1];
         }
     }
     else if(joueurActif == 1)
     {
         if(couleur == couleurJoueur2)
         {
-            --billesRestantesJoueur2;
-            --billesRestantes[joueurActif];
+            --billesRestantes[1];
+        }
+        else
+        {
+            --billesRestantes[0];
         }
     }
 
