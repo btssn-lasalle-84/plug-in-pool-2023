@@ -252,8 +252,14 @@ void EcranPool::initialiserPartie()
 {
     couleurJoueur1         = Couleur::INCONNUE;
     couleurJoueur2         = Couleur::INCONNUE;
+    billesRestantes[0]     = NB_BILLES;
+    billesRestantes[1]     = NB_BILLES;
     ui->labelAnnonceTour->setText("");
     ui->labelAnnonceCoup->setText("");
+    ui->labelNomJoueurGauche->setStyleSheet("color:black;");
+    ui->labelNomJoueurDroite->setStyleSheet("color:black;");
+    afficherBillesRestantesJoueurs();
+
 }
 
 /**
