@@ -351,13 +351,15 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     // la couleur
     if(joueurActif == 0)
     {
+        qDebug() << Q_FUNC_INFO << "joueurActif" << joueurActif
+                << "couleur" << couleur
+                << "couleurJoueur1" << couleurJoueur1
+                << "couleurJoueur2" << couleurJoueur2
+                << "billesRestantesJoueur1" << billesRestantes[0]
+                << "billesRestantesJoueur2" << billesRestantes[1];
         if(couleur == couleurJoueur1)
         {
             --billesRestantes[0];
-        }
-        else
-        {
-            --billesRestantes[1];
         }
     }
     else if(joueurActif == 1)
@@ -365,10 +367,6 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         if(couleur == couleurJoueur2)
         {
             --billesRestantes[1];
-        }
-        else
-        {
-            --billesRestantes[0];
         }
     }
 
