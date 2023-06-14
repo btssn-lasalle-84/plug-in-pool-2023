@@ -15,8 +15,6 @@
 
 using namespace std;
 
-EcranPool* EcranPool::ecranPoolInstance = nullptr;
-
 /**
  * @brief Constructeur de la classe EcranPool
  *
@@ -35,10 +33,7 @@ EcranPool::EcranPool(QWidget* parent) :
     initialiserJoueurs();
     initialiserHeure();
     initialiserDecompteManche();
-    couleurJoueur1 = Couleur::INCONNUE;
-    couleurJoueur2 = Couleur::INCONNUE;
-    billesRestantesJoueur1 = NB_BILLES;
-    billesRestantesJoueur2 = NB_BILLES;
+    initialiserPartie();
 
 #ifdef TEST_EcranPool
     initialiserRaccourcisClavier();
@@ -127,12 +122,7 @@ void EcranPool::afficherDureePartie()
     QString dureeFormatee =
       QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
     ui->labelDureePartie->setText(dureeFormatee);
-
-    // Affiche dans l'écran FinPartie la durée totale de la partie
-    /*QString dureeTotaleFormatee = QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
-    QMetaObject::invokeMethod(ui->labelDureeTotale, "setText", Q_ARG(QString, dureeTotaleFormatee));
-
-    ui->labelDureeTotale = new QLabel();*/
+    ui->labelDureeTotale->setText(dureeFormatee);
 }
 
 /**
@@ -227,7 +217,7 @@ void EcranPool::initialiserJoueurs()
     billesRestantes.push_back(NB_BILLES);
 }
 
-/**table
+/**
  * @fn EcranPool::initialiserHeure
  * @brief Initialise l'affichage de l'heure
  */
@@ -255,6 +245,22 @@ void EcranPool::initialiserDecompteManche()
 }
 
 /**
+ * @fn EcranPool::initialiserPartie
+ * @brief Initialise les paramètres d'une partie
+ */
+void EcranPool::initialiserPartie()
+{
+    couleurJoueur1         = Couleur::INCONNUE;
+    couleurJoueur2         = Couleur::INCONNUE;
+    billesRestantes[0]     = NB_BILLES;
+    billesRestantes[1]     = NB_BILLES;
+    billesRestantesJoueur1 = NB_BILLES;
+    billesRestantesJoueur2 = NB_BILLES;
+    ui->labelAnnonceTour->setText("");
+    ui->labelAnnonceCoup->setText("");
+}
+
+/**
  * @brief Affiche l'empochage
  */
 void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
@@ -267,25 +273,30 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     ui->labelNumeroTable->setText("Table n° " +
                                   QString::number(numeroTable + 1));
 
+    decompte = TEMPS_TOUR;
 
     // Passer à l'écran de fin si la bille noire est empochée
-    if (couleur == Couleur::NOIRE)
+    if(couleur == Couleur::NOIRE)
     {
-        if (joueurActif == 0)
+        if(joueurActif == 0)
         {
-            // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de partie
+            // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de
+            // partie
+            ui->labelVainqueur->setText(
+              "Bille noire empochée par " + nomJoueur1 + " :(\n " + nomJoueur2 +
+              " remporte donc la partie !"); // Afficher le nom du vainqueur
+                                             // (joueur 2)
             afficherEcranFinPartie();
-            ui->labelVainqueur->setText("Bille noire empochée par "
-                                        + nomJoueur1 + " :(\n "+ nomJoueur2
-                                        + " remporte donc la partie !"); // Afficher le nom du vainqueur (joueur 2)
         }
-        else
+        else if(joueurActif == 1)
         {
-            // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de partie
+            // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de
+            // partie
+            ui->labelVainqueur->setText(
+              "Bille noire empochée par " + nomJoueur2 + " :(\n " + nomJoueur1 +
+              " remporte donc la partie !"); // Afficher le nom du vainqueur
+                                             // (joueur 1)
             afficherEcranFinPartie();
-            ui->labelVainqueur->setText("Bille noire empochée par "
-                                        + nomJoueur2 + " :(\n " + nomJoueur1
-                                        + " remporte donc la partie !"); // Afficher le nom du vainqueur (joueur 1)
         }
         return;
     }
@@ -298,7 +309,7 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
           " dans poche n°" + QString::number(numeroPoche + 1) + " par " +
           nomJoueur1);
     }
-    else
+    else if(joueurActif == 1)
     {
         ui->labelAnnonceCoup->setText(
           "Bille " + EcranPool::recupererNomCouleur(couleur) +
@@ -306,15 +317,12 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
           nomJoueur2);
     }
 
-    decompte = TEMPS_TOUR;
-
     if(couleur > Couleur::JAUNE)
         return;
 
-    QVector<QString> couleurs;
-
     // Assigner la couleur de la première bille rentrée au joueur
-    if(couleurJoueur1 == Couleur::INCONNUE && couleurJoueur2 == Couleur::INCONNUE)
+    if(couleurJoueur1 == Couleur::INCONNUE &&
+       couleurJoueur2 == Couleur::INCONNUE)
     {
         if(joueurActif == 0)
         {
@@ -342,55 +350,45 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         ui->labelNomJoueurGauche->setStyleSheet(couleurJoueur1Style);
         ui->labelNomJoueurDroite->setStyleSheet(couleurJoueur2Style);
     }
-    // Décompte du nombre de billes restantes pour chaque joueur en fonction de la couleur et
-    //passe à l'écran FinPartie si le nombre de billes restantes atteint 0
-    if (couleur == Couleur::ROUGE)
+
+    // Décompte du nombre de billes restantes pour chaque joueur en fonction de
+    // la couleur
+    if(joueurActif == 0)
     {
-        if (joueurActif == 0)
+        if(couleur == couleurJoueur1)
         {
-            --billesRestantes[0]; // Décrémenter les billes du joueur 0 (ROUGE)
-            if (billesRestantes[0] == 0)
-            {
-                // Joueur 0 (ROUGE) a gagné
-                afficherEcranFinPartie();
-                ui->labelVainqueur->setText("Bravo à " + nomJoueur1 + " qui a empoché.e toutes ses billes ! ");
-            }
-        }
-        else
-        {
-            --billesRestantes[1]; // Décrémenter les billes du joueur 1 (JAUNE)
-            if (billesRestantes[1] == 0)
-            {
-                // Joueur 1 (JAUNE) a gagné
-                afficherEcranFinPartie();
-                ui->labelVainqueur->setText("Bravo à " + nomJoueur2 + " qui a empoché.e toutes ses billes ! ");
-            }
+            --billesRestantesJoueur1;
+            --billesRestantes[joueurActif];
         }
     }
-    else if (couleur == Couleur::JAUNE)
+    else if(joueurActif == 1)
     {
-        if (joueurActif == 0)
+        if(couleur == couleurJoueur2)
         {
-            --billesRestantes[1]; // Décrémenter les billes du joueur 1 (JAUNE)
-            if (billesRestantes[1] == 0)
-            {
-                // Joueur 1 (JAUNE) a gagné
-                afficherEcranFinPartie();
-                ui->labelVainqueur->setText("Bravo à " + nomJoueur2 + " qui a empoché.e toutes ses billes ! ");
-            }
-        }
-        else
-        {
-            --billesRestantes[0]; // Décrémenter les billes du joueur 0 (ROUGE)
-            if (billesRestantes[0] == 0)
-            {
-                // Joueur 0 (ROUGE) a gagné
-                afficherEcranFinPartie();
-                ui->labelVainqueur->setText("Bravo à " + nomJoueur1 + " qui a empoché.e toutes ses billes ! ");
-            }
+            --billesRestantesJoueur2;
+            --billesRestantes[joueurActif];
         }
     }
-        afficherBillesRestantesJoueurs();
+
+    afficherBillesRestantesJoueurs();
+
+    // Passe à l'écran FinPartie si le nombre de billes restantes atteint 0
+    if(billesRestantes[joueurActif] == 0)
+    {
+        if(joueurActif == 0)
+        {
+            ui->labelVainqueur->setText(
+              "Bravo à " + nomJoueur1 +
+              " qui a empoché.e toutes ses billes ! ");
+        }
+        else if(joueurActif == 1)
+        {
+            ui->labelVainqueur->setText(
+              "Bravo à " + nomJoueur2 +
+              " qui a empoché.e toutes ses billes ! ");
+        }
+        afficherEcranFinPartie();
+    }
 }
 
 /**
@@ -427,14 +425,7 @@ void EcranPool::afficherNomsJoueurs(int     numeroTable,
     ui->labelNomJoueurGauche->setText(nomJoueur1);
     ui->labelNomJoueurDroite->setText(nomJoueur2);
 
-    ui->labelAnnonceTour->setText("");
-    ui->labelAnnonceCoup->setText("");
-
-    couleurJoueur1 = Couleur::INCONNUE;
-    couleurJoueur2 = Couleur::INCONNUE;
-
-    billesRestantesJoueur1 = NB_BILLES;
-    billesRestantesJoueur2 = NB_BILLES;
+    initialiserPartie();
 }
 
 /**

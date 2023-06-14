@@ -91,10 +91,7 @@ class EcranPool : public QWidget
     Ui::EcranPool* ui;      //<! la fenêtre
     Joueurs*       joueurs; //<! les joueurs
     CommunicationBluetooth*
-                      communicationBluetooth; //<! la communication Bluetooth
-    static EcranPool* ecranPoolInstance;
-    // QLabel* labelNumeroTable; // Déclaration du QLabel qui contient le numéro
-    // de la table
+                     communicationBluetooth; //<! la communication Bluetooth
     QVector<QLabel*> labelsHeure; //<! les labels pour l'affichage de l'heure
     qint64       dureePartie; //<! pour l'affichage de la durée d'une partie
     QTimer*      minuteurDecompte; //<! pour gérer le temps d'un tour
@@ -102,19 +99,19 @@ class EcranPool : public QWidget
     int          joueurActif;      //<! 0 pour nomJoueur1 et 1 pour nomJoueur2
     QString      nomJoueur1;       //<! Correspond au joueur de gauche sur l'IHM
     QString      nomJoueur2;       //<! Correspond au joueur de droite sur l'IHM
-    QVector<int> billesRestantes;
     int          decompte;         //<! le temps d'un tour
-    int couleurJoueur1;
-    int couleurJoueur2;
-    int billesRestantesJoueur1;
-    int billesRestantesJoueur2;
-    //int dureeTotale = 0;
+    int          couleurJoueur1;   //<! couleur du joueur de gauche sur l'IHM
+    int          couleurJoueur2;   //<! couleur du joueur de droite sur l'IHM
+    QVector<int> billesRestantes;  //<! billes des joueurs
+    int billesRestantesJoueur1;    //<! billes du joueur de gauche sur l'IHM
+    int billesRestantesJoueur2;    //<! billes du joueur de roite sur l'IHM
 
     void initialiserCommunication();
     void initialiserEcran();
     void initialiserJoueurs();
     void initialiserHeure();
     void initialiserDecompteManche();
+    void initialiserPartie();
 #ifdef TEST_EcranPool
     void initialiserRaccourcisClavier();
 #endif
