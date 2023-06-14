@@ -656,7 +656,7 @@ background-color: transparent;</string>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Statistiques :</string>
+                  <string/>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignHCenter|Qt::AlignTop</set>

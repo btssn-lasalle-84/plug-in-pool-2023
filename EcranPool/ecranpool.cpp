@@ -135,7 +135,7 @@ void EcranPool::afficherDecompteManche()
     if(ui->ecrans->currentIndex() == EcranPool::Ecran::Partie)
     {
         // Afficher le décompte dans le QLabel
-        ui->labelDecompteManche->setText(QString::number(decompte));
+        ui->labelDecompteManche->setText(QString::number(decompte) + " sec");
 
         // Décrémente le décompte
         --decompte;
@@ -279,7 +279,7 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur1 + " :(\n " + nomJoueur2 +
+              "Bille noire empochée par " + nomJoueur1 + " :(\n\n  " + nomJoueur2 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 2)
             afficherEcranFinPartie();
@@ -289,7 +289,7 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur2 + " :(\n " + nomJoueur1 +
+              "Bille noire empochée par " + nomJoueur2 + " :(\n\n  " + nomJoueur1 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 1)
             afficherEcranFinPartie();
@@ -332,12 +332,12 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         }
         QString couleurJoueur1Style = "color: ";
         QString couleurJoueur2Style = "color: ";
-        if(couleurJoueur1 == Couleur::JAUNE)
+        if(couleurJoueur1 == Couleur::JAUNE || couleurJoueur2 == Couleur::ROUGE)
         {
             couleurJoueur1Style += "yellow;";
             couleurJoueur2Style += "red;";
         }
-        else if(couleurJoueur1 == Couleur::ROUGE)
+        else if(couleurJoueur1 == Couleur::ROUGE || couleurJoueur2 == Couleur::JAUNE)
         {
             couleurJoueur1Style += "red;";
             couleurJoueur2Style += "yellow;";
@@ -361,12 +361,20 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         {
             --billesRestantes[0];
         }
+        else
+        {
+            --billesRestantes[1];
+        }
     }
     else if(joueurActif == 1)
     {
         if(couleur == couleurJoueur2)
         {
             --billesRestantes[1];
+        }
+        else
+        {
+            --billesRestantes[0];
         }
     }
 
@@ -379,13 +387,13 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
         {
             ui->labelVainqueur->setText(
               "Bravo à " + nomJoueur1 +
-              " qui a empoché.e toutes ses billes ! ");
+              " qui a empoché toutes ses billes ! ");
         }
         else if(joueurActif == 1)
         {
             ui->labelVainqueur->setText(
               "Bravo à " + nomJoueur2 +
-              " qui a empoché.e toutes ses billes ! ");
+              " qui a empoché toutes ses billes ! ");
         }
         afficherEcranFinPartie();
     }
