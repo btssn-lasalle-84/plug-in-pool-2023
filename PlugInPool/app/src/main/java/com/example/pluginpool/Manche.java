@@ -156,7 +156,7 @@ public class Manche extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 communications[Communication.ECRAN] = Communication.getInstance();
-                communications[Communication.ECRAN].seConnecter("EcranPool");
+                communications[Communication.ECRAN].seConnecter("sedatech");
                 String trameDebut = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
                 Log.d(ProtocoleEcran.TAG,trameDebut);
@@ -313,7 +313,7 @@ public class Manche extends AppCompatActivity
             indexJoueurGagnant = joueurActif;
         }
         else {
-            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
+            //Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
         }
 
@@ -344,14 +344,16 @@ public class Manche extends AppCompatActivity
         Log.d(TAG, "traiterTrameService( 0b" + ProtocoleTable.byteToBinaryString(trame) + ")");
         if(mancheDemarree)
         {
+            joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
+
             if(communications[Communication.ECRAN] != null)
             {
+                Log.d(TAG, "traiterTrameService() joueurActif = " + joueurActif);
                 String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameEnvoie);
                 Log.d(ProtocoleEcran.TAG,trameEnvoie);
             }
 
-            joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
             manche.add(new Vector<int[]>());
             if(couleursDefinies)
             {
