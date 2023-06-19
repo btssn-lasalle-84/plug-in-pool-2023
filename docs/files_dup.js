@@ -8,15 +8,19 @@ var files_dup =
     [ "BlackBall.java", "_black_ball_8java.html", [
       [ "BlackBall", "classcom_1_1example_1_1pluginpool_1_1_black_ball.html", "classcom_1_1example_1_1pluginpool_1_1_black_ball" ]
     ] ],
+    [ "cercle.xml", "cercle_8xml.html", null ],
     [ "colors.xml", "colors_8xml.html", null ],
     [ "Communication.java", "_communication_8java.html", [
       [ "Communication", "classcom_1_1example_1_1pluginpool_1_1_communication.html", "classcom_1_1example_1_1pluginpool_1_1_communication" ]
     ] ],
+    [ "communicationbluetooth.cpp", "communicationbluetooth_8cpp.html", null ],
+    [ "communicationbluetooth.h", "communicationbluetooth_8h.html", "communicationbluetooth_8h" ],
     [ "configuration_manche.xml", "configuration__manche_8xml.html", null ],
     [ "ConfigurationManche.java", "_configuration_manche_8java.html", [
       [ "ConfigurationManche", "classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html", "classcom_1_1example_1_1pluginpool_1_1_configuration_manche" ]
     ] ],
     [ "data_extraction_rules.xml", "data__extraction__rules_8xml.html", null ],
+    [ "dimensions.xml", "dimensions_8xml.html", null ],
     [ "ecran_principal.xml", "ecran__principal_8xml.html", null ],
     [ "ecranpool.cpp", "ecranpool_8cpp.html", null ],
     [ "ecranpool.h", "ecranpool_8h.html", "ecranpool_8h" ],
@@ -35,6 +39,7 @@ var files_dup =
     [ "FinDeManche.java", "_fin_de_manche_8java.html", [
       [ "FinDeManche", "classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html", "classcom_1_1example_1_1pluginpool_1_1_fin_de_manche" ]
     ] ],
+    [ "fond_toast.xml", "fond__toast_8xml.html", null ],
     [ "Historique.java", "_historique_8java.html", [
       [ "Historique", "classcom_1_1example_1_1pluginpool_1_1_historique.html", "classcom_1_1example_1_1pluginpool_1_1_historique" ]
     ] ],
@@ -65,7 +70,9 @@ var files_dup =
       [ "ProtocoleTable", "classcom_1_1example_1_1pluginpool_1_1_protocole_table.html", "classcom_1_1example_1_1pluginpool_1_1_protocole_table" ]
     ] ],
     [ "rond.xml", "rond_8xml.html", null ],
+    [ "spinner_element.xml", "spinner__element_8xml.html", null ],
     [ "strings.xml", "strings_8xml.html", null ],
     [ "values/themes.xml", "values_2themes_8xml.html", null ],
-    [ "values-night/themes.xml", "values-night_2themes_8xml.html", null ]
+    [ "values-night/themes.xml", "values-night_2themes_8xml.html", null ],
+    [ "toast.xml", "toast_8xml.html", null ]
 ];

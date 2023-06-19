@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -96,6 +96,9 @@ $(document).ready(function(){initNavTree('ecranpool_8h.html',''); initResizable(
 <p>Déclaration de la classe <a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a>.  
 <a href="#details">Plus de détails...</a></p>
 <div class="textblock"><code>#include &lt;QtWidgets&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
 </div>
 <p><a href="ecranpool_8h_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
@@ -112,9 +115,15 @@ Espaces de nommage</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a64a7ff66b89b7af9196343d8e8ededb3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ecranpool_8h.html#a64a7ff66b89b7af9196343d8e8ededb3">NB_BILLES</a>&#160;&#160;&#160;7</td></tr>
+<tr class="memdesc:a64a7ff66b89b7af9196343d8e8ededb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le nombre de billes par joueur.  <a href="ecranpool_8h.html#a64a7ff66b89b7af9196343d8e8ededb3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a64a7ff66b89b7af9196343d8e8ededb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13ff9d8f0c9371d77867e51dc1eb7e2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ecranpool_8h.html#a13ff9d8f0c9371d77867e51dc1eb7e2a">PLEIN_ECRAN</a></td></tr>
 <tr class="memdesc:a13ff9d8f0c9371d77867e51dc1eb7e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour activer le mode plein écran sur la Raspberry Pi.  <a href="ecranpool_8h.html#a13ff9d8f0c9371d77867e51dc1eb7e2a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a13ff9d8f0c9371d77867e51dc1eb7e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51050f9df4b81a9e1bb5cb69a35a153d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ecranpool_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d">TEMPS_TOUR</a>&#160;&#160;&#160;45</td></tr>
+<tr class="memdesc:a51050f9df4b81a9e1bb5cb69a35a153d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le temps pour jouer en secondes.  <a href="ecranpool_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a51050f9df4b81a9e1bb5cb69a35a153d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a390b37b61e0115135e59830627137dba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ecranpool_8h.html#a390b37b61e0115135e59830627137dba">TEST_EcranPool</a></td></tr>
 <tr class="memdesc:a390b37b61e0115135e59830627137dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pour le mode avec les raccourcis clavier.  <a href="ecranpool_8h.html#a390b37b61e0115135e59830627137dba">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a390b37b61e0115135e59830627137dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,6 +135,24 @@ Macros</h2></td></tr>
 
 <p class="definition">Définition dans le fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
 </div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a64a7ff66b89b7af9196343d8e8ededb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64a7ff66b89b7af9196343d8e8ededb3">&#9670;&nbsp;</a></span>NB_BILLES</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NB_BILLES&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Le nombre de billes par joueur. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00039">39</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+</div>
+</div>
 <a id="a13ff9d8f0c9371d77867e51dc1eb7e2a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a13ff9d8f0c9371d77867e51dc1eb7e2a">&#9670;&nbsp;</a></span>PLEIN_ECRAN</h2>
 
@@ -140,7 +167,25 @@ Macros</h2></td></tr>
 
 <p>Pour activer le mode plein écran sur la Raspberry Pi. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00024">24</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00027">27</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+
+</div>
+</div>
+<a id="a51050f9df4b81a9e1bb5cb69a35a153d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51050f9df4b81a9e1bb5cb69a35a153d">&#9670;&nbsp;</a></span>TEMPS_TOUR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TEMPS_TOUR&#160;&#160;&#160;45</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Le temps pour jouer en secondes. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00033">33</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
 
 </div>
 </div>
@@ -158,7 +203,7 @@ Macros</h2></td></tr>
 
 <p>Pour le mode avec les raccourcis clavier. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00018">18</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="ecranpool_8h_source.html#l00021">21</a> du fichier <a class="el" href="ecranpool_8h_source.html">ecranpool.h</a>.</p>
 
 </div>
 </div>
@@ -169,7 +214,7 @@ Macros</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_9a3426a454b15efde38b173c709dc456.html">EcranPool</a></li><li class="navelem"><a class="el" href="ecranpool_8h.html">ecranpool.h</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 23:25:27 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

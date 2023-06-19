@@ -3,7 +3,7 @@
 \author Clément TRICHET <<clement.trichet.pro@gmail.com>>
 \author Benjamin GAUME <<benjamin.gaume.pro@gmail.com>>
 \date 2023
-\version 1.0
+\version 1.1
 \see https://github.com/btssn-lasalle-84/plug-in-pool-2023
 
 

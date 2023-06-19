@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -90,17 +90,38 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>activer()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a207b049b5e42833df8b3326fbc277820">com.example.pluginpool.Communication</a>
 </li>
+<li>activerInteractions()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a5bcfde2d59bc0b0c8e5fb3caa1e53c4e">com.example.pluginpool.ConfigurationManche</a>
+</li>
 <li>actualiserEtatConnexionTable()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a1743f80330d33524829010e4c6c4c312">com.example.pluginpool.ConfigurationManche</a>
 </li>
 <li>actualiserJoueurs()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a37f726dc940c001b74a970f094fda263">com.example.pluginpool.BaseDeDonnees</a>
 </li>
+<li>actualiserManches()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a3aae8381198307d7167f1489c50e6b98">com.example.pluginpool.Historique</a>
+</li>
+<li>actualiserNoms()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#aaf3e878efa1d875fad1519e7037e22b6">com.example.pluginpool.Historique</a>
+</li>
 <li>addition_isCorrect()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_example_unit_test.html#ad2e5544350b1f4ba5587a9c692616021">com.example.pluginpool.ExampleUnitTest</a>
 </li>
+<li>aEmpocheBilleBlanche()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#add40cd0a3854efdc646d7d872ce50698">com.example.pluginpool.Manche</a>
+</li>
 <li>afficherBillesRestantes()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#ad2129514127502651728bcfbd30021fb">com.example.pluginpool.Manche</a>
+</li>
+<li>afficherBillesRestantesJoueurs()
+: <a class="el" href="class_ecran_pool.html#aa49f99665fbf995dda7adf53eec719f9">EcranPool</a>
+</li>
+<li>afficherChangementJoueur()
+: <a class="el" href="class_ecran_pool.html#a9c66c975adc7499482e6d3d28cbd8c5b">EcranPool</a>
+</li>
+<li>afficherConnexion()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acd7855d4c46eeed88910df883dbda630">com.example.pluginpool.ConfigurationManche</a>
 </li>
 <li>afficherDecompteManche()
 : <a class="el" href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">EcranPool</a>
@@ -126,11 +147,26 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>afficherEcranSuivant()
 : <a class="el" href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">EcranPool</a>
 </li>
+<li>afficherEmpochage()
+: <a class="el" href="class_ecran_pool.html#a14b1ae3f5936d38b08e79f2b0fa4225a">EcranPool</a>
+</li>
+<li>afficherFenetreJoueur()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#ad3e9f6226f589fc42751ecc2cb877ea7">com.example.pluginpool.Historique</a>
+</li>
+<li>afficherFenetreManche()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a254eb53815f5e5dea0ae69b5e30d8590">com.example.pluginpool.Historique</a>
+</li>
 <li>afficherHeure()
 : <a class="el" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">EcranPool</a>
 </li>
+<li>afficherNomsJoueurs()
+: <a class="el" href="class_ecran_pool.html#a05f055fae1061edc1a05f068284986f8">EcranPool</a>
+</li>
+<li>afficherTablesDisponibles()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#ac1d0edf2d9906ab46da9b2123b8cb0e5">com.example.pluginpool.ConfigurationManche</a>
+</li>
 <li>ajouterJoueur()
-: <a class="el" href="class_joueurs.html#a19449e9d7555e963128b281177736b41">Joueurs</a>
+: <a class="el" href="class_joueurs.html#a36e21488785816929604b847ac5aa9c9">Joueurs</a>
 </li>
 <li>ajouterManche()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a73caa7101c4594f9d30d18007e6d4d14">com.example.pluginpool.BaseDeDonnees</a>
@@ -140,6 +176,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>ajouterNomsJoueurs()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a48710690feb008b6fa810caafd646ca9">com.example.pluginpool.ConfigurationManche</a>
+</li>
+<li>arreterCommunication()
+: <a class="el" href="class_communication_bluetooth.html#a84515500c1cc66f05d5e462aff891059">CommunicationBluetooth</a>
 </li>
 <li>arreterCompteARebours()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#ac2ccecbaeefc1c8e2637a9ae43e258b8">com.example.pluginpool.Manche</a>
@@ -158,21 +197,54 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>changementJoueur()
+: <a class="el" href="class_communication_bluetooth.html#a0a3ece5127e0515b815a536865bd2c31">CommunicationBluetooth</a>
+</li>
+<li>clientConnecte()
+: <a class="el" href="class_communication_bluetooth.html#a3cb82e81fc08e0fed3c51d337fd8097e">CommunicationBluetooth</a>
+</li>
+<li>clientDeconnecte()
+: <a class="el" href="class_communication_bluetooth.html#a7d8eb47a44e62784a8327d1efd83f2f1">CommunicationBluetooth</a>
+</li>
 <li>Communication()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a3d5657fc92275d24119a2289bc2e33a4">com.example.pluginpool.Communication</a>
 </li>
+<li>CommunicationBluetooth()
+: <a class="el" href="class_communication_bluetooth.html#aa759c75b0df7f7e237eec495f156bba0">CommunicationBluetooth</a>
+</li>
+<li>connecterClient()
+: <a class="el" href="class_communication_bluetooth.html#abf488c72f088a575b63008d3eab5cdf0">CommunicationBluetooth</a>
+</li>
 <li>creerSocket()
-: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#aea3c34e161277168ca4c263587481b0b">com.example.pluginpool.Communication</a>
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a64cc0c42f3415c110ee95e24a1f52071">com.example.pluginpool.Communication</a>
 </li>
 </ul>
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
+<li>dateEtJoueursVersDate()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a32a844f1e2543e60bed8cd7e00415342">com.example.pluginpool.Historique</a>
+</li>
+<li>dateVersDateEtJoueurs()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a54474b840d6b8d55360b3f9316c63d0b">com.example.pluginpool.Historique</a>
+</li>
+<li>decoderTrame()
+: <a class="el" href="class_communication_bluetooth.html#aaf08bd9aa8b7032823397eda659daabd">CommunicationBluetooth</a>
+</li>
 <li>deconnecter()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#ad8687d14d8cc2e92f6738179aae64804">com.example.pluginpool.Communication</a>
 </li>
+<li>deconnecterClient()
+: <a class="el" href="class_communication_bluetooth.html#a211cbfcb88bb32085453d58a058ef5e1">CommunicationBluetooth</a>
+</li>
+<li>demarrerCommunication()
+: <a class="el" href="class_communication_bluetooth.html#a59dd31c1a7ca874c0d9dbdde712e8c60">CommunicationBluetooth</a>
+</li>
 <li>demarrerCompteARebours()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a7d0a755b742cdc036aa8dbe2aafbaba5">com.example.pluginpool.Manche</a>
+</li>
+<li>desactiverInteractions()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a47d47c6fb7f9d934e90a00c52cca0387">com.example.pluginpool.ConfigurationManche</a>
 </li>
 </ul>
 
@@ -180,6 +252,12 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <h3><a id="index_e"></a>- e -</h3><ul>
 <li>EcranPool()
 : <a class="el" href="class_ecran_pool.html#a3ea2f80b89371b7befca3fa020581ebe">EcranPool</a>
+</li>
+<li>effacer()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a2a82e964230bacbba32a8f145e9ab41c">com.example.pluginpool.BaseDeDonnees</a>
+</li>
+<li>empochage()
+: <a class="el" href="class_communication_bluetooth.html#ab98f4f58ac2d31633852464011f8d6d5">CommunicationBluetooth</a>
 </li>
 <li>empocherBilleBlanche()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a91a5acf163a1b80b3fb68ae4ebc2cf95">com.example.pluginpool.Manche</a>
@@ -207,12 +285,18 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getAdressePeripheriqueLocal()
+: <a class="el" href="class_communication_bluetooth.html#adfa165ac95d015b93567f33c421040c7">CommunicationBluetooth</a>
+</li>
 <li>getInstance()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a8fa64542286924786ce23792964bb893">com.example.pluginpool.BaseDeDonnees</a>
-, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a4e6b63012122db29b7283fe86bc29743">com.example.pluginpool.Communication</a>
+, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a6af48ae6e95b8854a66e69a32955db30">com.example.pluginpool.Communication</a>
 </li>
 <li>getJoueurs()
 : <a class="el" href="class_joueurs.html#a865aaa42d6fed682c03a5f4c3f9db38e">Joueurs</a>
+</li>
+<li>getMancheId()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a83aa2f1da4bca21e78ccee76e381663c">com.example.pluginpool.BaseDeDonnees</a>
 </li>
 <li>getManchesTriees()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a9b4e5c5cf39748c370f03557fe08b611">com.example.pluginpool.BaseDeDonnees</a>
@@ -228,6 +312,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>getNomJoueur()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ad6d2af110949622aea44d0c877c5158b">com.example.pluginpool.BaseDeDonnees</a>
+</li>
+<li>getNomPeripheriqueLocal()
+: <a class="el" href="class_communication_bluetooth.html#a6a36e45df13d18916ea5c7a85f6df6eb">CommunicationBluetooth</a>
 </li>
 <li>getNomsJoueurs()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ada3e5bb23298a549ae705ce90e9743ff">com.example.pluginpool.BaseDeDonnees</a>
@@ -263,6 +350,10 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>initialiserBaseDeDonnees()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a41add496a0dcb3b5a0cafff8884de25d">com.example.pluginpool.BaseDeDonnees</a>
 </li>
+<li>initialiserCommunication()
+: <a class="el" href="class_communication_bluetooth.html#ab92dd0c04cbc46cc57797b7d457ac1be">CommunicationBluetooth</a>
+, <a class="el" href="class_ecran_pool.html#a49c8c828f3bcff14cf25aa36f73dcf88">EcranPool</a>
+</li>
 <li>initialiserDecompteManche()
 : <a class="el" href="class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b">EcranPool</a>
 </li>
@@ -279,8 +370,14 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>initialiserJoueurs()
 : <a class="el" href="class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3">EcranPool</a>
 </li>
+<li>initialiserPartie()
+: <a class="el" href="class_ecran_pool.html#a792d5152a6cc909fcc7791d68b5025e8">EcranPool</a>
+</li>
 <li>initialiserRaccourcisClavier()
 : <a class="el" href="class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2">EcranPool</a>
+</li>
+<li>initialiserRechercheTables()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#ab35714757c157c1e94a67891036e2fa6">com.example.pluginpool.Communication</a>
 </li>
 <li>initialiserRessources()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#abd003d24a36724eb757c7942162b00d1">com.example.pluginpool.ConfigurationManche</a>
@@ -304,7 +401,28 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </ul>
 
 
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>lireDonnees()
+: <a class="el" href="class_communication_bluetooth.html#a255f8ed17c598f0b59bbb241b17e7848">CommunicationBluetooth</a>
+</li>
+</ul>
+
+
+<h3><a id="index_n"></a>- n -</h3><ul>
+<li>nomsJoueurs()
+: <a class="el" href="class_communication_bluetooth.html#a03773fb20aacbf5b1278a0fd488c4928">CommunicationBluetooth</a>
+</li>
+</ul>
+
+
 <h3><a id="index_o"></a>- o -</h3><ul>
+<li>onActivityResult()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a072fe9a09372a16d93d13699df2d2c6f">com.example.pluginpool.ConfigurationManche</a>
+</li>
+<li>onBackPressed()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#ac8405a33b7f21f99f59c21f912f9e039">com.example.pluginpool.ConfigurationManche</a>
+, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#abd6d4c196de71be97374e1d4c270c9d9">com.example.pluginpool.Manche</a>
+</li>
 <li>onCreate()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#acc6843f172f494ad869f5599c906beca">com.example.pluginpool.BaseDeDonnees</a>
 , <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acceaa606a70e8791a21090fe4cd59ae9">com.example.pluginpool.ConfigurationManche</a>
@@ -356,6 +474,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>recommencer()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a001344687517b3ba2f238a53b412d997">com.example.pluginpool.Manche</a>
 </li>
+<li>recupererNomCouleur()
+: <a class="el" href="class_ecran_pool.html#ab8ecd477120e4642a3c3636b2476af6e">EcranPool</a>
+</li>
 <li>reinitialiserAttributs()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#a55e6c25976e0a5888978409884ff743a">com.example.pluginpool.Manche</a>
 </li>
@@ -369,18 +490,35 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>seDeconnecter()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a89fc6183c44be9f8f63a45a5cc8a2387">com.example.pluginpool.Communication</a>
 </li>
+<li>setEntete()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html#a7ef1d2b6265b68f3ee683b1537075639">com.example.pluginpool.FinDeManche</a>
+</li>
 <li>setHandler()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#ace65378d82eec994ad4f122dc808554e">com.example.pluginpool.Communication</a>
 </li>
+<li>setNbFautes()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html#a195e72e2993dbdef26d0deff4819bceb">com.example.pluginpool.FinDeManche</a>
+</li>
 <li>setResultats()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_fin_de_manche.html#ad7fa4d381b513fad405d6a2017caced4">com.example.pluginpool.FinDeManche</a>
-, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique_manche.html#aae2f08ceb2fd99061c0f5f1702f882a4">com.example.pluginpool.HistoriqueManche</a>
+, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique_manche.html#a4ffa44e1ad76e175bc54d872d2903e4c">com.example.pluginpool.HistoriqueManche</a>
+</li>
+<li>supprimerInstance()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a1400e08b59012329c3fedd89965d20fd">com.example.pluginpool.Communication</a>
 </li>
 <li>supprimerJoueur()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a2062d1cf560754258a919ae6d8c40266">com.example.pluginpool.BaseDeDonnees</a>
 </li>
+<li>supprimerJoueurs()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a9c8664364d664d4397ece7a55bb55f87">com.example.pluginpool.BaseDeDonnees</a>
+, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#ac4c737d4d1a0454540cb83d25dc19ad3">com.example.pluginpool.Historique</a>
+</li>
 <li>supprimerManche()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a5a743face7e286368edda5d8fab01444">com.example.pluginpool.BaseDeDonnees</a>
+</li>
+<li>supprimerManches()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a42e8db2c157283a6e47a7920d05e395f">com.example.pluginpool.BaseDeDonnees</a>
+, <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a95a771e4793e5a00091305da6de38a7c">com.example.pluginpool.Historique</a>
 </li>
 </ul>
 
@@ -400,6 +538,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index__7E"></a>- ~ -</h3><ul>
+<li>~CommunicationBluetooth()
+: <a class="el" href="class_communication_bluetooth.html#a13c72d24359f40c204e94f3ef1ab6fd3">CommunicationBluetooth</a>
+</li>
 <li>~EcranPool()
 : <a class="el" href="class_ecran_pool.html#a8eb20bac7d51d9514ddffc488c108ec8">EcranPool</a>
 </li>
@@ -413,7 +554,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 23:25:27 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>
