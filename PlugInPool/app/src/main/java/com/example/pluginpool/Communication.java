@@ -46,28 +46,30 @@ public class Communication
     public final static int CONNEXION_BLUETOOTH   = 0;
     public final static int RECEPTION_BLUETOOTH   = 1;
     public final static int DECONNEXION_BLUETOOTH = 2;
-    public final static int ERREUR_BLUETOOTH = 3;
-    public final static int TABLE = 0;
-    public final static int ECRAN = 1;
-    public static int NB_TABLES = 4;
-    private static int NB_INSTANCES = 2;
-    public final static String[] TABLES = {"pool-1", "pool-2", "pool-3", "pool-4"};
+    public final static int ERREUR_BLUETOOTH      = 3;
+    public final static int TABLE                 = 0;
+    public final static int ECRAN                 = 1;
+    public static int       NB_TABLES             = 4;
+    private static int      NB_INSTANCES          = 2;
+    public final static String[] TABLES           = { "pool-1", "pool-2", "pool-3", "pool-4" };
 
     /**
      * Attributs
      */
-    private static Communication[] communications =
-            {null, null}; //!< les deux uniques instances de Communication (multiton)
-    private BluetoothAdapter adaptateurBluetooth = null;
-    private BluetoothDevice  peripherique        = null;
-    private BluetoothSocket  canalBluetooth      = null;
-    private InputStream      inputStream         = null;
-    private OutputStream     outputStream        = null;
-    private boolean          connecte            = false;
-    private Thread           filExecutionReception;
-    private Handler          handler = null;
-    public static Map<String, Boolean>  tables;
-    private static Activity configurationManche;
+    private static Communication[] communications = {
+        null,
+        null
+    }; //!< les deux uniques instances de Communication (multiton)
+    private BluetoothAdapter           adaptateurBluetooth = null;
+    private BluetoothDevice            peripherique        = null;
+    private BluetoothSocket            canalBluetooth      = null;
+    private InputStream                inputStream         = null;
+    private OutputStream               outputStream        = null;
+    private boolean                    connecte            = false;
+    private Thread                     filExecutionReception;
+    private Handler                    handler = null;
+    public static Map<String, Boolean> tables;
+    private static Activity            configurationManche;
 
     /**
      * @fn getInstance
@@ -93,9 +95,10 @@ public class Communication
      * @fn getInstance
      * @brief Retourne l'instance Communication
      */
-    public synchronized static Communication getInstance(Handler handler, int peripherique, Activity activiteConfiguration)
+    public synchronized static Communication getInstance(Handler  handler,
+                                                         int      peripherique,
+                                                         Activity activiteConfiguration)
     {
-
         configurationManche = activiteConfiguration;
         if(configurationManche != null)
         {
@@ -172,14 +175,14 @@ public class Communication
     @SuppressLint("MissingPermission")
     public void rechercherTables()
     {
-        if (adaptateurBluetooth.isEnabled())
+        if(adaptateurBluetooth.isEnabled())
         {
             initialiserRechercheTables();
             adaptateurBluetooth.startDiscovery();
             Set<BluetoothDevice> peripheriquesAppaires = adaptateurBluetooth.getBondedDevices();
 
             Iterator<BluetoothDevice> iterator = peripheriquesAppaires.iterator();
-            while (iterator.hasNext())
+            while(iterator.hasNext())
             {
                 String nomAppareil = iterator.next().getName();
                 for(int table = 0; table < NB_TABLES; table++)
@@ -187,7 +190,9 @@ public class Communication
                     if(nomAppareil.equals(Communication.TABLES[table]))
                     {
                         Communication.tables.put(TABLES[table], true);
-                        Log.d(TAG, "rechercherTables() table = " + TABLES[table] + " -> " + Communication.tables.get(TABLES[table]));
+                        Log.d(TAG,
+                              "rechercherTables() table = " + TABLES[table] + " -> " +
+                                Communication.tables.get(TABLES[table]));
                     }
                 }
             }
@@ -204,6 +209,8 @@ public class Communication
     @SuppressLint("MissingPermission")
     public boolean seConnecter(String nomPeripherique)
     {
+        Log.d(TAG, "seConnecter(" + nomPeripherique + ")");
+
         // Activer le Bluetooth
         activer();
 
@@ -248,25 +255,33 @@ public class Communication
      * @brief Pour se déconnecter du périphérique Bluetooth
      */
     @SuppressLint("MissingPermission")
-    public void seDeconnecter() {
-        try {
-            if (inputStream != null) {
+    public void seDeconnecter()
+    {
+        try
+        {
+            if(inputStream != null)
+            {
                 inputStream.close();
             }
-            if (outputStream != null) {
+            if(outputStream != null)
+            {
                 outputStream.close();
             }
-            if (canalBluetooth != null) {
+            if(canalBluetooth != null)
+            {
                 canalBluetooth.close();
             }
             connecte = false;
-            if (handler != null) {
+            if(handler != null)
+            {
                 Message messageHandler = new Message();
-                messageHandler.what = DECONNEXION_BLUETOOTH;
-                messageHandler.obj = peripherique.getName();
+                messageHandler.what    = DECONNEXION_BLUETOOTH;
+                messageHandler.obj     = peripherique.getName();
                 handler.sendMessage(messageHandler);
             }
-        } catch (Exception e) {
+        }
+        catch(Exception e)
+        {
             Log.d(TAG, "Erreur lors de la fermeture des connexions.");
         }
     }
@@ -277,86 +292,115 @@ public class Communication
     @SuppressLint("MissingPermission")
     public void creerSocket(int module)
     {
-        if(module == TABLE) {
+        if(module == TABLE)
+        {
             new Thread() {
                 @Override
-                public void run() {
+                public void run()
+                {
                     // Créer le canal Bluetooth
-                    try {
-                        canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
-                    } catch (IOException e) {
-                        Log.e(TAG, "Erreur lors de la creation du canal");
+                    try
+                    {
+                        canalBluetooth =
+                          peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
+                    }
+                    catch(IOException e)
+                    {
+                        Log.e(TAG, "Erreur lors de la creation du canal TABLE");
                     }
                     // Connecter le canal
-                    try {
+                    try
+                    {
                         canalBluetooth.connect();
-                        inputStream = canalBluetooth.getInputStream();
+                        inputStream  = canalBluetooth.getInputStream();
                         outputStream = canalBluetooth.getOutputStream();
-                        connecte = true;
-                        if (handler != null) {
+                        connecte     = true;
+                        if(handler != null)
+                        {
                             Log.d(TAG, "Message handler");
                             Message messageHandler = new Message();
-                            messageHandler.what = CONNEXION_BLUETOOTH;
-                            messageHandler.obj = peripherique.getName();
+                            messageHandler.what    = CONNEXION_BLUETOOTH;
+                            messageHandler.obj     = peripherique.getName();
                             handler.sendMessage(messageHandler);
                         }
                         // Démarrer la reception
                         recevoir();
-                        Log.d(TAG, "Canal Bluetooth connecté");
-                    } catch (IOException e) {
-                        Log.e(TAG, "Erreur lors de la connexion du canal");
-                        Log.d(TAG, "Message handler");
-                        Message messageHandler = new Message();
-                        messageHandler.what = ERREUR_BLUETOOTH;
-                        messageHandler.obj = peripherique.getName();
-                        handler.sendMessage(messageHandler);
-                        try {
-                            canalBluetooth.close();
-                        } catch (IOException closeException) {
-                            Log.e(TAG, "Erreur lors de la fermeture du socket");
+                        Log.d(TAG, "Canal Bluetooth TABLE connecté");
+                    }
+                    catch(IOException e)
+                    {
+                        Log.e(TAG, "Erreur lors de la connexion du canal TABLE");
+                        if(handler != null)
+                        {
+                            Log.d(TAG, "Message handler");
+                            Message messageHandler = new Message();
+                            messageHandler.what    = ERREUR_BLUETOOTH;
+                            messageHandler.obj     = peripherique.getName();
+                            handler.sendMessage(messageHandler);
+                            try
+                            {
+                                canalBluetooth.close();
+                            }
+                            catch(IOException closeException)
+                            {
+                                Log.e(TAG, "Erreur lors de la fermeture du socket");
+                            }
                         }
                         connecte = false;
                     }
                 }
             }.start();
-        } else if (module == ECRAN)
+        }
+        else if(module == ECRAN)
         {
-            try {
+            try
+            {
                 canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
-            } catch (IOException e) {
-                Log.e(TAG, "Erreur lors de la creation du canal");
+            }
+            catch(IOException e)
+            {
+                Log.e(TAG, "Erreur lors de la creation du canal ECRAN");
             }
             // Connecter le canal
-            try {
+            try
+            {
                 canalBluetooth.connect();
-                inputStream = canalBluetooth.getInputStream();
+                inputStream  = canalBluetooth.getInputStream();
                 outputStream = canalBluetooth.getOutputStream();
-                connecte = true;
-                if (handler != null) {
+                connecte     = true;
+                if(handler != null)
+                {
                     Log.d(TAG, "Message handler");
                     Message messageHandler = new Message();
-                    messageHandler.what = CONNEXION_BLUETOOTH;
-                    messageHandler.obj = peripherique.getName();
+                    messageHandler.what    = CONNEXION_BLUETOOTH;
+                    messageHandler.obj     = peripherique.getName();
                     handler.sendMessage(messageHandler);
                 }
                 // Démarrer la reception
-                recevoir();
-                Log.d(TAG, "Canal Bluetooth connecté");
-            } catch (IOException e) {
+                // recevoir();
+                Log.d(TAG, "Canal Bluetooth ECRAN connecté");
+            }
+            catch(IOException e)
+            {
                 Log.e(TAG, "Erreur lors de la connexion du canal");
-                Log.d(TAG, "Message handler");
-                Message messageHandler = new Message();
-                messageHandler.what = ERREUR_BLUETOOTH;
-                messageHandler.obj = peripherique.getName();
-                handler.sendMessage(messageHandler);
-                try {
-                    canalBluetooth.close();
-                } catch (IOException closeException) {
-                    Log.e(TAG, "Erreur lors de la fermeture du socket");
+                if(handler != null)
+                {
+                    Log.d(TAG, "Message handler");
+                    Message messageHandler = new Message();
+                    messageHandler.what    = ERREUR_BLUETOOTH;
+                    messageHandler.obj     = peripherique.getName();
+                    handler.sendMessage(messageHandler);
+                    try
+                    {
+                        canalBluetooth.close();
+                    }
+                    catch(IOException closeException)
+                    {
+                        Log.e(TAG, "Erreur lors de la fermeture du socket");
+                    }
                 }
                 connecte = false;
             }
-
         }
     }
 
