@@ -1,0 +1,31 @@
+class Compte
+!!!149938.java!!!	Compte(in titulaire : String)
+        // TODO
+!!!150066.java!!!	Compte(in titulaire : String, in solde : double, in devise : String)
+        // TODO
+!!!150194.java!!!	getTitulaire() : String
+        // TODO
+        return "";
+!!!150322.java!!!	getSolde() : double
+        // TODO
+        return 0.;
+!!!150450.java!!!	getDevise() : String
+        // TODO
+        return "";
+!!!150578.java!!!	crediter(in montant : double) : void
+        // TODO
+!!!150706.java!!!	debiter(in montant : double) : boolean
+        // TODO
+        return false;
+!!!150834.java!!!	convertirDollarsEuros(in montant : double) : double
+        return (montant * TAUX_CONVERSION_USD_EUR);
+!!!150962.java!!!	convertirEurosDollars(in montant : double) : double
+        return (montant * TAUX_CONVERSION_EUR_USD);
+!!!151090.java!!!	toString() : String
+        String s = "Titulaire du compte " + this.getTitulaire() + "\nVous disposez de " + this.getSolde() + " " + this.getDevise();
+        Log.d(TAG,s);
+        return s;
+!!!151218.java!!!	virer(inout compte : Compte, in montant : double) : boolean
+        Log.d(TAG,"Virement de " + montant + " " + compte.getDevise() + " vers le compte de " + compte.getTitulaire());
+        // TODO
+        return false;

@@ -1,10 +1,10 @@
 class BaseDeDonnees
-!!!141866.java!!!	BaseDeDonnees(inout context : Context)
+!!!128151.java!!!	BaseDeDonnees(inout context : Context)
         super(context, POOL_DONNEES, null, VERSION_POOL_DONNEES);
         Log.d(TAG, "BaseDeDonnees()");
         if(sqlite == null)
             sqlite = this.getWritableDatabase();
-!!!141994.java!!!	onCreate(inout sqlite : SQLiteDatabase) : void
+!!!128279.java!!!	onCreate(inout sqlite : SQLiteDatabase) : void
         Log.d(TAG, "onCreate()");
         sqlite.execSQL(
                 "CREATE TABLE IF NOT EXISTS joueurs (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT UNIQUE NOT NULL, manches INTEGER DEFAULT 0, victoires INTEGER DEFAULT 0, scoreELO DEFAULT 0)");
@@ -16,20 +16,20 @@ class BaseDeDonnees
                 "CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourId INTEGER, poche INTEGER, couleur INTEGER, FOREIGN KEY (tourId) REFERENCES tours(id) ON DELETE CASCADE)");
 
         initialiserBaseDeDonnees(sqlite);
-!!!142122.java!!!	onUpgrade(inout sqlite : SQLiteDatabase, in oldVersion : int, in newVersion : int) : void
+!!!128407.java!!!	onUpgrade(inout sqlite : SQLiteDatabase, in oldVersion : int, in newVersion : int) : void
         Log.d(TAG, "onUpgrade()");
         sqlite.execSQL("DROP TABLE IF EXISTS empoches");
         sqlite.execSQL("DROP TABLE IF EXISTS tours");
         sqlite.execSQL("DROP TABLE IF EXISTS manches");
         sqlite.execSQL("DROP TABLE IF EXISTS joueurs");
         onCreate(sqlite);
-!!!142250.java!!!	getInstance(inout context : Context) : BaseDeDonnees
+!!!128535.java!!!	getInstance(inout context : Context) : BaseDeDonnees
         if(baseDeDonnees == null)
         {
             baseDeDonnees = new BaseDeDonnees(context);
         }
         return baseDeDonnees;
-!!!153130.java!!!	getNbEmpoches(in couleur : int, in joueur : String, in mancheId : int) : int
+!!!128663.java!!!	getNbEmpoches(in couleur : int, in joueur : String, in mancheId : int) : int
         if(mancheId == -1)
         {
             Cursor curseur = sqlite.rawQuery("SELECT max(id) FROM manches", null);
@@ -52,14 +52,14 @@ class BaseDeDonnees
             }
         }
         return DEFAUT;
-!!!142378.java!!!	ajouterNom(in nomJoueur : String) : void
+!!!128791.java!!!	ajouterNom(in nomJoueur : String) : void
         try {
             Log.d(TAG, "ajouterNom(" + nomJoueur + ")");
             sqlite.execSQL("INSERT INTO joueurs (nom) VALUES ('" + nomJoueur + "')");
         } catch (SQLiteConstraintException e) {
         Log.d(TAG, "Nom déjà présent dans la base de donnée");
         }
-!!!142506.java!!!	ajouterManche(inout joueurs : String [[]], in indexJoueurGagnant : int, inout manche : Vector<Vector<int[]>>, in numeroTable : int) : void
+!!!128919.java!!!	ajouterManche(inout joueurs : String [[]], in indexJoueurGagnant : int, inout manche : Vector<Vector<int[]>>, in numeroTable : int) : void
         String gagnant = joueurs[indexJoueurGagnant];
         String perdant = joueurs[(indexJoueurGagnant + 1) % BlackBall.NB_JOUEURS];
         Log.d(TAG, "ajouterManche() gagnant = " + gagnant + " perdant = " + perdant);
@@ -118,7 +118,7 @@ class BaseDeDonnees
                 }
             }
         }
-!!!153258.java!!!	actualiserJoueurs(in gagnant : String, in perdant : String) : void
+!!!129047.java!!!	actualiserJoueurs(in gagnant : String, in perdant : String) : void
         int[] donneesGagnant = new int[DONNEES_JOUEUR];
         int[] donneesPerdant = new int[DONNEES_JOUEUR];
 
@@ -144,7 +144,7 @@ class BaseDeDonnees
 
         sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, victoires = victoires + 1, scoreElO = '" + donneesGagnant[SCORE_ELO] + "' WHERE joueurs.nom = '" + gagnant + "'");
         sqlite.execSQL("UPDATE joueurs SET manches = manches + 1, scoreELO = '" + donneesPerdant[SCORE_ELO] + "' WHERE joueurs.nom = '" + perdant + "'");
-!!!142634.java!!!	getNomsJoueurs() : ArrayList<String>
+!!!129175.java!!!	getNomsJoueurs() : ArrayList<String>
         ArrayList<String> nomsJoueurs = new ArrayList<String>();
         Cursor            curseur      = sqlite.rawQuery("SELECT nom FROM joueurs", null);
         if(curseur.moveToFirst())
@@ -158,14 +158,14 @@ class BaseDeDonnees
         curseur.close();
         Log.d(TAG, "getNomsJoueurs() " + nomsJoueurs);
         return nomsJoueurs;
-!!!142762.java!!!	initialiserBaseDeDonnees(inout sqlite : SQLiteDatabase) : void
+!!!129303.java!!!	initialiserBaseDeDonnees(inout sqlite : SQLiteDatabase) : void
         Log.d(TAG, "initialiserBaseDeDonnees()");
         // Pour les tests
         sqlite.execSQL(
                 "INSERT INTO joueurs(nom, manches, victoires) VALUES ('TRICHET Clément', 3, 3);");
         sqlite.execSQL(
                 "INSERT INTO joueurs(nom, manches, victoires) VALUES ('GAUME Benjamin', 3, 0);");
-!!!153386.java!!!	getNomsJoueursTries() : Vector<String>
+!!!129431.java!!!	getNomsJoueursTries() : Vector<String>
         Log.d(TAG, "getNomsJoueursTries()");
 
         Cursor curseur = sqlite.rawQuery("SELECT nom FROM joueurs ORDER BY scoreELO DESC, id ASC", null);
@@ -180,7 +180,7 @@ class BaseDeDonnees
         curseur.close();
 
         return listeJoueurs;
-!!!153514.java!!!	getManchesTriees() : Vector<String>
+!!!129559.java!!!	getManchesTriees() : Vector<String>
         Log.d(TAG, "getManchesTriees()");
 
         Cursor curseur = sqlite.rawQuery("SELECT horodatage FROM manches ORDER BY horodatage DESC", null);
@@ -195,7 +195,7 @@ class BaseDeDonnees
         curseur.close();
 
         return listeManches;
-!!!153642.java!!!	getScoreElo(in nom : String) : int
+!!!129687.java!!!	getScoreElo(in nom : String) : int
         Log.d(TAG, "getScoreElo( nom = " + nom + " )");
 
         int scoreElo = 0;
@@ -206,7 +206,7 @@ class BaseDeDonnees
         curseur.close();
 
         return scoreElo;
-!!!153770.java!!!	getNbManches(in nom : String) : int
+!!!129815.java!!!	getNbManches(in nom : String) : int
         Log.d(TAG, "getNbManches( nom = " + nom + " )");
 
         int nbManches = 0;
@@ -217,7 +217,7 @@ class BaseDeDonnees
         curseur.close();
 
         return nbManches;
-!!!153898.java!!!	getNbVictoires(in nom : String) : int
+!!!129943.java!!!	getNbVictoires(in nom : String) : int
         Log.d(TAG, "getNbManches( nom = " + nom + " )");
 
         int nbVictoires = 0;
@@ -228,11 +228,11 @@ class BaseDeDonnees
         curseur.close();
 
         return nbVictoires;
-!!!154026.java!!!	supprimerJoueur(in nom : String) : void
+!!!130071.java!!!	supprimerJoueur(in nom : String) : void
         sqlite.execSQL("DELETE FROM joueurs WHERE nom = '" + nom + "'", null);
-!!!154154.java!!!	supprimerManche(in date : String) : void
+!!!130199.java!!!	supprimerManche(in date : String) : void
         sqlite.execSQL("DELETE FROM manches WHERE horodatage = '" + date + "'", null);
-!!!154282.java!!!	getNomJoueur(in qualificatifJoueur : String, in date : String) : String
+!!!130327.java!!!	getNomJoueur(in qualificatifJoueur : String, in date : String) : String
         Cursor curseur  = sqlite.rawQuery("SELECT joueurs.nom FROM joueurs INNERJOIN manches ON joueurs.id = '" + "manches." + qualificatifJoueur + "Id" + "' WHERE manches.horodatage = '" + date + "'", null);
         if(curseur.moveToFirst())
         {

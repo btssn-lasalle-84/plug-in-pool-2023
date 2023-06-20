@@ -1,0 +1,22 @@
+format 224
+
+classcanvas 128050 class_ref 134706 // EcranPrincipal
+  classdiagramsettings member_max_width 0 end
+  xyz 1008.8 171.1 2000
+end
+classcanvas 128434 class_ref 157874 // BaseDeDonnees
+  classdiagramsettings member_max_width 0 end
+  xyz 19.1 125.1 2010
+end
+classcanvas 128946 class_ref 134826 // Manche
+  classdiagramsettings member_max_width 0 end
+  xyz 1118.8 549 2000
+end
+relationcanvas 128562 relation_ref 142130 // <unidirectional association>
+  from ref 128434 z 2011 to point -10.3 123.5
+  line 128690 z 2011 to point -10.3 153.5
+  line 128818 z 2011 to ref 128434
+  role_a_pos -103 153 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

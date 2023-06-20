@@ -1,0 +1,32 @@
+class TestInverse
+!!!155314.java!!!	testInverse() : void
+     String inverse = StringUtils.inverse("pipo");
+     assertEquals("opip", inverse);
+
+     inverse = StringUtils.inverse("opip");
+     assertEquals("pipo", inverse);
+!!!155442.java!!!	testMain1() : void
+     PrintStream originalOut = System.out;
+     ByteArrayOutputStream bos = new ByteArrayOutputStream();
+     System.setOut(new PrintStream(bos));
+
+     String[] args;
+     args = new String[1];
+     args[0] = "pipo";
+
+     Inverse.main(args);
+     assertEquals("pipo\nopip\n", bos.toString());
+
+     System.setOut(originalOut);
+!!!155570.java!!!	testMain2() : void
+     PrintStream originalOut = System.out;
+     ByteArrayOutputStream bos = new ByteArrayOutputStream();
+     System.setOut(new PrintStream(bos));
+
+     String[] args;
+     args = new String[1];
+     args[0] = "";
+     Inverse.main(args);
+     assertEquals("\n\n", bos.toString());
+
+     System.setOut(originalOut);

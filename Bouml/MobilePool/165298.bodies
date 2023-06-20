@@ -1,0 +1,27 @@
+class TestRectangle
+!!!183218.java!!!	testRectangle() : void
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertTrue(rectangle instanceof Figure);
+     assertEquals(5., rectangle.getLargeur());
+     assertEquals(4., rectangle.getLongueur());
+     assertEquals(0., rectangle.getX());
+     assertEquals(0., rectangle.getY());
+     assertEquals(0., rectangle.getZ());
+!!!183346.java!!!	testRectangleDescription() : void
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertEquals("Figure <|--- Rectangle", rectangle.getDescription());
+!!!183474.java!!!	testRectangleToString() : void
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertEquals("0.0 0.0 0.0 5.0 4.0", rectangle.toString());
+!!!183602.java!!!	testRectanglePerimetre() : void
+       
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertEquals(18.0, rectangle.perimetre());
+!!!183730.java!!!	testRectangleAire() : void
+       
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertEquals(20., rectangle.aire());
+!!!183858.java!!!	testRectangleVolume() : void
+       
+     Rectangle rectangle = new Rectangle(5., 4.);
+     assertEquals(0., rectangle.volume());

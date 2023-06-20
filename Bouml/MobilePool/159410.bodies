@@ -1,0 +1,22 @@
+class TestCompteAccesseurs
+!!!151858.java!!!	testGetSolde() : void
+        Compte compte1 = new Compte("Moi");
+        Compte compte2 = new Compte("Bill Gates", 105300000000., "USD");
+        Compte compte3 = new Compte("Maria", 1000., "YEN");
+        assertEquals(0, compte1.getSolde(), 0.001);
+        assertEquals(105300000000., compte2.getSolde(), 0.001);
+        assertEquals(1000, compte3.getSolde(), 0.001);
+!!!151986.java!!!	testGetTitulaire() : void
+        Compte compte1 = new Compte("Moi");
+        Compte compte2 = new Compte("Bill Gates", 105300000000., "USD");
+        Compte compte3 = new Compte("Maria", 1000., "YEN");
+        assertEquals("Moi", compte1.getTitulaire());
+        assertEquals("Bill Gates", compte2.getTitulaire());
+        assertEquals("Maria", compte3.getTitulaire());
+!!!152114.java!!!	testGetDevise() : void
+        Compte compte1 = new Compte("Moi");
+        Compte compte2 = new Compte("Bill Gates", 105300000000., "USD");
+        Compte compte3 = new Compte("Maria", 1000., "YEN");
+        assertEquals("EUR", compte1.getDevise());
+        assertEquals("USD", compte2.getDevise());
+        assertEquals("YEN", compte3.getDevise());

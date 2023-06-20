@@ -1,0 +1,44 @@
+class EcranPrincipal
+!!!133143.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ecran_principal);
+        Log.d(TAG, "onCreate()");
+
+        initialiserRessources();
+!!!133271.java!!!	onStart() : void
+        super.onStart();
+        Log.d(TAG, "onStart()");
+!!!133399.java!!!	onResume() : void
+        super.onResume();
+        Log.d(TAG, "onResume()");
+!!!133527.java!!!	onPause() : void
+        super.onPause();
+        Log.d(TAG, "onPause()");
+!!!133655.java!!!	onStop() : void
+        super.onStop();
+        Log.d(TAG, "onStop()");
+!!!133783.java!!!	onDestroy() : void
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+!!!133911.java!!!	initialiserRessources() : void
+        boutonStatistiques = (Button)findViewById(R.id.boutonHistorique);
+        boutonJouer        = (Button)findViewById(R.id.boutonJouer);
+
+        boutonStatistiques.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonStatistiques");
+                Intent activiteHistorique = new Intent(EcranPrincipal.this, Historique.class);
+                startActivity(activiteHistorique);
+            }
+        });
+        boutonJouer.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                Log.d(TAG, "clic boutonJouer");
+                Intent activiteConfigurationManche = new Intent(EcranPrincipal.this, ConfigurationManche.class);
+                startActivity(activiteConfigurationManche);
+            }
+        });

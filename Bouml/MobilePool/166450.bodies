@@ -1,0 +1,15 @@
+class Cube
+!!!188850.java!!!	Cube(in largeur : double)
+        super(largeur);
+!!!188978.java!!!	Cube(in largeur : double, in x : double, in y : double, in z : double)
+        super(largeur, x, y, z);
+!!!189106.java!!!	volume() : double
+        return this.getLargeur() * this.getLargeur() * this.getLargeur();
+!!!189234.java!!!	perimetre() : double
+        return 0.;
+!!!189362.java!!!	aire() : double
+        return this.getLargeur() * this.getLargeur() * 6;
+!!!189490.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Cube";
+!!!189618.java!!!	toString() : String
+        return super.toString();

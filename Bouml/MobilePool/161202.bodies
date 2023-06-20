@@ -1,0 +1,12 @@
+class StringUtils
+!!!155954.java!!!	inverse(in s : String) : String
+        StringBuilder sb = new StringBuilder(s);
+        for(int i = 0; i < sb.length() / 2; i ++)
+        {
+            char lettre = sb.charAt(i);
+            sb.setCharAt(i, sb.charAt(sb.length() - i - 1));
+            sb.setCharAt(sb.length() - i - 1, lettre);
+        }
+        return (sb.toString());
+!!!156082.java!!!	estPalyndrome(in chaine : String) : boolean
+        return (chaine.equals(StringUtils.inverse(chaine)));

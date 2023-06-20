@@ -1,0 +1,14 @@
+class TestHelloWorld
+!!!153394.java!!!	testHelloWorldWorld() : void
+     PrintStream originalOut = System.out;
+     ByteArrayOutputStream bos = new ByteArrayOutputStream();
+     System.setOut(new PrintStream(bos));
+
+     // action
+     HelloWorld.main(null);
+
+     // assertion
+     assertEquals("Hello world!\n", bos.toString());
+
+     // undo the binding in System
+     System.setOut(originalOut);

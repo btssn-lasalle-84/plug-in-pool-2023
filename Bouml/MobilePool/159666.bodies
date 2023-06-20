@@ -1,0 +1,23 @@
+class MainActivity
+!!!152370.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        Log.i(TAG,"onCreate()");
+
+        setContentView(R.layout.activity_main);
+!!!152498.java!!!	onStart() : void
+        super.onStart();
+        Log.i(TAG,"onStart()");
+!!!152626.java!!!	onResume() : void
+        super.onResume();
+        Log.i(TAG,"onResume()");
+!!!152754.java!!!	onPause() : void
+        super.onPause();
+        Log.i(TAG,"onPause()");
+!!!152882.java!!!	onStop() : void
+        super.onStop();
+        Log.i(TAG,"onStop()");
+
+!!!153010.java!!!	onDestroy() : void
+        super.onDestroy();
+        Log.i(TAG,"onDestroy()");
+

@@ -337,6 +337,35 @@ public class Manche extends AppCompatActivity
     }
 
     /**
+     * @brief Méthode regroupant l'ensembles des actions déclenchées par un message d'empoche
+     */
+    private void traiterTrameEmpoche(byte trame)
+    {
+        int couleur = (int)(trame & ProtocoleTable.MASQUE_COULEUR);
+        int poche = (int)((trame & ProtocoleTable.MASQUE_POCHE) >> ProtocoleTable.CHAMP_POCHE);
+        int[] empoche = {poche, couleur};
+        manche.get(manche.size() - 1).add(empoche);
+
+        if(communications[Communication.ECRAN] != null)
+        {
+            String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(poche) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(couleur) + ProtocoleEcran.DELIMITEUR_FIN;
+            communications[Communication.ECRAN].envoyer(trameEnvoie);
+        }
+        if(couleur == BlackBall.NOIRE)
+        {
+            empocherBilleNoire();
+        }
+        else if(couleur == BlackBall.BLANCHE)
+        {
+            empocherBilleBlanche();
+        }
+        else
+        {
+            empocherBilleCouleur(poche, couleur);
+        }
+    }
+
+    /**
      * @brief Méthode regroupant l'ensembles des actions déclenchées par un message spécial
      */
     private void traiterTrameService(byte trame)

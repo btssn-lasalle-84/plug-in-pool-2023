@@ -1,22 +1,22 @@
 class Communication
-!!!154410.java!!!	getInstance(in peripherique : int) : Communication
+!!!215346.java!!!	getInstance(in peripherique : int) : Communication
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication();
         return communications[peripherique];
-!!!154538.java!!!	getInstance(inout handler : Handler, in peripherique : int) : Communication
+!!!215474.java!!!	getInstance(inout handler : Handler, in peripherique : int) : Communication
         if(communications[peripherique] == null)
             communications[peripherique] = new Communication(handler);
         else
             communications[peripherique].setHandler(handler);
         return communications[peripherique];
-!!!143146.java!!!	Communication()
+!!!146738.java!!!	Communication()
         activer();
-!!!143274.java!!!	Communication(inout handler : Handler)
+!!!146866.java!!!	Communication(inout handler : Handler)
         this.handler = handler;
         activer();
-!!!143402.java!!!	setHandler(inout handler : Handler) : void
+!!!146994.java!!!	setHandler(inout handler : Handler) : void
         this.handler = handler;
-!!!143530.java!!!	activer() : void
+!!!147122.java!!!	activer() : void
         this.adaptateurBluetooth = BluetoothAdapter.getDefaultAdapter();
         if(this.adaptateurBluetooth == null)
         {
@@ -31,11 +31,11 @@ class Communication
         {
             Log.d(TAG, "Bluetooth active");
         }
-!!!143658.java!!!	rechercherTables() : void
+!!!147250.java!!!	rechercherTables() : void
         /**
          * @todo Rechercher les tables
          */
-!!!143786.java!!!	seConnecter(in nomPeripherique : String) : boolean
+!!!147378.java!!!	seConnecter(in nomPeripherique : String) : boolean
         // Activer le Bluetooth
         activer();
 
@@ -65,7 +65,7 @@ class Communication
                     peripherique.getAddress());
             return creerSocket();
         }
-!!!154666.java!!!	seDeconnecter() : void
+!!!147506.java!!!	seDeconnecter() : void
         try {
             if (inputStream != null) {
                 inputStream.close();
@@ -86,7 +86,7 @@ class Communication
         } catch (Exception e) {
             Log.d(TAG, "Erreur lors de la fermeture des connexions.");
         }
-!!!143914.java!!!	creerSocket() : boolean
+!!!147634.java!!!	creerSocket() : boolean
         // Créer le canal Bluetooth
         try
         {
@@ -131,7 +131,7 @@ class Communication
             connecte = false;
             return false;
         }
-!!!144042.java!!!	deconnecter() : void
+!!!147762.java!!!	deconnecter() : void
         // Fermer les connexions et le socket
         try
         {
@@ -160,7 +160,7 @@ class Communication
         {
             Log.e(TAG, "Erreur lors de la fermeture des connexions.");
         }
-!!!144170.java!!!	envoyer(in message : int) : void
+!!!147890.java!!!	envoyer(in message : int) : void
         if(!connecte)
             return;
         if(canalBluetooth == null)
@@ -189,7 +189,7 @@ class Communication
                 }
             }
         }.start();
-!!!154794.java!!!	envoyer(in message : String) : void
+!!!215602.java!!!	envoyer(in message : String) : void
         if(!connecte)
             return;
         if(canalBluetooth == null)
@@ -218,7 +218,7 @@ class Communication
                 }
             }
         }.start();
-!!!144298.java!!!	recevoir() : void
+!!!148018.java!!!	recevoir() : void
         Log.d(TAG, "recevoir()");
         filExecutionReception = new Thread(new Runnable() {
             @Override

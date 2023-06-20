@@ -1,0 +1,23 @@
+class TestTriangle
+!!!198578.java!!!	testTriangle() : void
+     Triangle triangle = new Triangle(5., 8.);
+     assertTrue(triangle instanceof Figure);
+     assertEquals(5., triangle.getBase());
+     assertEquals(8., triangle.getHauteur());
+     assertEquals(0., triangle.getX());
+     assertEquals(0., triangle.getY());
+     assertEquals(0., triangle.getZ());
+!!!198706.java!!!	testTriangleDescription() : void
+     Triangle triangle = new Triangle(5., 8.);
+     assertEquals("Figure <|--- Triangle", triangle.getDescription());
+!!!198834.java!!!	testTriangleToString() : void
+     Triangle triangle = new Triangle(5., 8.);
+     assertEquals("0.0 0.0 0.0 5.0 8.0", triangle.toString());
+!!!198962.java!!!	testTrianglePerimetre() : void
+       
+     Triangle triangle = new Triangle(5., 8.);
+     assertEquals(22.4339811320566, triangle.perimetre());
+!!!199090.java!!!	testTriangleAire() : void
+       
+     Triangle triangle = new Triangle(5., 8.);
+     assertEquals(20., triangle.aire());

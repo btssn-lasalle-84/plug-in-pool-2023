@@ -1,0 +1,36 @@
+format 224
+"com" // Documents::Eleos::TP_GUI_Android::src::ApplicationCompte::app::src::androidTest::java::com
+  revision 1
+  modified_by 50 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "Documents/Eleos/TP_GUI_Android/src/ApplicationCompte/app/src/androidTest/java/com/"
+  java_package "com"
+  package_ref 137650 // lasalle
+end
