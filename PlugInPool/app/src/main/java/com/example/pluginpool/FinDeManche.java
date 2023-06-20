@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 
 /**
  * @class FinDeManche
@@ -42,6 +44,7 @@ public class FinDeManche extends AlertDialog
     private TextView[][] billesEmpochees;   //!< @todo
     private TextView[] joueurs;             //!< @todo
     private View fenetre;                   //!< @todo
+    private TextView[] nbFautes;
 
     /**
      * @brief Constructeur de la classe FinDeManche
@@ -81,9 +84,9 @@ public class FinDeManche extends AlertDialog
         joueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
         joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
         setResultats();
-
-        fenetre.setMinimumWidth(200); //!< @todo CONSTANTES
-        fenetre.setMinimumHeight(300);
+        nbFautes = new TextView[BlackBall.NB_JOUEURS];
+        nbFautes[Manche.PREMIER_JOUEUR] = (TextView) fenetre.findViewById(R.id.nbFautesJoueur1);
+        nbFautes[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.nbFautesJoueur2);
 
         setView(fenetre);
 
@@ -124,5 +127,12 @@ public class FinDeManche extends AlertDialog
     {
         entete.setText(joueur + " remporte la manche !");
     }
+
+    public void setNbFautes(int fautesJoueur1, int fautesJoueur2)
+    {
+        nbFautes[Manche.PREMIER_JOUEUR].setText("Fautes : " + fautesJoueur1);
+        nbFautes[Manche.SECOND_JOUEUR].setText("Fautes : " + fautesJoueur2);
+    }
 }
+
 

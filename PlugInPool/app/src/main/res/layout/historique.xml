@@ -154,7 +154,7 @@
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 android:src="@drawable/bouton_fond_reflet"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -162,7 +162,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/celtica_bold"
                 android:gravity="center_horizontal"
-                android:text=" "
+                android:text=" Effacer "
                 android:textColor="@color/black"
                 android:textSize="40sp" />
 

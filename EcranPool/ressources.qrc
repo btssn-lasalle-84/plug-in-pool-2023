@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file alias="background.jpg">images/background.jpg</file>
         <file alias="logo.png">images/logo.png</file>
-        <file alias="pool_table.png">images/pool_table.png</file>
-        <file alias="pool_table-60.png">images/pool_table-60.png</file>
-    </qresource>    
+        <file alias="pool_table-60-mod.png">images/pool_table-60-mod.png</file>
+    </qresource>
 </RCC>
