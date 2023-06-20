@@ -160,7 +160,7 @@ public class Manche extends AppCompatActivity
                 String trameDebut = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
 
-                if(manche.get(0).size() > 0)
+                if(manche.get(0).size() > 0 || manche.size() > 1)
                 {
                     for (int tour = 0; tour < manche.size(); tour++) {
                         String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
@@ -350,7 +350,7 @@ public class Manche extends AppCompatActivity
             communications[Communication.ECRAN].envoyer(trameEnvoie);
             Log.d(ProtocoleEcran.TAG,trameEnvoie);
         }
-        
+
         if(mancheDemarree)
         {
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
