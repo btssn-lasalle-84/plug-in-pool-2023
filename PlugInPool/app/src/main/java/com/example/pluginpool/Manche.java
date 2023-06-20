@@ -159,17 +159,18 @@ public class Manche extends AppCompatActivity
                 communications[Communication.ECRAN].seConnecter("EcranPool");
                 String trameDebut = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_NOM + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[PREMIER_JOUEUR] + ProtocoleEcran.DELIMITEUR_CHAMPS + joueurs[SECOND_JOUEUR] + ProtocoleEcran.DELIMITEUR_FIN;
                 communications[Communication.ECRAN].envoyer(trameDebut);
-                Log.d(ProtocoleEcran.TAG,trameDebut);
-                for(int tour = 0; tour < manche.size(); tour++)
+
+                if(manche.get(0).size() > 0 || manche.size() > 1)
                 {
-                    String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
-                    communications[Communication.ECRAN].envoyer(trameEnvoie);
-                    Log.d(ProtocoleEcran.TAG,trameEnvoie);
-                    for(int empoche = 0; empoche < manche.get(tour).size(); empoche++)
-                    {
-                        trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(manche.get(tour).get(empoche)[TOUR]) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(manche.get(tour).get(empoche)[COULEUR]) + ProtocoleEcran.DELIMITEUR_FIN;
+                    for (int tour = 0; tour < manche.size(); tour++) {
+                        String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
                         communications[Communication.ECRAN].envoyer(trameEnvoie);
-                        Log.d(ProtocoleEcran.TAG,trameEnvoie);
+                        Log.d(ProtocoleEcran.TAG, trameEnvoie);
+                        for (int empoche = 0; empoche < manche.get(tour).size(); empoche++) {
+                            trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_EMPOCHE + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.POCHES.charAt(manche.get(tour).get(empoche)[TOUR]) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.COULEURS.charAt(manche.get(tour).get(empoche)[COULEUR]) + ProtocoleEcran.DELIMITEUR_FIN;
+                            communications[Communication.ECRAN].envoyer(trameEnvoie);
+                            Log.d(ProtocoleEcran.TAG, trameEnvoie);
+                        }
                     }
                 }
             }
@@ -313,7 +314,7 @@ public class Manche extends AppCompatActivity
             indexJoueurGagnant = joueurActif;
         }
         else {
-            Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
+            //Log.d(TAG, "JoueurGagnant != joueurActif, billesJoueurActif = " + billes[couleursJoueurs.get(joueurs[joueurActif])]);
             indexJoueurGagnant = (joueurActif + 1) % BlackBall.NB_JOUEURS;
         }
 
@@ -371,16 +372,18 @@ public class Manche extends AppCompatActivity
     private void traiterTrameService(byte trame)
     {
         Log.d(TAG, "traiterTrameService( 0b" + ProtocoleTable.byteToBinaryString(trame) + ")");
+        if(communications[Communication.ECRAN] != null)
+        {
+            Log.d(TAG, "traiterTrameService() joueurActif = " + joueurActif);
+            String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
+            communications[Communication.ECRAN].envoyer(trameEnvoie);
+            Log.d(ProtocoleEcran.TAG,trameEnvoie);
+        }
+
         if(mancheDemarree)
         {
-            if(communications[Communication.ECRAN] != null)
-            {
-                String trameEnvoie = "" + ProtocoleEcran.DELIMITEUR_DEBUT + ProtocoleEcran.TYPE_CHANGEMENT_JOUEUR + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.TABLES.charAt(Character.getNumericValue(table.charAt(CHAR_NUMERO_TABLE)) - 1) + ProtocoleEcran.DELIMITEUR_CHAMPS + ProtocoleEcran.JOUEURS.charAt(joueurActif) + ProtocoleEcran.DELIMITEUR_FIN;
-                communications[Communication.ECRAN].envoyer(trameEnvoie);
-                Log.d(ProtocoleEcran.TAG,trameEnvoie);
-            }
-
             joueurActif = joueurActif == PREMIER_JOUEUR ? SECOND_JOUEUR : PREMIER_JOUEUR;
+
             manche.add(new Vector<int[]>());
             if(couleursDefinies)
             {
@@ -422,7 +425,7 @@ public class Manche extends AppCompatActivity
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
                         Log.d(TAG, "message = 0x" + Integer.toHexString((int)message.obj));
                         byte trame = ((Integer)message.obj).byteValue();
-                        //Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
+                        Log.d(TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
                         Log.d(BlackBall.TAG, "trame = " + ProtocoleTable.byteToBinaryString(trame));
                         if((trame & ProtocoleTable.MASQUE_TYPE) != 0)
                         {

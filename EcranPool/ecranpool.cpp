@@ -122,7 +122,7 @@ void EcranPool::afficherDureePartie()
     QString dureeFormatee =
       QDateTime::fromTime_t(dureePartie).toUTC().toString("hh:mm:ss");
     ui->labelDureePartie->setText(dureeFormatee);
-    //ui->labelDureeTotale->setText(dureeFormatee);
+    // ui->labelDureeTotale->setText(dureeFormatee);
 }
 
 /**
@@ -250,10 +250,15 @@ void EcranPool::initialiserDecompteManche()
  */
 void EcranPool::initialiserPartie()
 {
-    couleurJoueur1         = Couleur::INCONNUE;
-    couleurJoueur2         = Couleur::INCONNUE;
+    couleurJoueur1     = Couleur::INCONNUE;
+    couleurJoueur2     = Couleur::INCONNUE;
+    billesRestantes[0] = NB_BILLES;
+    billesRestantes[1] = NB_BILLES;
     ui->labelAnnonceTour->setText("");
     ui->labelAnnonceCoup->setText("");
+    ui->labelNomJoueurGauche->setStyleSheet("color:black;");
+    ui->labelNomJoueurDroite->setStyleSheet("color:black;");
+    afficherBillesRestantesJoueurs();
 }
 
 /**
@@ -279,7 +284,8 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur1 + " :(\n\n  " + nomJoueur2 +
+              "Bille noire empochée par " + nomJoueur1 + " :(\n\n  " +
+              nomJoueur2 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 2)
             afficherEcranFinPartie();
@@ -289,7 +295,8 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur2 + " :(\n\n  " + nomJoueur1 +
+              "Bille noire empochée par " + nomJoueur2 + " :(\n\n  " +
+              nomJoueur1 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 1)
             afficherEcranFinPartie();
@@ -337,7 +344,8 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             couleurJoueur1Style += "yellow;";
             couleurJoueur2Style += "red;";
         }
-        else if(couleurJoueur1 == Couleur::ROUGE || couleurJoueur2 == Couleur::JAUNE)
+        else if(couleurJoueur1 == Couleur::ROUGE ||
+                couleurJoueur2 == Couleur::JAUNE)
         {
             couleurJoueur1Style += "red;";
             couleurJoueur2Style += "yellow;";
@@ -351,12 +359,11 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     // la couleur
     if(joueurActif == 0)
     {
-        qDebug() << Q_FUNC_INFO << "joueurActif" << joueurActif
-                << "couleur" << couleur
-                << "couleurJoueur1" << couleurJoueur1
-                << "couleurJoueur2" << couleurJoueur2
-                << "billesRestantesJoueur1" << billesRestantes[0]
-                << "billesRestantesJoueur2" << billesRestantes[1];
+        qDebug() << Q_FUNC_INFO << "joueurActif" << joueurActif << "couleur"
+                 << couleur << "couleurJoueur1" << couleurJoueur1
+                 << "couleurJoueur2" << couleurJoueur2
+                 << "billesRestantesJoueur1" << billesRestantes[0]
+                 << "billesRestantesJoueur2" << billesRestantes[1];
         if(couleur == couleurJoueur1)
         {
             --billesRestantes[0];
@@ -385,15 +392,13 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     {
         if(joueurActif == 0)
         {
-            ui->labelVainqueur->setText(
-              "Bravo à " + nomJoueur1 +
-              " qui a empoché toutes ses billes ! ");
+            ui->labelVainqueur->setText("Bravo à " + nomJoueur1 +
+                                        " qui a empoché toutes ses billes ! ");
         }
         else if(joueurActif == 1)
         {
-            ui->labelVainqueur->setText(
-              "Bravo à " + nomJoueur2 +
-              " qui a empoché toutes ses billes ! ");
+            ui->labelVainqueur->setText("Bravo à " + nomJoueur2 +
+                                        " qui a empoché toutes ses billes ! ");
         }
         afficherEcranFinPartie();
     }
