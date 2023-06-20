@@ -1,0 +1,35 @@
+class Palyndrome
+!!!155698.java!!!	main(inout args : String [[]]) : void
+        String chaine;
+        boolean poursuite = true;
+        Console console = System.console();
+        while(poursuite)
+        {
+            try
+            {
+                chaine = console.readLine("Saisie : ");
+                int nonFini = Palyndrome.lireInt(chaine);
+                if(nonFini == 0)
+                    poursuite = false;
+                else if (nonFini == -1)
+                {
+                    System.out.print(chaine);
+                    System.out.print(" : ");
+                    System.out.print(StringUtils.estPalyndrome(chaine));
+                    System.out.println();
+                }
+            }
+            catch(Exception e)
+            {
+                System.out.print("Erreur de Saisie");
+            }
+        }
+!!!155826.java!!!	lireInt(in str : String) : int
+        try
+        {
+            return (Integer.parseInt(str));
+       }
+        catch(NumberFormatException e)
+        {
+            return (-1);
+        }

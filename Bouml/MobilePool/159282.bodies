@@ -1,0 +1,20 @@
+class TestCompte
+!!!151474.java!!!	testDeposerArgent() : void
+        Compte compte1 = new Compte("Moi");
+        compte1.crediter(100.);
+        assertEquals(100., compte1.getSolde(), 0.001);
+!!!151602.java!!!	testRetirerArgent() : void
+        Compte compte1 = new Compte("Moi", 1000., "EUR");
+        compte1.debiter(100.);
+        assertEquals(900., compte1.getSolde(), 0.001);
+
+        Compte compte2 = new Compte("Moi");
+        compte2.debiter(100.);
+        assertEquals(0, compte2.getSolde(), 0.001);
+!!!151730.java!!!	testDeposerRetirerArgent() : void
+        Compte compte1 = new Compte("Moi");
+        assertEquals(0, compte1.getSolde(), 0.001);
+        compte1.crediter(1.);
+        assertEquals(1, compte1.getSolde(), 0.001);
+        compte1.debiter(1.);
+        assertEquals(0, compte1.getSolde(), 0.001);

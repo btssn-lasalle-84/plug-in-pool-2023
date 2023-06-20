@@ -187,7 +187,7 @@ public class ConfigurationManche extends AppCompatActivity
         editionNomJoueur1.setHint("Saisir le nom du premier joueur");
         editionNomJoueur2.setHint("Saisir le nom du second joueur");
 
-        //editionNomJoueur1.setFilters(filtresNom); !< @fixme 
+        //editionNomJoueur1.setFilters(filtresNom); !< @fixme
         //editionNomJoueur2.setFilters(filtresNom); !< @fixme
 
         boutonActualiser.setOnClickListener(new View.OnClickListener() {

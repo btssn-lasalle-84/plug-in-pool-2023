@@ -1,0 +1,19 @@
+class Carre
+!!!200498.java!!!	Carre(in largeur : double)
+        super();
+        this.largeur = largeur;
+!!!200626.java!!!	Carre(in largeur : double, in x : double, in y : double, in z : double)
+        super(x, y, z);
+        this.largeur = largeur;
+!!!200754.java!!!	getLargeur() : double
+       return this.largeur;
+!!!200882.java!!!	perimetre() : double
+        return this.largeur * 4;
+!!!201010.java!!!	aire() : double
+        return this.largeur * this.largeur;
+!!!201138.java!!!	volume() : double
+        return 0.;
+!!!201266.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Carre";
+!!!201394.java!!!	toString() : String
+        return super.toString() + " " + this.largeur;

@@ -1,0 +1,227 @@
+format 224
+
+classcanvas 128023 class_ref 128919 // EcranPrincipal
+  classdiagramsettings member_max_width 0 end
+  color mediumgreen
+  xyz 1192.2 317.5 2000
+end
+classcanvas 128151 class_ref 128663 // ConfigurationManche
+  classdiagramsettings member_max_width 0 end
+  color mediumgreen
+  xyz 1615.6 340.5 2000
+end
+classcanvas 128279 class_ref 129303 // Manche
+  classdiagramsettings member_max_width 0 end
+  color mediumgreen
+  xyz 2251.2 371.1 2000
+end
+classcanvas 128407 class_ref 129047 // FinDeManche
+  classdiagramsettings member_max_width 0 end
+  color white
+  xyz 3006.8 705.9 2006
+end
+classcanvas 128791 class_ref 128791 // AppCompatActivity
+  classdiagramsettings member_max_width 0 end
+  color darkgreen
+  xyz 1519.4 14.5 2006
+end
+classcanvas 129303 class_ref 129175 // AlertDialog
+  classdiagramsettings member_max_width 0 end
+  color darkgreen
+  xyz 3225 566.4 2012
+end
+classcanvas 129559 class_ref 128151 // BaseDeDonnees
+  classdiagramsettings member_max_width 0 end
+  color mediumyellow
+  xyz 510.9 1036.5 3005
+end
+classcanvas 130583 class_ref 128535 // Communication
+  classdiagramsettings member_max_width 0 end
+  color mediumyellow
+  xyz 1641.2 1204.5 3005
+end
+classcanvas 131991 class_ref 129815 // ProtocoleEcran
+  classdiagramsettings member_max_width 0 end
+  color lightmediumblue
+  xyz 2506.1 1551.3 2000
+end
+classcanvas 132119 class_ref 129943 // ProtocoleTable
+  classdiagramsettings member_max_width 0 end
+  color lightmediumblue
+  xyz 2173.8 1549.1 2000
+end
+classcanvas 132631 class_ref 128407 // BlackBall
+  classdiagramsettings member_max_width 0 end
+  color lightmediumblue
+  xyz 3007.3 1094.5 3010
+end
+classcanvas 132759 class_ref 129431 // Historique
+  classdiagramsettings member_max_width 0 end
+  color mediumgreen
+  xyz 770.9 331.5 3012
+end
+classcanvas 133143 class_ref 129559 // HistoriqueJoueur
+  classdiagramsettings member_max_width 0 end
+  color white
+  xyz 61.6 255.9 3018
+end
+classcanvas 133527 class_ref 129175 // AlertDialog
+  classdiagramsettings member_max_width 0 end
+  color darkgreen
+  xyz 228.8 514.3 2000
+end
+classcanvas 133783 class_ref 129687 // HistoriqueManche
+  classdiagramsettings member_max_width 0 end
+  color white
+  xyz 55.4 634.8 2005
+end
+classcanvas 135063 class_ref 128407 // BlackBall
+  classdiagramsettings member_max_width 0 end
+  color lightmediumblue
+  xyz 152.9 932.1 2000
+end
+relationcanvas 128535 relation_ref 129175 // <unidirectional association>
+  from ref 128407 z 2007 to ref 128279
+  role_a_pos 2691 773 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128663 relation_ref 130199 // <unidirectional association>
+  from ref 128279 z 2007 to ref 128407
+  role_a_pos 2840 773 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128919 relation_ref 128535 // <generalisation>
+  from ref 128151 z 2007 to ref 128791
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129047 relation_ref 128919 // <generalisation>
+  from ref 128023 z 2007 to ref 128791
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129175 relation_ref 130071 // <generalisation>
+  decenter_begin 7
+  from ref 128279 z 2007 to ref 128791
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129431 relation_ref 129047 // <generalisation>
+  from ref 128407 z 2013 to ref 129303
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129687 relation_ref 128279 // <unidirectional association>
+  decenter_begin 160
+  decenter_end 75
+  from ref 129559 z 3006 to point 651.1 961.2
+  line 129815 z 3006 to point 571.8 960.7
+  line 129943 z 3006 to ref 129559
+  role_a_pos 592 991 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130071 relation_ref 128663 // <unidirectional association>
+  from ref 128151 z 3006 to ref 129559
+  role_a_pos 1375 948 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130199 relation_ref 130327 // <unidirectional association>
+  from ref 128279 z 3006 to ref 129559
+  role_a_pos 1418 1116 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 130711 relation_ref 128407 // <unidirectional association>
+  decenter_begin 181
+  decenter_end 40
+  from ref 130583 z 3006 to point 1569 1295.6
+  line 135575 z 3006 to point 1566.9 1222.4
+  line 130839 z 3006 to ref 130583
+  role_a_pos 1510 1229 3000 no_role_b
+  multiplicity_a_pos 1617 1229 3000 no_multiplicity_b
+end
+relationcanvas 131095 relation_ref 128791 // <unidirectional association>
+  from ref 128151 z 3006 to ref 130583
+  role_a_pos 1788 1167 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 131223 relation_ref 130455 // <unidirectional association>
+  from ref 128279 z 3006 to ref 130583
+  role_a_pos 2010 1134 3000 no_role_b
+  multiplicity_a_pos 2115 1134 3000 no_multiplicity_b
+end
+relationcanvas 132247 relation_ref 130583 // <dependency>
+  from ref 128279 z 2001 to ref 132119
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132375 relation_ref 130711 // <dependency>
+  from ref 128279 z 2001 to ref 131991
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 132887 relation_ref 129303 // <generalisation>
+  decenter_begin 17
+  from ref 132759 z 3013 to ref 128791
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133015 relation_ref 129431 // <unidirectional association>
+  from ref 132759 z 3013 to ref 129559
+  role_a_pos 975 966 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133399 relation_ref 129687 // <unidirectional association>
+  decenter_end 234
+  from ref 133143 z 3019 to ref 132759
+  role_a_pos 627 378 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133655 relation_ref 129559 // <generalisation>
+  from ref 133143 z 3019 to ref 133527
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 133911 relation_ref 129815 // <generalisation>
+  decenter_end 509
+  from ref 133783 z 2006 to ref 133527
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134039 relation_ref 129943 // <unidirectional association>
+  decenter_begin 323
+  decenter_end 920
+  from ref 133783 z 3013 to ref 132759
+  role_a_pos 627 676 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134167 relation_ref 130967 // <dependency>
+  from ref 128023 z 2001 to ref 128151
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134295 relation_ref 131095 // <dependency>
+  from ref 128151 z 2001 to ref 128279
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134423 relation_ref 131223 // <dependency>
+  from ref 128023 z 3013 to ref 132759
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134551 relation_ref 131351 // <dependency>
+  from ref 128279 z 3011 to ref 132631
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 134679 relation_ref 131479 // <dependency>
+  from ref 128407 z 3011 to ref 132631
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 135191 relation_ref 131735 // <dependency>
+  from ref 133783 z 2006 to ref 135063
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

@@ -1,0 +1,397 @@
+format 224
+"MobilePoolSQLite"
+  revision 1
+  modified_by 23 "tvaira"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  classcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 96
+  font_size 11
+  diagram_format A0
+
+  image_root_dir ""
+
+
+  mark_for_import
+  
+  classview 128151 "db"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 128151 "joueurs"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 128151 "id"
+	default explicit_type "INTEGER"
+	stereotype "pk"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr} PRIMARY KEY"
+	MysqlColumn autoincr_btree
+      end
+
+      attribute 128279 "nom"
+	default explicit_type "TEXT"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr} UNIQUE NOT NULL"
+	MysqlColumn
+      end
+
+      attribute 128407 "manches"
+	default explicit_type "INTEGER"
+	init_value "0"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 128535 "victoires"
+	default explicit_type "INTEGER"
+	init_value "0"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 128663 "scoreELO"
+	default explicit_type ""
+	init_value "0"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+    end
+
+    class 128279 "manches"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 128791 "id"
+	default explicit_type "INTEGER"
+	stereotype "pk"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr} PRIMARY KEY"
+	MysqlColumn autoincr_btree
+      end
+
+      attribute 128919 "horodatage"
+	default explicit_type "DATETIME"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn notnull_hash
+      end
+
+      attribute 129047 "gagnantId"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 129175 "perdantId"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 129303 "numeroTable"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      classrelation 128151 // <unidirectional association>
+	relation 128151 --->
+	  a role_name "" public
+	    classrelation_ref 128151 // <unidirectional association>
+	  b parent class_ref 128151 // joueurs
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}"
+	  on_delete cascade
+	  columns
+	    attribute_ref 129047 // gagnantId
+	  end
+      end
+
+      classrelation 128279 // idJoueur (<unidirectional association>)
+	relation 128279 --->
+	  a role_name "idJoueur" public
+	    classrelation_ref 128279 // idJoueur (<unidirectional association>)
+	  b parent class_ref 128151 // joueurs
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}"
+	  on_delete cascade
+	  columns
+	    attribute_ref 129175 // perdantId
+	  end
+      end
+    end
+
+    class 128407 "tours"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 129431 "id"
+	default explicit_type "INTEGER"
+	stereotype "pk"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr} PRIMARY KEY"
+	MysqlColumn autoincr_btree
+      end
+
+      attribute 129559 "joueurId"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 129687 "mancheId"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      classrelation 128407 // idJoueur (<unidirectional association>)
+	relation 128407 --->
+	  a role_name "idJoueur" public
+	    classrelation_ref 128407 // idJoueur (<unidirectional association>)
+	  b parent class_ref 128151 // joueurs
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}"
+	  on_delete cascade
+	  columns
+	    attribute_ref 129559 // joueurId
+	  end
+      end
+
+      classrelation 128535 // idManche (<unidirectional association>)
+	relation 128535 --->
+	  a role_name "idManche" public
+	    classrelation_ref 128535 // idManche (<unidirectional association>)
+	  b parent class_ref 128279 // manches
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}"
+	  on_delete cascade
+	  columns
+	    attribute_ref 129687 // mancheId
+	  end
+      end
+    end
+
+    class 128535 "empoches"
+      visibility package stereotype "table"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl "DROP TABLE IF EXISTS ${name};
+CREATE TABLE ${name} ${definition};
+"
+      
+      attribute 129815 "id"
+	default explicit_type "INTEGER"
+	stereotype "pk"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr} PRIMARY KEY"
+	MysqlColumn autoincr_btree
+      end
+
+      attribute 129943 "tourId"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 130071 "poche"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      attribute 130199 "couleur"
+	default explicit_type "INTEGER"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl "  ${name} ${type}${notnull}${default}${autoincr}"
+	MysqlColumn
+      end
+
+      classrelation 128663 // idTour (<unidirectional association>)
+	relation 128663 --->
+	  a role_name "idTour" public
+	    classrelation_ref 128663 // idTour (<unidirectional association>)
+	  b parent class_ref 128407 // tours
+	  mysql_decl "  ${constraint}${modifier}KEY${name}${type} (${columns})${ref}"
+	  on_delete cascade
+	  columns
+	    attribute_ref 129943 // tourId
+	  end
+      end
+    end
+
+    classdiagram 128151 "schema"
+      classdiagramsettings show_members_full_definition yes show_members_stereotype yes member_max_width 0 end
+      size A0
+    end
+  end
+
+  deploymentview 128151 "db"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 128151 "db"
+      stereotype "database"
+      mysql_src "${comment}CREATE DATABASE IF NOT EXISTS ${name};
+use ${name};
+
+${definition}"
+      associated_elems
+	class_ref 128151 // joueurs
+	class_ref 128279 // manches
+	class_ref 128407 // tours
+	class_ref 128535 // empoches
+      end
+    end
+  end
+end

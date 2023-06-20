@@ -1,0 +1,26 @@
+class TestCarre
+!!!165042.java!!!	testCarre() : void
+     Carre carre = new Carre(5.);
+     assertTrue(carre instanceof Figure);
+     assertEquals(5., carre.getLargeur());
+     assertEquals(0., carre.getX());
+     assertEquals(0., carre.getY());
+     assertEquals(0., carre.getZ());
+!!!165170.java!!!	testCarreDescription() : void
+     Carre carre = new Carre(5.);
+     assertEquals("Figure <|--- Carre", carre.getDescription());
+!!!165298.java!!!	testCarreToString() : void
+     Carre carre = new Carre(5.);
+     assertEquals("0.0 0.0 0.0 5.0", carre.toString());
+!!!165426.java!!!	testCarrePerimetre() : void
+       
+     Carre carre = new Carre(5.);
+     assertEquals(20.0, carre.perimetre());
+!!!165554.java!!!	testCarreAire() : void
+       
+     Carre carre = new Carre(5.);
+     assertEquals(25., carre.aire());
+!!!165682.java!!!	testCarreVolume() : void
+       
+     Carre carre = new Carre(5.);
+     assertEquals(0., carre.volume());

@@ -361,42 +361,6 @@ public class Communication
     }
 
     /**
-     * @brief Pour se déconnecter d'une table
-     */
-    @SuppressLint("MissingPermission")
-    public void deconnecter()
-    {
-        // Fermer les connexions et le socket
-        try
-        {
-            if(inputStream != null)
-            {
-                inputStream.close();
-            }
-            if(outputStream != null)
-            {
-                outputStream.close();
-            }
-            if(canalBluetooth != null)
-            {
-                canalBluetooth.close();
-            }
-            connecte = false;
-            if(handler != null)
-            {
-                Message messageHandler = new Message();
-                messageHandler.what    = DECONNEXION_BLUETOOTH;
-                messageHandler.obj     = peripherique.getName();
-                handler.sendMessage(messageHandler);
-            }
-        }
-        catch(IOException e)
-        {
-            Log.e(TAG, "Erreur lors de la fermeture des connexions.");
-        }
-    }
-
-    /**
      * @brief Pour envoyer un message via le Bluetooth
      */
     public void envoyer(int message)
@@ -496,7 +460,7 @@ public class Communication
                     catch(IOException e)
                     {
                         Log.e(TAG, "Erreur lors de la réception de données");
-                        deconnecter();
+                        seDeconnecter();
                     }
                 }
                 Log.d(TAG, "recevoir() thread arrêté");
