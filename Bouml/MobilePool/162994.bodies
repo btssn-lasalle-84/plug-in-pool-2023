@@ -1,0 +1,24 @@
+class TestFigure
+!!!167346.java!!!	testFigure() : void
+     Figure figure = new Figure(5., 8., 2.);
+     assertEquals(5., figure.getX());
+     assertEquals(8., figure.getY());
+     assertEquals(2., figure.getZ());
+!!!167474.java!!!	testFigureDescription() : void
+     Figure figure = new Figure(5., 8., 2.);
+     assertEquals("Figure", figure.getDescription());
+!!!167602.java!!!	testFigureToString() : void
+     Figure figure = new Figure(5., 8., 2.);
+     assertEquals("5.0 8.0 2.0", figure.toString());
+!!!167730.java!!!	testFigurePerimetre() : void
+       
+     Figure figure = new Figure(5, 8, 2);
+     assertEquals(0., figure.perimetre());
+!!!167858.java!!!	testFigureAire() : void
+       
+     Figure figure = new Figure(5, 8, 2);
+     assertEquals(0., figure.aire());
+!!!167986.java!!!	testFigureVolume() : void
+       
+     Figure figure = new Figure(5, 8, 2);
+     assertEquals(0., figure.volume());

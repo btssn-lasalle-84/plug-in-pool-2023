@@ -1,0 +1,9 @@
+class ExampleInstrumentedTest
+!!!143410.java!!!	useAppContext() : void
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.myapplication", appContext.getPackageName());
+!!!144562.java!!!	useAppContext() : void
+        // Context of the app under test.
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        assertEquals("com.example.myapplication", appContext.getPackageName());

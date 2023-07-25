@@ -2,7 +2,7 @@
 
 ## Présentation du protocole implanté dans le simulateur ESP'ACE
 
-Ce document présente rapidement le fonctionnement du simulateur ainsi que le protocole implémenté. Le protocole complet est disponible dans Google Drive. Actuellement, la version du protocole est la **0.1** (11 avril 2022).
+Ce document présente rapidement le fonctionnement du simulateur ainsi que le protocole implémenté. Le protocole complet est disponible dans Google Drive. Actuellement, la version du protocole est la **0.2** (7 juin 2023).
 
 ## Configuration du simulateur
 
@@ -75,16 +75,31 @@ Format : `{Type}{Table}{Requête/Réponse}`
   - Commencer une manche : `1xx11100`
   - Arrêter une manche : `1xx00000`
 
+```cpp
+#define TRAME_START 0x9c // Commencer une manche (réinitialisation)
+#define TRAME_STOP  0x80 // Arrêter une manche (facultatif)
+```
+
 - Mobile-pool ← Table
 
-  - Trame de début / fin de tour sans faute : `1xx11111`
-  - Trame de debut/fin de tour avec faute : `1xx00000`
+  - Trame de tour : `1xx11111`
+  - Trame de faute : `1xx00000`
+
+```cpp
+#define TRAME_TIR     0x9f // Trame de début de tour
+#define TRAME_FAUTE   0x80 // Trame de faute
+
+#define TRAME_EMPOCHE 0x00 // cf. Protocole
+```
 
 ### Fonctionnement
 
 Pour l'instant, le simulateur démarre à la réception d'une trame : `1xx11100` (`0x9C` pour la table n°1).
 
-Quand le simulateur affiche "loupé" ou "faute !", il faut appuyer sur le bouton SUIVANT (SW2).
+Quand le simulateur affiche : 
+
+- "loupé"   : il faut appuyer sur le bouton TOUR (SW2).
+- "faute !" : il faut appuyer sur le bouton FAUTE (SW1).
 
 La partie peut être arrêtée avec une trame `1xx00000` (`0x80` pour la table n°1).
 

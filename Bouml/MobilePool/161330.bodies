@@ -1,0 +1,24 @@
+class TestPalyndrome
+!!!156210.java!!!	testPalyndrome() : void
+     String s = null;        
+     boolean ok = false;
+
+     s = "lol";   
+     ok = StringUtils.estPalyndrome(s);
+     assertTrue(ok);
+
+     s = "pipo";   
+     ok = StringUtils.estPalyndrome(s);
+     assertFalse(ok);
+!!!156338.java!!!	testLireInt() : void
+       
+     String s = null;        
+     int n = 0;
+
+     s = "1";
+     n = Palyndrome.lireInt(s);
+     assertEquals(1, n);
+
+     s = "a";
+     n = Palyndrome.lireInt(s);
+     assertEquals(-1, n);

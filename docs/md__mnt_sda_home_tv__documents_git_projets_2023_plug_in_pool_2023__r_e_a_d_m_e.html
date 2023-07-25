@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -93,17 +93,21 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <h1>Projet plug-in-pool 2023</h1>
 <ul>
 <li><a href="#projet-plug-in-pool-2023">Projet plug-in-pool 2023</a><ul>
+<li><a href="#fonctionnalit%C3%A9s">Fonctionnalités</a></li>
 <li><a href="#documentation-du-code">Documentation du code</a></li>
-<li><a href="#versions">Versions</a><ul>
+<li><a href="#pr%C3%A9sentations">Présentations</a></li>
+<li><a href="#vid%C3%A9o">Vidéo</a></li>
+<li><a href="#diagramme-de-classes">Diagramme de classes</a></li>
+<li><a href="#screenshots">Screenshots</a></li>
+<li><a href="#protocoles">Protocoles</a></li>
+<li><a href="#historique-des-versions">Historique des versions</a><ul>
 <li><a href="#10">1.0</a></li>
 <li><a href="#02">0.2</a></li>
 <li><a href="#01">0.1</a></li>
 </ul>
 </li>
-<li><a href="#diagramme-de-classes">Diagramme de classes</a></li>
 <li><a href="#base-de-donn%C3%A9es-sqlite">Base de données SQLite</a></li>
 <li><a href="#planification">Planification</a></li>
-<li><a href="#protocoles">Protocoles</a></li>
 <li><a href="#annexes">Annexes</a><ul>
 <li><a href="#blackball">Blackball</a><ul>
 <li><a href="#casse">Casse</a></li>
@@ -118,7 +122,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 </li>
 </ul>
 <hr  />
-<p>Le système Plug in Pool est un système numérique permettant de jouer une partie de <a href="#blackball">Blackball</a> (parfois appelé billard anglais, billard pool ou 8 pool).</p>
+<p>Le système <b>Plug in Pool</b> est un système numérique permettant de jouer une partie de <a href="#blackball">Blackball</a> (parfois appelé billard anglais, billard pool ou 8 pool).</p>
 <p><img src="pluginpool-logo.png" alt="" class="inline"/></p>
 <p>Le système Plug-in-Pool est décomposé en trois modules :</p>
 <ul>
@@ -127,82 +131,71 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <li>Module de visualisation de partie (Écran-POOL IR)​ : le déroulement de la partie est affiché sur un écran de télévision.</li>
 </ul>
 <p><img src="modules.png" alt="" class="inline"/></p>
+<h2>Fonctionnalités</h2>
+<ul>
+<li>Android</li>
+</ul>
 <p><img src="uc-mobilepool.png" alt="" class="inline"/></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Fonctionnalité (Android)   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">Non    </th></tr>
 <tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Configurer une manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Lancer une manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Configurer la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Éditer un joueur   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Mettre fin à la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Choisir/Editer un joueur   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Suivre le déroulement de la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Enregistrer la manche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Accéder à la base de données   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Consulter l'historique   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Choisir une table   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Purger l'historique   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Dialoguer avec le module <a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a>   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Dialoguer avec les modules   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Dialoguer avec le module table de billard   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Changer automatiquement de joueur   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Consulter l’historique   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Effectuer une recherche   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Afficher l’historique   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Purger l’historique   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 </table>
+<ul>
+<li>Qt</li>
+</ul>
 <p><img src="uc-ecranpool.png" alt="" class="inline"/></p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Fonctionnalité (Qt)   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">Non    </th></tr>
+<th class="markdownTableHeadNone">Fonctionnalité (Qt)   </th><th class="markdownTableHeadCenter">Oui   </th><th class="markdownTableHeadCenter">En cours    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Visualiser les données du match   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Afficher un écran d’accueil   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Dialoguer avec le module   </td><td class="markdownTableBodyCenter">/   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Visualiser l’empochage d’une bille   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Visualiser les données de la manche en temps réel   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Visualiser les données de la partie (statistiques fin de partie)   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Dialogue avec le module MobilePool (Bluetooth)   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 </table>
 <h2>Documentation du code</h2>
 <p><a href="https://btssn-lasalle-84.github.io/plug-in-pool-2023/">https://btssn-lasalle-84.github.io/plug-in-pool-2023/</a></p>
-<h2>Versions</h2>
-<p><img src="jira-livraisons.png" alt="" class="inline"/></p>
-<h3>1.0</h3>
-<p><img src="jira-tickets-v1.0.png" alt="" class="inline"/></p>
+<h2>Présentations</h2>
+<p>Diaporamas étudiants IR :</p>
 <ul>
-<li>Android :</li>
+<li>Clement Trichet (Android) : <a href="./diaporamas/Plug-in-pool%202023%20-%20Revue%20finale%20-%20TRICHET%20Clement.pptx">Plug-in-pool 2023 - Revue finale - TRICHET Clement.pptx</a></li>
+<li>Gaume Benjamin (Qt) : <a href="./diaporamas/Plug-in-pool%202023%20-%20Revue%20finale%20-%20GAUME%20Benjamin.pptx">Plug-in-pool 2023 - Revue finale - GAUME Benjamin.pptx</a></li>
 </ul>
-<p><img src="screenshot-android-accueil-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-configuration-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-manche-v1.0.png" alt="" class="inline"/></p>
-<ul>
-<li>Qt :</li>
-</ul>
-<p><img src="screenshot-qt-accueil-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-partie-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-fin-v1.0.png" alt="" class="inline"/></p>
-<h3>0.2</h3>
-<p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
-<ul>
-<li>Android :</li>
-</ul>
-<p><img src="screenshot-android-accueil-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-configuration-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-manche-v0.2.png" alt="" class="inline"/></p>
-<ul>
-<li>Qt :</li>
-</ul>
-<p><img src="screenshot-qt-accueil-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-partie-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-fin-v0.2.png" alt="" class="inline"/></p>
-<h3>0.1</h3>
-<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
-<ul>
-<li>Android :</li>
-</ul>
-<p><img src="screenshot-android-accueil.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-configuration.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-manche.png" alt="" class="inline"/></p>
-<ul>
-<li>Qt :</li>
-</ul>
-<p><img src="screenshot-qt-accueil-v0.1.png" alt="" class="inline"/></p>
+<h2>Vidéo</h2>
+<p><a href="https://www.youtube.com/@projets-btssn-lasalle84">https://www.youtube.com/@projets-btssn-lasalle84</a></p>
 <h2>Diagramme de classes</h2>
 <ul>
 <li>MobilePool (Android) :</li>
@@ -212,8 +205,35 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <li><a class="el" href="class_ecran_pool.html" title="L&#39;IHM de l&#39;application.">EcranPool</a> (Qt) :</li>
 </ul>
 <p><img src="dc-ecranpool-v1.0.png" alt="" class="inline"/></p>
+<h2>Screenshots</h2>
+<ul>
+<li>Android : <img src="android.gif" alt="" class="inline"/></li>
+</ul>
+<ul>
+<li>Qt : <img src="qt.gif" alt="" class="inline"/></li>
+</ul>
+<h2>Protocoles</h2>
+<ul>
+<li>Mobile-pool ←→ Table de billard</li>
+</ul>
+<p>Protocole orienté bit</p>
+<p><img src="protocole-mobilepool-1.png" alt="" class="inline"/></p>
+<p><img src="protocole-mobilepool-2.png" alt="" class="inline"/></p>
+<ul>
+<li>Mobile-pool → Ecan-pool</li>
+</ul>
+<p>Protocole orienté caractères ASCII</p>
+<p><img src="protocole-ecranpool.png" alt="" class="inline"/></p>
+<h2>Historique des versions</h2>
+<p><img src="jira-livraisons.png" alt="" class="inline"/></p>
+<h3>1.0</h3>
+<p><img src="jira-tickets-v1.0.png" alt="" class="inline"/></p>
+<h3>0.2</h3>
+<p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
+<h3>0.1</h3>
+<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
 <h2>Base de données SQLite</h2>
-<p><img src="bdd.png" alt="" class="inline"/></p>
+<p><img src="./sql/schema-1.0.png" alt="" class="inline"/></p>
 <div class="fragment"><div class="line"><span class="comment">--- LDD (langage de définition de données)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">--- Supprime les tables</span></div>
@@ -240,18 +260,6 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> empoches (id <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, tourId <span class="keywordtype">INTEGER</span>, poche <span class="keywordtype">INTEGER</span>, couleur <span class="keywordtype">INTEGER</span>, <span class="keyword">FOREIGN</span> KEY (tourId) <span class="keyword">REFERENCES</span> tours(id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE);</div>
 </div><!-- fragment --><h2>Planification</h2>
 <p><img src="gantt.png" alt="" class="inline"/></p>
-<h2>Protocoles</h2>
-<ul>
-<li>Mobile-pool ←→ Table de billard</li>
-</ul>
-<p>Protocole orienté bit</p>
-<p><img src="protocole-mobilepool-1.png" alt="" class="inline"/></p>
-<p><img src="protocole-mobilepool-2.png" alt="" class="inline"/></p>
-<ul>
-<li>Mobile-pool → Ecan-pool</li>
-</ul>
-<p>Protocole orienté caractères ASCII</p>
-<p><img src="protocole-ecranpool.png" alt="" class="inline"/></p>
 <hr  />
 <h2>Annexes</h2>
 <h3>Blackball</h3>
@@ -305,7 +313,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 23:25:27 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

@@ -1,7 +1,7 @@
 format 224
 "unknown" // unknown
-  revision 2
-  modified_by 42 "tv"
+  revision 3
+  modified_by 50 "btssn2"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -92,5 +92,21 @@ ${members}}
       mysql_decl ""
       
     end
+
+    class 182706 "Handler"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
   end
+
+  package_ref 135602 // java
 end

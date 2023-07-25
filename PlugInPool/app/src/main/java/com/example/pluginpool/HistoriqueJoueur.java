@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -37,7 +38,7 @@ public class HistoriqueJoueur extends AlertDialog
     private TextView scoreElo;
     private TextView nbManches;
     private TextView nbVictoires;
-    private Button boutonSuppression;
+    private ImageButton boutonSuppression;
     private View fenetre;
 
     /**
@@ -61,7 +62,7 @@ public class HistoriqueJoueur extends AlertDialog
         scoreElo = (TextView) fenetre.findViewById(R.id.scoreElo);
         nbManches = (TextView) fenetre.findViewById(R.id.nbManches);
         nbVictoires = (TextView) fenetre.findViewById(R.id.nbVictoires);
-        boutonSuppression = (Button) fenetre.findViewById(R.id.boutonSupprimer);
+        boutonSuppression = (ImageButton) fenetre.findViewById(R.id.boutonSupprimer);
 
         nomJoueur.setText(nom);
         scoreElo.setText("Score : " + activiteHistorique.baseDonnees.getScoreElo(nom));
@@ -74,6 +75,7 @@ public class HistoriqueJoueur extends AlertDialog
             public void onClick(View view)
             {
                 activiteHistorique.baseDonnees.supprimerJoueur(nom);
+                activiteHistorique.actualiserNoms(nom);
                 HistoriqueJoueur.this.dismiss();
             }
         });

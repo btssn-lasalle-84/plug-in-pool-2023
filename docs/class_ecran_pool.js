@@ -1,5 +1,13 @@
 var class_ecran_pool =
 [
+    [ "Couleur", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5f", [
+      [ "INCONNUE", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fa19fa7909e385bc41aed751d925ac349b", null ],
+      [ "ROUGE", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fa49a16b40fedc4360b5369d79afc0d37e", null ],
+      [ "JAUNE", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fa1c1dae3b9d9d57cfc8d5638a5195a787", null ],
+      [ "BLANCHE", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fa0551f6282f2e26258c3a0060fd551039", null ],
+      [ "NOIRE", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fac1963da74e53c9f8db374073dc4ed3c4", null ],
+      [ "NB_COULEURS", "class_ecran_pool.html#a0339d2d283ddcfeb7539cc0ec4ff6b5fa9be983b8ae49e346320cc415e078cddc", null ]
+    ] ],
     [ "Ecran", "class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891d", [
       [ "Accueil", "class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891da04652827fe9afbd2e4beb7c9fde2aa04", null ],
       [ "Partie", "class_ecran_pool.html#a6be804b1a55f637c2aa72e0ed81f891dac2741f1cc2e0f742af067267d885375b", null ],
@@ -8,6 +16,8 @@ var class_ecran_pool =
     ] ],
     [ "EcranPool", "class_ecran_pool.html#a3ea2f80b89371b7befca3fa020581ebe", null ],
     [ "~EcranPool", "class_ecran_pool.html#a8eb20bac7d51d9514ddffc488c108ec8", null ],
+    [ "afficherBillesRestantesJoueurs", "class_ecran_pool.html#aa49f99665fbf995dda7adf53eec719f9", null ],
+    [ "afficherChangementJoueur", "class_ecran_pool.html#a9c66c975adc7499482e6d3d28cbd8c5b", null ],
     [ "afficherDecompteManche", "class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf", null ],
     [ "afficherDureePartie", "class_ecran_pool.html#abfb2c54d5142285cdfd2b50a38ed1ff4", null ],
     [ "afficherEcran", "class_ecran_pool.html#af0f3cba32b3a2cace45be0fc47b93a5e", null ],
@@ -16,15 +26,30 @@ var class_ecran_pool =
     [ "afficherEcranPartie", "class_ecran_pool.html#af46c80736a1f8fc6840ea248e3819207", null ],
     [ "afficherEcranPrecedent", "class_ecran_pool.html#ac683d73d0aa066b9fb5128856ab24ff9", null ],
     [ "afficherEcranSuivant", "class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597", null ],
+    [ "afficherEmpochage", "class_ecran_pool.html#a14b1ae3f5936d38b08e79f2b0fa4225a", null ],
     [ "afficherHeure", "class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38", null ],
+    [ "afficherNomsJoueurs", "class_ecran_pool.html#a05f055fae1061edc1a05f068284986f8", null ],
+    [ "initialiserCommunication", "class_ecran_pool.html#a49c8c828f3bcff14cf25aa36f73dcf88", null ],
     [ "initialiserDecompteManche", "class_ecran_pool.html#a2a0fac6cd81e3e64bb25b8e64a3aac3b", null ],
     [ "initialiserEcran", "class_ecran_pool.html#a05f160912c8eb1792ae1aca08325cfc1", null ],
     [ "initialiserHeure", "class_ecran_pool.html#a04d2215011acac5eb9385f1fe766d58f", null ],
     [ "initialiserJoueurs", "class_ecran_pool.html#a58f5e53f45b1ac3e52d1c10b3673fdf3", null ],
+    [ "initialiserPartie", "class_ecran_pool.html#a792d5152a6cc909fcc7791d68b5025e8", null ],
     [ "initialiserRaccourcisClavier", "class_ecran_pool.html#af591fdd1db40efcff09771a935cfc1a2", null ],
+    [ "recupererNomCouleur", "class_ecran_pool.html#ab8ecd477120e4642a3c3636b2476af6e", null ],
+    [ "billesRestantes", "class_ecran_pool.html#ae02c41f143bcf3d143925587a362584e", null ],
+    [ "communicationBluetooth", "class_ecran_pool.html#a5ea01e8da52c2d0c4a2f2f4501370765", null ],
+    [ "couleurJoueur1", "class_ecran_pool.html#af01953caa4743f67d4f26373f6602282", null ],
+    [ "couleurJoueur2", "class_ecran_pool.html#a8f2acb02f5c05627823c2129c395fb71", null ],
+    [ "decompte", "class_ecran_pool.html#abde56144a75a36c3db32e1986299e95f", null ],
     [ "dureePartie", "class_ecran_pool.html#ad55956c315343e5bca61d95fde6f75a3", null ],
     [ "INTERVALLE_SECONDE", "class_ecran_pool.html#ab16a111df81578c65287815cdea23395", null ],
+    [ "joueurActif", "class_ecran_pool.html#af7bf8ed5f5b092671e4599b9fc816cc7", null ],
     [ "joueurs", "class_ecran_pool.html#a2c9647a3e67d61180747dbaf17e0daaa", null ],
     [ "labelsHeure", "class_ecran_pool.html#a8e3f4b3f936f76bfac5b6e647f0249f3", null ],
+    [ "minuteurDecompte", "class_ecran_pool.html#ac1c81d831e759bd89ca316e2c0bab375", null ],
+    [ "nomJoueur1", "class_ecran_pool.html#a452e85517925cfd7ff2b94ebececa30f", null ],
+    [ "nomJoueur2", "class_ecran_pool.html#aa3cdf3b89e32686224d2104c0b66bdb5", null ],
+    [ "numeroTable", "class_ecran_pool.html#ac149a10d133817042266b3b5570ca893", null ],
     [ "ui", "class_ecran_pool.html#a9597fef78d56298534cbe49cd668e738", null ]
 ];

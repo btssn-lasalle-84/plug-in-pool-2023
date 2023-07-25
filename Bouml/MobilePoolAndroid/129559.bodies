@@ -1,0 +1,30 @@
+class HistoriqueJoueur
+!!!135063.java!!!	HistoriqueJoueur(inout historique : Historique, in nom : String)
+        super(historique);
+        setContentView(R.layout.fenetre_historique_joueur);
+        activiteHistorique = historique;
+        initialiserRessources(nom);
+!!!135191.java!!!	initialiserRessources(in nom : String) : void
+        fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_historique_joueur, null);
+        nomJoueur = (TextView) fenetre.findViewById(R.id.nomJoueur);
+        scoreElo = (TextView) fenetre.findViewById(R.id.scoreElo);
+        nbManches = (TextView) fenetre.findViewById(R.id.nbManches);
+        nbVictoires = (TextView) fenetre.findViewById(R.id.nbVictoires);
+        boutonSuppression = (Button) fenetre.findViewById(R.id.boutonSupprimer);
+
+        nomJoueur.setText(nom);
+        scoreElo.setText("Score : " + activiteHistorique.baseDonnees.getScoreElo(nom));
+        nbManches.setText("Nombre de manches : " + activiteHistorique.baseDonnees.getNbManches(nom));
+        nbVictoires.setText("Nombre de victoires : " + activiteHistorique.baseDonnees.getNbVictoires(nom));
+
+        boutonSuppression.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                activiteHistorique.baseDonnees.supprimerJoueur(nom);
+                HistoriqueJoueur.this.dismiss();
+            }
+        });
+
+        setView(fenetre);

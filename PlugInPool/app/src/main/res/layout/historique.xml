@@ -6,66 +6,103 @@
     android:layout_height="match_parent"
     tools:context=".Historique">
 
+
+
     <ImageView
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/table_billard"
+        android:scaleType="centerCrop"
+        android:src="@drawable/tapis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_droit_sans_poche"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:foregroundGravity="center_horizontal"
+        android:scaleType="centerCrop"/>
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_gauche_sans_poche"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:foregroundGravity="center_horizontal"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_gauche"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/angle_haut_droit"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_marginRight="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="130dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="16dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/barreRecherche"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="2dp"
                 android:hint="Saisir votre recherche"
                 android:inputType="text"
-                android:layout_weight="0.4"
-                android:padding="2dp" />
+                android:fontFamily="@font/celtica_bold"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:layout_weight="1.2"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"/>
 
             <Spinner
                 android:id="@+id/categorieRecherche"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="left"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="2dp"
+                android:gravity="center"
                 android:hint="JOUEURS"
-                android:padding="2dp"
                 android:spinnerMode="dropdown"
-                android:layout_weight="0.7"
+                android:layout_weight="2"
                 android:focusable="false"/>
 
             <ImageButton
                 android:id="@+id/boutonRechercher"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.8"
-                android:background="@color/bleu"
-                android:contentDescription="@string/bouton_actualiser"
-                android:scaleType="fitCenter"
-                app:srcCompat="@drawable/loupe"
-                android:padding="8dp"
-                android:layout_margin="8dp"/>
-
-
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="2"
+                android:background="@drawable/bouton_fond_reflet"
+                android:scaleType="centerInside"
+                android:src="@drawable/loupe" />
 
         </LinearLayout>
 
@@ -74,12 +111,93 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/boutonMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/bleu"
-            android:text="Quitter" />
 
     </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_bas_gauche"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bord_bas_droit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="2dp">
+
+            <ImageButton
+                android:id="@+id/boutonEffacer"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bouton_fond_reflet"
+                android:visibility="visible"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"
+                android:gravity="center_horizontal"
+                android:text=" Effacer "
+                android:textColor="@color/black"
+                android:textSize="40sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="2dp">
+
+            <ImageButton
+                android:id="@+id/boutonMenu"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bouton_fond_reflet" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"
+                android:gravity="center_horizontal"
+                android:text=" Menu "
+                android:textColor="@color/black"
+                android:textSize="40sp"/>
+
+        </FrameLayout>
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

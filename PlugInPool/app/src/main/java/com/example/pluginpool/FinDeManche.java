@@ -6,16 +6,18 @@
 
 package com.example.pluginpool;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.example.pluginpool.EcranPrincipal;
+import org.w3c.dom.Text;
+
 
 /**
  * @class FinDeManche
@@ -31,16 +33,18 @@ public class FinDeManche extends AlertDialog
     /**
      * Attributs
      */
-    private Manche activiteManche;
+    private Manche activiteManche;          //!< @todo
 
     /**
      * Ressources GUI
      */
-    private Button boutonMenu;
-    private Button boutonRejouer;
-    private TextView[][] billesEmpochees;
-    private TextView[] joueurs;
-    private View fenetre;
+    private ImageButton boutonMenu;         //!< @todo
+    private ImageButton boutonRejouer;      //!< @todo
+    private TextView entete;                //!< @todo
+    private TextView[][] billesEmpochees;   //!< @todo
+    private TextView[] joueurs;             //!< @todo
+    private View fenetre;                   //!< @todo
+    private TextView[] nbFautes;
 
     /**
      * @brief Constructeur de la classe FinDeManche
@@ -59,8 +63,12 @@ public class FinDeManche extends AlertDialog
         Log.d(TAG, "initialiserRessources(joueur1 =  " + joueur1 + ", joueur2 = " + joueur2 + " )");
 
         fenetre = LayoutInflater.from(getContext()).inflate(R.layout.fenetre_fin_de_manche, null);
-        boutonMenu = (Button) fenetre.findViewById(R.id.boutonMenu);
-        boutonRejouer =  (Button) fenetre.findViewById(R.id.boutonRejouer);
+
+        boutonMenu = (ImageButton) fenetre.findViewById(R.id.boutonMenu);
+        boutonRejouer =  (ImageButton) fenetre.findViewById(R.id.boutonRejouer);
+
+        entete = (TextView) fenetre.findViewById(R.id.entete);
+
         billesEmpochees = new TextView[BlackBall.NB_JOUEURS][BlackBall.NB_COULEURS];
         billesEmpochees[Manche.PREMIER_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur1);
         billesEmpochees[Manche.SECOND_JOUEUR][BlackBall.ROUGE] = (TextView) fenetre.findViewById(R.id.nbRougesJoueur2);
@@ -76,14 +84,20 @@ public class FinDeManche extends AlertDialog
         joueurs[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.joueur2);
         joueurs[Manche.SECOND_JOUEUR].setText(joueur2);
         setResultats();
+        nbFautes = new TextView[BlackBall.NB_JOUEURS];
+        nbFautes[Manche.PREMIER_JOUEUR] = (TextView) fenetre.findViewById(R.id.nbFautesJoueur1);
+        nbFautes[Manche.SECOND_JOUEUR] = (TextView) fenetre.findViewById(R.id.nbFautesJoueur2);
+
         setView(fenetre);
 
         boutonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 activiteManche.communications[Communication.TABLE].seDeconnecter();
-                Intent intent = new Intent(getContext(), EcranPrincipal.class);
-                getContext().startActivity(intent);
+                Communication.supprimerInstance();
+                activiteManche.setResult(Activity.RESULT_OK, new Intent());
+                FinDeManche.this.dismiss();
+                activiteManche.finish();
             }
         });
         boutonRejouer.setOnClickListener(new View.OnClickListener() {
@@ -104,9 +118,21 @@ public class FinDeManche extends AlertDialog
         {
             for(int couleur = BlackBall.ROUGE; couleur < BlackBall.NB_COULEURS; couleur++)
             {
-                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES + String.valueOf( activiteManche.baseDonnees.getNbEmpoches(couleur, (String)joueurs[joueur].getText(), BaseDeDonnees.DEFAUT)));
+                billesEmpochees[joueur][couleur].setText(BlackBall.NOMS_BILLES[couleur] + String.valueOf( activiteManche.baseDonnees.getNbEmpoches(couleur, (String)joueurs[joueur].getText(), BaseDeDonnees.DEFAUT)));
             }
         }
     }
+
+    public void setEntete(String joueur)
+    {
+        entete.setText(joueur + " remporte la manche !");
+    }
+
+    public void setNbFautes(int fautesJoueur1, int fautesJoueur2)
+    {
+        nbFautes[Manche.PREMIER_JOUEUR].setText("Fautes : " + fautesJoueur1);
+        nbFautes[Manche.SECOND_JOUEUR].setText("Fautes : " + fautesJoueur2);
+    }
 }
+
 

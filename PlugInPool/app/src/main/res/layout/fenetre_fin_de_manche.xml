@@ -1,82 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/fenetre_fond" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/entete"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:fontFamily="@font/celticmd"
+            android:padding="16dp"
+            android:text="GAUME Benjamin remporte la manche !"
+            android:textColor="@color/black"
+            android:textSize="40sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/joueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="16dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbRougesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="16dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbJaunesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="16dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbBlanchesJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="16dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbNoiresJoueur1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="16dp"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/nbFautesJoueur1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/joueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbRougesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbJaunesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbBlanchesJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
                 <TextView
                     android:id="@+id/nbNoiresJoueur2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Resultats...." />
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/nbFautesJoueur2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/celtica_bold"
+                    android:text="Resultats...."
+                    android:textColor="@color/black"
+                    android:paddingLeft="10dp"
+                    android:textSize="24dp" />
+
 
             </LinearLayout>
 
@@ -86,19 +178,59 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/boutonMenu"
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Menu" />
+                android:layout_margin="12dp"
+                android:layout_weight="1">
 
-            <Button
-                android:id="@+id/boutonRejouer"
-                android:layout_width="wrap_content"
+                <ImageButton
+                    android:id="@+id/boutonRejouer"
+                    android:layout_width="230dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bouton_fond_reflet" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/celtica_bold"
+                    android:gravity="center_horizontal"
+                    android:text=" Rejouer "
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Rejouer" />
+                android:layout_margin="12dp"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/boutonMenu"
+                    android:layout_width="230dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bouton_fond_reflet" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/celtica_bold"
+                    android:gravity="center_horizontal"
+                    android:text=" Menu "
+                    android:textColor="@color/black"
+                    android:textSize="40sp" />
+
+            </FrameLayout>
+
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,28 @@
+class TestParallelepipede
+!!!182450.java!!!	testParallelepipede() : void
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertTrue(parallelepipede instanceof Figure);
+     assertTrue(parallelepipede instanceof Rectangle);
+     assertEquals(5., parallelepipede.getLargeur());
+     assertEquals(4., parallelepipede.getLongueur());
+     assertEquals(0., parallelepipede.getX());
+     assertEquals(0., parallelepipede.getY());
+     assertEquals(0., parallelepipede.getZ());
+!!!182578.java!!!	testParallelepipedeDescription() : void
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertEquals("Figure <|--- Rectangle <|--- Parallelepipede", parallelepipede.getDescription());
+!!!182706.java!!!	testParallelepipedeToString() : void
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertEquals("0.0 0.0 0.0 5.0 4.0 9.0 0.0 0.0", parallelepipede.toString());
+!!!182834.java!!!	testParallelepipedePerimetre() : void
+       
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertEquals(0.0, parallelepipede.perimetre());
+!!!182962.java!!!	testParallelepipedeAire() : void
+       
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertEquals(202.0, parallelepipede.aire());
+!!!183090.java!!!	testParallelepipedeVolume() : void
+       
+     Parallelepipede parallelepipede = new Parallelepipede(5., 4., 9.);
+     assertEquals(180.0, parallelepipede.volume());

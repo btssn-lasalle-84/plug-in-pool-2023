@@ -1,0 +1,23 @@
+class Rectangle
+!!!203698.java!!!	Rectangle(in largeur : double, in longueur : double)
+        super();
+        this.largeur = largeur;
+        this.longueur = longueur;
+!!!203826.java!!!	Rectangle(in largeur : double, in longueur : double, in x : double, in y : double, in z : double)
+        super(x, y, z);
+        this.largeur = largeur;
+        this.longueur = longueur;
+!!!203954.java!!!	getLargeur() : double
+       return this.largeur;
+!!!204082.java!!!	getLongueur() : double
+       return this.longueur;
+!!!204210.java!!!	perimetre() : double
+        return (this.largeur + this.longueur) * 2;
+!!!204338.java!!!	aire() : double
+        return this.largeur * this.longueur;
+!!!204466.java!!!	volume() : double
+        return 0.;
+!!!204594.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Rectangle";
+!!!204722.java!!!	toString() : String
+        return super.toString() + " " + this.largeur + " " + this.longueur;

@@ -1,0 +1,51 @@
+format 224
+"TP_Java" // Documents::Eleos::TP_Java
+  revision 1
+  modified_by 50 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "Documents/Eleos/TP_Java/"
+  package_ref 138162 // sequence1
+
+  package_ref 138546 // sequence2a
+
+  package_ref 138930 // sequence2b
+
+  package_ref 139314 // sequence3a
+
+  package_ref 139698 // sequence3b
+
+  package_ref 140082 // sequence4a
+
+  package_ref 140466 // sequence4b
+
+  package_ref 140850 // sequence4c
+
+  package_ref 141234 // sequence5
+end

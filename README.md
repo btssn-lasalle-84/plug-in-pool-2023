@@ -5,15 +5,19 @@
 # Projet plug-in-pool 2023
 
 - [Projet plug-in-pool 2023](#projet-plug-in-pool-2023)
+  - [Fonctionnalités](#fonctionnalit%C3%A9s)
   - [Documentation du code](#documentation-du-code)
-  - [Versions](#versions)
+  - [Présentations](#pr%C3%A9sentations)
+  - [Vidéo](#vid%C3%A9o)
+  - [Diagramme de classes](#diagramme-de-classes)
+  - [Screenshots](#screenshots)
+  - [Protocoles](#protocoles)
+  - [Historique des versions](#historique-des-versions)
     - [1.0](#10)
     - [0.2](#02)
     - [0.1](#01)
-  - [Diagramme de classes](#diagramme-de-classes)
   - [Base de données SQLite](#base-de-donn%C3%A9es-sqlite)
   - [Planification](#planification)
-  - [Protocoles](#protocoles)
   - [Annexes](#annexes)
     - [Blackball](#blackball)
       - [Casse](#casse)
@@ -23,7 +27,7 @@
 
 ---
 
-Le système Plug in Pool est un système numérique permettant de jouer une partie de [Blackball](#blackball) (parfois appelé billard anglais, billard pool ou 8 pool).
+Le système **Plug in Pool** est un système numérique permettant de jouer une partie de [Blackball](#blackball) (parfois appelé billard anglais, billard pool ou 8 pool).
 
 ![](images/pluginpool-logo.png)
 
@@ -37,90 +41,55 @@ Le système Plug-in-Pool est décomposé en trois modules :
 
 ![](images/modules.png)
 
+## Fonctionnalités
+
+- Android
+
 ![](images/uc-mobilepool.png)
 
 | Fonctionnalité (Android)                         | Oui | Non |
 | ------------------------------------------------ |:---:|:---:|
+| Configurer une manche                                |  X  |     |
 | Lancer une manche                                |  X  |     |
-| Configurer la manche                             |  X  |     |
-| Éditer un joueur                                 |  X  |     |
-| Suivre le déroulement de la manche               |  X  |     |
-| Enregistrer la manche                            |  X  |     |
-| Accéder à la base de données                     |  X  |     |
-| Consulter l'historique                           |  /  |     |
-| Purger l'historique                              |     |     |
-| Dialoguer avec les modules                       |  X  |     |
+| Mettre fin à la manche                                |  X  |     |
+| Choisir/Editer un joueur                                |  X  |     |
+| Suivre le déroulement de la manche                                |  X  |     |
+| Enregistrer la manche                                |  X  |     |
+| Choisir une table                                |  X  |     |
+| Dialoguer avec le module EcranPool                                |  X  |     |
+| Dialoguer avec le module table de billard                                |  X  |     |
+| Changer automatiquement de joueur                                |  X  |     |
+| Consulter l’historique                                |  X  |     |
+| Effectuer une recherche                                |  X  |     |
+| Afficher l’historique                                |  X  |     |
+| Purger l’historique                                |  X  |     |
+
+- Qt
 
 ![](images/uc-ecranpool.png)
 
-| Fonctionnalité (Qt)                         | Oui | Non |
+| Fonctionnalité (Qt)                         | Oui | En cours |
 | ------------------------------------------- |:---:|:---:|
-| Visualiser les données du match             |  /  |     |
-| Dialoguer avec le module                    |  /  |     |
+| Afficher un écran d’accueil                    |  X  |     |
+| Visualiser l’empochage d’une bille                    |  X  |     |
+| Visualiser les données de la manche en temps réel                    |  X  |     |
+| Visualiser les données de la partie (statistiques fin de partie)                    |    |  X   |
+| Dialogue avec le module MobilePool (Bluetooth)                    |  X  |     |
 
 ## Documentation du code
 
 https://btssn-lasalle-84.github.io/plug-in-pool-2023/
 
-## Versions
+## Présentations
 
-![](images/jira-livraisons.png)
+Diaporamas étudiants IR :
 
-### 1.0
+- Clement Trichet (Android) : [Plug-in-pool 2023 - Revue finale - TRICHET Clement.pptx](./diaporamas/Plug-in-pool%202023%20-%20Revue%20finale%20-%20TRICHET%20Clement.pptx)
+- Gaume Benjamin (Qt) : [Plug-in-pool 2023 - Revue finale - GAUME Benjamin.pptx](./diaporamas/Plug-in-pool%202023%20-%20Revue%20finale%20-%20GAUME%20Benjamin.pptx)
 
-![](images/jira-tickets-v1.0.png)
+## Vidéo
 
-- Android :
-
-![](images/screenshot-android-accueil-v1.0.png)
-
-![](images/screenshot-android-configuration-v0.2.png)
-
-![](images/screenshot-android-manche-v1.0.png)
-
-- Qt :
-
-![](images/screenshot-qt-accueil-v1.0.png)
-
-![](images/screenshot-qt-partie-v1.0.png)
-
-![](images/screenshot-qt-fin-v1.0.png)
-
-### 0.2
-
-![](images/jira-tickets-v0.2.png)
-
-- Android :
-
-![](images/screenshot-android-accueil-v0.2.png)
-
-![](images/screenshot-android-configuration-v0.2.png)
-
-![](images/screenshot-android-manche-v0.2.png)
-
-- Qt :
-
-![](images/screenshot-qt-accueil-v0.2.png)
-
-![](images/screenshot-qt-partie-v0.2.png)
-
-![](images/screenshot-qt-fin-v0.2.png)
-
-### 0.1
-
-![](images/jira-tickets-v0.1.png)
-
-- Android :
-
-![](images/screenshot-android-accueil.png)
-
-![](images/screenshot-android-configuration.png)
-
-![](images/screenshot-android-manche.png)
-
-- Qt :
-
-![](images/screenshot-qt-accueil-v0.1.png)
+https://www.youtube.com/@projets-btssn-lasalle84
 
 ## Diagramme de classes
 
@@ -132,9 +101,47 @@ https://btssn-lasalle-84.github.io/plug-in-pool-2023/
 
 ![](images/dc-ecranpool-v1.0.png)
 
+## Screenshots
+
+- Android : ![](images/android.gif)
+
+- Qt : ![](images/qt.gif)
+
+## Protocoles
+
+- Mobile-pool ←→ Table de billard
+
+Protocole orienté bit
+
+![](images/protocole-mobilepool-1.png)
+
+![](images/protocole-mobilepool-2.png)
+
+- Mobile-pool → Ecan-pool
+
+Protocole orienté caractères ASCII
+
+![](images/protocole-ecranpool.png)
+
+## Historique des versions
+
+![](images/jira-livraisons.png)
+
+### 1.0
+
+![](images/jira-tickets-v1.0.png)
+
+### 0.2
+
+![](images/jira-tickets-v0.2.png)
+
+### 0.1
+
+![](images/jira-tickets-v0.1.png)
+
 ## Base de données SQLite
 
-![](images/bdd.png)
+![](./sql/schema-1.0.png)
 
 ```sql
 --- LDD (langage de définition de données)
@@ -166,22 +173,6 @@ CREATE TABLE IF NOT EXISTS empoches (id INTEGER PRIMARY KEY AUTOINCREMENT, tourI
 ## Planification
 
 ![](images/gantt.png)
-
-## Protocoles
-
-- Mobile-pool ←→ Table de billard
-
-Protocole orienté bit
-
-![](images/protocole-mobilepool-1.png)
-
-![](images/protocole-mobilepool-2.png)
-
-- Mobile-pool → Ecan-pool
-
-Protocole orienté caractères ASCII
-
-![](images/protocole-ecranpool.png)
 
 ---
 

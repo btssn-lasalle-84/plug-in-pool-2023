@@ -21,6 +21,8 @@ public class BlackBall
     public static final int POCHE_BAS_DROIT = 3;        //!< Numero Poche en bas a droite
     public static final int POCHE_BAS_GAUCHE = 4;       //!< Numero Poche en bas a gauche
     public static final int POCHE_MILIEU_GAUCHE = 5;    //!< Numero Poche au milieu a gauche
+    public static final String TAG = "_DEBUG";
+    public static final int[] COULEURS = {R.color.rouge, R.color.jaune};    //!< Id des couleurs rouges et jaunes en ressources
     public static final int[] IMAGES_BILLES = {R.drawable.bille_rouge, R.drawable.bille_jaune}; //!< Id des images des billes rouges et jaunes en ressources
     public static final String[] NOMS_BILLES = {"Billes rouges : ", "Billes jaunes : ", "Bille blanche : ", "Bille noire : "}; //!<@todo
 }

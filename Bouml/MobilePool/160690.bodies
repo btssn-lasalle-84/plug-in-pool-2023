@@ -1,0 +1,7 @@
+class Inverse
+!!!155058.java!!!	main(inout argv : String [[]]) : void
+        if(argv.length > 0)
+        {
+            System.out.println(argv[0]);
+            System.out.println(StringUtils.inverse(argv[0]));
+        }

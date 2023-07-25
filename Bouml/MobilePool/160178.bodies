@@ -1,0 +1,15 @@
+class FizzBuzz
+!!!153522.java!!!	main(inout args : String [[]]) : void
+        for (int i = 1; i < 101 + 1; i++)
+        {
+            afficheFizzBuzz(i);
+        }
+!!!153650.java!!!	afficheFizzBuzz(in i : int) : void
+        System.out.print(i);
+        if(i % 5 == 0 && i % 7 == 0)
+            System.out.print(" -> FizzBuzz");
+        else if(i % 5 == 0)
+            System.out.print(" -> Fizz");
+        else if(i % 7 == 0)
+            System.out.print(" -> Buzz");
+        System.out.println();

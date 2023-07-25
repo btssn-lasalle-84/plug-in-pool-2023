@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Sqlite" id="Project-867" database="Sqlite" >
+	<schema name="Default" >
+		<table name="empoches" spec="" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="tourId" type="INTEGER" jt="4" />
+			<column name="poche" type="INTEGER" jt="4" />
+			<column name="couleur" type="INTEGER" jt="4" />
+			<index name="pk_empoches" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="FK_empoches tours" to_schema="Default" to_table="tours" delete_action="cascade" options="" >
+				<fk_column name="tourId" pk="id" />
+			</fk>
+		</table>
+		<table name="joueurs" spec="" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="nom" type="TEXT" jt="-1" mandatory="y" />
+			<column name="manches" type="INTEGER" jt="4" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="victoires" type="INTEGER" jt="4" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="scoreELO" type="INTEGER" jt="4" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="pk_joueurs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_joueurs_nom" unique="UNIQUE_KEY" >
+				<column name="nom" />
+			</index>
+		</table>
+		<table name="manches" spec="" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="horodatage" type="DATETIME" jt="93" mandatory="y" />
+			<column name="gagnantId" type="INTEGER" jt="4" />
+			<column name="perdantId" type="INTEGER" jt="4" />
+			<column name="numeroTable" type="INTEGER" jt="4" />
+			<index name="pk_manches" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_manches_horodatage" unique="UNIQUE_KEY" >
+				<column name="horodatage" />
+			</index>
+			<fk name="FK_manches joueurs" to_schema="Default" to_table="joueurs" delete_action="cascade" options="" >
+				<fk_column name="gagnantId" pk="id" />
+			</fk>
+			<fk name="FK_manches joueurs_001" to_schema="Default" to_table="joueurs" delete_action="cascade" options="" >
+				<fk_column name="perdantId" pk="id" />
+			</fk>
+		</table>
+		<table name="tours" spec="" >
+			<column name="id" type="INTEGER" jt="4" mandatory="y" >
+				<identity><![CDATA[AUTOINCREMENT]]></identity>
+			</column>
+			<column name="joueurId" type="INTEGER" jt="4" />
+			<column name="mancheId" type="INTEGER" jt="4" />
+			<index name="pk_tours" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="FK_tours joueurs" to_schema="Default" to_table="joueurs" delete_action="cascade" options="" >
+				<fk_column name="joueurId" pk="id" />
+			</fk>
+			<fk name="FK_tours manches" to_schema="Default" to_table="manches" delete_action="cascade" options="" >
+				<fk_column name="mancheId" pk="id" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="Sqlite" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.40.0.0.jar" driver_desc="Standard" host="localhost" port="7210" instance="/Users/tvaira/Documents/dev/git/projets-2023/plug-in-pool-2023/sql/PoolDonnees.db" useSystemProxy="false" />
+	<layout name="Layout" id="Layout-1976" show_relation="columns" >
+		<callout x="48" y="48" pointer="Round" >
+			<comment><![CDATA[Add tables to the layout diagram (here) by drag & drop from the Project Tree.
+Drop this callout from its right-click pop-up.]]></comment>
+		</callout>
+	</layout>
+	<layout name="Main Layout" id="Layout-1542" joined_routing="y" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="empoches" color="BED3F4" x="208" y="224" />
+		<entity schema="Default" name="joueurs" color="BED3F4" x="48" y="48" />
+		<entity schema="Default" name="manches" color="BED3F4" x="352" y="48" />
+		<entity schema="Default" name="tours" color="BED3F4" x="208" y="384" />
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-1f51" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="empoches" color="BED3F4" x="48" y="240" />
+		<entity schema="Default" name="joueurs" color="BED3F4" x="304" y="48" />
+		<entity schema="Default" name="manches" color="BED3F4" x="560" y="48" />
+		<entity schema="Default" name="tours" color="BED3F4" x="48" y="48" />
+		<script name="SQL Editor" id="Editor-209d" language="SQL" >
+			<string><![CDATA[SELECT
+	id, nom, manches, victoires, scoreELO
+FROM
+	joueurs s;]]></string>
+		</script>
+		<browser id="Browse-29d" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="Default" entity="joueurs" x="-2147483648" y="-2147483648" width="-2147483648" height="-2147483648" >
+				<browse_table schema="Default" entity="manches" fk="FK_manches joueurs" x="40" y="-2147483648" width="500" height="350" >
+					<browse_table schema="Default" entity="tours" fk="FK_tours manches" x="580" y="-2147483648" width="500" height="350" />
+				</browse_table>
+			</browse_table>
+		</browser>
+		<query id="Query-2696" name="Query Builder" >
+			<query_table schema="Default" name="joueurs" alias="j" x="48" y="48" >
+				<column name="id" />
+				<column name="nom" />
+				<column name="manches" />
+				<column name="victoires" />
+				<column name="scoreELO" />
+				<query_table schema="Default" name="manches" alias="m" x="256" y="48" fk="FK_manches joueurs" type="Inner Join" >
+					<column name="id" />
+					<column name="horodatage" />
+					<column name="gagnantId" />
+					<column name="perdantId" />
+					<column name="numeroTable" />
+					<query_table schema="Default" name="tours" alias="t" x="480" y="48" fk="FK_tours manches" type="Inner Join" >
+						<column name="id" />
+						<column name="joueurId" />
+						<column name="mancheId" />
+					</query_table>
+				</query_table>
+			</query_table>
+		</query>
+		<form name="Report" id="Report-1671" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Joueurs Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id" type="4" />
+						<var name="nom" type="-1" />
+						<var name="manches" type="4" />
+						<var name="victoires" type="4" />
+						<var name="scoreELO" type="4" />
+						<script ><![CDATA[SELECT * FROM joueurs]]></script>
+					</form_script>
+					<param name="i0" value="nom" />
+					<param name="width" value="100%" />
+					<param name="v0" value="id" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="id" type="4" />
+						<var name="nom" type="-1" />
+						<var name="manches" type="4" />
+						<var name="victoires" type="4" />
+						<var name="scoreELO" type="4" />
+						<script ><![CDATA[SELECT * FROM joueurs]]></script>
+					</form_script>
+					<cell type="label" name="id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="nom" pos="1,0,1,0,c,c" />
+					<cell type="label" name="manches" pos="2,0,2,0,c,c" />
+					<cell type="label" name="victoires" pos="3,0,3,0,c,c" />
+					<cell type="label" name="scoreELO" pos="4,0,4,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="5,0,5,0,c,c" />
+					<cell type="label" name="${id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${nom}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${manches}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${victoires}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${scoreELO}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="5,1,5,1,c,c" ref_id="Report-1671" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-1671" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-1671" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-1671" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>

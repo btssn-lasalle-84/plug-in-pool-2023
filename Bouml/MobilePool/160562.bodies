@@ -1,0 +1,16 @@
+class TestTableauCarre
+!!!154802.java!!!	testTableauCarre() : void
+     PrintStream originalOut = System.out;
+     ByteArrayOutputStream bos = new ByteArrayOutputStream();
+     System.setOut(new PrintStream(bos));
+
+     // action
+     TableauCarre.main(null);
+
+     // assertion
+     assertEquals("1 a pour carre 1\n3 a pour carre 9\n5 a pour carre 25\n7 a pour carre 49\n9 a pour carre 81\n", bos.toString());
+
+     // undo the binding in System
+     System.setOut(originalOut);
+!!!154930.java!!!	testConstante() : void
+     assertEquals(5, TableauCarre.NB_VALEURS);

@@ -7,6 +7,7 @@ var classcom_1_1example_1_1pluginpool_1_1_protocole_ecran =
     [ "JOUEURS", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#ac7e3dfdee071c27f48c74e96e8308af1", null ],
     [ "POCHES", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#a0c05dbf4363175e862b475e5d0cf6302", null ],
     [ "TABLES", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#a16e108517bd56ae9b6d33b40dafc14c4", null ],
+    [ "TAG", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#a7bd1d01013ffd93d82c067333d4cbd75", null ],
     [ "TYPE_CHANGEMENT_JOUEUR", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#af0c0f15f6c63242522db34ec8668fbe6", null ],
     [ "TYPE_EMPOCHE", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#aecab6d96211a0de5205343957effb30b", null ],
     [ "TYPE_NOM", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html#aef6221da76b006f388a1469f6c2c0893", null ]

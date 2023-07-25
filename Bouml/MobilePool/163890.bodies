@@ -1,0 +1,19 @@
+class Cercle
+!!!173490.java!!!	Cercle(in rayon : double)
+        super();
+        this.rayon = rayon;
+!!!173618.java!!!	Cercle(in rayon : double, in x : double, in y : double, in z : double)
+        super(x, y, z);
+        this.rayon = rayon;
+!!!173746.java!!!	getRayon() : double
+       return this.rayon;
+!!!173874.java!!!	perimetre() : double
+        return 2 * this.rayon * Math.PI;
+!!!174002.java!!!	aire() : double
+        return this.rayon * this.rayon * Math.PI;
+!!!174130.java!!!	volume() : double
+        return 0.;
+!!!174258.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Cercle";
+!!!174386.java!!!	toString() : String
+        return super.toString() + " " + this.rayon;

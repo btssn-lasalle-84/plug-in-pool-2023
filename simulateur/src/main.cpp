@@ -29,12 +29,13 @@
 #define CHAMP_POCHE   2
 #define CHAMP_COULEUR 0
 
-#define TRAME_START 0x9c
-#define TRAME_STOP  0x80
-
-#define TRAME_EMPOCHE 0x00
-#define TRAME_SUIVANT 0x9f
-#define TRAME_FAUTE   0x80
+// Mobile-pool -> Table
+#define TRAME_START 0x9c // Commencer une manche (réinitialisation)
+#define TRAME_STOP  0x80 // Arrêter une manche (facultatif)
+// Mobile-pool <- Table
+#define TRAME_EMPOCHE 0x00 // cf. Protocole
+#define TRAME_TIR     0x9f // Trame de début de tour
+#define TRAME_FAUTE   0x80 // Trame de faute
 
 #define ERREUR_TRAME_INCONNUE      0
 #define ERREUR_TRAME_NON_SUPPORTEE 1
@@ -47,7 +48,7 @@
 #define NB_BILLES_ROUGE 7
 #define NB_BILLES_JAUNE 7
 
-#define TIR_LOUPE 9 // simule un tir loupé
+#define TIR_LOUPE 9     // simule un tir loupé
 
 #define ANTI_REBOND 400 //
 
@@ -65,17 +66,11 @@ BluetoothSerial ESPBluetooth;
 enum TypeTrame
 {
     Inconnu = -1,
-    // START, PAUSE, PLAY, STOP, RESET, CONFIG, EMPOCHE, FAUTE, NEXT, ACK,
-    // ERREUR,
     START,
     STOP,
-    RESET,
-    CONFIG,
     EMPOCHE,
+    TIR,
     FAUTE,
-    NEXT,
-    ACK,
-    ERREUR,
     NB_TRAMES
 };
 
@@ -87,7 +82,6 @@ enum EtatPartie
 {
     Finie = 0,
     EnCours,
-    EnPause,
     Terminee
 };
 
@@ -117,21 +111,22 @@ enum Poche
     F /* = 6 */
 };
 
-// const String nomsTrame[TypeTrame::NB_TRAMES] = { "START", "PAUSE", "PLAY",
-// "STOP", "RESET", "CONFIG", "EMPOCHE", "FAUTE", "NEXT", "ACK", "ERREUR" };
-// //!< nom des trames dans le protocole
+//!< nom des trames dans le protocole
 const String nomsTrame[TypeTrame::NB_TRAMES] = {
-    "START", "STOP", "RESET", "CONFIG", "EMPOCHE",
-    "FAUTE", "NEXT", "ACK",   "ERREUR"
+    "START",
+    "STOP",
+    "EMPOCHE",
+    "TIR"
+    "FAUTE"
 };                                        //!< nom des trames dans le protocole
 EtatPartie etatPartie            = Finie; //!< l'état de la partie
 int        nbBilles[NB_COULEURS] = {
     NB_BILLES_ROUGE,
     NB_BILLES_JAUNE
-}; //!< le nombre de billes à empocher pour chaque couleur
+};                     //!< le nombre de billes à empocher pour chaque couleur
 CouleurBille joueurCourant =
   CouleurBille::NOIRE; //!< la couleur du joueur qui tire
-bool etatJoueur[NB_COULEURS] = { false, false }; //!< le joueur a joué ou pas
+bool etatJoueur[NB_COULEURS] = { false, false };   //!< le joueur a joué ou pas
 bool joueurGagnant[NB_COULEURS]       = { false,
                                           false }; //!< le joueur a gagné ou pas
 const String codeCouleur[NB_COULEURS] = {
@@ -145,11 +140,12 @@ const String codePoche[NB_POCHES] = {
 bool      refresh       = false; //!< demande rafraichissement de l'écran OLED
 bool      antiRebond    = false; //!< anti-rebond
 bool      tirEncours    = false; //!< une sequence de tirs est en cours
+bool      fauteEncours  = false; //!< présence d'une faute
 bool      joueurSuivant = false; //!< au joueur suivant ou pas
 Afficheur afficheur(ADRESSE_I2C_OLED,
                     BROCHE_I2C_SDA,
                     BROCHE_I2C_SCL); //!< afficheur OLED SSD1306
-int       numeroTable = 1;
+int       numeroTable = 2;
 
 String extraireChamp(String& trame, unsigned int numeroChamp)
 {
@@ -157,27 +153,36 @@ String extraireChamp(String& trame, unsigned int numeroChamp)
 }
 
 /**
- * @brief Envoie une trame d'acquittement via le Bluetooth
+ * @brief Envoie une trame de début de tour via le Bluetooth
  *
  */
-void envoyerTrameAcquittement()
+void envoyerTrameDebutTour()
 {
-    // non implémenté
-    return;
+    uint8_t empoche = TRAME_TIR;
+
+    /*
+    Trame de service
+    Format : {Type}{Requête/Réponse}
+    | 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
+    | 1  | X  | X  | 1  | 1  | 1  | 1  | 1  |
+    |Type|N°Table  |Suivant sans faute      |
+    */
+
+    empoche |= (uint8_t(numeroTable - 1) << CHAMP_TABLE);
+
+    ESPBluetooth.write(&empoche, 1);
+#ifdef DEBUG
+    char trameEnvoi[5];
+    sprintf((char*)trameEnvoi, "%02X\n", empoche);
+    String trame = String(trameEnvoi);
+    // trame.remove(trame.indexOf("\r"), 2);
+    Serial.print("> ");
+    Serial.println(trame);
+#endif
 }
 
 /**
- * @brief Envoie une trame d'erreur via le Bluetooth
- *
- */
-void envoyerTrameErreur(int code)
-{
-    // non implémenté
-    return;
-}
-
-/**
- * @brief Envoie une trame via le Bluetooth
+ * @brief Envoie une trame d'empochage via le Bluetooth
  *
  */
 void envoyerTrameEmpoche(Poche numeroPoche, CouleurBille couleurBille)
@@ -208,39 +213,10 @@ void envoyerTrameEmpoche(Poche numeroPoche, CouleurBille couleurBille)
 }
 
 /**
- * @brief Envoie une trame NEXT via le Bluetooth
- *
- */
-void envoyerTrameNext()
-{
-    uint8_t empoche = TRAME_SUIVANT;
-
-    /*
-    Trame de service
-    Format : {Type}{Requête/Réponse}
-    | 7  | 6  | 5  | 4  | 3  | 2  | 1  | 0  |
-    | 1  | X  | X  | 1  | 1  | 1  | 1  | 1  |
-    |Type|N°Table  |Suivant sans faute      |
-    */
-
-    empoche |= (uint8_t(numeroTable - 1) << CHAMP_TABLE);
-
-    ESPBluetooth.write(&empoche, 1);
-#ifdef DEBUG
-    char trameEnvoi[5];
-    sprintf((char*)trameEnvoi, "%02X\n", empoche);
-    String trame = String(trameEnvoi);
-    // trame.remove(trame.indexOf("\r"), 2);
-    Serial.print("> ");
-    Serial.println(trame);
-#endif
-}
-
-/**
  * @brief Envoie une trame FAUTE via le Bluetooth
  *
  */
-void envoyerTrameFaute(int numeroPoche, CouleurBille couleurBille)
+void envoyerTrameFaute()
 {
     uint8_t empoche = TRAME_FAUTE;
 
@@ -436,12 +412,6 @@ void afficherTir(int numeroPoche, bool billeNoire = false, bool faute = false)
  */
 bool simulerTir()
 {
-    // déjà gagné ?
-    if(estPartieGagnee())
-    {
-        return false;
-    }
-
     int tir = random(0, (NB_POCHES * 2)) + 1; // 1 chance sur 2 : entre 1 et 12
 #ifdef DEBUG
     if(!joueurGagnant[joueurCourant])
@@ -459,28 +429,37 @@ bool simulerTir()
     // empochage ?
     if(tir >= 1 && tir <= NB_POCHES)
     {
-        envoyerTrameEmpoche(Poche(tir), joueurCourant);
         if(nbBilles[joueurCourant] > 0)
         {
             nbBilles[joueurCourant]--;
+            envoyerTrameEmpoche(Poche(tir), joueurCourant);
+#ifdef DEBUG
+            Serial.print("joueur ");
+            Serial.print(((int)joueurCourant == CouleurBille::ROUGE)
+                           ? String("ROUGE : ")
+                           : String("JAUNE : "));
+            Serial.print(nbBilles[joueurCourant]);
+            Serial.println(" bille(s)");
+#endif
             afficherTir(tir);
         }
         else if(nbBilles[joueurCourant] == 0) // simule la boule noire
         {
             joueurGagnant[joueurCourant] = true;
+            envoyerTrameEmpoche(Poche(tir), CouleurBille::NOIRE);
+#ifdef DEBUG
+            Serial.print("joueur ");
+            Serial.print(((int)joueurCourant == CouleurBille::ROUGE)
+                           ? String("ROUGE : ")
+                           : String("JAUNE : "));
+            Serial.print(nbBilles[joueurCourant]);
+            Serial.println(" bille(s)");
+#endif
             afficherTir(tir, true);
             return false; // on ne continue pas car on a gagné
         }
-#ifdef DEBUG
-        Serial.print("joueur ");
-        Serial.print(((int)joueurCourant == CouleurBille::ROUGE)
-                       ? String("ROUGE : ")
-                       : String("JAUNE : "));
-        Serial.print(nbBilles[joueurCourant]);
-        Serial.println(" bille(s)");
-#endif
 
-        return true;
+        return true;          // on continue
     }
     else if(tir >= TIR_LOUPE) // loupé : non détectable
     {
@@ -501,7 +480,7 @@ bool simulerTir()
           (CouleurBille)random((long)CouleurBille::BLANCHE,
                                (long)(CouleurBille::BLANCHE + 2));
         envoyerTrameEmpoche(Poche(tir), couleurBille);
-        envoyerTrameFaute(tir, couleurBille);
+
 #ifdef DEBUG
         Serial.print("joueur ");
         Serial.print(((int)joueurCourant == CouleurBille::ROUGE)
@@ -513,19 +492,7 @@ bool simulerTir()
         afficherTir(tir, false, true);
     }
 
-    return false;
-}
-
-/**
- * @brief
- * @fn declencherTir()
- */
-void declencherTir()
-{
-    if(etatPartie != EnCours)
-        return;
-
-    tirEncours = true;
+    return false; // on arrête
 }
 
 /**
@@ -534,13 +501,6 @@ void declencherTir()
  */
 void tirer()
 {
-    // déjà gagné ?
-    if(estPartieGagnee())
-    {
-        tirEncours = false;
-        return;
-    }
-
     // déjà tiré ?
     if(etatJoueur[joueurCourant])
         return;
@@ -557,29 +517,33 @@ void tirer()
 }
 
 /**
- * @brief Changement de joueur déclenché par interruption sur le bouton SW2
- * @fn terminerTir()
+ * @brief Changement de joueur déclenché par interruption sur le bouton SW1
+ * (faute)
+ * @fn declencherFaute()
  */
-void IRAM_ATTR terminerTir()
+void IRAM_ATTR declencherFaute()
 {
-    // déjà gagné ?
-    if(estPartieGagnee())
+    if(etatPartie != EnCours || antiRebond)
         return;
 
-    if(etatPartie != EnCours || antiRebond || tirEncours)
+    tirEncours   = false;
+    fauteEncours = true;
+    antiRebond   = true;
+}
+
+/**
+ * @brief Changement de joueur déclenché par interruption sur le bouton SW2
+ * (tour suivant)
+ * @fn terminerTour()
+ */
+void IRAM_ATTR terminerTour()
+{
+    if(etatPartie != EnCours || antiRebond)
         return;
 
-    // pas tiré ?
-    if(!etatJoueur[joueurCourant])
-        return;
-
-    // joueur suivant
+    tirEncours    = false;
     joueurSuivant = true;
-    /*joueurCourant = (CouleurBille)((int(joueurCourant) + 1) % NB_COULEURS);
-    afficherSuivant();
-    etatJoueur[joueurCourant] = false;
-    envoyerTrameNext();*/
-    antiRebond = true;
+    antiRebond    = true;
 }
 
 /**
@@ -620,14 +584,14 @@ bool lireTrame(uint8_t& trame)
  */
 TypeTrame verifierTrame(uint8_t& trame)
 {
-    String format;
-
-    switch(TypeTrame(trame))
+    switch(trame)
     {
-        case TRAME_START:
-            return START;
         case TRAME_STOP:
             return STOP;
+        case TRAME_START:
+            return START;
+        default:
+            return Inconnu;
     }
 
 #ifdef DEBUG_VERIFICATION
@@ -664,10 +628,10 @@ void setup()
     pinMode(GPIO_LED_ORANGE, OUTPUT);
     pinMode(GPIO_LED_VERTE, OUTPUT);
 
-    // pinMode(GPIO_SW1, INPUT_PULLUP);
-    // attachInterrupt(digitalPinToInterrupt(GPIO_SW1), declencherTir, FALLING);
+    pinMode(GPIO_SW1, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(GPIO_SW1), declencherFaute, FALLING);
     pinMode(GPIO_SW2, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(GPIO_SW2), terminerTir, FALLING);
+    attachInterrupt(digitalPinToInterrupt(GPIO_SW2), terminerTour, FALLING);
 
     digitalWrite(GPIO_LED_ROUGE, HIGH);
     digitalWrite(GPIO_LED_ORANGE, LOW);
@@ -743,7 +707,7 @@ void loop()
         refresh = false;
     }
 
-    if(antiRebond && !estPartieGagnee())
+    if(antiRebond)
     {
         afficheur.afficher();
         delay(ANTI_REBOND);
@@ -755,12 +719,23 @@ void loop()
         tirer();
     }
 
-    if(joueurSuivant)
+    // GPIO_SW2 -> terminerTour OU GPIO_SW1 -> declencherFaute
+    if(joueurSuivant || fauteEncours)
     {
         joueurCourant = (CouleurBille)((int(joueurCourant) + 1) % NB_COULEURS);
         afficherSuivant();
         etatJoueur[joueurCourant] = false;
-        envoyerTrameNext();
+        if(joueurSuivant)
+        {
+            envoyerTrameDebutTour();
+            joueurSuivant = false;
+        }
+        else if(fauteEncours)
+        {
+            envoyerTrameFaute();
+            fauteEncours = false;
+        }
+        tirEncours = true;
 #ifdef DEBUG
         Serial.print("Joueur ROUGE : ");
         Serial.print(nbBilles[CouleurBille::ROUGE]);
@@ -799,9 +774,7 @@ void loop()
             Serial.println("Suivant : JAUNE");
         }
 #endif
-        joueurSuivant = false;
-        if(!estPartieGagnee())
-            declencherTir(); // au suivant de jouer
+        // tirer();
     }
 
     if(lireTrame(trame))
@@ -815,75 +788,36 @@ void loop()
         switch(typeTrame)
         {
             case Inconnu:
-                envoyerTrameErreur(ERREUR_TRAME_INCONNUE);
-                afficheur.setMessageLigne(Afficheur::Ligne4,
-                                          String("Inconnue --> ?"));
                 break;
             case TypeTrame::START:
-                if(etatPartie == Finie)
-                {
-                    reinitialiserAffichage();
-                    envoyerTrameAcquittement();
-                    joueurCourant = (CouleurBille)random(0, NB_COULEURS);
-                    nbBilles[CouleurBille::ROUGE]      = NB_BILLES_ROUGE;
-                    nbBilles[CouleurBille::JAUNE]      = NB_BILLES_JAUNE;
-                    etatJoueur[CouleurBille::ROUGE]    = false;
-                    etatJoueur[CouleurBille::JAUNE]    = false;
-                    joueurGagnant[CouleurBille::ROUGE] = false;
-                    joueurGagnant[CouleurBille::JAUNE] = false;
-                    etatPartie                         = EnCours;
-                    digitalWrite(GPIO_LED_ROUGE, LOW);
-                    digitalWrite(GPIO_LED_ORANGE, LOW);
-                    digitalWrite(GPIO_LED_VERTE, HIGH);
-                    afficherScore();
-                    afficheur.setMessageLigne(Afficheur::Ligne4,
-                                              nomsTrame[typeTrame] +
-                                                String(" --> En cours"));
-                    afficheur.afficher();
-#ifdef DEBUG
-                    Serial.println("Nouvelle partie");
-#endif
-                    declencherTir(); // c'est parti !
-                }
-                else
-                    envoyerTrameErreur(ERREUR_TRAME_ETAT);
-                break;
-            /*case TypeTrame::PAUSE:
-              if(etatPartie == EnCours)
-              {
-                envoyerTrameAcquittement();
-                etatPartie = EnPause;
-                digitalWrite(GPIO_LED_ROUGE, LOW);
-                digitalWrite(GPIO_LED_ORANGE, HIGH);
-                digitalWrite(GPIO_LED_VERTE, LOW);
-                afficheur.setMessageLigne(Afficheur::Ligne4,
-              nomsTrame[typeTrame] + String(" --> En pause"));
-                afficheur.afficher();
-              }
-              else
-                envoyerTrameErreur(ERREUR_TRAME_ETAT);
-              break;*/
-            /*case TypeTrame::PLAY:
-              if(etatPartie == EnPause)
-              {
-                envoyerTrameAcquittement();
-                etatPartie = EnCours;
+                reinitialiserAffichage();
+                joueurCourant = (CouleurBille)random(0, NB_COULEURS);
+                nbBilles[CouleurBille::ROUGE]      = NB_BILLES_ROUGE;
+                nbBilles[CouleurBille::JAUNE]      = NB_BILLES_JAUNE;
+                etatJoueur[CouleurBille::ROUGE]    = false;
+                etatJoueur[CouleurBille::JAUNE]    = false;
+                joueurGagnant[CouleurBille::ROUGE] = false;
+                joueurGagnant[CouleurBille::JAUNE] = false;
+                etatPartie                         = EnCours;
+
                 digitalWrite(GPIO_LED_ROUGE, LOW);
                 digitalWrite(GPIO_LED_ORANGE, LOW);
                 digitalWrite(GPIO_LED_VERTE, HIGH);
+                afficherScore();
                 afficheur.setMessageLigne(Afficheur::Ligne4,
-              nomsTrame[typeTrame] + String(" --> En cours"));
+                                          nomsTrame[typeTrame] +
+                                            String(" --> En cours"));
                 afficheur.afficher();
-              }
-              else
-                envoyerTrameErreur(ERREUR_TRAME_ETAT);
-              break;*/
+#ifdef DEBUG
+                Serial.println("Nouvelle partie");
+#endif
+                break;
             case TypeTrame::STOP:
                 if(etatPartie > Finie)
                 {
                     reinitialiserAffichage();
-                    envoyerTrameAcquittement();
                     etatPartie = Finie;
+                    tirEncours = false;
                     digitalWrite(GPIO_LED_ROUGE, HIGH);
                     digitalWrite(GPIO_LED_ORANGE, LOW);
                     digitalWrite(GPIO_LED_VERTE, LOW);
@@ -892,35 +826,6 @@ void loop()
                                                 String(" --> Finie"));
                     afficheur.afficher();
                 }
-                else
-                    envoyerTrameErreur(ERREUR_TRAME_ETAT);
-                break;
-            case TypeTrame::RESET:
-                reinitialiserAffichage();
-                envoyerTrameAcquittement();
-                etatPartie = Finie;
-                digitalWrite(GPIO_LED_ROUGE, HIGH);
-                digitalWrite(GPIO_LED_ORANGE, LOW);
-                digitalWrite(GPIO_LED_VERTE, LOW);
-                afficheur.setMessageLigne(Afficheur::Ligne4,
-                                          nomsTrame[typeTrame] +
-                                            String(" --> Annulée"));
-                reinitialiserAffichage();
-                break;
-            case TypeTrame::CONFIG:
-                envoyerTrameErreur(ERREUR_TRAME_NON_SUPPORTEE);
-                digitalWrite(GPIO_LED_ORANGE, HIGH);
-                delay(150);
-                digitalWrite(GPIO_LED_ORANGE, LOW);
-                afficheur.setMessageLigne(Afficheur::Ligne4,
-                                          nomsTrame[typeTrame]);
-                break;
-            case TypeTrame::ACK:
-                digitalWrite(GPIO_LED_ORANGE, HIGH);
-                delay(150);
-                digitalWrite(GPIO_LED_ORANGE, LOW);
-                afficheur.setMessageLigne(Afficheur::Ligne4,
-                                          nomsTrame[typeTrame]);
                 break;
             default:
 #ifdef DEBUG

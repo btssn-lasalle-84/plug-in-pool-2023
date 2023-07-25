@@ -16,15 +16,18 @@ import android.os.Message;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,7 @@ public class ConfigurationManche extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_ConfigurationManche"; //!< TAG pour les logs
+    private final int RETOUR = 0;
 
     /**
      * Attributs
@@ -61,17 +65,11 @@ public class ConfigurationManche extends AppCompatActivity
                                       //!< liste des joueurs enregistrés
     private EditText editionNomJoueur1; //!< Zone permettant de saisir le nom du premier joueur
     private EditText editionNomJoueur2; //!< Zone permettant de saisir le nom du premier joueur
-    private RadioButton
-      boutonTable1; //!< Bouton permettant de sélectionner la table 1 pour s'y connecter
-    private RadioButton
-      boutonTable2; //!< Bouton permettant de sélectionner la table 2 pour s'y connecter
-    private RadioButton
-      boutonTable3; //!< Bouton permettant de sélectionner la table 3 pour s'y connecter
-    private RadioButton
-      boutonTable4; //!< Bouton permettant de sélectionner la table 4 pour s'y connecter
+    private RadioButton[]
+      boutonsTables; //!< Boutons permettant de sélectionner la table pour s'y connecter
     private ImageButton
       boutonActualiser; //!< Bouton permettant de rechercher les tables disponibles
-    private Button
+    private ImageButton
       boutonSuivant; //!< Bouton permettant de passer à l'activité de suivi de partie "Manche"
 
     /**
@@ -86,6 +84,8 @@ public class ConfigurationManche extends AppCompatActivity
         initialiserHandler();
         initialiserAttributs();
         initialiserRessources();
+        communication.rechercherTables();
+        afficherTablesDisponibles();
     }
 
     /**
@@ -95,7 +95,7 @@ public class ConfigurationManche extends AppCompatActivity
     {
         baseDonnees = BaseDeDonnees.getInstance(this);
         nomsJoueurs   = baseDonnees.getNomsJoueurs();
-        communication = Communication.getInstance(handler, Communication.TABLE);
+        communication = Communication.getInstance(handler, Communication.TABLE, this);
         adaptateurNomsJoueurs =
           new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, nomsJoueurs);
         filtresNom = new InputFilter[] {
@@ -117,6 +117,16 @@ public class ConfigurationManche extends AppCompatActivity
         };
     }
 
+    public void desactiverInteractions()
+    {
+        //!< @ todo setEnable(false)
+    }
+
+    public void activerInteractions()
+    {
+        //!< @ todo setEnable(true)
+    }
+
     /**
      * @brief Initialise les ressources graphiques de l'activité
      */
@@ -127,17 +137,20 @@ public class ConfigurationManche extends AppCompatActivity
         editionNomJoueur1     = (EditText)findViewById(R.id.joueur1Edit);
         editionNomJoueur2     = (EditText)findViewById(R.id.joueur2Edit);
         RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
-        boutonTable1          = (RadioButton)findViewById(R.id.boutonTable1);
-        boutonTable2          = (RadioButton)findViewById(R.id.boutonTable2);
-        boutonTable3          = (RadioButton)findViewById(R.id.boutonTable3);
-        boutonTable4          = (RadioButton)findViewById(R.id.boutonTable4);
+        boutonsTables = new RadioButton[4];
+        boutonsTables[0]          = (RadioButton)findViewById(R.id.boutonTable1);
+        boutonsTables[1]          = (RadioButton)findViewById(R.id.boutonTable2);
+        boutonsTables[2]          = (RadioButton)findViewById(R.id.boutonTable3);
+        boutonsTables[3]          = (RadioButton)findViewById(R.id.boutonTable4);
         boutonActualiser      = (ImageButton)findViewById(R.id.boutonActualiser);
-        boutonSuivant         = (Button)findViewById(R.id.boutonSuivant);
+        boutonSuivant         = (ImageButton)findViewById(R.id.boutonSuivant);
 
         choixNomsJoueur1.setAdapter(adaptateurNomsJoueurs);
         choixNomsJoueur2.setAdapter(adaptateurNomsJoueurs);
-        choixNomsJoueur1.setSelection(0);
-        choixNomsJoueur2.setSelection(1);
+        if(nomsJoueurs.size() > 0)
+            choixNomsJoueur1.setSelection(0);
+        if(nomsJoueurs.size() > 1)
+            choixNomsJoueur2.setSelection(1);
 
         choixNomsJoueur1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -174,14 +187,15 @@ public class ConfigurationManche extends AppCompatActivity
         editionNomJoueur1.setHint("Saisir le nom du premier joueur");
         editionNomJoueur2.setHint("Saisir le nom du second joueur");
 
-        editionNomJoueur1.setFilters(filtresNom);
-        editionNomJoueur2.setFilters(filtresNom);
+        //editionNomJoueur1.setFilters(filtresNom); !< @fixme
+        //editionNomJoueur2.setFilters(filtresNom); !< @fixme
 
         boutonActualiser.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 Log.d(TAG, "clic boutonActualiser");
-                //!< @todo rafraichir tables en attente de connexion
+                communication.rechercherTables();
+                afficherTablesDisponibles();
             }
         });
 
@@ -190,9 +204,12 @@ public class ConfigurationManche extends AppCompatActivity
             public void onCheckedChanged(RadioGroup groupe, int checkedId)
             {
                 RadioButton boutonTable = (RadioButton)findViewById(groupe.getCheckedRadioButtonId());
-                choixNomTable           = boutonTable.getText().toString();
-                Log.d(TAG, "clic choixTable : " + choixNomTable);
-                communication.seConnecter(choixNomTable);
+                if(boutonTable != null && boutonTable.isChecked()) {
+                    choixNomTable = boutonTable.getContentDescription().toString();
+                    Log.d(TAG, "clic choixTable : " + choixNomTable);
+                    afficherConnexion(true, " Connexion " + choixNomTable + " ");
+                    communication.seConnecter(choixNomTable);
+                }
             }
         });
 
@@ -212,15 +229,65 @@ public class ConfigurationManche extends AppCompatActivity
                     ajouterNomsJoueurs(nomJoueur1, nomJoueur2);
                     Intent activiteManche = parametrerActiviteManche(nomJoueur1, nomJoueur2);
 
-                    startActivity(activiteManche);
+                    startActivityForResult(activiteManche, RETOUR);
                     Log.d(TAG, "DEBUG startActivity(activiteManche) Activite demarree avec succes");
                 }
                 else
                 {
-                    //!< @todo afficher un message d'erreur ?
+                    Log.d(TAG, "clic BoutonSuivant, conditions non remplies");
                 }
             }
         });
+    }
+
+    private void afficherConnexion(boolean connexionReussie, String message)
+    {
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.toast, findViewById(R.id.texte));
+        TextView texte = (TextView) layout.findViewById(R.id.texte);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        if (connexionReussie) {
+            texte.setText(message);
+        } else {
+            texte.setText(message);
+            RadioGroup choixTable = findViewById(R.id.groupeBoutonsTables);
+            choixTable.clearCheck();
+        }
+        toast.setGravity(Gravity.BOTTOM, 0, 100);
+        toast.setView(layout);
+        toast.show();
+    }
+
+    public void afficherTablesDisponibles()
+    {
+        for(int table = 0; table < Communication.NB_TABLES; table++)
+        {
+            Log.d(TAG, "afficherTablesDisponibles() table = " + table + " -> " + Communication.tables.get(Communication.TABLES[table]));
+            if(Communication.tables.get(Communication.TABLES[table]))
+            {
+                boutonsTables[table].setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                boutonsTables[table].setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RETOUR) {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
     }
 
     private void ajouterNomsJoueurs(String nomJoueur1, String nomJoueur2) {
@@ -273,6 +340,7 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] CONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(true);
+                        afficherConnexion(true, " Connexion : Succès ");
                         break;
                     case Communication.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "[Handler] RECEPTION_BLUETOOTH");
@@ -281,6 +349,11 @@ public class ConfigurationManche extends AppCompatActivity
                     case Communication.DECONNEXION_BLUETOOTH:
                         Log.d(TAG, "[Handler] DECONNEXION_BLUETOOTH");
                         actualiserEtatConnexionTable(false);
+                        break;
+                    case Communication.ERREUR_BLUETOOTH:
+                        Log.d(TAG, "[Handler] ERREUR_BLUETOOTH");
+                        actualiserEtatConnexionTable(false);
+                        afficherConnexion(false, " Connexion : Échec ");
                         break;
                 }
             }

@@ -1,0 +1,490 @@
+format 224
+"annotation" // Android::Sdk::tools::proguard::examples::annotations::src::proguard::annotation
+  revision 1
+  modified_by 50 "btssn2"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "Android/Sdk/tools/proguard/examples/annotations/src/proguard/annotation/"
+  java_package "proguard.annotation"
+  classview 134962 "annotation"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 155442 "Keep"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.CONSTRUCTOR })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies not to optimize or obfuscate the annotated class or
+class member as an entry point.
+"
+    end
+
+    class 155570 "KeepApplication"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep the annotated class as an application,
+together with its a main method.
+"
+    end
+
+    class 155698 "KeepClassMemberNames"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all class members of the annotated class
+from being optimized or obfuscated as entry points.
+"
+    end
+
+    class 155826 "KeepClassMembers"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all class members of the annotated class
+from being shrunk, optimized, or obfuscated as entry points.
+"
+    end
+
+    class 155954 "KeepGettersSetters"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all getters and setters of the annotated
+class from being shrunk, optimized, or obfuscated as entry points.
+"
+    end
+
+    class 156082 "KeepImplementations"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all implementations or extensions of the
+annotated class as entry points.
+"
+    end
+
+    class 156210 "KeepName"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE, ElementType.FIELD, ElementType.METHOD, ElementType.CONSTRUCTOR })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies not to optimize or obfuscate the annotated class or
+class member as an entry point.
+"
+    end
+
+    class 156338 "KeepPublicClassMemberNames"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public class members of the annotated
+class from being optimized or obfuscated as entry points.
+"
+    end
+
+    class 156466 "KeepPublicClassMembers"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public class members of the annotated
+class from being shrunk, optimized, or obfuscated as entry points.
+"
+    end
+
+    class 156594 "KeepPublicGettersSetters"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public getters and setters of the
+annotated class from being shrunk, optimized, or obfuscated as entry points.
+"
+    end
+
+    class 156722 "KeepPublicImplementations"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public implementations or extensions
+of the annotated class as entry points.
+"
+    end
+
+    class 156850 "KeepPublicProtectedClassMemberNames"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public or protected class members of
+the annotated class from being optimized or obfuscated as entry points.
+"
+    end
+
+    class 156978 "KeepPublicProtectedClassMembers"
+      visibility public stereotype "@interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}@interface ${name}${extends} {
+${members}}
+"
+      java_annotation "@Target({ ElementType.TYPE })
+@Retention(RetentionPolicy.CLASS)
+@Documented
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "This annotation specifies to keep all public or protected class members of
+the annotated class from being shrunk, optimized, or obfuscated as entry
+points.
+"
+    end
+  end
+
+  deploymentview 134706 "annotation"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 141618 "Keep"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 155442 // Keep
+      end
+    end
+
+    artifact 141746 "KeepApplication"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 155570 // KeepApplication
+      end
+    end
+
+    artifact 141874 "KeepClassMemberNames"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 155698 // KeepClassMemberNames
+      end
+    end
+
+    artifact 142002 "KeepClassMembers"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 155826 // KeepClassMembers
+      end
+    end
+
+    artifact 142130 "KeepGettersSetters"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 155954 // KeepGettersSetters
+      end
+    end
+
+    artifact 142258 "KeepImplementations"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156082 // KeepImplementations
+      end
+    end
+
+    artifact 142386 "KeepName"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156210 // KeepName
+      end
+    end
+
+    artifact 142514 "KeepPublicClassMemberNames"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156338 // KeepPublicClassMemberNames
+      end
+    end
+
+    artifact 142642 "KeepPublicClassMembers"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156466 // KeepPublicClassMembers
+      end
+    end
+
+    artifact 142770 "KeepPublicGettersSetters"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156594 // KeepPublicGettersSetters
+      end
+    end
+
+    artifact 142898 "KeepPublicImplementations"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156722 // KeepPublicImplementations
+      end
+    end
+
+    artifact 143026 "KeepPublicProtectedClassMemberNames"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156850 // KeepPublicProtectedClassMemberNames
+      end
+    end
+
+    artifact 143154 "KeepPublicProtectedClassMembers"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.lang.annotation.*;
+${definition}"
+      associated_elems
+	class_ref 156978 // KeepPublicProtectedClassMembers
+      end
+    end
+  end
+end

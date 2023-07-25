@@ -20,7 +20,9 @@ var annotated_dup =
         ] ]
       ] ]
     ] ],
+    [ "CommunicationBluetooth", "class_communication_bluetooth.html", "class_communication_bluetooth" ],
     [ "EcranPool", "class_ecran_pool.html", "class_ecran_pool" ],
     [ "Joueurs", "class_joueurs.html", "class_joueurs" ],
+    [ "QObject", "class_q_object.html", null ],
     [ "QWidget", "class_q_widget.html", null ]
 ];

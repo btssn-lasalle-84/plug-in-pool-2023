@@ -1,0 +1,13 @@
+class TableauCarre
+!!!154546.java!!!	main(inout args : String [[]]) : void
+        afficheTableauCarre(NB_VALEURS);
+!!!154674.java!!!	afficheTableauCarre(in n : int) : void
+        int[] tableau = new int[NB_VALEURS];
+        for(int i = 1; i < NB_VALEURS * 2; i += 2)
+        {
+            tableau[i / 2] = i * i;
+            System.out.print(i);
+            System.out.print(" a pour carre ");
+            System.out.print(tableau[i / 2]);
+            System.out.println();
+        }

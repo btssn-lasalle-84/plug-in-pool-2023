@@ -4,41 +4,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/fenetre_fond" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_margin="60dp">
 
         <TextView
             android:id="@+id/nomJoueur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nom" />
+            android:gravity="center"
+            android:fontFamily="@font/celtica_bold"
+            android:textColor="@color/acajou"
+            android:textSize="40sp"
+            android:text="Nom"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/scoreElo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="scoreELO" />
+            android:fontFamily="@font/celtica_bold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="scoreELO"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/nbManches"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre de manches" />
+            android:fontFamily="@font/celtica_bold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:text="Nombre de manches"
+            android:layout_marginBottom="4dp"/>
 
         <TextView
             android:id="@+id/nbVictoires"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/celtica_bold"
+            android:textColor="@color/black"
+            android:textSize="30sp"
             android:text="Nombre de victoires" />
 
-        <Button
-            android:id="@+id/boutonSupprimer"
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Supprimer" />
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="200dp">
+
+            <ImageButton
+                android:id="@+id/boutonSupprimer"
+                android:layout_width="230dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bouton_fond_reflet" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/celtica_bold"
+                android:gravity="center_horizontal"
+                android:text=" Effacer "
+                android:textColor="@color/black"
+                android:textSize="40sp"/>
+
+        </FrameLayout>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

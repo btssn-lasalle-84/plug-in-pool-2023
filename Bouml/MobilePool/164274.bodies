@@ -1,0 +1,32 @@
+class Parallelepipede
+!!!176818.java!!!	Parallelepipede(in largeur : double, in longueur : double, in hauteur : double)
+        super(largeur, longueur);
+        this.hauteur = hauteur;
+        this.dx = 0.;
+        this.dy = 0.;
+!!!176946.java!!!	Parallelepipede(in largeur : double, in longueur : double, in hauteur : double, in dx : double, in dy : double)
+        super(largeur, longueur);
+        this.hauteur = hauteur;
+        this.dx = dx;
+        this.dy = dy;
+!!!177074.java!!!	Parallelepipede(in largeur : double, in longueur : double, in hauteur : double, in dx : double, in dy : double, in x : double, in y : double, in z : double)
+        super(largeur, longueur, x, y, z);
+        this.hauteur = hauteur;
+        this.dx = dx;
+        this.dy = dy;
+!!!177202.java!!!	getDx() : double
+        return this.dx;
+!!!177330.java!!!	getDy() : double
+        return this.dy;
+!!!177458.java!!!	getHauteur() : double
+       return this.hauteur;
+!!!177586.java!!!	volume() : double
+        return this.hauteur * super.aire();
+!!!177714.java!!!	perimetre() : double
+        return 0.;
+!!!177842.java!!!	aire() : double
+        return (this.getLargeur() * (this.getLongueur() + this.hauteur) + this.getLongueur() * this.hauteur) * 2;
+!!!177970.java!!!	getDescription() : String
+        return super.getDescription() + " <|--- Parallelepipede";
+!!!178098.java!!!	toString() : String
+        return super.toString() + " " + this.hauteur + " " + this.dx + " " + this.dy;
