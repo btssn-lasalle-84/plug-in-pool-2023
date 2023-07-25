@@ -7,6 +7,9 @@ var hierarchy =
     [ "Joueurs", "class_joueurs.html", null ],
     [ "com.example.pluginpool.ProtocoleEcran", "classcom_1_1example_1_1pluginpool_1_1_protocole_ecran.html", null ],
     [ "com.example.pluginpool.ProtocoleTable", "classcom_1_1example_1_1pluginpool_1_1_protocole_table.html", null ],
+    [ "QObject", "class_q_object.html", [
+      [ "CommunicationBluetooth", "class_communication_bluetooth.html", null ]
+    ] ],
     [ "QWidget", "class_q_widget.html", [
       [ "EcranPool", "class_ecran_pool.html", null ]
     ] ],

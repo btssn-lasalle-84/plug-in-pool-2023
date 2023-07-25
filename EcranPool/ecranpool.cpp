@@ -135,7 +135,7 @@ void EcranPool::afficherDecompteManche()
     if(ui->ecrans->currentIndex() == EcranPool::Ecran::Partie)
     {
         // Afficher le décompte dans le QLabel
-        ui->labelDecompteManche->setText(QString::number(decompte) + " sec");
+        ui->labelDecompteManche->setText(QString::number(decompte) + " s");
 
         // Décrémente le décompte
         --decompte;
@@ -284,7 +284,7 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 1 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur1 + " :(\n\n  " +
+              "Bille noire empochée par " + nomJoueur1 + " \n\n  " +
               nomJoueur2 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 2)
@@ -295,7 +295,7 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
             // Joueur 2 a empoché la bille noire, affichage de l'écran de fin de
             // partie
             ui->labelVainqueur->setText(
-              "Bille noire empochée par " + nomJoueur2 + " :(\n\n  " +
+              "Bille noire empochée par " + nomJoueur2 + " \n\n  " +
               nomJoueur1 +
               " remporte donc la partie !"); // Afficher le nom du vainqueur
                                              // (joueur 1)
@@ -329,8 +329,8 @@ void EcranPool::afficherEmpochage(int numeroTable, int numeroPoche, int couleur)
     {
         if(joueurActif == 0)
         {
-            couleurJoueur1 = couleur;
-            couleurJoueur2 = (couleurJoueur1 + 1) % 2;
+            couleurJoueur2 = couleur;
+            couleurJoueur1 = (couleurJoueur2 + 1) % 2;
         }
         else
         {

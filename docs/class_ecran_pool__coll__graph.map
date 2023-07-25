@@ -1,5 +1,7 @@
 <map id="EcranPool" name="EcranPool">
-<area shape="rect" id="node1" title="L&#39;IHM de l&#39;application." alt="" coords="5,204,225,545"/>
-<area shape="rect" id="node2" href="$class_q_widget.html" title=" " alt="" coords="11,35,89,112"/>
-<area shape="rect" id="node3" href="$class_joueurs.html" title="Déclare les joueurs de la partie." alt="" coords="113,5,248,141"/>
+<area shape="rect" id="node1" title="L&#39;IHM de l&#39;application." alt="" coords="103,507,349,1083"/>
+<area shape="rect" id="node2" href="$class_q_widget.html" title=" " alt="" coords="5,249,84,327"/>
+<area shape="rect" id="node3" href="$class_communication_bluetooth.html" title="La classe de communication Bluetooth." alt="" coords="108,132,344,444"/>
+<area shape="rect" id="node4" href="$class_q_object.html" title=" " alt="" coords="189,5,263,83"/>
+<area shape="rect" id="node5" href="$class_joueurs.html" title="Déclare les joueurs de la partie." alt="" coords="368,220,503,356"/>
 </map>

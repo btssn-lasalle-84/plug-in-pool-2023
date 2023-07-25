@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['recevoir_403',['recevoir',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#ab77efd12107798c397086b734ed79b6e',1,'com::example::pluginpool::Communication']]],
-  ['rechercherjoueurs_404',['rechercherJoueurs',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a699f3b7a96204f66c9cb57c10190037f',1,'com::example::pluginpool::Historique']]],
-  ['recherchermanches_405',['rechercherManches',['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a30ce77ce032f05ed442731371d1e289b',1,'com::example::pluginpool::Historique']]],
-  ['recherchertables_406',['rechercherTables',['../classcom_1_1example_1_1pluginpool_1_1_communication.html#a64539c17b6a60a6c24d994d278326c1a',1,'com::example::pluginpool::Communication']]],
-  ['recommencer_407',['recommencer',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a001344687517b3ba2f238a53b412d997',1,'com::example::pluginpool::Manche']]],
-  ['reinitialiserattributs_408',['reinitialiserAttributs',['../classcom_1_1example_1_1pluginpool_1_1_manche.html#a55e6c25976e0a5888978409884ff743a',1,'com::example::pluginpool::Manche']]]
+  ['onactivityresult_533',['onActivityResult',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a072fe9a09372a16d93d13699df2d2c6f',1,'com::example::pluginpool::ConfigurationManche']]],
+  ['onbackpressed_534',['onBackPressed',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#ac8405a33b7f21f99f59c21f912f9e039',1,'com.example.pluginpool.ConfigurationManche.onBackPressed()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#abd6d4c196de71be97374e1d4c270c9d9',1,'com.example.pluginpool.Manche.onBackPressed()']]],
+  ['oncreate_535',['onCreate',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#acc6843f172f494ad869f5599c906beca',1,'com.example.pluginpool.BaseDeDonnees.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acceaa606a70e8791a21090fe4cd59ae9',1,'com.example.pluginpool.ConfigurationManche.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a6f4f265f1b1765cea4bbc9f17f5de47b',1,'com.example.pluginpool.EcranPrincipal.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_historique.html#a6896a5a5598a62be333b978df016b6e3',1,'com.example.pluginpool.Historique.onCreate()'],['../classcom_1_1example_1_1pluginpool_1_1_manche.html#aed8a1b6f129a58f985791debedff2a92',1,'com.example.pluginpool.Manche.onCreate()']]],
+  ['ondestroy_536',['onDestroy',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a4ba9082e2b8215849203526ac2e2b6c8',1,'com::example::pluginpool::EcranPrincipal']]],
+  ['onpause_537',['onPause',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a4ba9845d6b29521c528c4bacc935b00d',1,'com::example::pluginpool::EcranPrincipal']]],
+  ['onresume_538',['onResume',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a147d68a0cfff5ed85961ddf793c99a88',1,'com::example::pluginpool::EcranPrincipal']]],
+  ['onstart_539',['onStart',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#a22a08b146f1061b2efc6e3a2a75a70cf',1,'com::example::pluginpool::EcranPrincipal']]],
+  ['onstop_540',['onStop',['../classcom_1_1example_1_1pluginpool_1_1_ecran_principal.html#ac1f5d5bdc247627aa2938cce180a59c8',1,'com::example::pluginpool::EcranPrincipal']]],
+  ['onupgrade_541',['onUpgrade',['../classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#ae6a904234a105f58b931a1713a6d039d',1,'com::example::pluginpool::BaseDeDonnees']]]
 ];

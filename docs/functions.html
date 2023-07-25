@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet plug-in-pool
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>activer()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#a207b049b5e42833df8b3326fbc277820">com.example.pluginpool.Communication</a>
 </li>
+<li>activerInteractions()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a5bcfde2d59bc0b0c8e5fb3caa1e53c4e">com.example.pluginpool.ConfigurationManche</a>
+</li>
 <li>activiteHistorique
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique_joueur.html#ad80cedfa5240eb205482dc11d3958c2c">com.example.pluginpool.HistoriqueJoueur</a>
 , <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique_manche.html#a5fb307b9cb9388eee0a9c3d0783c62ea">com.example.pluginpool.HistoriqueManche</a>
@@ -105,6 +108,12 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>actualiserJoueurs()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a37f726dc940c001b74a970f094fda263">com.example.pluginpool.BaseDeDonnees</a>
+</li>
+<li>actualiserManches()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a3aae8381198307d7167f1489c50e6b98">com.example.pluginpool.Historique</a>
+</li>
+<li>actualiserNoms()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#aaf3e878efa1d875fad1519e7037e22b6">com.example.pluginpool.Historique</a>
 </li>
 <li>adaptateurBluetooth
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_communication.html#ab647d684627b19c6c0fd72a28ff3654f">com.example.pluginpool.Communication</a>
@@ -121,8 +130,23 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>addition_isCorrect()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_example_unit_test.html#ad2e5544350b1f4ba5587a9c692616021">com.example.pluginpool.ExampleUnitTest</a>
 </li>
+<li>adressePeripheriqueLocal
+: <a class="el" href="class_communication_bluetooth.html#a50135736433f3942ba78640481e71022">CommunicationBluetooth</a>
+</li>
+<li>aEmpocheBilleBlanche()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#add40cd0a3854efdc646d7d872ce50698">com.example.pluginpool.Manche</a>
+</li>
 <li>afficherBillesRestantes()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#ad2129514127502651728bcfbd30021fb">com.example.pluginpool.Manche</a>
+</li>
+<li>afficherBillesRestantesJoueurs()
+: <a class="el" href="class_ecran_pool.html#aa49f99665fbf995dda7adf53eec719f9">EcranPool</a>
+</li>
+<li>afficherChangementJoueur()
+: <a class="el" href="class_ecran_pool.html#a9c66c975adc7499482e6d3d28cbd8c5b">EcranPool</a>
+</li>
+<li>afficherConnexion()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#acd7855d4c46eeed88910df883dbda630">com.example.pluginpool.ConfigurationManche</a>
 </li>
 <li>afficherDecompteManche()
 : <a class="el" href="class_ecran_pool.html#a840f3bdbc18f8035e64e78d3a26e4cbf">EcranPool</a>
@@ -148,11 +172,26 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>afficherEcranSuivant()
 : <a class="el" href="class_ecran_pool.html#a747e94a5b213970d9d9bf95156f7c597">EcranPool</a>
 </li>
+<li>afficherEmpochage()
+: <a class="el" href="class_ecran_pool.html#a14b1ae3f5936d38b08e79f2b0fa4225a">EcranPool</a>
+</li>
+<li>afficherFenetreJoueur()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#ad3e9f6226f589fc42751ecc2cb877ea7">com.example.pluginpool.Historique</a>
+</li>
+<li>afficherFenetreManche()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_historique.html#a254eb53815f5e5dea0ae69b5e30d8590">com.example.pluginpool.Historique</a>
+</li>
 <li>afficherHeure()
 : <a class="el" href="class_ecran_pool.html#a36d7988b7d3a84371ded9ccb9c138d38">EcranPool</a>
 </li>
+<li>afficherNomsJoueurs()
+: <a class="el" href="class_ecran_pool.html#a05f055fae1061edc1a05f068284986f8">EcranPool</a>
+</li>
+<li>afficherTablesDisponibles()
+: <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#ac1d0edf2d9906ab46da9b2123b8cb0e5">com.example.pluginpool.ConfigurationManche</a>
+</li>
 <li>ajouterJoueur()
-: <a class="el" href="class_joueurs.html#a19449e9d7555e963128b281177736b41">Joueurs</a>
+: <a class="el" href="class_joueurs.html#a36e21488785816929604b847ac5aa9c9">Joueurs</a>
 </li>
 <li>ajouterManche()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html#a73caa7101c4594f9d30d18007e6d4d14">com.example.pluginpool.BaseDeDonnees</a>
@@ -166,6 +205,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>ARRET
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_protocole_table.html#a857c3bf38f991eaed8cdb95d613d5485">com.example.pluginpool.ProtocoleTable</a>
 </li>
+<li>arreterCommunication()
+: <a class="el" href="class_communication_bluetooth.html#a84515500c1cc66f05d5e462aff891059">CommunicationBluetooth</a>
+</li>
 <li>arreterCompteARebours()
 : <a class="el" href="classcom_1_1example_1_1pluginpool_1_1_manche.html#ac2ccecbaeefc1c8e2637a9ae43e258b8">com.example.pluginpool.Manche</a>
 </li>
@@ -176,7 +218,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 28 Mai 2023 09:18:59 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 23:25:27 pour Projet plug-in-pool par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

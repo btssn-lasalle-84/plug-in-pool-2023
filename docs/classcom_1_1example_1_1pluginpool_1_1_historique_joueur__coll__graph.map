@@ -1,5 +1,6 @@
 <map id="com.example.pluginpool.HistoriqueJoueur" name="com.example.pluginpool.HistoriqueJoueur">
-<area shape="rect" id="node1" title="La fenêtre s&#39;affichant lors de la sélection lors de la selection d&#39;un joueur, sur laquelle figurent l..." alt="" coords="5,945,260,1140"/>
-<area shape="rect" id="node2" href="$classcom_1_1example_1_1pluginpool_1_1_historique.html" title=" " alt="" coords="5,556,260,883"/>
-<area shape="rect" id="node3" href="$classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="23,5,242,493"/>
+<area shape="rect" id="node1" title="La fenêtre s&#39;affichant lors de la sélection lors de la selection d&#39;un joueur, sur laquelle figurent l..." alt="" coords="5,130,260,325"/>
+<area shape="rect" id="node2" href="$classcom_1_1example_1_1pluginpool_1_1_historique.html" title=" " alt="" coords="121,512,376,1000"/>
+<area shape="rect" id="node3" href="$classcom_1_1example_1_1pluginpool_1_1_historique_manche.html" title="La fenêtre s&#39;affichant lors de la sélection lors de la selection d&#39;une manche, sur laquelle figurent ..." alt="" coords="121,1063,376,1243"/>
+<area shape="rect" id="node4" href="$classcom_1_1example_1_1pluginpool_1_1_base_de_donnees.html" title="La classe assurant la gestion de la base de données SQLITE." alt="" coords="295,5,514,449"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['qwidget_296',['QWidget',['../class_q_widget.html',1,'']]]
+  ['qobject_392',['QObject',['../class_q_object.html',1,'']]],
+  ['qwidget_393',['QWidget',['../class_q_widget.html',1,'']]]
 ];

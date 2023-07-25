@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['parametreractivitemanche_402',['parametrerActiviteManche',['../classcom_1_1example_1_1pluginpool_1_1_configuration_manche.html#a0fde9dcb2a7185cbda0fa288b2003d0c',1,'com::example::pluginpool::ConfigurationManche']]]
+  ['nomsjoueurs_532',['nomsJoueurs',['../class_communication_bluetooth.html#a03773fb20aacbf5b1278a0fd488c4928',1,'CommunicationBluetooth']]]
 ];
